@@ -37,6 +37,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Template Developed By ThemeRegion -->
+  <style>
+  	#temp01{
+  		width:300px;
+  		height:100px;
+  	}
+  </style>
   </head>
   <body>
 	<!-- header -->
@@ -60,21 +66,15 @@
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="job-list.html">Job list</a></li>
-							<li><a href="details.html">Job Details</a></li>
-							<li><a href="resume.html">Resume</a></li> 
-							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="profile.html">Profile</a></li>
-									<li><a href="post-resume.html">Post Resume</a></li>
-									<li><a href="post.html">Job Post</a></li>
-									<li><a href="edit-resume.html">Edit Resume</a></li>
-									<li><a href="profile-details.html">profile Details</a></li>
-									<li><a href="bookmark.html">Bookmark</a></li>
-									<li><a href="applied-job.html">Applied Job</a></li>
-									<li><a href="delete-account.html">Close Account</a></li>
-									<li><a href="signup.html">Job Signup</a></li>
-									<li><a href="signin.html">Job Signin</a></li>
+							<li><a href="job-list.html">채용정보</a></li>
+							<li><a href="details.html">이력서</a></li>
+							<li><a href="resume.html">자소서관리</a></li> 
+							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
+								<ul class="dropdown-menu">									
+									<li><a href="profile-details.html">회원정보 수정</a></li>
+									<li><a href="bookmark.html">관심기업</a></li>
+									<li><a href="applied-job.html">지원한 기업</a></li>
+									<li><a href="delete-account.html">Q&A</a></li>									
 								</ul>
 							</li>
 						</ul>
@@ -82,17 +82,17 @@
 				</div><!-- navbar-left -->
 				
 				<!-- nav-right -->
-				<div class="nav-right">				
+				<div class="nav-right">
+					
+				<div>			
 					<ul class="sign-in">
 						<li><i class="fa fa-user"></i></li>
 						<li><a href="signin.html">Sign In</a></li>
 						<li><a href="signup.html">Register</a></li>
 					</ul><!-- sign-in -->					
-
-					<a href="post.html" class="btn">Post Your Job</a>
 				</div>
 				<!-- nav-right -->
-			</div><!-- container -->
+				</div><!-- container -->
 		</nav><!-- navbar -->
 	</header><!-- header -->
 
@@ -116,12 +116,47 @@
 				</form>
 			</div><!-- banner-form -->
 			
-			<ul class="banner-socail list-inline">
-				<li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-				<li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-				<li><a href="#" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
-				<li><a href="#" title="Youtube"><i class="fa fa-youtube"></i></a></li>
-			</ul><!-- banner-socail -->
+			
+			
+						<div class="section cta cta-two text-center">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="single-cta">
+							<div class="cta-icon icon-jobs">
+								<img src="images/icon/31.png" alt="Icon" class="img-responsive">
+							</div><!-- cta-icon -->
+							<h3>3,412</h3>
+							<h4>Live Jobs</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						</div>
+					</div><!-- single-cta -->
+
+					<div class="col-sm-4">
+						<div class="single-cta">
+							<!-- cta-icon -->
+							<div class="cta-icon icon-company">
+								<img src="images/icon/32.png" alt="Icon" class="img-responsive">
+							</div><!-- cta-icon -->
+							<h3>12,043</h3>
+							<h4>Total Company</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						</div>
+					</div><!-- single-cta -->
+
+					<div class="col-sm-4">
+						<div class="single-cta">
+							<div class="cta-icon icon-candidate">
+								<img src="images/icon/33.png" alt="Icon" class="img-responsive">
+							</div><!-- cta-icon -->
+							<h3>5,798,298</h3>
+							<h4>Total Candidate</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						</div>
+					</div><!-- single-cta -->
+				</div><!-- row -->
+			</div><!-- cta -->
+			
+			
 		</div><!-- container -->
 	</div><!-- banner-section -->
 
@@ -546,11 +581,7 @@
 						</div><!-- ad-item -->
 					</div><!-- tab-pane -->
 				</div><!-- tab-content -->
-			</div><!-- trending ads -->		
-
-			<div class="ad-section text-center">
-				<a href="#"><img src="images/ads/3.jpg" alt="Image" class="img-responsive"></a>
-			</div><!-- ad-section -->
+			</div><!-- trending ads -->			
 
 			<div class="section workshop-traning">
 				<div class="section-title">
@@ -599,161 +630,22 @@
 				</div>
 			</div><!-- workshop-traning -->
 
-			<div class="section cta cta-two text-center">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="single-cta">
-							<div class="cta-icon icon-jobs">
-								<img src="images/icon/31.png" alt="Icon" class="img-responsive">
-							</div><!-- cta-icon -->
-							<h3>3,412</h3>
-							<h4>Live Jobs</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-						</div>
-					</div><!-- single-cta -->
-
-					<div class="col-sm-4">
-						<div class="single-cta">
-							<!-- cta-icon -->
-							<div class="cta-icon icon-company">
-								<img src="images/icon/32.png" alt="Icon" class="img-responsive">
-							</div><!-- cta-icon -->
-							<h3>12,043</h3>
-							<h4>Total Company</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-						</div>
-					</div><!-- single-cta -->
-
-					<div class="col-sm-4">
-						<div class="single-cta">
-							<div class="cta-icon icon-candidate">
-								<img src="images/icon/33.png" alt="Icon" class="img-responsive">
-							</div><!-- cta-icon -->
-							<h3>5,798,298</h3>
-							<h4>Total Candidate</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-						</div>
-					</div><!-- single-cta -->
-				</div><!-- row -->
-			</div><!-- cta -->			
+			
 
 		</div><!-- conainer -->
 	</div><!-- page -->
 	
-	<!-- download -->
-	<section id="download" class="clearfix parallax-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<h2>Download on App Store</h2>
-				</div>
-			</div><!-- row -->
-
-			<!-- row -->
-			<div class="row">
-				<!-- download-app -->
-				<div class="col-sm-4">
-					<a href="#" class="download-app">
-						<img src="images/icon/16.png" alt="Image" class="img-responsive">
-						<span class="pull-left">
-							<span>available on</span>
-							<strong>Google Play</strong>
-						</span>
-					</a>
-				</div><!-- download-app -->
-
-				<!-- download-app -->
-				<div class="col-sm-4">
-					<a href="#" class="download-app">
-						<img src="images/icon/17.png" alt="Image" class="img-responsive">
-						<span class="pull-left">
-							<span>available on</span>
-							<strong>App Store</strong>
-						</span>
-					</a>
-				</div><!-- download-app -->
-
-				<!-- download-app -->
-				<div class="col-sm-4">
-					<a href="#" class="download-app">
-						<img src="images/icon/18.png" alt="Image" class="img-responsive">
-						<span class="pull-left">
-							<span>available on</span>
-							<strong>Windows Store</strong>
-						</span>
-					</a>
-				</div><!-- download-app -->
-			</div><!-- row -->
-		</div><!-- contaioner -->
-	</section><!-- download -->
+	
 	
 	<!-- footer -->
-	<footer id="footer" class="clearfix">
-		<!-- footer-top -->
-		<section class="footer-top clearfix">
-			<div class="container">
-				<div class="row">
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget">
-							<h3>Quik Links</h3>
-							<ul>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">All Cities</a></li>
-								<li><a href="#">Help & Support</a></li>
-								<li><a href="#">Advertise With Us</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget">
-							<h3>How to sell fast</h3>
-							<ul>
-								<li><a href="#">How to sell fast</a></li>
-								<li><a href="#">Membership</a></li>
-								<li><a href="#">Banner Advertising</a></li>
-								<li><a href="#">Promote your ad</a></li>
-								<li><a href="#">Jobs Delivers</a></li>
-								<li><a href="#">FAQ</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget social-widget">
-							<h3>Follow us on</h3>
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook-official"></i>Facebook</a></li>
-								<li><a href="#"><i class="fa fa-twitter-square"></i>Twitter</a></li>
-								<li><a href="#"><i class="fa fa-google-plus-square"></i>Google+</a></li>
-								<li><a href="#"><i class="fa fa-youtube-play"></i>youtube</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget news-letter">
-							<h3>Newsletter</h3>
-							<p>Jobs is Worldest leading Portal platform that brings!</p>
-							<!-- form -->
-							<form action="#">
-								<input type="email" class="form-control" placeholder="Your email id">
-								<button type="submit" class="btn btn-primary">Sign Up</button>
-							</form><!-- form -->			
-						</div>
-					</div><!-- footer-widget -->
-				</div><!-- row -->
-			</div><!-- container -->
-		</section><!-- footer-top -->
+	<footer id="footer" class="clearfix">		
 
 		<div class="footer-bottom clearfix text-center">
 			<div class="container">
+				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상
+	서울시 강남구 역삼로3길 13 건암빌딩 202호 | 전화번호: 02-6264-7582
+사업자등록 : 138-87-00058 | 직업정보제공사업 : J1200020160017 | 통신판매업 : 2016-서울강남-00784
+Copyright Anchoreer Co., Inc. All rights reserved.</p>
 				<p>Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a href="http://themeregion.com/">ThemeRegion</a></p>
 			</div>
 		</div><!-- footer-bottom -->
