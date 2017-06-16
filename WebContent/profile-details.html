@@ -7,7 +7,7 @@
     <meta name="author" content="Theme Region">
    	<meta name="description" content="">
 
-    <title>Jobs | Job Portal / Job Board HTML Template</title>
+    <title>MY PAGE | 개인정보 수정</title>
 
    <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -39,7 +39,7 @@
     <!-- Template Developed By ThemeRegion -->
   </head>
   <body>
-	<!-- header -->
+	<!-- header 11-->
 	<header id="header" class="clearfix">
 		<!-- navbar -->
 		<nav class="navbar navbar-default">
@@ -55,53 +55,227 @@
 					<a class="navbar-brand" href="index.html"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
-				
+								
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="job-list.html">Job list</a></li>
-							<li><a href="details.html">Job Details</a></li>
-							<li><a href="resume.html">Resume</a></li> 
-							<li class="dropdown active"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="profile.html">Profile</a></li>
-									<li><a href="post-resume.html">Post Resume</a></li>
-									<li><a href="post.html">Job Post</a></li>
-									<li><a href="edit-resume.html">Edit Resume</a></li>
-									<li class="active"><a href="profile-details.html">profile Details</a></li>
-									<li><a href="bookmark.html">Bookmark</a></li>
-									<li><a href="applied-job.html">Applied Job</a></li>
-									<li><a href="delete-account.html">Close Account</a></li>
-									<li><a href="signup.html">Job Signup</a></li>
-									<li><a href="signin.html">Job Signin</a></li>
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="job-list.html">채용정보</a></li>
+							<li><a href="details.html">이력서</a></li>
+							<li><a href="resume.html">자소서관리</a></li> 
+							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
+								<ul class="dropdown-menu">									
+									<li><a href="profile-details.html">회원정보 수정</a></li>
+									<li><a href="bookmark.html">관심기업</a></li>
+									<li><a href="applied-job.html">지원한 기업</a></li>
+									<li><a href="delete-account.html">Q&A</a></li>									
 								</ul>
 							</li>
 						</ul>
 					</div>
 				</div><!-- navbar-left -->
-				
-				<!-- nav-right -->
-				<div class="nav-right">				
+				<div class="nav-right">					
 					<ul class="sign-in">
-						<li><i class="fa fa-user"></i></li>
-						<li><a href="signin.html">Sign In</a></li>
-						<li><a href="signup.html">Register</a></li>
+						<li>
+							<a class="sign-in" data-toggle="modal" data-target="#myModal01">Search /</a>			
+						</li>					
+						<li>	
+						  <!-- Trigger the modal with a button -->  
+						  <a class="sign-in" data-toggle="modal" data-target="#myModal02"><i class="fa fa-user"></i>Sign in</a>
+						  	<!-- Modal -->
+						  	<div class="modal fade" id="myModal02" role="dialog">
+						    <div class="modal-dialog">
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">
+						        	<button type="button" class="close" data-dismiss="modal">x</button>
+						        </div>
+						        <div class="modal-body">
+									<div class="row text-center">
+									<h2>User Login</h2>
+									<!-- user-login -->			
+									<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+										<div class="user-account">											
+											<!-- form -->
+											<form action="#">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="Username" >
+												</div>
+												<div class="form-group">
+													<input type="password" class="form-control" placeholder="Password" >
+												</div>
+												<button type="submit" href="#" class="btn">Login</button>
+											</form><!-- form -->							
+										</div><!-- user-login -->			
+									</div><!-- row --> 
+						        	</div>
+						        </div>
+						        <div class="modal-footer">          
+						        </div>
+						      </div>    
+						    </div>
+						  	</div><!-- Modal -->	
+						</li><!-- 로그인 -->						
+						<li>	
+						  <!-- Trigger the modal with a button -->  
+						  <a class="sign-in" data-toggle="modal" data-target="#myModal03">Register</a>
+						  	<!-- Modal -->
+						  	<div class="modal fade" id="myModal03" role="dialog">
+						    <div class="modal-dialog">
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">x</button>
+						        </div>
+						        <div class="modal-body">
+						    		<div class="row text-center">
+									<h2>Create An Account</h2>
+									<!-- user-login -->			
+									<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+										<div class="user-account job-user-account">
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="find-job">
+													<form action="#">
+														<div class="form-group">
+															<input type="text" class="form-control" placeholder="Name" >
+														</div>
+														<div class="form-group">
+															<input type="email" class="form-control" placeholder="Email Id">
+														</div>
+														<div class="form-group">
+															<input type="password" class="form-control" placeholder="Password">
+														</div>
+														<div class="form-group">
+															<input type="password" class="form-control" placeholder="Confirm Password">
+														</div>
+														<div class="form-group">
+															<input type="text" class="form-control" placeholder="Mobile Number">
+														</div>
+														<!-- select -->
+														<select class="form-control">
+															<option value="#">Select City</option>
+															<option value="#">London UK</option>
+															<option value="#">Newyork, USA</option>
+															<option value="#">Seoul, Korea</option>
+															<option value="#">Beijing, China</option>
+														</select><!-- select -->
+														<div class="checkbox">
+															<label class="pull-left checked" for="signing"><input type="checkbox" name="signing" id="signing"> By signing up for an account you agree to our Terms and Conditions </label>
+														</div><!-- checkbox -->	
+														<button type="submit" class="btn">Registration</button>	
+													</form>
+												</div>
+												<div role="tabpanel" class="tab-pane" id="post-job">
+													<form action="#">
+														<div class="form-group">
+															<input type="text" class="form-control" placeholder="Employer Name" >
+														</div>
+														<div class="form-group">
+															<input type="email" class="form-control" placeholder="Email Id">
+														</div>
+														<div class="form-group">
+															<input type="password" class="form-control" placeholder="Password">
+														</div>
+														<div class="form-group">
+															<input type="password" class="form-control" placeholder="Confirm Password">
+														</div>
+														<div class="form-group">
+															<input type="text" class="form-control" placeholder="Contact Number">
+														</div>
+														<div class="checkbox">
+															<label class="pull-left checked" for="signing-2"><input type="checkbox" name="signing-2" id="signing-2">By signing up for an account you agree to our Terms and Conditions</label>
+														</div><!-- checkbox -->	
+														<button type="submit" class="btn">Registration</button>	
+													</form>
+												</div>
+											</div>				
+										</div>
+									</div><!-- user-login -->			
+									</div><!-- row -->
+						        </div>
+						        <div class="modal-footer">          
+						        </div>
+						      </div>    
+						    </div>
+						  	</div>
+							</div><!-- Modal -->		
+						</li><!-- 회원가입 -->
 					</ul><!-- sign-in -->					
-
-					<a href="post.html" class="btn">Post Your Job</a>
-				</div>
-				<!-- nav-right -->
-			</div><!-- container -->
+							
+						  	<div class="modal fade" id="myModal01" role="dialog">
+						    <div class="modal-dialog">
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">						        	
+						          <button type="button" class="close" data-dismiss="modal">x</button>
+						        </div>
+						        <div class="modal-body">
+						        <form action="#">
+						         <div class="row">
+								    <div class="col-sm-4">
+									    <div class="dropdown category-dropdown">						
+											<a data-toggle="dropdown" href="#"><span class="change-text">Job Category</span> <i class="fa fa-angle-down"></i></a>
+											<ul class="dropdown-menu category-change">
+												<li><a href="#">Designer</a></li>
+												<li><a href="#">Programming</a></li>
+												<li><a href="#">SI</a></li>
+												<li><a href="#">Data Science</a></li>
+												<li><a href="#">Security</a></li>
+											</ul>
+										</div>
+								    </div>
+								    <div class="col-sm-4">
+								    	<!-- language-dropdown -->
+										<div class="dropdown category-dropdown language-dropdown">
+											<a data-toggle="dropdown" href="#"><span class="change-text">Job Location</span> <i class="fa fa-angle-down"></i></a>
+											<ul class="dropdown-menu category-change language-change">
+												<li><a href="#">서울</a></li>
+												<li><a href="#">경기</a></li>
+												<li><a href="#">그 외</a></li>
+											</ul>								
+										</div><!-- language-dropdown -->
+								    </div>
+								    <div class="col-sm-4">
+								    <!-- language-dropdown -->
+									<div class="dropdown category-dropdown language-dropdown">
+										<a data-toggle="dropdown" href="#"><span class="change-text">Language</span> <i class="fa fa-angle-down"></i></a>
+										<ul class="dropdown-menu category-change language-change">
+											<li><a href="#">JAVA</a></li>
+											<li><a href="#">C</a></li>
+											<li><a href="#">C++</a></li>
+											<li><a href="#">Python</a></li>
+											<li><a href="#">Ruby</a></li>
+										</ul>								
+									</div><!-- language-dropdown -->	
+								    </div>
+								  </div>
+								  <div class="row">
+								    <div class="col-sm-8">
+								    	<input type="text" class="form-control" placeholder="Type your key word">
+								    </div>
+								    <div class="col-sm-4">
+								    	<button type="submit" class="btn btn-primary" value="Search">Search</button>
+								    </div>
+								  </div>
+						        </form>								
+						        </div>
+						        <div class="modal-footer">          
+						        </div>
+						     	</div>    
+							    </div>
+							  	</div>
+								</div>		
+								<!-- Modal -->			
+				</div><!-- nav-right -->	
 		</nav><!-- navbar -->
 	</header><!-- header -->
-
+	
 	<section class="clearfix job-bg  ad-profile-page">
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li>Profile Details</li>
+					<li><a href="index.html">MY PAGE</a></li>
+					<li>계정 정보</li>
 				</ol>						
 				<h2 class="title">My Profile</h2>
 			</div><!-- breadcrumb-section -->
@@ -112,8 +286,8 @@
 						<img src="images/user.jpg" alt="User Images" class="img-responsive">
 					</div>
 					<div class="user">
-						<h2>Hello, <a href="#">Jhon Doe</a></h2>
-						<h5>You last logged in at: 10-01-2017 6:40 AM [ USA time (GMT + 6:00hrs)]</h5>
+						<h2><a href="#">Jhon Doe</a> 님 안녕하세요!</h2>
+						<h5>마지막 로그인 2017-06-16 8:40 AM</h5>
 					</div>
 
 					<div class="favorites-user">
@@ -126,14 +300,12 @@
 					</div>								
 				</div><!-- user-profile -->
 						
-				<ul class="user-menu">
-					<li><a href="profile.html">Account Info </a></li>
-					<li><a href="resume.html">View Resume</a></li>
-					<li><a href="edit-resume.html">Edit Resume</a></li>
-					<li class="active"><a href="job-profile-details.html">Profile Details</a></li>
-					<li><a href="bookmark.html">Bookmark</a></li>
-					<li><a href="applied-job.html">applied job</a></li>
-					<li><a href="delete-account.html">Close account</a></li>
+				<ul class="user-menu">					
+					<li class="active"><a href="profile-details.html">회원정보 수정</a></li>
+					<li><a href="delete-account.html">탈퇴</a></li>
+					<li><a href="bookmark.html">관심기업</a></li>
+					<li><a href="applied-job.html">지원한 기업</a></li>
+					<li><a href="delete-account.html">Q&A</a></li>
 				</ul>
 			</div><!-- ad-profile -->	
 
@@ -141,81 +313,55 @@
 				<div class="user-pro-section">
 					<!-- profile-details -->
 					<div class="profile-details section">
-						<h2>Profile Details</h2>
+						<h2>계정 정보 수정</h2>
 						<form action="#">
 							<div class="form-group">
-								<label>Username</label>
-								<input type="text" class="form-control" placeholder="Jhon Doe">
+								<label>이름</label>
+								<input type="text" class="form-control" placeholder="홍길동">
 							</div>
 
 							<div class="form-group">
-								<label>Email ID</label>
-								<input type="email" class="form-control" placeholder="jhondoe@mail.com">
+								<label>E-mail</label>
+								<input type="email" class="form-control" placeholder="himan@mail.com">
 							</div>
 
 							<div class="form-group">
-								<label>Mobile</label>
-								<input type="text" class="form-control" placeholder="+213 1234 56789">
+								<label>휴대폰 번호</label>
+								<input type="text" class="form-control" placeholder="010 - 1234 - 1234">
 							</div>
 
 							<div class="form-group">
-								<label>Your City</label>
-								<select class="form-control">
-									<option value="#">Los Angeles, USA</option>
-									<option value="#">Dhaka, BD</option>
-									<option value="#">Shanghai</option>
-									<option value="#">Karachi</option>
-									<option value="#">Beijing</option>
-									<option value="#">Lagos</option>
-									<option value="#">Delhi</option>
-									<option value="#">Tianjin</option>
-									<option value="#">Rio de Janeiro</option>
-								</select>
+								<label>주소</label>
+								<input type="text" class="form-control" placeholder="서울특별시 강남구">
 							</div>	
-
-							<div class="form-group">
-								<label>You are a</label>
-								<select class="form-control">
-									<option value="#">Employer</option>
-									<option value="#">Employee</option>
-								</select>
-							</div>								
 						</form>				
 					</div><!-- profile-details -->
 
 					<!-- change-password -->
 					<div class="change-password section">
-						<h2>Change password</h2>
+						<h2>비밀번호 변경</h2>
 						<!-- form -->
 						<div class="form-group">
-							<label>Old Password</label>
+							<label>현재 비밀번호</label>
 							<input type="password" class="form-control" >
 						</div>
 						
 						<div class="form-group">
-							<label>New password</label>
+							<label>새 비밀번호</label>
 							<input type="password" class="form-control">	
 						</div>
 						
 						<div class="form-group">
-							<label>Confirm password</label>
+							<label>비밀번호 확인</label>
 							<input type="password" class="form-control">
 						</div>															
 					</div><!-- change-password -->
 					
 					<!-- preferences-settings -->
 					<div class="preferences-settings section">
-						<h2>Preferences Settings</h2>
-						<!-- checkbox -->
-						<div class="checkbox">
-							<label><input type="checkbox" name="logged">Comments are enabled on my Resume</label>
-							<label><input type="checkbox" name="receive">I want to receive newsletter.</label>
-							<label><input type="checkbox" name="want">I want to receive advice on portfolio</label>
-						</div><!-- checkbox -->
-
-						<div class="buttons">
-							<a href="#" class="btn">Update Profile</a>
-							<a href="#" class="btn cancle">Cancle</a>
+						<div class="buttons" align="center">
+							<a href="#" class="btn">저장</a>
+							<a href="#" class="btn cancle">취소</a>
 						</div>												
 					</div><!-- preferences-settings -->
 				</div><!-- user-pro-edit -->
@@ -225,74 +371,20 @@
 	
 	<!-- footer -->
 	<footer id="footer" class="clearfix">
-		<!-- footer-top -->
-		<section class="footer-top clearfix">
-			<div class="container">
-				<div class="row">
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget">
-							<h3>Quik Links</h3>
-							<ul>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">All Cities</a></li>
-								<li><a href="#">Help & Support</a></li>
-								<li><a href="#">Advertise With Us</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget">
-							<h3>How to sell fast</h3>
-							<ul>
-								<li><a href="#">How to sell fast</a></li>
-								<li><a href="#">Membership</a></li>
-								<li><a href="#">Banner Advertising</a></li>
-								<li><a href="#">Promote your ad</a></li>
-								<li><a href="#">Jobs Delivers</a></li>
-								<li><a href="#">FAQ</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget social-widget">
-							<h3>Follow us on</h3>
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook-official"></i>Facebook</a></li>
-								<li><a href="#"><i class="fa fa-twitter-square"></i>Twitter</a></li>
-								<li><a href="#"><i class="fa fa-google-plus-square"></i>Google+</a></li>
-								<li><a href="#"><i class="fa fa-youtube-play"></i>youtube</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-sm-3">
-						<div class="footer-widget news-letter">
-							<h3>Newsletter</h3>
-							<p>Jobs is Worldest leading Portal platform that brings!</p>
-							<!-- form -->
-							<form action="#">
-								<input type="email" class="form-control" placeholder="Your email id">
-								<button type="submit" class="btn btn-primary">Sign Up</button>
-							</form><!-- form -->			
-						</div>
-					</div><!-- footer-widget -->
-				</div><!-- row -->
-			</div><!-- container -->
-		</section><!-- footer-top -->
 
 		<div class="footer-bottom clearfix text-center">
 			<div class="container">
-				<p>Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a href="http://themeregion.com/">ThemeRegion</a></p>
+				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상 서울시 강남구 역삼로3길 13 건암빌딩 202호
+					| 전화번호: 02-6264-7582 사업자등록 : 138-87-00058 | 직업정보제공사업 :
+					J1200020160017 | 통신판매업 : 2016-서울강남-00784 Copyright Anchoreer Co.,
+					Inc. All rights reserved.</p>
+				<p>
+					Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a
+						href="http://themeregion.com/">ThemeRegion</a>
+				</p>
 			</div>
-		</div><!-- footer-bottom -->
+		</div>
+		<!-- footer-bottom -->
 	</footer><!-- footer -->
 	
 	<!--/Preset Style Chooser--> 
