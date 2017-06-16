@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/css/main.css?6' />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/css/fullcalendar.css?3' />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar-1.6.3/fullcalendar/fullcalendar.css' />
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/jquery/jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/jquery/jquery-ui-1.10.3.custom.min.js'></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/fullcalendar/fullcalendar.min.js'></script>
+<script type='text/javascript'>
+	$(document).ready(function() {
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'month,agendaWeek,agendaDay'
+			},
+			editable : true,
+			events : [ {
+				title : '현대자동차',
+				start : new Date(y, m, 11),
+				end : new Date(y, m, 15, 10, 30),
+				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
+			}, {
+				title : '한화케미컬',
+				start : new Date(y, m, 1),
+				end : new Date(y, m, 5),
+				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
+			}, {
+				title : '롯데제과',
+				start : new Date(y, m, 7),
+				end : new Date(y, m, 10),
+				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
+			} ]
+		});
+
+	});
+</script>
+</head>
+<body style="background-color:white;">
+	<div id='calendar' style='margin: 3em 0; font-size: 13px'></div>
+</body>
+</html>
