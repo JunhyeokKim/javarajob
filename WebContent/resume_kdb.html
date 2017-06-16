@@ -93,26 +93,17 @@
 				ng-show="current_tab === tabs[3].name"
 				ng-include="'app/templates/spec/spec.html'">
 				<div ng-controller="SpecCtrl" class="spec-ctrl ng-scope">
-					
 					<div class="spec-container">
-
 						<div class="section-container spec-saver"
 							ng-show="spec_tab.active === 0">
 							<div class="section-title">
 								이력서
-								<!-- ngIf: !user_signed_in -->
-								<div class="spec-save-time ng-scope" ng-if="!user_signed_in">로그인을
-									하지 않으면 저장되지 않습니다.</div>
-								<!-- end ngIf: !user_signed_in -->
-								<!-- ngIf: user_signed_in -->
 								<div class="export-pdf piwik-spec-export-pdf"
 									ng-click="exportPDF()">저장하기</div>
 								<!-- ngIf: export_pdf_wait -->
 							</div>
 							<!-- ngInclude: 'app/templates/spec/spec_data.html' -->
-							<div class="section-content new ng-scope"
-								ng-include="'app/templates/spec/spec_data.html'">
-
+							<div class="section-content new ng-scope" ng-include="">
 								<!-- ngRepeat: item in editSpecList -->
 								<div class="specs edit-spec ng-scope basic-information"
 									ng-repeat="item in editSpecList" ng-class="item.class">
@@ -132,7 +123,7 @@
 											<div class="category-repeater" data-category-number="">
 												<div class="image">
 													<div class="image-area">
-														<!-- ngIf: currentApplicant.specs.basic_information.image_url !== null -->
+														<!-- 증명사진 공간 -->
 														<img
 															ng-if="currentApplicant.specs.basic_information.image_url !== null"
 															class="ng-scope">
@@ -141,9 +132,9 @@
 													</div>
 													<div class="image-buttons">
 														<!-- ngIf: ctrlName === 'spec' -->
-														<div class="btn button-orange button-bordered ng-scope"
+														<div class="btn button-blue button-bordered ng-scope"
 															ng-click="spec_tab_switch(1)" ng-if="ctrlName === 'spec'">이미지
-															수정하기</div>
+															올리기</div>
 														<!-- end ngIf: ctrlName === 'spec' -->
 														<!-- ngIf: ctrlName === 'apply_immediately' -->
 													</div>
@@ -152,7 +143,7 @@
 													ng-init="basic_information = currentApplicant.specs.basic_information"
 													class="basic-information-table">
 													<colgroup>
-														<col width="100px">
+														<col width="110px">
 														<col width="130px">
 														<col width="100px">
 														<col width="0px">
@@ -6098,12 +6089,6 @@
 																ng-model="currentApplicant.specs.advantage.handicapped.content"
 																ng-change="updateContent(currentApplicant.specs.advantage.handicapped, currentApplicant.specs.advantage.number, item.category)"
 																kr-input="" class="ng-pristine ng-untouched ng-valid">비대상
-																<input type="text"
-																ng-model="currentApplicant.specs.advantage.handicapped_degree.content"
-																ng-show="currentApplicant.specs.advantage.handicapped === 'true'"
-																ng-change="updateContent(currentApplicant.specs.advantage.handicapped_degree, currentApplicant.specs.advantage.number, item.category)"
-																kr-input=""
-																class="ng-pristine ng-untouched ng-valid ng-hide">
 															</td>
 														</tr>
 														<tr>
