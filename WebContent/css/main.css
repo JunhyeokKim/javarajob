@@ -22,6 +22,7 @@
 # Profile
 # Post Resume
 # Footer
+# Calendar
 
 ==================================================
 
@@ -2001,6 +2002,21 @@ input:-moz-placeholder {
   	color: #00a651;
   	text-decoration: underline;
 }
+
+/* ==========================================================================
+ 	Calendar
+========================================================================== */
+.col-fixed-mini {
+	width:240px;
+    position:absolute;
+    height:100%;
+    z-index:1;
+}
+.col-offset-400 {
+	 padding-left:315px;
+   	 z-index:0;
+}
+
 
 
 /* Category Section */
