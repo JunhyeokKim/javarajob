@@ -2146,7 +2146,7 @@ input:-moz-placeholder {
 	padding: 15px;
 	overflow: hidden;
 	position: relative;
-	border: 1px solid #f3f3f3;
+	border: 2px solid #f0f0f0;
 	margin: 18px 0;
 	border-radius:2px;	
 }
@@ -2171,7 +2171,7 @@ input:-moz-placeholder {
 }
 
 .job-ad-item .ad-info {
-	padding: 5px 25px;
+	padding-left:25px;
 }
 
 .job-ad-item .ad-info span {
@@ -2346,9 +2346,8 @@ input:-moz-placeholder {
 /* Job Details */
 
 .job-details .job-ad-item {
-	border: 0;
+	border: 2px solid #f0f0f0;
 	margin: 0 0 20px;
-	padding: 35px 25px;
 }
 
 .job-details .job-ad-item.section {
@@ -2456,6 +2455,9 @@ input:-moz-placeholder {
 	margin-bottom: 20px;
 	display: block;
 }
+.description-info .description-detail{
+	line-height: 30px;
+}
 
 .job-short-info li,
 .company-info li {
@@ -2486,9 +2488,46 @@ input:-moz-placeholder {
 .requirements h1 {
 	margin-top: 45px;
 }
+.positions h1 {
+	margin-top: 45px;
+}
+.positions .job-ad-item .ad-info {
+	padding-left:0px;
+}
+.positions .job-ad-item .ad-info span a {
+	font-size:20px;
+}
+.positions .job-ad-item {
+	border: none;
+}
+
+.positions .ad-meta .position-item {
+	border-top: none;
+	margin:0px;
+	padding-bottom:40px;
+}
+.positions .job-ad-item .ad-meta .social-media .btn {
+	color:#fff;
+}
+.positions .job-ad-item .ad-meta .social-media {
+	float:right;
+	margin-left:550px;
+	display: block;
+}
+.ad-meta .position-item {
+	font-size:20px;
+	margin: 20px;
+	padding-bottom:12px;
+	border-top: 2px solid #fff1f1;
+}
+.ad-meta .position-item span a {
+	font-style:oblique;
+	font-size:15px;
+	color: #000;
+}
 
 .requirements li {
-	line-height: 25px;
+	line-height: 40px;
 }
 
 .requirements li:last-child {
