@@ -92,8 +92,9 @@
 							ng-show="spec_tab.active === 0">
 							<div class="section-title">
 								이력서
-								<div class="export-pdf piwik-spec-export-pdf"
-									ng-click="exportPDF()">저장하기</div>
+								<div class="export-pdf piwik-spec-export-pdf">
+									<a class="btn">저장하기</a>
+								</div>
 								<!-- ngIf: export_pdf_wait -->
 							</div>
 							<!-- ngInclude: 'app/templates/spec/spec_data.html' -->

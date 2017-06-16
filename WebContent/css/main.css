@@ -334,7 +334,7 @@ textarea {
 }
 
 #header a.btn,
-.download-button a.btn, 
+.download-button a.btn, .export-pdf a.btn,
 .sid-button a.btn{
 	padding: 5px 25px 7px;
 	background-color: #0072bc;
@@ -1799,7 +1799,7 @@ a.verified i {
 }
 
 .profile a.btn,
-.buttons a.btn,
+.buttons a.btn, .export-pdf a.btn,
 .sid-button a.btn {
     background-color: #00a651;
     color: #fff;

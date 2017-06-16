@@ -1,0 +1,34 @@
+.kdb-table table, .kdb-table td, .kdb-table th {
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.kdb-table table {
+	width: 100% !important;
+	letter-spacing: -0.05em;
+	border-top: 3px solid #37315d;
+	border-bottom: 2px solid #e2e2e2;
+	border-spacing: 0;
+	border-collapse: collapse;
+	line-height: 18px;
+}
+
+.kdb-table td {
+	border-right:1px solid gray;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+	text-align:center;
+}
+
+.kdb-table th {
+	background-color:#bbbbbb;
+	border: 1px solid white;
+	color:black;
+	padding: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.kdb-table .no-content {
+	min-height:70px;
+}
