@@ -77,7 +77,7 @@ a, .nav li a:hover,
 .single-service li a:hover, .explore-nearby .ad-info h4 a:hover,
 .company-info li a:hover, .job-short-info li a:hover,
 .workshop-traning .btn.btn-primary:hover,
-.see-more button:hover, .buttons a.btn:hover, .user-account .nav-tabs>li.active>a,
+.see-more button:hover, .user-account .nav-tabs>li.active>a,
 .resume-content .icons, .profile-info address a:hover,
 .job-profile .user-menu li.active a, .job-profile .user-menu li a:hover,
 .job-profile .user h2 a, .job-profile .favorites-user a, .job-profile .favorites-user small:hover  {
@@ -99,7 +99,7 @@ a.verified i,
 .profile a.btn, 
 .feedback .btn, .pricing-section .pric .popular h2, 
 .badge, .home-banner .contact-form .form-control,
-.download-button a.btn:hover, .buttons a.btn, 
+.download-button a.btn:hover, .sid-button a.btn,
 .post-resume .upload-image:hover,
 .post-resume form .buttons a.btn:hover {
 	background-color:#f26522;
@@ -111,7 +111,7 @@ a.verified i,
 .banner-form button.form-control, 
 .home-banner .contact-form .form-control, 
 .col-to-action .form-control,
-.buttons a.btn, .post-resume form .buttons a.btn:hover {
+.buttons a.btn, .sid-button a.btn, .post-resume form .buttons a.btn:hover {
 	border-color: #f26522;
 }
 

@@ -334,7 +334,8 @@ textarea {
 }
 
 #header a.btn,
-.download-button a.btn {
+.download-button a.btn, 
+.sid-button a.btn{
 	padding: 5px 25px 7px;
 	background-color: #0072bc;
 	font-weight: 400;
@@ -343,8 +344,7 @@ textarea {
 	margin-left: 20px;
 }
 
-#header a.btn:hover,
-.download-button a.btn:hover {
+#header a.btn:hover {
 	background-color: #00a651;
 }
 
@@ -1799,7 +1799,8 @@ a.verified i {
 }
 
 .profile a.btn,
-.buttons a.btn {
+.buttons a.btn,
+.sid-button a.btn {
     background-color: #00a651;
     color: #fff;
     padding: 6px 26px 7px;
@@ -1819,8 +1820,7 @@ a.verified i {
 	margin-left: 10px;
 }
 
-.profile a.btn:hover,
-.buttons a.btn:hover {
+.profile a.btn:hover {
 	background-color: transparent;
 	color: #00a651;
 	border: 1px solid #00a651;
@@ -2581,6 +2581,7 @@ input:-moz-placeholder {
 	font-size: 14px;
 	line-height: 22px;
 	color: #2d3038;
+	
 }
 
 .resume-content .profile-info h1 {
@@ -2600,6 +2601,13 @@ input:-moz-placeholder {
 	font-size: 30px;
 	float: left;
 	margin-right: 30px;
+}
+
+.resume-content .self-introduction-upload-section{
+	background-color: #898989;
+	height:500%;
+	min-width:500px;
+	min-height:700px;
 }
 
 .resume-content .career-info,
@@ -2658,7 +2666,7 @@ input:-moz-placeholder {
 	left: 0;
 	width: 85%;
 	height: 1px;
-	background-color: #f1f1f1;
+	background-color: #ffaa00;
 }
 
 .work-history ul li:last-child:after {
@@ -2764,15 +2772,21 @@ input:-moz-placeholder {
 	margin-bottom: 45px;
 }
 
-.buttons {
-	float: left;
+.btn-box{
+	width:100%;
+	height:50px;
 }
 
-.download-button {
-	float: right;
+.sid-button {
+	display:inline;
+	position:relative;
 }
 
 .buttons a.btn {
+	margin-top: 0;
+}
+
+.sid-button a.btn {
 	margin-top: 0;
 }
 
@@ -2958,7 +2972,6 @@ input:-moz-placeholder {
 	margin-left: 20px;
 }
 
-.post-resume form .buttons a.btn:hover,
 .post-resume .upload-image.left:hover {
 	color: #fff;
 }
@@ -3211,4 +3224,9 @@ input, select, a, .transition,
   background: #662d91;
 }
 
-
+.btn-box .btn:hover {
+	border:#535353;
+	background-color:#535353;
+	color:#ffffff;
+	cursor: pointer;
+}

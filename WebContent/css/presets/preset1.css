@@ -98,7 +98,7 @@ a.verified i,
 .pagination>.active>a:hover, 
 .user-account .btn, 
 .user-page .btn-primary:hover, 
-.profile a.btn, 
+.profile a.btn, .sid-button a.btn,
 .feedback .btn, .pricing-section .pric .popular h2, .badge, 
 .home-banner .contact-form .form-control,
 .download-button a.btn:hover, .post-resume .upload-image:hover,
@@ -112,7 +112,7 @@ a.verified i,
 .banner-form button.form-control, 
 .home-banner .contact-form .form-control, 
 .col-to-action .form-control,
- .buttons a.btn, .post-resume form .buttons a.btn:hover {
+ .buttons a.btn, .sid-button a.btn, .post-resume form .buttons a.btn:hover {
 	border-color: #00a651;
 }
 
