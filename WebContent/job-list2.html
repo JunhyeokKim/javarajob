@@ -9,7 +9,7 @@
 
     <title>Jobs | Job Portal / Job Board HTML Template</title>
 
-    <!-- CSS -->
+   <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
@@ -30,6 +30,7 @@
     <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-touch-icon-57-precomposed.png">
     <!-- icons -->
 
+	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,6 +38,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Template Developed By ThemeRegion -->
+  
+  <style>
+  	#temp04{
+  		height:1000px;
+  	}
+  </style>
+  
   </head>
   <body>
 		<!-- header 11-->
@@ -59,8 +67,8 @@
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.html">Home</a></li>
-							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
+							<li class="active"><a href="index.html">Home</a></li>
+							<li class="dropdown active"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="job-list.html">List Type</a></li>
 									<li><a href="job-list2.html">Calendar Type</a></li>
@@ -68,7 +76,7 @@
 							</li>
 							<li><a href="details.html">이력서</a></li>
 							<li><a href="resume.html">자소서관리</a></li> 
-							<li class="dropdown active"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
+							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="profile-details.html">회원정보 수정</a></li>
 									<li><a href="bookmark.html">관심기업</a></li>
@@ -274,250 +282,74 @@
 				</div><!-- nav-right -->	
 		</nav><!-- navbar -->
 	</header><!-- header -->
-
-	<section class=" job-bg page  ad-profile-page">
+	
+	<section class="job-bg page job-list-page">
 		<div class="container">
 			<div class="breadcrumb-section">
+				<!-- breadcrumb -->
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
-					<li>Bookmark</li>
-				</ol>						
-				<h2 class="title">Bookmark</h2>
-			</div><!-- breadcrumb-section -->
-			
-			<div class="job-profile section">	
-				<div class="user-profile">
-					<div class="user-images">
-						<img src="images/user.jpg" alt="User Images" class="img-responsive">
-					</div>
-					<div class="user">
-						<h2>Hello, <a href="#">Jhon Doe</a></h2>
-						<h5>You last logged in at: 10-01-2017 6:40 AM [ USA time (GMT + 6:00hrs)]</h5>
-					</div>
+					<li>Engineer/Architects</li>
+				</ol><!-- breadcrumb -->						
+				<h2 class="title">Calendar</h2>
+			</div>
 
-					<div class="favorites-user">
-						<div class="my-ads">
-							<a href="applied-job.html">29<small>Apply Job</small></a>
-						</div>
-						<div class="favorites">
-							<a href="bookmark.html">18<small>Favorites</small></a>
-						</div>
-					</div>								
-				</div><!-- user-profile -->
-						
-				<ul class="user-menu">					
-					<li><a href="profile-details.html">회원정보 수정</a></li>
-					<li class="active"><a href="bookmark.html">관심기업</a></li>
-					<li><a href="applied-job.html">지원한 기업</a></li>
-					<li><a href="delete-account.html">Q&A</a></li>
-				</ul>
-			</div><!-- ad-profile -->
-
-			<div class="section trending-ads latest-jobs-ads">
-				<h4>Bookmark</h4>
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/3.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">CTO</a> @ <a href="#">Volja Events &amp; Entertainment</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/1.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Project Manager</a> @ <a href="#">Dominos Pizza</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/2.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Graphics Designer</a> @ <a href="#">AOK Security</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/4.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Human Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
+			<div class="banner-form banner-form-full job-list-form">
+				<form action="#">
+					<!-- category-change -->
+					<div class="dropdown category-dropdown">						
+						<a data-toggle="dropdown" href="#"><span class="change-text">Job Category</span> <i class="fa fa-angle-down"></i></a>
+						<ul class="dropdown-menu category-change">
+							<li><a href="#">Customer Service</a></li>
+							<li><a href="#">Software Engineer</a></li>
+							<li><a href="#">Program Development</a></li>
+							<li><a href="#">Project Manager</a></li>
+							<li><a href="#">Graphics Designer</a></li>
+						</ul>								
+					</div><!-- category-change -->
+					
+					<!-- language-dropdown -->
+					<div class="dropdown category-dropdown language-dropdown">
+						<a data-toggle="dropdown" href="#"><span class="change-text">Job Location</span> <i class="fa fa-angle-down"></i></a>
+						<ul class="dropdown-menu category-change language-change">
+							<li><a href="#">Location 1</a></li>
+							<li><a href="#">Location 2</a></li>
+							<li><a href="#">Location 3</a></li>
+						</ul>								
+					</div><!-- language-dropdown -->
 				
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/3.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">CTO</a> @ <a href="#">Volja Events &amp; Entertainment</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/1.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Project Manager</a> @ <a href="#">Dominos Pizza</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/2.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Graphics Designer</a> @ <a href="#">AOK Security</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/4.png" alt="Image" class="img-responsive"></a>
-							</div><!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Human Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div><!-- ad-meta -->									
-						</div><!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->	
-			</div><!-- latest-jobs-ads -->									
+					<input type="text" class="form-control" placeholder="Type your key word">
+					<button type="submit" class="btn btn-primary" value="Search">Search</button>
+				</form>
+			</div><!-- banner-form -->
+	
+			
+			<div class="section job-list-item">
+				<div class="featured-top">
+					<h4>Showing 1-25 of 65,712 ads</h4>
+					<div class="dropdown pull-right">
+					<div class="dropdown category-dropdown">
+						<h5>Sort by:</h5>						
+						<a data-toggle="dropdown" href="#"><span class="change-text">Most Relevant</span><i class="fa fa-caret-square-o-down"></i></a>
+						<ul class="dropdown-menu category-change">
+							<li><a href="#">Most Relevant</a></li>
+							<li><a href="#">Most Popular</a></li>
+						</ul>								
+					</div><!-- category-change -->		
+					</div>												
+				</div><!-- featured-top -->	
+<!-- //////////////////////////// --><!-- //////////////////////////// --><!-- //////////////////////////// --><!-- //////////////////////////// --> 
+				<div class="job-ad-item" id="temp04">
+					
+					<iframe src="calendar.html" width="100%" height="100%"></iframe>
+							
+				</div><!-- calendar -->	
+<!-- //////////////////////////// --><!-- //////////////////////////// --><!-- //////////////////////////// --><!-- //////////////////////////// -->
+			</div>
 		</div><!-- container -->
-	</section><!-- ad-profile-page -->
+	</section><!-- main -->
 
+	
 	<!-- footer -->
 	<footer id="footer" class="clearfix">
 		<!-- footer-top -->
