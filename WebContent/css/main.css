@@ -2006,16 +2006,35 @@ input:-moz-placeholder {
 /* ==========================================================================
  	Calendar
 ========================================================================== */
-.col-fixed-mini {
-	width:240px;
+section, job-list-item {
+	overflow: inherit;
+}
+
+.calendar-left {
+	width:280px;
     position:absolute;
-    height:100%;
-    z-index:1;
+    margin-left:20px;
+    z-index: 1;
 }
-.col-offset-400 {
-	 padding-left:315px;
-   	 z-index:0;
+.calendar-right {
+    position:relative;
+	padding-left:315px;
+	height:1400px;
 }
+
+@media (max-width: 767px) {
+	.calendar-right {
+	   padding-left: 0px;
+	}
+}
+
+.col-fixed-mini .fc tr {
+	height: 0.5em;
+}
+.col-fixed-mini .fc td {
+	border-style: none;
+}
+
 
 
 
