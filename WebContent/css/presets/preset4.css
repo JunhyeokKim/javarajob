@@ -72,6 +72,11 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	color: #864db1;
 }
 
+.specs .content .image .image-buttons .btn {
+	border:1px solid #662d91;
+	color:#662d91;
+}
+
 .featured-image a i:after {
 	border-right: 40px solid #662d91;
 }

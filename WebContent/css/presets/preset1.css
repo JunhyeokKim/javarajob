@@ -63,6 +63,11 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	border-color: #00a651;
 }
 
+.specs .content .image .image-buttons .btn {
+	border:1px solid #00a651;
+	color:#00a651;
+}
+
 .featured-image a i:after {
 	border-right: 40px solid #00a651;
 }

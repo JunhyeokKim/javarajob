@@ -70,6 +70,11 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	color: #0077ff;
 }
 
+.specs .content .image .image-buttons .btn {
+	border:1px solid #0054a6;
+	color:#0054a6;
+}
+
 .featured-image a i:after {
 	border-right: 40px solid #0054a6;
 }

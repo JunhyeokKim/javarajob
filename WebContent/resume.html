@@ -51,10 +51,10 @@
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="index.html">Home</a></li>
 							<li><a href="job-list.html">채용정보</a></li>
-							<li><a href="details.html">이력서</a></li>
-							<li><a href="resume.html">자소서관리</a></li> 
+							<li class="active"><a href="resume.html">이력서</a></li>
+							<li><a href="self_introduction.html">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="profile-details.html">회원정보 수정</a></li>
@@ -2659,11 +2659,8 @@
 													<tr>
 														<th>학교명</th>
 														<td>
-															<div class="spec-school-major-box">
-																<span ng-bind="univ.name.content" class="ng-binding"></span>
-																<span
-																	ng-click="search_univ_major('univ', item.category, univ.number)">검색</span>
-															</div>
+															<input type="text"
+															class="basic-info-addr ng-pristine ng-untouched ng-valid" />
 														</td>
 														<th>분류</th>
 														<td><select ng-model="univ.term.content"
@@ -2696,11 +2693,7 @@
 													<tr>
 														<th>주전공</th>
 														<td colspan="5">
-															<div class="spec-school-major-box">
-																<span ng-bind="univ.major_subject.content"
-																	class="ng-binding"></span> <span
-																	ng-click="search_univ_major('major', item.category, univ.number)">검색</span>
-															</div>
+															<input type="text" class="basic-info-addr" />
 														</td>
 													</tr>
 													<!-- ngRepeat: minor_subject in univ.minor_subject track by $index -->
@@ -3644,11 +3637,7 @@
 													<tr>
 														<th>학교명</th>
 														<td>
-															<div class="spec-school-major-box">
-																<span ng-bind="gradu.name.content" class="ng-binding"></span>
-																<span
-																	ng-click="search_univ_major('univ', item.category, gradu.number)">검색</span>
-															</div>
+															<input type="text" class="basic-info-addr" />
 														</td>
 														<th>분류</th>
 														<td><select ng-model="gradu.term.content"
@@ -3681,11 +3670,7 @@
 													<tr>
 														<th>주전공</th>
 														<td colspan="5">
-															<div class="spec-school-major-box">
-																<span ng-bind="gradu.major_subject.content"
-																	class="ng-binding"></span> <span
-																	ng-click="search_univ_major('major', item.category, gradu.number)">검색</span>
-															</div>
+															<input type="text" class="basic-info-addr" />
 														</td>
 													</tr>
 													<!-- ngRepeat: minor_subject in gradu.minor_subject track by $index -->
