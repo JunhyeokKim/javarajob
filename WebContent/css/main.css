@@ -376,6 +376,15 @@ textarea {
 	background-color:#fff;
 	position:relative;
 }
+.main-view {
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 5%;
+}
+.list-view {
+	padding-left: 10%;
+    padding-right: 10%;
+}
 
 .category-dropdown {
     background-color: #fff;
@@ -503,10 +512,11 @@ textarea {
 
 .category-icon {
 	min-height: 37px;
-	width: 100%;	
+	width: 100%;
+	margin-bottom: 14%;	
 }
 
-.category-icon img {
+.category-icon img{
 	margin: 0 auto;
 }
 
@@ -520,6 +530,11 @@ textarea {
 .category-title {
 	display:block;
 	font-size: 16px;
+	
+}
+
+.category-list {
+    display: inline;
 }
 
 .category-item:hover .category-quantity,
@@ -802,6 +817,11 @@ a.verified i {
 	padding-left: 0;
 }
 
+.breadcrumb-section .title {
+    color: black;
+    z-index:1;
+}
+
 .breadcrumb li,
 .breadcrumb li a {
 	color: #fff;
@@ -812,6 +832,10 @@ a.verified i {
 	content: "\f101";
 	font-family: FontAwesome;
 	color: #fff;
+}
+
+.modal-body .breadcrumb li a, .modal-body .breadcrumb>li+li:before {
+	color: black;
 }
 
 #something-sell h2.title {
@@ -2006,20 +2030,20 @@ input:-moz-placeholder {
 /* ==========================================================================
  	Calendar
 ========================================================================== */
-section, job-list-item {
-	overflow: inherit;
+section, .job-list-item {
 }
-
 .calendar-left {
 	width:280px;
     position:absolute;
-    margin-left:20px;
+    left:40px;
     z-index: 1;
+    
 }
 .calendar-right {
-    position:relative;
 	padding-left:315px;
-	height:1400px;
+	overflow-y: scroll;
+	height: 75vh;
+	
 }
 
 @media (max-width: 767px) {
@@ -2154,7 +2178,6 @@ section, job-list-item {
 }
 
 .job-category-items {
-	margin-top: 55px;
 	padding: 50px 25px 20px;
 }
 
