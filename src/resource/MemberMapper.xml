@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	namespace, id : 해당 interface 불러와 연결하는
+		namespace : 공통부분
+		id : 해당 interface 이름
+	parameterType : 
+		해당 interface의 input의 정의되어 있는 경우 
+		mybatis.Spring.xml에서 정의한 DTO Alias 이용
+	resultType : 
+		해당 interface의 return 값이 정의되어 있는 경우, return값이 단위객체인 경우
+		mybatis.Spring.xml에서 정의한 DTO Alias 이용
+	resultMap : 
+		해당 interface의 return 값이 정의되어 있는 경우, return값이 리스트객체인 경우
+		type : 리스트단위, mybatis.Spring.xml에서 정의한 DTO Alias 이용
+		id : 정의된 리스트객체의 alias
+-->
+<mapper namespace="javarajob.d01_board.repository.A01_MemberDao">
+	<resultMap type="mem" id="memResult"/>	
+	<insert id="insertMember" parameterType="mem">
+		insert into JAVARAJOBMEMBER values(#{name},#{id},#{password},#{email},#{phone},#{address},#{interest},sysdate)
+	</insert>
+	<select id="listMember" resultMap="memResult">
+		select * from JAVARAJOBMEMBER
+		where 1=1
+		<if test="id!=null and id!=''">
+			and id like '%' || #{id} || '%'
+		</if>
+		<if test="name!=null and name!=''">
+			and name like '%' || #{name} || '%'
+		</if>
+		<if test="phone!=null and phone!=''">
+			and phone like '%' || #{phone} || '%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%' || #{email} || '%'
+		</if>
+		order by sysdate desc
+	</select>	
+</mapper>

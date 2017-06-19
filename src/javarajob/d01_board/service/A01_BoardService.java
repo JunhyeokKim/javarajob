@@ -17,7 +17,6 @@ public class A01_BoardService {
 	public void insertBoard(Board ins){
 		dao.insertBoard(ins);
 	}
-	
 	public ArrayList<Board> listBoard(Board_Sch sch){
 		return dao.listBoard(sch);
 	}

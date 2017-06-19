@@ -8,9 +8,12 @@
 		<!-- DTO를 alias(별명)으로 세팅 -->
 		<typeAlias alias="board" type="javarajob.d01_board.vo.Board"/>
 		<typeAlias alias="schboard" type="javarajob.d01_board.vo.Board_Sch"/>
+		<typeAlias alias="mem" type="javarajob.d01_board.vo.JavarajobMember"/>
+		<typeAlias alias="schmem" type="javarajob.d01_board.vo.Member_Sch"/>
 	</typeAliases>
 	<mappers>
 		<!-- 모듈별로 sql을 지정해 놓은 xml 파일 -->	
 		<mapper resource="resource/BoardMapper.xml"/>
+		<mapper resource="resource/MemberMapper.xml"/>
 	</mappers>
 </configuration>
