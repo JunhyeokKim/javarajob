@@ -2444,7 +2444,7 @@ section, .job-list-item {
 
 .social-media .btn.btn-primary {
 	background-color: #93c949;
-	margin-top: 0;
+	margin-top: 10px;
 	padding: 10px 20px;
 }
 
@@ -2568,8 +2568,6 @@ section, .job-list-item {
 	color:#fff;
 }
 .positions .job-ad-item .ad-meta .social-media {
-	float:right;
-	margin-left:550px;
 	display: block;
 }
 .ad-meta .position-item {
