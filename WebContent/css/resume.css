@@ -5508,7 +5508,6 @@ span.tmpzTreeMove_arrow {
 .spec-ctrl .spec-container .section-container .section-title {
 	width: 100%;
 	background: #fff;
-	color: #00aaff;
 	font-weight: 700;
 	font-size: 20px;
 	padding: 10px 20px;
@@ -5536,16 +5535,10 @@ span.tmpzTreeMove_arrow {
 	margin: 3px 10px 0 0;
 	padding: 0 10px;
 	font-size: 14px;
-	background: #00aaff;
 	color: #fff;
 	cursor: pointer;
 	border-radius: 4px;
 	font-weight: normal
-}
-
-.spec-ctrl .spec-container .section-container .section-title .export-pdf:hover
-	{
-	background: #ff8946
 }
 
 .spec-ctrl .spec-container .section-container .section-content {

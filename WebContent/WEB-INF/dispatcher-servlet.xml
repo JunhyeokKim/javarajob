@@ -1,72 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-4.0.xsd" >
-    
-    <!-- bean 추가하면 항상 server restart 해주어야 -->
-    <!-- 
-    <bean class="springweb.a01_basic.A01_StartCtrl"/>
-    <bean class="springweb.a01_basic.A02_ReqCtrl"/>
-    <bean class="springweb.a01_basic.A03_ComCtrl"/>
-    <bean class="springweb.a01_basic.A04_ModelAttriCtrl"/>
-    <bean class="springweb.a01_basic.A05_ModelAttriCtrl"/>
-    <bean class="springweb.a01_basic.A06_ModelAndViewCtrl"/>
-    <bean class="springweb.a01_basic.A07_ForRedCtrl"/>
-    <bean class="springweb.a01_basic.A08_SessionCtrl"/>
-    <bean class="springweb.a01_basic.A09_SessionExp"/>
-     -->
-	
-	<!--		
-		context:conponet-scan : 
-		<bean class .. 일일 치던 것 대체
-		컨테이너에 filter 조건으로 해당 정의된 클래스들을 자동객체등록처리
-		1) base-package : 대상 페키지 선언
-		context:include-filter : filter 기준으로 설정하는 내용
-			1) type : filter 대상에 대한 type 	ex) annotation, regex
-			2) expression : 실제 쓰이는 클래스 	ex) Controller, Service, Repository
-	-->
-	<context:component-scan base-package="javarajob">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-	</context:component-scan>
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
+	<context:component-scan base-package="javarajob" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
 	<!-- DB 연결 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<!-- driver, connection(url,port,sid,id,pass) -->
-		<!-- dirver : jdbc -->
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<!-- 접속 DB 서버 정보 port와 sid -->
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<!-- 계정정보 -->
-		<property name="username" value="scott"/>
-		<property name="password" value="tiger"/>
+		<!-- driver, connection(url, port, sid, id, pass) -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl" />
+		<property name="username" value="tiger" />
+		<property name="password" value="scott" />
 	</bean>
-	
 	<!-- Mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/> <!-- DB와 Mybatis 연계 -->
-		<property name="configLocation" value="classpath:resource/mybatis.Spring.xml"/> <!-- resource/mybatis.Spring.xml 만든 후 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- mybatis 설정 xml -->
+		<property name="configLocation" value="classpath:resource/javarajob_mybatis.xml" />
 	</bean>
-	
 	<!-- Repository interface 패키지 등록 -->
-	<!-- defalut mybatis 연결 dao 인터페이스 패키지 위치 지정 -->
-	<!-- 다수의 패키지 등록 시, 구분자 ','로 등록가능.. @@, @@, @@ -->
+	<!-- default mybatis 연결 dao 인터페이스 패키지 위치 지정 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="javarajob.d01_board.repository"/>
+		<property name="basePackage" value="javarajob.repository" />
 	</bean>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="prefix" value=""/>
-	<property name="suffix" value=".jsp"/>
+		<property name="prefix" value="" />
+		<property name="suffix" value=".jsp" />
 	</bean>
-	<!-- prefix는 앞부분에 고정, suffix는 뒷부분에 고정 -->
-	<!-- view 호출시, .jsp를 생략, setSuffix("view단"+".jsp") -->
-	<!-- 기존에 작성파일 view단 호출부분에서 .jsp 삭제해주어야 정상작동된다. -->
-	
 </beans>
