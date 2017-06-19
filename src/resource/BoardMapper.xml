@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	namespace, id : 해당 interface 불러와 연결하는
+		namespace : 공통부분
+		id : 해당 interface 이름
+	parameterType : 
+		해당 interface의 input의 정의되어 있는 경우 
+		mybatis.Spring.xml에서 정의한 DTO Alias 이용
+	resultType : 
+		해당 interface의 return 값이 정의되어 있는 경우, return값이 단위객체인 경우
+		mybatis.Spring.xml에서 정의한 DTO Alias 이용
+	resultMap : 
+		해당 interface의 return 값이 정의되어 있는 경우, return값이 리스트객체인 경우
+		type : 리스트단위, mybatis.Spring.xml에서 정의한 DTO Alias 이용
+		id : 정의된 리스트객체의 alias
+-->
+<mapper namespace="javarajob.d01_board.repository.A01_BoardDao">
+	<resultMap type="board" id="boardResult"/>
+	<insert id="insertBoard" parameterType="board">
+		insert into board values(board_seq.nextval,0,#{subject},#{content},#{pass},#{writer},0,sysdate,#{email})
+	</insert>
+	<select id="listBoard" resultMap="boardResult">
+		select * from board
+		where 1=1
+		<if test="subject!=null and subject!=''">
+			and subject like '%' || #{subject} || '%'
+		</if>
+		<if test="writer!=null and writer!=''">
+			and writer like '%' || #{writer} || '%'
+		</if>
+		<if test="content!=null and content!=''">
+			and content like '%' || #{content} || '%'
+		</if>
+		order by no desc
+	</select>
+</mapper>
