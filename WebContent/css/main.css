@@ -1799,7 +1799,7 @@ a.verified i {
 }
 
 .profile a.btn,
-.buttons a.btn, .export-pdf a.btnn,
+.buttons a.btn,
 .sid-button a.btn {
     background-color: #00a651;
     color: #fff;
@@ -1815,8 +1815,8 @@ a.verified i {
 
 .profile a.btn.cancle,
 .buttons a.btn.cancle {
-	background-color: #dbdbdb;
-	border: 1px solid #dbdbdb;
+	background-color: #888888;
+	border: 1px solid #888888;
 	margin-left: 10px;
 }
 

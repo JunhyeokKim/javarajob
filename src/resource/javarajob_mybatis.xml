@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis 관련 설정파일 resource/mybatis.Spring.xml -->
+<configuration>
+	<typeAliases>
+		<!-- mapper에 쓰이는 공통 dto나 vo에 대한 선언을 별칭(alias)
+			으로 쓰이게 했다.
+		 -->
+		<typeAlias alias="emp" type="springweb.z01_dto.Emp"/>
+		<typeAlias alias="empmulti" type="springweb.z01_dto.EmpMulti"/>
+		<typeAlias alias="dept" type="springweb.z01_dto.Dept"/>
+		<typeAlias alias="mem" type="springweb.z01_dto.Member"/>
+		<typeAlias alias="board" type="springweb.d01_board.VO.Board"/>
+		<typeAlias alias="schboard" type="springweb.d01_board.VO.Board_Sch"/>
+		
+	</typeAliases>
+	<mappers>
+		<!-- 모듈별로 sql을 지정해 높은 xml 파일 -->
+		<mapper resource="resource/EmpMapper.xml"/>
+		<mapper resource="resource/DeptMapper.xml"/>
+		<mapper resource="resource/MemMapper.xml"/>
+		<mapper resource="resource/BoardMapper.xml"/>
+		<!--  -->
+	</mappers>
+</configuration>
