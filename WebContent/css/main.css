@@ -2059,6 +2059,9 @@ section, .job-list-item {
 	border-style: none;
 }
 
+.item-unselected {
+	width:15px;
+}
 
 
 
