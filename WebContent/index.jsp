@@ -157,7 +157,7 @@
 												<div role="tabpanel" class="tab-pane active" id="find-job">
 													<!-- 회원가입 -->
 													
-													<form method="post" action="${path}/memberList.do?method=insProc">
+													<form method="post" action="${path}/accountList.do?method=insProc">
 														<div class="form-group">
 															<input type="text" class="form-control" placeholder="Name" name="name">
 														</div>

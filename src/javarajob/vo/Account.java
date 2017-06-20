@@ -1,8 +1,8 @@
-package javarajob.d01_board.vo; //javarajob.d01_board.vo.JavarajobMember 
+package javarajob.vo; //javarajob.d01_board.vo.JavarajobMember 
 
 import java.util.Date;
 
-public class JavarajobMember {
+public class Account {
 	/*
 	계정 정보 :
 		이름
@@ -19,7 +19,7 @@ public class JavarajobMember {
 	String phone;
 	String address;
 	String interest;
-	Date reg_date;
+	Date regdate;
 	
 	
 	
@@ -65,11 +65,11 @@ public class JavarajobMember {
 	public void setInterest(String interest) {
 		this.interest = interest;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegdate() {
+		return regdate;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 	
 	

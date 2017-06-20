@@ -1,6 +1,6 @@
-package javarajob.d01_board.vo;
+package javarajob.vo;
 
-public class Member_Sch {
+public class Account_Sch {
 // page처리..
 	
 // 검색 내용

@@ -7,8 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>justification</title>
-		<link rel="stylesheet" 
-		href="${path}/a00_com/a00_com.css" >
+		<link rel="stylesheet" href="${path}/a00_com/a00_com.css" >
 		<style type="text/css">
 		</style>
 		<script src="${path}/com/jquery-1.10.2.js"></script>
@@ -16,7 +15,12 @@
 			$(document).ready(function(){
 				$("#schbtn").click(function(){
 					$("form").submit();
-				});				
+				});
+				$(".data").dblclick(function(){
+					//alert($(this).children().html());
+					var id=$(this).children().html();
+					$(location).attr("href","${path}/accountList.do?method=detail&id="+id);
+				});
 			})
 		</script>
 	</head>
@@ -35,12 +39,12 @@
 		</table>
 		</form>
 		<table>
-			<tr><th width="10%">이름</th><th width="5%">ID</th><th width="5%">비밀번호</th><th width="10%">이메일</th><th width="10%">전화번호</th><th width="30%">주소</th><th width="15%">관심분야</th><th width="15%">가입일</th></tr>
+			<tr><th width="10%">ID</th><th width="5%">이름</th><th width="5%">비밀번호</th><th width="10%">이메일</th><th width="10%">전화번호</th><th width="30%">주소</th><th width="15%">관심분야</th><th width="15%">가입일</th></tr>
 			<c:forEach var="mem" items="${list}">
-			<tr><td>${mem.name}</td><td>${mem.id}</td><td>${mem.password}</td><td>${mem.email}</td><td>${mem.phone}</td><td>${mem.address}</td><td>${mem.interest}</td><td><fmt:formatDate value="${mem.reg_date}"/></td></tr>
+			<tr class="data"><td>${mem.id}</td><td>${mem.name}</td><td>${mem.password}</td><td>${mem.email}</td><td>${mem.phone}</td><td>${mem.address}</td><td>${mem.interest}</td><td><fmt:formatDate value="${mem.regdate}"/></td></tr>
 			</c:forEach>
 			<c:if test="${list.size()==0}">
-			<tr><td colspan="5">등록된 회원이 없습니다</td></tr>
+			<tr><td colspan="8">등록된 회원이 없습니다</td></tr>
 			</c:if>
 		</table>
 	</body>
