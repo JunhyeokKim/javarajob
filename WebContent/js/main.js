@@ -132,7 +132,11 @@ jQuery(function ($) {
 		$('.subcategory.post-option ul li.link-active').removeClass('link-active');
 		$(this).closest('li').addClass('link-active');
 	});
-
+	
+	 // -------------------------------------------------------------
+    //  calendar-responsive
+    // -------------------------------------------------------------
+	
    
 // script end
 });

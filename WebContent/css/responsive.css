@@ -355,7 +355,10 @@
 	h5 {
 		font-size:14px;
 	}
-	
+	.modal-dialog.modal-fullsize {
+	margin-left:5%;
+	width: 90%; height: 100%;  
+	}
 	#header a.btn {
 		position:absolute;
 		top:12px;
@@ -672,7 +675,7 @@
 		float: none;
 	}
 	.job-ad-item .btn.btn-primary {
-		margin: 0;
+		margin-top: 10px;
 	}
 	.job-ad-item .ad-info span {
 		font-size: 18px;
@@ -866,7 +869,9 @@
 		padding: 20px;
 	}
 	.social-media .btn.btn-primary.bookmark {
-		margin-top: 10px;
+		/* margin-top: 10px; 
+		origin
+		*/
 	}
 	.share-social li + li {
 		margin-left: 7px;

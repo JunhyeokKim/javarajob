@@ -3752,7 +3752,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .collapse {
-	display: none
+	display: none;
 }
 
 .collapse.in {
@@ -7400,4 +7400,11 @@ button.close {
 		display: none !important
 	}
 }
+/* custom css */
+.modal-dialog.modal-fullsize {
+	width: 60%; height: 100%;  
+	}
+
+
 /*# sourceMappingURL=bootstrap.min.css.map */
+

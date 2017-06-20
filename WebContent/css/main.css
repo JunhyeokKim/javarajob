@@ -22,6 +22,7 @@
 # Profile
 # Post Resume
 # Footer
+# Calendar
 
 ==================================================
 
@@ -334,7 +335,7 @@ textarea {
 }
 
 #header a.btn,
-.download-button a.btn, 
+.download-button a.btn, .export-pdf a.btnn,
 .sid-button a.btn{
 	padding: 5px 25px 7px;
 	background-color: #0072bc;
@@ -374,6 +375,15 @@ textarea {
 	border-radius:4px;
 	background-color:#fff;
 	position:relative;
+}
+.main-view {
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 5%;
+}
+.list-view {
+	padding-left: 10%;
+    padding-right: 10%;
 }
 
 .category-dropdown {
@@ -502,10 +512,11 @@ textarea {
 
 .category-icon {
 	min-height: 37px;
-	width: 100%;	
+	width: 100%;
+	margin-bottom: 14%;	
 }
 
-.category-icon img {
+.category-icon img{
 	margin: 0 auto;
 }
 
@@ -519,6 +530,11 @@ textarea {
 .category-title {
 	display:block;
 	font-size: 16px;
+	
+}
+
+.category-list {
+    display: inline;
 }
 
 .category-item:hover .category-quantity,
@@ -539,7 +555,6 @@ textarea {
 	right:-1px;
 	width:100%;
 	padding-left:25px;
-	display:table;
 	font-size:14px;
 }
 
@@ -801,6 +816,11 @@ a.verified i {
 	padding-left: 0;
 }
 
+.breadcrumb-section .title {
+    color: black;
+    z-index:1;
+}
+
 .breadcrumb li,
 .breadcrumb li a {
 	color: #fff;
@@ -811,6 +831,10 @@ a.verified i {
 	content: "\f101";
 	font-family: FontAwesome;
 	color: #fff;
+}
+
+.modal-body .breadcrumb li a, .modal-body .breadcrumb>li+li:before {
+	color: black;
 }
 
 #something-sell h2.title {
@@ -1815,8 +1839,8 @@ a.verified i {
 
 .profile a.btn.cancle,
 .buttons a.btn.cancle {
-	background-color: #dbdbdb;
-	border: 1px solid #dbdbdb;
+	background-color: #888888;
+	border: 1px solid #888888;
 	margin-left: 10px;
 }
 
@@ -2002,6 +2026,43 @@ input:-moz-placeholder {
   	text-decoration: underline;
 }
 
+/* ==========================================================================
+ 	Calendar
+========================================================================== */
+section, .job-list-item {
+}
+.calendar-left {
+	width:280px;
+    position:absolute;
+    left:40px;
+    z-index: 1;
+    
+}
+.calendar-right {
+	padding-left:315px;
+	overflow-y: scroll;
+	height: 75vh;
+	
+}
+
+@media (max-width: 767px) {
+	.calendar-right {
+	   padding-left: 0px;
+	}
+}
+
+.col-fixed-mini .fc tr {
+	height: 0.5em;
+}
+.col-fixed-mini .fc td {
+	border-style: none;
+}
+
+.item-unselected {
+	width:15px;
+}
+
+
 
 /* Category Section */
 
@@ -2119,7 +2180,6 @@ input:-moz-placeholder {
 }
 
 .job-category-items {
-	margin-top: 55px;
 	padding: 50px 25px 20px;
 }
 
@@ -2157,7 +2217,6 @@ input:-moz-placeholder {
 	border-top: none;
 	padding-left: 0;
 	min-height: inherit;
-	display: inline;
 }
 
 .job-ad-item .ad-meta li {
@@ -2386,7 +2445,7 @@ input:-moz-placeholder {
 
 .social-media .btn.btn-primary {
 	background-color: #93c949;
-	margin-top: 0;
+	margin-top: 10px;
 	padding: 10px 20px;
 }
 
@@ -2503,17 +2562,20 @@ input:-moz-placeholder {
 
 .positions .ad-meta .position-item {
 	border-top: none;
+	border-bottom : 2px solid #fff1f1;
 	margin:0px;
-	padding-bottom:40px;
 }
 .positions .job-ad-item .ad-meta .social-media .btn {
 	color:#fff;
 }
 .positions .job-ad-item .ad-meta .social-media {
-	float:right;
-	margin-left:550px;
 	display: block;
 }
+.position-detail h3 {
+	text-decoration: underline green;
+	
+}
+
 .ad-meta .position-item {
 	font-size:20px;
 	margin: 20px;
