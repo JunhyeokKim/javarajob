@@ -81,8 +81,8 @@
 									<li><a href="job-list2.html">Calendar Type</a></li>
 								</ul>
 							</li>							
-							<li class="active"><a href="resume.html">이력서</a></li>
-							<li><a href="self_introduction.html">자소서관리</a></li> 
+							<li class="active"><a href="${path}/resume.do">이력서</a></li>
+							<li><a href="${path}/self_introduction.do">자소서관리</a></li>  
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="profile-details.html">회원정보 수정</a></li>
@@ -127,9 +127,8 @@
 					<div class="section-content new ng-scope" >
 						<div class="specs edit-spec ng-scope basic-information" >
 							<div class="subtitle ng-scope" >
-								<div class="ng-binding">기본 정보</div>
-								<span class="ng-scope">입력하신
-									정보는 절대 사용자 동의 없이 외부로 유출,공개되지 않습니다.</span>
+								<div class="ng-binding must">기본 정보</div>
+								<span class="ng-scope">(필수입력)</span>
 							</div>
 							<div class="content ng-scope" >
 								<div class="category-wrapper ng-scope" data-category="0">
@@ -147,12 +146,12 @@
 										</div>
 										<table class="basic-information-table">
 											<colgroup>
-												<col width="120px">
+												<col width="125px">
 												<col width="130px">
 												<col width="100px">
 												<col width="0px">
 												<col width="140px">
-												<col width="85px">
+												<col width="80px">
 												<col width="50px">
 												<col width="95px">
 											</colgroup>
@@ -169,7 +168,7 @@
 																<option	value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
 															</c:forEach>
 														</select>
-														<select class="ng-pristine ng-untouched ng-valid"  name="birthMonth">
+														<select class="ng-pristine ng-untouched ng-valid"  name="birthMon">
 															<option value="">-</option>
 															<c:forEach var="mon" begin="1" end="12" step="1">
 																<option	value="${mon}" class="ng-binding ng-scope">${mon}</option>
@@ -225,10 +224,96 @@
 						</div>
 						<!-- 기본정보 -->
 						
+						<!-- 우대사항 -->
+						<div class="specs edit-spec ng-scope advantage">
+							<div class="subtitle ng-scope">
+								<div class="ng-binding must">취업우대사항</div>
+								<span class="ng-scope">(필수입력)</span>
+							</div>
+							<div class="content ng-scope">
+								<div class="category-wrapper ng-scope" data-category="9">
+									<div class="category-repeater" data-category-number="">
+										<table class="advantage-table">
+											<colgroup>
+												<col width="120px">
+												<col width="320px">
+												<col width="120px">
+												<col width="320px">
+											</colgroup>
+											<tbody>
+												<tr>
+													<th>보훈사항</th>
+													<td colspan="3">
+														<input type="radio" name="vete" value="true" class="ng-pristine ng-untouched ng-valid" />대상
+														<input type="radio" name="vete" value="false" class="ng-pristine ng-untouched ng-valid" />비대상
+													</td>
+												</tr>
+												<tr>
+													<th>장애여부</th>
+													<td colspan="3">
+														<input type="radio" name="handi" value="true" class="ng-pristine ng-untouched ng-valid" />대상
+														<input type="radio" name="handi" value="false" class="ng-pristine ng-untouched ng-valid" />비대상
+													</td>
+												</tr>
+												<tr>
+													<th>병역구분</th>
+													<td>
+														<input type="radio" name="milit" class="ng-pristine ng-untouched ng-valid" value="0" />군필
+														<input type="radio" name="milit" class="ng-pristine ng-untouched ng-valid" value="1" />미필
+														<input type="radio" name="milit" class="ng-pristine ng-untouched ng-valid" value="2" />면제
+													</td>
+													<th>복무기간</th>
+													<td>
+														<select class="ng-pristine ng-untouched ng-valid" name="militIniYear">
+															<option value="">-</option>
+															<c:forEach var="year" begin="0" end="63" step="1">
+																<option value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
+															</c:forEach>
+														</select>
+														<select class="ng-pristine ng-untouched ng-valid" name="militIniMon">
+															<option value="">-</option>
+															<c:forEach var="mon" begin="1" end="12" step="1">
+																<option value="${mon}" class="ng-binding ng-scope">${mon}</option>
+															</c:forEach>
+														</select>
+														<span class="duration-wave-mark"> ~ </span>
+														<select class="ng-pristine ng-untouched ng-valid" name="militFinYear">
+															<option value="">-</option>
+															<c:forEach var="year" begin="0" end="63" step="1">
+																<option value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
+															</c:forEach>
+														</select>
+														<select class="ng-pristine ng-untouched ng-valid" name="militFinMon">
+															<option value="">-</option>
+															<c:forEach var="mon" begin="1" end="12" step="1">
+																<option value="${mon}" class="ng-binding ng-scope">${mon}</option>
+															</c:forEach>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<th>군별</th>
+													<td>
+														<input type="text" class="ng-pristine ng-untouched ng-valid" name="militKind" />
+													</td>
+													<th>계급</th>
+													<td>
+														<input type="text" class="ng-pristine ng-untouched ng-valid" name="militRank" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 우대사항 -->
+						
 						<!-- 고등학교 -->
 						<div class="specs edit-spec ng-scope highschool">
 							<div class="subtitle ng-scope">
-								<div class="ng-binding">고등학교</div>
+								<div class="ng-binding must">고등학교</div>
+								<span class="ng-scope">(필수입력)</span>
 							</div>
 							<div class="content ng-scope">
 								<div class="category-wrapper ng-scope" data-category="1">
@@ -249,7 +334,7 @@
 															<option value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
 														</c:forEach>
 												</select>
-												<select class="ng-pristine ng-untouched ng-valid" name="highIniMonth">
+												<select class="ng-pristine ng-untouched ng-valid" name="highIniMon">
 														<option value="">-</option>
 														<c:forEach var="mon" begin="1" end="12" step="1">
 															<option value="${mon}" class="ng-binding ng-scope">${mon}</option>
@@ -262,7 +347,7 @@
 															<option value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
 														</c:forEach>
 												</select>
-												<select class="ng-pristine ng-untouched ng-valid" name="highFinMonth">
+												<select class="ng-pristine ng-untouched ng-valid" name="highFinMon">
 														<option value="">-</option>
 														<c:forEach var="mon" begin="1" end="12" step="1">
 															<option value="${mon}" class="ng-binding ng-scope">${mon}</option>
@@ -356,8 +441,8 @@
 												<th>학점</th>
 												<td>
 													<input class="univ-score small-input-text ng-pristine ng-untouched ng-valid"
-														type="text"> &nbsp;/&nbsp;
-													<select class="ng-pristine ng-untouched ng-valid" name="univScore" >
+														type="text" name="univScore" value="0" /> &nbsp;/&nbsp;
+													<select class="ng-pristine ng-untouched ng-valid" >
 														<option value="?" selected="selected"></option>
 														<option value="string:0" label="4.0">4.0</option>
 														<option value="string:1" label="4.3">4.3</option>
@@ -442,8 +527,8 @@
 												<th>학점</th>
 												<td>
 													<input class="gradu-score small-input-text ng-pristine ng-untouched ng-valid"
-														type="text" name="graduscore" > &nbsp;/&nbsp;
-													<select class="ng-pristine ng-untouched ng-valid" name="graduScore" >
+														type="text" name="graduscore" value="0" /> &nbsp;/&nbsp;
+													<select class="ng-pristine ng-untouched ng-valid" >
 														<option value="?" selected="selected"></option>
 														<option value="string:0" label="4.0">4.0</option>
 														<option value="string:1" label="4.3">4.3</option>
@@ -741,92 +826,8 @@
 							</div>
 						</div>
 						<!-- 해외연수 -->
-						
-						<!-- 우대사항 -->
-						<div class="specs edit-spec ng-scope advantage">
-							<div class="subtitle ng-scope">
-								<div class="ng-binding">취업우대사항</div>
-							</div>
-							<div class="content ng-scope">
-								<div class="category-wrapper ng-scope" data-category="9">
-									<div class="category-repeater" data-category-number="">
-										<table class="advantage-table">
-											<colgroup>
-												<col width="120px">
-												<col width="320px">
-												<col width="120px">
-												<col width="320px">
-											</colgroup>
-											<tbody>
-												<tr>
-													<th>보훈사항</th>
-													<td colspan="3">
-														<input type="radio" name="vete" value="true" class="ng-pristine ng-untouched ng-valid" />대상
-														<input type="radio" name="vete" value="false" class="ng-pristine ng-untouched ng-valid" />비대상
-													</td>
-												</tr>
-												<tr>
-													<th>장애여부</th>
-													<td colspan="3">
-														<input type="radio" name="handi" value="true" class="ng-pristine ng-untouched ng-valid" />대상
-														<input type="radio" name="handi" value="false" class="ng-pristine ng-untouched ng-valid" />비대상
-													</td>
-												</tr>
-												<tr>
-													<th>병역구분</th>
-													<td>
-														<input type="radio" name="milit" class="ng-pristine ng-untouched ng-valid" value="0" />군필
-														<input type="radio" name="milit" class="ng-pristine ng-untouched ng-valid" value="1" />미필
-														<input type="radio" name="milit" class="ng-pristine ng-untouched ng-valid" value="2" />면제
-													</td>
-													<th>복무기간</th>
-													<td>
-														<select class="ng-pristine ng-untouched ng-valid" name="militIniYear">
-															<option value="">-</option>
-															<c:forEach var="year" begin="0" end="63" step="1">
-																<option value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
-															</c:forEach>
-														</select>
-														<select class="ng-pristine ng-untouched ng-valid" name="militIniMon">
-															<option value="">-</option>
-															<c:forEach var="mon" begin="1" end="12" step="1">
-																<option value="${mon}" class="ng-binding ng-scope">${mon}</option>
-															</c:forEach>
-														</select>
-														<span class="duration-wave-mark"> ~ </span>
-														<select class="ng-pristine ng-untouched ng-valid" name="militFinYear">
-															<option value="">-</option>
-															<c:forEach var="year" begin="0" end="63" step="1">
-																<option value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
-															</c:forEach>
-														</select>
-														<select class="ng-pristine ng-untouched ng-valid" name="militFinMon">
-															<option value="">-</option>
-															<c:forEach var="mon" begin="1" end="12" step="1">
-																<option value="${mon}" class="ng-binding ng-scope">${mon}</option>
-															</c:forEach>
-														</select>
-													</td>
-												</tr>
-												<tr>
-													<th>군별</th>
-													<td>
-														<input type="text" class="ng-pristine ng-untouched ng-valid" name="militKind" />
-													</td>
-													<th>계급</th>
-													<td>
-														<input type="text" class="ng-pristine ng-untouched ng-valid" name="militRank" />
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
-				<!-- 우대사항 -->
 			</div>
 		</div>
 	</div>

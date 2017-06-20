@@ -2,12 +2,24 @@ package javarajob.vo;
 
 public class Resume {
 	private String userId;
+	private String name;
+	private String birthYear;
+	private String birthMon;
+	private String birthDay;
+	private String gender;
+	private String hTel;
+	private String cTel;
+	private String email;
+	private String sns;
+	private String address;
+
 	private String highIniYear;
 	private String highIniMon;
 	private String highFinYear;
 	private String highFinMon;
 	private String highName;
 	private String highKind;
+
 	private String univIniYear;
 	private String univIniMon;
 	private String univFinYear;
@@ -16,7 +28,7 @@ public class Resume {
 	private String univKind;
 	private double univScore;
 	private String univMajor;
-	private String name;
+
 	private String graduIniYear;
 	private String graduIniMon;
 	private String graduFinYear;
@@ -25,13 +37,12 @@ public class Resume {
 	private String graduKind;
 	private double graduScore;
 	private String graduMajor;
+
 	private String licenName;
 	private String licenInsti;
 	private String licenGrad;
+
 	private String jobName;
-	private String birthYear;
-	private String birthMon;
-	private String birthDay;
 	private String jobIniYear;
 	private String jobIniMon;
 	private String jobFinYear;
@@ -40,36 +51,34 @@ public class Resume {
 	private String jobDept;
 	private String jobContent;
 	private String jobFire;
+
 	private String langName;
 	private String langTest;
 	private String langScore;
 	private String langDateYear;
 	private String langDateMon;
 	private String langDateDay;
-	private String gender;
+
 	private String awardName;
 	private String awardContent;
 	private String awardInsti;
 	private String awardDateYear;
 	private String awardDateMon;
 	private String awardDateDay;
+
 	private String abroadNation;
 	private String abroadInsti;
 	private String abroadCont;
+
 	private String vete;
 	private String handi;
 	private String milit;
-	private String hTel;
 	private String militIniYear;
 	private String militIniMon;
 	private String militFinYear;
 	private String militFinMon;
 	private String militKind;
 	private String militRank;
-	private String cTel;
-	private String email;
-	private String sns;
-	private String address;
 
 	public Resume() {
 	}
