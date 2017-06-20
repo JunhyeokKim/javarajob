@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="javarajob.repository.ResumeDao">
+	<resultMap type="resume" id="resumeResult" />
+	<insert id="insertResume" parameterType="resume">
+		INSERT INTO RESUME
+		VALUES(
+			SYSDATE,
+			#{NAME},
+			#{BIRTH},
+			#{GENDER},
+			#{HTEL},
+			#{CTEL},
+			#{EMAIL},
+			#{SNS},
+			#{ADDRESS},
+			#{HIGHINI},
+			#{HIGHFIN},
+			#{HIGHNAME},
+			#{HIGHKIND},
+			#{UNIVINI},
+			#{UNIVFIN},
+			#{UNIVNAME},
+			#{UNIVKIND},
+			#{UNIVSCORE},
+			#{UNIVMAJOR},
+			#{GRADUINI},
+			#{GRADUFIN},
+			#{GRADUNAME},
+			#{GRADUKIND},
+			#{GRADUSCORE},
+			#{GRADUMAJOR},
+			#{LICENNAME},
+			#{LICENINSTI},
+			#{LICENGRAD},
+			#{JOBNAME},
+			#{JOBINI},
+			#{JOBFIN},
+			#{JOBRANK},
+			#{JOBDEPT},
+			#{JOBCONTENT},
+			#{JOBFIRE},
+			#{LANGNAME},
+			#{LANGTEST},
+			#{LANGSCORE},
+			#{LANGDATE},
+			#{AWARDNAME},
+			#{AWARDCONTENT},
+			#{AWARDINSTI},
+			#{AWARDDATE},
+			#{ABROADNATION},
+			#{ABROADINSTI},
+			#{ABROADCONT},
+			#{VETE},
+			#{HANDI},
+			#{MILIT},
+			#{MILITINI},
+			#{MILITFIN},
+			#{MILITKIND},
+			#{MILITRANK}
+		)
+	</insert>
+</mapper>

@@ -1,18 +1,19 @@
 package javarajob.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javarajob.service.ResumeService;
 import javarajob.vo.Resume;
 
 @Controller
 public class ResumeCtrl {
 
-	@Autowired(required = false)
-	private ResumeService s;
+	/*@Autowired(required = false)
+	private ResumeService s;*/
 	
-	public void insertResume(Resume r){
-		
+	// http://localhost:6080/javarajob/testttt.do
+	@RequestMapping("/testttt.do")
+	public String insertResume(Resume r){
+		return "resume";
 	}
 }
