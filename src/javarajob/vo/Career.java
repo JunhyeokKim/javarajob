@@ -13,14 +13,14 @@ public class Career {
 	private String employmenttype;
 	private int companyid;
 	private String title;
-	private String salary;
+	private int salary;
 
 	public Career() {
 	}
 
 	public Career(int careerid, String task, String requirements, String preference, String workingcondition,
 			String companytype, String field, String location, String industry, String employmenttype, int companyid,
-			String title, String salary) {
+			String title, int salary) {
 		this.careerid = careerid;
 		this.task = task;
 		this.requirements = requirements;
@@ -132,11 +132,11 @@ public class Career {
 		this.title = title;
 	}
 
-	public String getSalary() {
+	public int getSalary() {
 		return salary;
 	}
 
-	public void setSalary(String salary) {
+	public void setSalary(int salary) {
 		this.salary = salary;
 	}
 

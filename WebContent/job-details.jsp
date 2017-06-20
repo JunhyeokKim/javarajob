@@ -59,31 +59,34 @@
 			<div class="container">
 				<!-- navbar-header -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img
-						class="img-responsive" src="images/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="index.jsp"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
-
+								
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="job-list.html">채용정보</a></li>
-							<li><a href="resume.html">이력서</a></li>
-							<li><a href="self_introduction.html">자소서관리</a></li> 
+							<li class="active"><a href="index.jsp">Home</a></li>								
+							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
+								<ul class="dropdown-menu">									
+									<li><a href="job-list.jsp">List Type</a></li>
+									<li><a href="job-calendar.jsp">Calendar Type</a></li>
+								</ul>
+							</li>							
+							<li><a href="details.html">이력서</a></li>
+							<li><a href="resume.jsp">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="profile-details.html">회원정보 수정</a></li>
-									<li><a href="delete-account.html">탈퇴</a></li>
 									<li><a href="bookmark.html">관심기업</a></li>
 									<li><a href="applied-job.html">지원한 기업</a></li>
-									<li><a href="qanda.html">Q&A</a></li>									
+									<li><a href="delete-account.html">Q&A</a></li>									
 								</ul>
 							</li>
 						</ul>
@@ -146,38 +149,50 @@
 						    		<div class="row text-center">
 									<h2>Create An Account</h2>
 									<!-- user-login -->			
-									<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+									
 										<div class="user-account job-user-account">
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="find-job">
-													<form action="#">
+													<!-- 회원가입 -->
+													
+													<form method="post" action="${path}/accountList.do?method=insProc">
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="Name" >
+															<input type="text" class="form-control" placeholder="Name" name="name">
 														</div>
 														<div class="form-group">
-															<input type="email" class="form-control" placeholder="Email Id">
+															<input type="text" class="form-control" placeholder="ID" name="id">
 														</div>
 														<div class="form-group">
-															<input type="password" class="form-control" placeholder="Password">
+															<input type="password" class="form-control" placeholder="Password" name="password">
+														</div>														
+														<div class="form-group">
+															<input type="email" class="form-control" placeholder="E-mail" name="email">
 														</div>
 														<div class="form-group">
-															<input type="password" class="form-control" placeholder="Confirm Password">
+															<input type="text" class="form-control" placeholder="Mobile Number" name="phone">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="Mobile Number">
+															<input type="text" class="form-control" placeholder="Address" name="address">
 														</div>
-														<!-- select -->
-														<select class="form-control">
-															<option value="#">Select City</option>
-															<option value="#">London UK</option>
-															<option value="#">Newyork, USA</option>
-															<option value="#">Seoul, Korea</option>
-															<option value="#">Beijing, China</option>
+														<!-- select -->																
+														<select class="form-control" name="interest">
+															<option value="">관심분야</option>
+															<option value="웹 개발">웹 개발</option>
+															<option value="소프트웨어 엔지니어">소프트웨어 엔지니어</option>
+															<option value="시스템 엔지니어">시스템 엔지니어</option>
+															<option value="네트워크 / 보안 / 운영">네트워크 / 보안 / 운영</option>
+															<option value="모바일웹 개발">모바일웹 개발</option>
+															<option value="기획">기획</option>
+															<option value="IT/솔루션 영업">IT/솔루션 영업</option>
+															<option value="마케팅">마케팅</option>
+															<option value="소프트웨어 아키텍트">소프트웨어 아키텍트</option>
 														</select><!-- select -->
 														<div class="checkbox">
-															<label class="pull-left checked" for="signing"><input type="checkbox" name="signing" id="signing"> By signing up for an account you agree to our Terms and Conditions </label>
+															<label class="pull-left checked" for="signing"><input type="checkbox" name="signing" id="signing"> 정보제공 동의여부, 미동의시 가입불가 </label>
 														</div><!-- checkbox -->	
-														<button type="submit" class="btn">Registration</button>	
+														<div align="right">
+														<button type="submit" class="btn">Registration</button>
+														</div>	
 													</form>
 												</div>
 												<div role="tabpanel" class="tab-pane" id="post-job">
@@ -205,8 +220,8 @@
 												</div>
 											</div>				
 										</div>
-									</div><!-- user-login -->			
-									</div><!-- row -->
+									</div><!-- user-login -->		
+									
 						        </div>
 						        <div class="modal-footer">          
 						        </div>

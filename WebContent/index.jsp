@@ -67,22 +67,22 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="index.jsp"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
 								
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Home</a></li>								
+							<li class="active"><a href="index.jsp">Home</a></li>								
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
-									<li><a href="job-list.html">List Type</a></li>
-									<li><a href="job-list2.html">Calendar Type</a></li>
+									<li><a href="job-list.jsp">List Type</a></li>
+									<li><a href="job-calendar.jsp">Calendar Type</a></li>
 								</ul>
 							</li>							
 							<li><a href="details.html">이력서</a></li>
-							<li><a href="resume.html">자소서관리</a></li> 
+							<li><a href="resume.jsp">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="profile-details.html">회원정보 수정</a></li>

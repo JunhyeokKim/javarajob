@@ -10,14 +10,14 @@ public class Company {
 	private String tel;
 	private String location;
 	private Date establishmentdate;
-	private String annualsales;
+	private int annualsales;
 	private String industry;
 	private String companytype;
 	private String website;
 	private int companysize;
 
 	public Company(int companyid, String companyname, String info, String tel, String location, Date establishmentdate,
-			String annualsales, String industry, String companytype, String website, int companysize) {
+			int annualsales, String industry, String companytype, String website, int companysize) {
 		this.companyid = companyid;
 		this.companyname = companyname;
 		this.info = info;
@@ -82,11 +82,11 @@ public class Company {
 		this.establishmentdate = establishmentdate;
 	}
 
-	public String getAnnualsales() {
+	public int getAnnualsales() {
 		return annualsales;
 	}
 
-	public void setAnnualsales(String annualsales) {
+	public void setAnnualsales(int annualsales) {
 		this.annualsales = annualsales;
 	}
 
