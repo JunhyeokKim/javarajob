@@ -555,7 +555,6 @@ textarea {
 	right:-1px;
 	width:100%;
 	padding-left:25px;
-	display:table;
 	font-size:14px;
 }
 
@@ -2218,7 +2217,6 @@ section, .job-list-item {
 	border-top: none;
 	padding-left: 0;
 	min-height: inherit;
-	display: inline;
 }
 
 .job-ad-item .ad-meta li {
@@ -2564,8 +2562,8 @@ section, .job-list-item {
 
 .positions .ad-meta .position-item {
 	border-top: none;
+	border-bottom : 2px solid #fff1f1;
 	margin:0px;
-	padding-bottom:40px;
 }
 .positions .job-ad-item .ad-meta .social-media .btn {
 	color:#fff;
@@ -2573,6 +2571,11 @@ section, .job-list-item {
 .positions .job-ad-item .ad-meta .social-media {
 	display: block;
 }
+.position-detail h3 {
+	text-decoration: underline green;
+	
+}
+
 .ad-meta .position-item {
 	font-size:20px;
 	margin: 20px;

@@ -3752,7 +3752,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .collapse {
-	display: none
+	display: none;
 }
 
 .collapse.in {
