@@ -32,3 +32,11 @@
 .kdb-table .no-content {
 	min-height:70px;
 }
+
+div {
+   -ms-user-select: none; 
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   user-select: none;
+ }

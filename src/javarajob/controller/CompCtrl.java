@@ -12,9 +12,10 @@ public class CompCtrl {
 
 	@Autowired(required = false)
 	private CompService s;
-	
+
+	// http://localhost:6080/javarajob/testing.do
 	@RequestMapping("/testing.do")
-	public String testting(Model d){
+	public String list(Model d){
 		d.addAttribute("company", s.list());
 		return "testt";
 	}
