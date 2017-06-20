@@ -14,11 +14,14 @@
 	</context:component-scan>
 	<!-- DB 연결 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<!-- driver, connection(url, port, sid, id, pass) -->
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl" />
-		<property name="username" value="tiger" />
-		<property name="password" value="scott" />
+		<!-- driver, connection(url,port,sid,id,pass) -->
+		<!-- dirver : jdbc -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<!-- 접속 DB 서버 정보 port와 sid -->
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl"/>
+		<!-- 계정정보 -->
+		<property name="username" value="tiger"/>
+		<property name="password" value="scott"/>
 	</bean>
 	<!-- Mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -29,7 +32,7 @@
 	<!-- Repository interface 패키지 등록 -->
 	<!-- default mybatis 연결 dao 인터페이스 패키지 위치 지정 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="javarajob.repository" />
+		<property name="basePackage" value="javarajob.repository"/>
 	</bean>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

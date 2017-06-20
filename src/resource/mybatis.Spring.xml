@@ -4,10 +4,15 @@
 <!-- mybatis 관련 설정파일 resource/mybatis.Spring.xml -->
 <configuration>
 	<typeAliases>
+		<!-- DTO를 alias(별명)으로 세팅 -->		
+		<typeAlias alias="mem" type="javarajob.vo.Account"/>
+		<typeAlias alias="schmem" type="javarajob.vo.Account_Sch"/>
 		<!-- mapper에 쓰이는 공통 dto나 vo에 대한 선언을 별칭(alias) 으로 쓰이게 했다. -->
 		<typeAlias alias="company" type="javarajob.vo.Company" />
 	</typeAliases>
 	<mappers>
+		<!-- 모듈별로 sql을 지정해 놓은 xml 파일 -->		
+		<mapper resource="resource/AccountMapper.xml"/>
 		<!-- 모듈별로 sql을 지정해 높은 xml 파일 -->
 		<mapper resource="resource/CompanyMapper.xml" />
 		<!-- -->

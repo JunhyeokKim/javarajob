@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +13,7 @@
     <meta name="author" content="Theme Region">
    	<meta name="description" content="">
 
-    <title>PENTACORN | 채용 정보 | 구인구직 | "진"짜 "취"업 >> "진취"적인 준비!</title>
+    <title>Jobs | Job Portal / Job Board HTML Template</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -37,6 +43,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Template Developed By ThemeRegion -->
+  <style>
+  	#temp01{
+		padding-left:10%;
+		padding-right:10%;     
+  	}
+  	#temp02{
+  		display:inline;
+  	}
+  </style>
   </head>
   <body>
 	<!-- header 11-->
@@ -63,11 +78,11 @@
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="job-list.html">List Type</a></li>
-									<li><a href="job-calendar.html">Calendar Type</a></li>
+									<li><a href="job-list2.html">Calendar Type</a></li>
 								</ul>
 							</li>							
-							<li><a href="resume.html">이력서</a></li>
-							<li><a href="self_introduction.html">자소서관리</a></li> 
+							<li><a href="details.html">이력서</a></li>
+							<li><a href="resume.html">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="profile-details.html">회원정보 수정</a></li>
@@ -136,38 +151,50 @@
 						    		<div class="row text-center">
 									<h2>Create An Account</h2>
 									<!-- user-login -->			
-									<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+									
 										<div class="user-account job-user-account">
 											<div class="tab-content">
 												<div role="tabpanel" class="tab-pane active" id="find-job">
-													<form action="#">
+													<!-- 회원가입 -->
+													
+													<form method="post" action="${path}/accountList.do?method=insProc">
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="Name" >
+															<input type="text" class="form-control" placeholder="Name" name="name">
 														</div>
 														<div class="form-group">
-															<input type="email" class="form-control" placeholder="Email Id">
+															<input type="text" class="form-control" placeholder="ID" name="id">
 														</div>
 														<div class="form-group">
-															<input type="password" class="form-control" placeholder="Password">
+															<input type="password" class="form-control" placeholder="Password" name="password">
+														</div>														
+														<div class="form-group">
+															<input type="email" class="form-control" placeholder="E-mail" name="email">
 														</div>
 														<div class="form-group">
-															<input type="password" class="form-control" placeholder="Confirm Password">
+															<input type="text" class="form-control" placeholder="Mobile Number" name="phone">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="Mobile Number">
+															<input type="text" class="form-control" placeholder="Address" name="address">
 														</div>
-														<!-- select -->
-														<select class="form-control">
-															<option value="#">Select City</option>
-															<option value="#">London UK</option>
-															<option value="#">Newyork, USA</option>
-															<option value="#">Seoul, Korea</option>
-															<option value="#">Beijing, China</option>
+														<!-- select -->																
+														<select class="form-control" name="interest">
+															<option value="">관심분야</option>
+															<option value="웹 개발">웹 개발</option>
+															<option value="소프트웨어 엔지니어">소프트웨어 엔지니어</option>
+															<option value="시스템 엔지니어">시스템 엔지니어</option>
+															<option value="네트워크 / 보안 / 운영">네트워크 / 보안 / 운영</option>
+															<option value="모바일웹 개발">모바일웹 개발</option>
+															<option value="기획">기획</option>
+															<option value="IT/솔루션 영업">IT/솔루션 영업</option>
+															<option value="마케팅">마케팅</option>
+															<option value="소프트웨어 아키텍트">소프트웨어 아키텍트</option>
 														</select><!-- select -->
 														<div class="checkbox">
-															<label class="pull-left checked" for="signing"><input type="checkbox" name="signing" id="signing"> By signing up for an account you agree to our Terms and Conditions </label>
+															<label class="pull-left checked" for="signing"><input type="checkbox" name="signing" id="signing"> 정보제공 동의여부, 미동의시 가입불가 </label>
 														</div><!-- checkbox -->	
-														<button type="submit" class="btn">Registration</button>	
+														<div align="right">
+														<button type="submit" class="btn">Registration</button>
+														</div>	
 													</form>
 												</div>
 												<div role="tabpanel" class="tab-pane" id="post-job">
@@ -195,8 +222,8 @@
 												</div>
 											</div>				
 										</div>
-									</div><!-- user-login -->			
-									</div><!-- row -->
+									</div><!-- user-login -->		
+									
 						        </div>
 						        <div class="modal-footer">          
 						        </div>
@@ -327,66 +354,68 @@
 	</div><!-- banner-section -->
 
 	<div class="page">
-		<div class="row main-view">
+		<br>
+
+		<div class="row" id="temp01">
 			<!--  -->
-			<div class="col-sm-2 hidden-sm hidden-xs">
+			<div class="col-sm-2">
 				<div class="section category-items job-category-items  text-center">
-				<div class="category-icon">
 					<a href="job-list.html">
-							<img src="images/icon/6.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list">Design</span>
+						<div class="category-icon">
+							<img src="images/icon/6.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Design</span>
 							<span class="category-quantity">(76212)</span>
-					</a>
-					</div>
-					<div class="category-icon">
-					   <a href="job-list.html">
-							<img src="images/icon/3.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list ">Engineer</span>
+						</div>
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/3.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Engineer</span>
 							<span class="category-quantity">(212)</span> 
-					   </a>
-					</div> 
-					<div class="category-icon"> 
-					   <a href="job-list.html">
-							<img src="images/icon/5.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list" >Develop</span> 
+						</div>	
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/5.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Develop</span> 
 							<span class="category-quantity">(1298)</span>
-					   </a>
-					</div>
-					<div class="category-icon"> 
-					   <a href="job-list.html">
-							<img src="images/icon/7.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list ">Research</span> 
+						</div> 
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/7.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Research</span> 
 							<span class="category-quantity">(1298)</span>
-					   </a>
-					</div>
-					<div class="category-icon"> 
-					   <a href="job-list.html">
-							<img src="images/icon/1.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list " >Finance</span> 
+						</div> 
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/1.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Finance</span> 
 							<span class="category-quantity">(1298)</span>
-    					</a>
-					</div>
-					<div class="category-icon"> 
-					   <a href="job-list.html">
-							<img src="images/icon/2.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list">Training</span> 
+						</div> 
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/2.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Training</span> 
 							<span class="category-quantity">(76212)</span>
-					   </a>
-					</div>
-					<div class="category-icon"> 
-					   <a href="job-list.html">
-							<img src="images/icon/3.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list">Engineer</span>
+						</div> 
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/3.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Engineer</span>
 							<span class="category-quantity">(212)</span> 
-					   </a>
-					</div>
-					<div class="category-icon"> 
-					   <a href="job-list.html">
-							<img src="images/icon/5.png" alt="images" class="img-responsive category-list">
-							<span class="category-title category-list">Develop</span> 
+						</div>	
+					</a><br> 
+					<a href="job-list.html">
+						<div class="category-icon">
+							<img src="images/icon/5.png" alt="images" class="img-responsive" id="temp02">
+							<span class="category-title" id="temp02">Develop</span> 
 							<span class="category-quantity">(1298)</span>
-					   </a>
-					</div>
+						</div> 
+					</a><br>
 				</div>
 				<!-- category ad -->
 			</div>
@@ -515,6 +544,7 @@
 								<!-- item-info -->
 							</div>
 							<!-- ad-item -->
+
 							<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
@@ -865,6 +895,7 @@
 	
 	<!-- footer -->
 	<footer id="footer" class="clearfix">		
+
 		<div class="footer-bottom clearfix text-center">
 			<div class="container">
 				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상
