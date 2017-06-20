@@ -102,448 +102,89 @@
 	</header>
 	<!-- header -->
 
-	<div class="main-tab ng-scope"
-		ng-if="current_tab === tabs[3].name || tabs[3].loaded === true"
-		ng-show="current_tab === tabs[3].name"
-		ng-include="'app/templates/spec/spec.html'">
+	<div class="main-tab ng-scope" >
 		<div ng-controller="SpecCtrl" class="spec-ctrl ng-scope">
 			<div class="spec-container">
-				<div class="section-container spec-saver"
-					ng-show="spec_tab.active === 0">
+				<div class="section-container spec-saver">
 					<div class="section-title">
 						이력서
 						<div class="export-pdf">저장하기</div>
-						<!-- ngIf: export_pdf_wait -->
 					</div>
-					<!-- ngInclude: 'app/templates/spec/spec_data.html' -->
 					<div class="section-content new ng-scope" ng-include="">
-						<!-- ngRepeat: item in editSpecList -->
-						<div class="specs edit-spec ng-scope basic-information"
-							ng-repeat="item in editSpecList" ng-class="item.class">
-							<!-- ngIf: hasSpecContent(item.category) -->
-							<div class="subtitle ng-scope"
-								ng-if="hasSpecContent(item.category)">
-								<div ng-bind="item.subtitle" class="ng-binding">기본 정보</div>
-								<!-- ngIf: item.category === 0 -->
-								<span ng-if="item.category === 0" class="ng-scope">입력하신
+						<div class="specs edit-spec ng-scope basic-information" >
+							<div class="subtitle ng-scope" >
+								<div class="ng-binding">기본 정보</div>
+								<span class="ng-scope">입력하신
 									정보는 절대 사용자 동의 없이 외부로 유출,공개되지 않습니다.</span>
-								<!-- end ngIf: item.category === 0 -->
 							</div>
-							<!-- end ngIf: hasSpecContent(item.category) -->
-							<!-- ngInclude: item.template -->
-							<div class="content ng-scope" ng-include="item.template">
+							<div class="content ng-scope" >
 								<div class="category-wrapper ng-scope" data-category="0">
 									<div class="category-repeater" data-category-number="">
 										<div class="image">
 											<div class="image-area">
 												<!-- 증명사진 공간 -->
-												<img
-													ng-if="currentApplicant.specs.basic_information.image_url !== null"
-													class="ng-scope">
-												<!-- end ngIf: currentApplicant.specs.basic_information.image_url !== null -->
-												<!-- ngIf: currentApplicant.specs.basic_information.image_url === null -->
+												<img class="ng-scope">
 											</div>
 											<div class="image-buttons">
-												<!-- ngIf: ctrlName === 'spec' -->
-												<div class="btn button-blue button-bordered ng-scope"
-													ng-click="spec_tab_switch(1)" ng-if="ctrlName === 'spec'">이미지
-													올리기</div>
-												<!-- end ngIf: ctrlName === 'spec' -->
-												<!-- ngIf: ctrlName === 'apply_immediately' -->
+												<div class="btn button-blue button-bordered ng-scope">
+												 	이미지 올리기
+												</div>
 											</div>
 										</div>
-										<table ng-class="'basic-information-table'"
-											ng-init="basic_information = currentApplicant.specs.basic_information"
-											class="basic-information-table">
+										<table class="basic-information-table">
 											<colgroup>
-												<col width="110px">
+												<col width="120px">
 												<col width="130px">
 												<col width="100px">
 												<col width="0px">
-												<col width="115px">
-												<col width="100px">
+												<col width="140px">
+												<col width="85px">
 												<col width="50px">
 												<col width="95px">
 											</colgroup>
 											<tbody>
 												<tr>
 													<th>이름</th>
-													<td><input type="text"
+													<td><input type="text" 
 														class="small-input-text ng-pristine ng-untouched ng-valid"
-														ng-model="currentApplicant.specs.basic_information.name.content"
-														ng-blur="updateContent(currentApplicant.specs.basic_information.name, currentApplicant.specs.basic_information.number, item.category)"
-														kr-input=""></td>
+														name="name"></td>
 													<th>생년월일</th>
-													<td colspan="3"><select
-														ng-model="currentApplicant.specs.basic_information.birth.content.year"
-														ng-change="date_changed(currentApplicant.specs.basic_information.birth, currentApplicant.specs.basic_information.number, item.category)"
-														class="ng-pristine ng-untouched ng-valid">
+													<td colspan="3"><select	class="ng-pristine ng-untouched ng-valid">
 															<option value="">-</option>
-															<!-- ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2017"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2017" class="ng-binding ng-scope">2017</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2016"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2016" class="ng-binding ng-scope">2016</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2015"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2015" class="ng-binding ng-scope">2015</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2014"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2014" class="ng-binding ng-scope">2014</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2013"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2013" class="ng-binding ng-scope">2013</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2012"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2012" class="ng-binding ng-scope">2012</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2011"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2011" class="ng-binding ng-scope">2011</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2010"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2010" class="ng-binding ng-scope">2010</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2009"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2009" class="ng-binding ng-scope">2009</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2008"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2008" class="ng-binding ng-scope">2008</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2007"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2007" class="ng-binding ng-scope">2007</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2006"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2006" class="ng-binding ng-scope">2006</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2005"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2005" class="ng-binding ng-scope">2005</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2004"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2004" class="ng-binding ng-scope">2004</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2003"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2003" class="ng-binding ng-scope">2003</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2002"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2002" class="ng-binding ng-scope">2002</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2001"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2001" class="ng-binding ng-scope">2001</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="2000"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="2000" class="ng-binding ng-scope">2000</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1999"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1999" class="ng-binding ng-scope">1999</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1998"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1998" class="ng-binding ng-scope">1998</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1997"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1997" class="ng-binding ng-scope">1997</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1996"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1996" class="ng-binding ng-scope">1996</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1995"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1995" class="ng-binding ng-scope">1995</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1994"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1994" class="ng-binding ng-scope">1994</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1993"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1993" class="ng-binding ng-scope">1993</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1992"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1992" class="ng-binding ng-scope">1992</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1991"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1991" class="ng-binding ng-scope">1991</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1990"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1990" class="ng-binding ng-scope">1990</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1989"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1989" class="ng-binding ng-scope">1989</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1988"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1988" class="ng-binding ng-scope">1988</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1987"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1987" class="ng-binding ng-scope">1987</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1986"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1986" class="ng-binding ng-scope">1986</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1985"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1985" class="ng-binding ng-scope">1985</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1984"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1984" class="ng-binding ng-scope">1984</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1983"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1983" class="ng-binding ng-scope">1983</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1982"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1982" class="ng-binding ng-scope">1982</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1981"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1981" class="ng-binding ng-scope">1981</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1980"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1980" class="ng-binding ng-scope">1980</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1979"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1979" class="ng-binding ng-scope">1979</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1978"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1978" class="ng-binding ng-scope">1978</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1977"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1977" class="ng-binding ng-scope">1977</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1976"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1976" class="ng-binding ng-scope">1976</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1975"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1975" class="ng-binding ng-scope">1975</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1974"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1974" class="ng-binding ng-scope">1974</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1973"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1973" class="ng-binding ng-scope">1973</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1972"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1972" class="ng-binding ng-scope">1972</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1971"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1971" class="ng-binding ng-scope">1971</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1970"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1970" class="ng-binding ng-scope">1970</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1969"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1969" class="ng-binding ng-scope">1969</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1968"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1968" class="ng-binding ng-scope">1968</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1967"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1967" class="ng-binding ng-scope">1967</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1966"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1966" class="ng-binding ng-scope">1966</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1965"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1965" class="ng-binding ng-scope">1965</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1964"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1964" class="ng-binding ng-scope">1964</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1963"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1963" class="ng-binding ng-scope">1963</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1962"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1962" class="ng-binding ng-scope">1962</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1961"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1961" class="ng-binding ng-scope">1961</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1960"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1960" class="ng-binding ng-scope">1960</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1959"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1959" class="ng-binding ng-scope">1959</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1958"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1958" class="ng-binding ng-scope">1958</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1957"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1957" class="ng-binding ng-scope">1957</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1956"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1956" class="ng-binding ng-scope">1956</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1955"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1955" class="ng-binding ng-scope">1955</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1954"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1954" class="ng-binding ng-scope">1954</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1953"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1953" class="ng-binding ng-scope">1953</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1952"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1952" class="ng-binding ng-scope">1952</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1951"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1951" class="ng-binding ng-scope">1951</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1950"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1950" class="ng-binding ng-scope">1950</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1949"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1949" class="ng-binding ng-scope">1949</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1948"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1948" class="ng-binding ng-scope">1948</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1947"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1947" class="ng-binding ng-scope">1947</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1946"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1946" class="ng-binding ng-scope">1946</option>
-															<!-- end ngRepeat: year in select_years -->
-															<option ng-repeat="year in select_years" ng-value="1945"
-																ng-bind="year"
-																ng-selected="currentApplicant.specs.basic_information.birth.content.year == year"
-																value="1945" class="ng-binding ng-scope">1945</option>
+															<option	value="2017" class="ng-binding ng-scope">2017</option>
+															<option value="2016" class="ng-binding ng-scope">2016</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2014" class="ng-binding ng-scope">2014</option>
+															<option value="2013" class="ng-binding ng-scope">2013</option>
+															<option value="2012" class="ng-binding ng-scope">2012</option>
+															<option value="2011" class="ng-binding ng-scope">2011</option>
+															<option value="2010" class="ng-binding ng-scope">2010</option>
+															<option value="2009" class="ng-binding ng-scope">2009</option>
+															<option value="2008" class="ng-binding ng-scope">2015</option>
+															<option value="2007" class="ng-binding ng-scope">2015</option>
+															<option value="2006" class="ng-binding ng-scope">2015</option>
+															<option value="2005" class="ng-binding ng-scope">2015</option>
+															<option value="2004" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															<option value="2015" class="ng-binding ng-scope">2015</option>
+															
 															<!-- end ngRepeat: year in select_years -->
 													</select> <select
 														ng-model="currentApplicant.specs.basic_information.birth.content.month"

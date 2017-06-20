@@ -24,7 +24,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<!-- mybatis 설정 xml -->
-		<property name="configLocation" value="classpath:resource/javarajob_mybatis.xml" />
+		<property name="configLocation" value="classpath:resource/mybatis.Spring.xml" />
 	</bean>
 	<!-- Repository interface 패키지 등록 -->
 	<!-- default mybatis 연결 dao 인터페이스 패키지 위치 지정 -->

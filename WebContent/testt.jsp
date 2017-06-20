@@ -24,5 +24,22 @@
 	</head>
 	<body>
 		<h1>Testing...</h1>
+		<table>
+			<colgroup>
+				<col width="30%" />
+				<col width="10%" />
+				<col width="40%" />
+				<col width="10%" />
+				<col width="10%" />
+			</colgroup>
+			<tr>
+				<th>기업명</th><th>연락처</th><th>본사</th><th>매출</th><th>기업형태</th>
+			</tr>
+			<c:forEach var="com" items="company">
+				<tr>
+					<td>${com.annualsales}</td><td>${com.companyname}</td><td>${com.companyname}</td><td>${com.companyname}</td><td>${com.companyname}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</body>
 </html>
