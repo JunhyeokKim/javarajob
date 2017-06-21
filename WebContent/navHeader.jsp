@@ -11,7 +11,7 @@
   	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#signOut").click(function(){
-				$(location).attr("href","${path}/accountList.do?method=signOut");
+				$(location).attr("href","${path}/account.do?method=signOut");
 			})
 		});
   	</script>
@@ -48,11 +48,11 @@
 							<li><a href="${path}/self_intro.do">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
-									<li><a href="${path}/accountList.do?method=uptProcGuest1">회원정보 수정</a></li>
-									<li><a href="${path}/accountList.do?method=delProcGuest1">탈퇴</a></li>									
-									<li><a href="bookmark.html">관심기업</a></li>
-									<li><a href="applied-job.html">지원한 기업</a></li>
-									<li><a href="delete-account.jsp">Q&A</a></li>									
+									<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
+									<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>									
+									<li><a href="${path}/account.do?bookmark">관심기업</a></li>
+									<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
+									<li><a href="${path}/account.do?qanda">Q&A</a></li>									
 								</ul>
 							</li>
 							</c:if>
@@ -85,7 +85,7 @@
 											<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 												<div class="user-account">											
 													<!-- form -->
-													<form method="post" action="${path}/accountList.do?method=signIn">
+													<form method="post" action="${path}/account.do?method=signIn">
 														<div class="form-group">
 															<input type="text" class="form-control" placeholder="Username" name="id">
 														</div>
@@ -125,7 +125,7 @@
 														<div role="tabpanel" class="tab-pane active" id="find-job">
 															<!-- 회원가입 -->
 															
-															<form method="post" action="${path}/accountList.do?method=insProc">
+															<form method="post" action="${path}/account.do?method=insProc">
 																<div class="form-group">
 																	<input type="text" class="form-control" placeholder="Name" name="name">
 																</div>

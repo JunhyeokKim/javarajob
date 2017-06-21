@@ -16,7 +16,7 @@ import javarajob.vo.Account_Sch;
 
 
 @Controller
-@RequestMapping("/accountList.do")
+@RequestMapping("/account.do")
 public class AccountCtrl {
 	@Autowired(required=false)
 	private AccountService service;
@@ -43,13 +43,13 @@ public class AccountCtrl {
 	@RequestMapping(params="method=delProc")
 	public String delProc(@RequestParam("id") String id){		
 		service.deleteMember(id);
-		return "redirect:/accountList.do?method=list";
+		return "redirect:/account.do?method=list";
 	}
 
 	@RequestMapping(params="method=uptProc")
 	public String uptProc(Account mem){		
 		service.updateMember(mem);
-		return "redirect:/accountList.do?method=list";
+		return "redirect:/account.do?method=list";
 	}
 	
 	@RequestMapping(params="method=signIn")
@@ -88,5 +88,23 @@ public class AccountCtrl {
 		service.deleteMember(ses.getAttribute("id").toString());
 		ses.invalidate();
 		return "index";
+	}
+	
+	@RequestMapping(params="bookmark")
+	public String bookmark(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		return "bookmark";
+	}
+	
+	@RequestMapping(params="appliedjob")
+	public String appliedjob(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		return "applied-job";
+	}
+	
+	@RequestMapping(params="qanda")
+	public String qanda(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		return "qanda";
 	}
 }

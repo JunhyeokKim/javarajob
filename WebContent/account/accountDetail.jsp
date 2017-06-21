@@ -15,7 +15,7 @@
 			$(document).ready(function(){
 				$("#delBtn").click(function(){					
 					var id = $("input[name=id]").val();			
-					$(location).attr("href","${path}/accountList.do?method=delProc&id="+id);	
+					$(location).attr("href","${path}/account.do?method=delProc&id="+id);	
 				});			
 			})
 		</script>
@@ -23,7 +23,7 @@
 	<body><center>
 		<h1>회원상세 페이지</h1>
 		
-		<form method="post" action="${path}/accountList.do?method=uptProc">		
+		<form method="post" action="${path}/account.do?method=uptProc">		
 		<table>
 			<tr>
 				<td>이름</td><td>${mem.name}</td>
