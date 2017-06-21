@@ -165,7 +165,10 @@
 														<select	class="ng-pristine ng-untouched ng-valid" name="birthYear">
 															<option value="">-</option>
 															<c:forEach var="year" begin="0" end="63" step="1">
-																<option	value="${2017-year}" class="ng-binding ng-scope">${2017-year}</option>
+																<option	value="${2017-year}" class="ng-binding ng-scope" 
+																	selected="selected">
+																	${2017-year}
+																</option>
 															</c:forEach>
 														</select>
 														<select class="ng-pristine ng-untouched ng-valid"  name="birthMon">
