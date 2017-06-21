@@ -84,16 +84,16 @@
 									<li><a href="job-calendar.jsp">Calendar Type</a></li>
 								</ul></li>
 							<li><a href="${path}/resume.do">이력서</a></li>
-							<li><a href="${path}/self_introduction.do">자소서관리</a></li>
+							<li><a href="${path}/self_intro.do">자소서관리</a></li>
 							<li class="dropdown"><a href="javascript:void(0);"
 								class="dropdown-toggle" data-toggle="dropdown">My Page<span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="profile-details.html">회원정보 수정</a></li>
-									<li><a href="delete-account.html">탈퇴</a></li>
-									<li><a href="bookmark.html">관심기업</a></li>
-									<li><a href="applied-job.html">지원한 기업</a></li>
-									<li><a href="qanda.jsp">Q&A</a></li>
+									<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
+									<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
+									<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
+									<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
+									<li><a href="${path}/mypage.do?qanda">Q&A</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -350,10 +350,6 @@
 		<div class="container text-center">
 			<h1 class="title">The Easiest Way to Get Your New Job</h1>
 			<h3>We offer 12000 jobs vacation right now</h3>
-
-
-
-
 			<div class="section cta cta-two text-center">
 				<div class="row">
 					<div class="col-sm-4">

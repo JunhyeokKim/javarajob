@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
 
-<title>MY PAGE | 문의하기</title>
+<title>MY PAGE | 탈퇴</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,7 +26,6 @@
 <link rel="stylesheet" href="css/main.css">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/table_kdb.css">
 
 <!-- font -->
 <link
@@ -60,21 +62,22 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.jsp"><img
-						class="img-responsive" src="images/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="index.jsp">
+						<img class="img-responsive" src="images/logo.png" alt="Logo">
+					</a>
 				</div>
 				<!-- /navbar-header -->
 
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.jsp">Home</a></li>
+							<li><a href="index.jsp">Home</a></li>
 							<li class="dropdown"><a href="javascript:void(0);"
 								class="dropdown-toggle" data-toggle="dropdown">채용정보<span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="job-list.jsp">List Type</a></li>
-									<li><a href="job-calendar.html">Calendar Type</a></li>
+									<li><a href="job-calendar.jsp">Calendar Type</a></li>
 								</ul></li>
 							<li><a href="${path}/resume.do">이력서</a></li>
 							<li><a href="${path}/self_intro.do">자소서관리</a></li>
@@ -87,7 +90,8 @@
 									<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
 									<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
 									<li><a href="${path}/mypage.do?qanda">Q&A</a>
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -110,6 +114,50 @@
 										<div class="modal-body">
 											<div class="row text-center">
 												<h2>User Login</h2>
+												<!-- user-login -->
+												<div
+													class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+													<div class="user-account">
+														<!-- form -->
+														<form action="#">
+															<div class="form-group">
+																<input type="text" class="form-control"
+																	placeholder="Username">
+															</div>
+															<div class="form-group">
+																<input type="password" class="form-control"
+																	placeholder="Password">
+															</div>
+															<button type="submit" href="#" class="btn">Login</button>
+														</form>
+														<!-- form -->
+													</div>
+													<!-- user-login -->
+												</div>
+												<!-- row -->
+											</div>
+										</div>
+										<div class="modal-footer"></div>
+									</div>
+								</div>
+							</div> <!-- Modal -->
+						</li>
+						<!-- 로그인 -->
+						<li>
+							<!-- Trigger the modal with a button --> <a class="sign-in"
+							data-toggle="modal" data-target="#myModal03">Register</a> <!-- Modal -->
+							<div class="modal fade" id="myModal03" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">x</button>
+										</div>
+										<div class="modal-body">
+											<div class="row text-center">
+												<h2>Create An Account</h2>
+												<!-- user-login -->
+
 												<div class="user-account job-user-account">
 													<div class="tab-content">
 														<div role="tabpanel" class="tab-pane active" id="find-job">
@@ -202,6 +250,7 @@
 												</div>
 											</div>
 											<!-- user-login -->
+
 										</div>
 										<div class="modal-footer"></div>
 									</div>
@@ -297,8 +346,9 @@
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
-					<li><a href="index.jsp">MY PAGE</a></li>
-					<li>계정 정보</li>
+					<li><a href="index.jsp">HOME</a></li>
+					<li>MY PAGE</li>
+					<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
 				</ol>
 				<h2 class="title">My Profile</h2>
 			</div>
@@ -330,10 +380,10 @@
 
 				<ul class="user-menu">
 					<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
-					<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
+					<li class="active"><a href="${path}/mypage.do?delete">탈퇴</a></li>
 					<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
 					<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
-					<li active="class"><a href="${path}/mypage.do?qanda">Q&A</a>
+					<li><a href="${path}/mypage.do?qanda">Q&A</a>
 				</ul>
 			</div>
 			<!-- ad-profile -->
@@ -341,36 +391,30 @@
 			<div class="profile job-profile">
 				<div class="user-pro-section">
 					<!-- profile-details -->
-					<div class="question-answer section">
-						<h2>문의 내용</h2>
-						<table align="center" class="kdb-table" width="100%">
-							<colgroup>
-								<col width="20%">
-								<col width="50%">
-								<col width="20%">
-								<col width="10%">
-							</colgroup>
-							<tr>
-								<th>문의한 기업</th>
-								<th>문의 내용</th>
-								<th>등록일</th>
-								<th>답변 여부</th>
-							</tr>
-							<tr>
-								<td class="no-content" colspan="4">등록하신 문의가 없습니다.</td>
-							</tr>
-						</table>
-
+					<div class="profile-details section">
+						<h2>탈퇴하기</h2>
+						사용자 확인을 위해 비밀번호를 다시 입력해주십시오.
 					</div>
 					<!-- profile-details -->
 
-					<!-- 문의하기 btn -->
-					<div class="new-question">
-						<div class="buttons" align="center">
-							<a href="#" class="btn">새 질문하기</a>
+					<!-- change-password -->
+					<div class="change-password section">
+						<!-- form -->
+						<div class="form-group">
+							<label>비밀 번호 확인</label> <input type="password"
+								class="form-control">
 						</div>
 					</div>
-					<!-- 문의하기 btn -->
+					<!-- change-password -->
+					<!-- preferences-settings -->
+					<div class="preferences-settings section">
+						<div class="buttons" align="center">
+							<a href="#" class="btn">탈퇴하기</a> <a href="#" class="btn cancle">취소</a><br>
+							<br>
+							<p>개인정보보호법에 따라 개인정보는 탈퇴 즉시 삭제됩니다.</p>
+						</div>
+					</div>
+					<!-- preferences-settings -->
 				</div>
 				<!-- user-pro-edit -->
 			</div>

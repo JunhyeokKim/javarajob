@@ -21,9 +21,4 @@ public class ResumeCtrl {
 		}
 		return "resume";
 	}
-	
-	@RequestMapping("/self_introduction.do")
-	public String self_intro(){
-		return "self_introduction";
-	}
 }

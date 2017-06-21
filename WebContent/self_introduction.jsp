@@ -84,18 +84,18 @@
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="job-list.jsp">List Type</a></li>
-									<li><a href="job-list2.html">Calendar Type</a></li>
+									<li><a href="job-calendar.html">Calendar Type</a></li>
 								</ul>
 							</li>							
 							<li><a href="${path}/resume.do">이력서</a></li>
-							<li class="active"><a href="${path}/self_introduction.do">자소서관리</a></li> 
+							<li class="active"><a href="${path}/self_intro.do">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
-									<li><a href="profile-details.html">회원정보 수정</a></li>
-									<li><a href="delete-account.html">탈퇴</a></li>
-									<li><a href="bookmark.html">관심기업</a></li>
-									<li><a href="applied-job.html">지원한 기업</a></li>
-									<li><a href="qanda.jsp">Q&A</a></li>									
+									<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
+									<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
+									<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
+									<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
+									<li><a href="${path}/mypage.do?qanda">Q&A</a>								
 								</ul>
 							</li>
 						</ul>
