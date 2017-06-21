@@ -33,4 +33,17 @@ public class AccountService {
 	public void updateMember(Account mem){		
 		dao.updateMember(mem);
 	}
+	
+	public Boolean loginMember(String id, String password){
+		Boolean isLogin = false;
+		Account mem = dao.getMember(id);
+		
+		//System.out.println(id+":"+mem.getId()+":"+password+":"+mem.getPassword());
+		if(mem!=null&&mem.getId()!=null&&mem.getId().equals(id)&&mem.getPassword()!=null&&mem.getPassword().equals(password)){
+			isLogin=true;
+		}		
+		return isLogin;
+	}
+	
+	
 }
