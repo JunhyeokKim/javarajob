@@ -18,4 +18,7 @@ public class CompService {
 	public ArrayList<Company> listCompany(Company_Sch sch){
 		return dao.listCompany(sch);
 	}
+	public Company getCompany(int companyid){
+		return dao.getCompany(companyid);
+	}
 }

@@ -20,5 +20,8 @@
 			and industry like '%' || #{industry} || '%'
 		</if>
 	</select>
-		
+	<select id="getCompany" resultType="company" parameterType="int">
+	select * from company
+	where companyid= #{companyid}
+	</select>
 </mapper>

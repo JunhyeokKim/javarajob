@@ -16,7 +16,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css">  
+	    <link rel="stylesheet" href="css/main.css?ver=1">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
 		
@@ -587,17 +587,17 @@
 									</div>
 									<input type="hidden" name="companyid" value="${company.companyid }"/>
 									<div class="ad-info" style="width:80%">
-										<h3><span><a onclick='$("#modal-detail").modal("show")'>${company.companyname }</a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
-										<h5><a class="title">${company.info }</a></h5>
+										<h3><span><a class="call-ajax">${company.companyname }<input type="hidden" value="${company.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
+										<h5><a class="title">${company.shortinfo }</a></h5>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
 										<c:forEach var="career" items="${company.careers }">
 											<div class="position-item">
 												<span><a href="job-details.html">${career.title }</a></span>
 												<ul>
-													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>서울 판교</a></li>
-													<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>정규직</a></li>
-													<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>2,800 - 5,500만원 / 경력</a></li>
+													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${career.location }</a></li>
+													<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>${career.employmenttype }</a></li>
+													<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>${career.salary }만원</a></li>
 												</ul>
 											</div>
 											</c:forEach>
@@ -609,7 +609,6 @@
 								</div>
 							</div>
 							</c:forEach><!-- job-ad-item -->
-							<button id="test">클릭!!</button>
 							<div id="result" style="width:200px; heigh:200px">
 							</div>
 
@@ -682,21 +681,19 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	 <script type="text/javascript">
-    $(document).ready(function(){
-    	$("#test").click(function(){
-    		var url="${path}/job-list.do?method=job-detail";
-    		var params="companyid="+$("input[name=companyid]").val();
-    		$.ajax({
-    		type:"POST",
-    		url:"${path}/job-list.do?method=job-detail",
-    		data:params,
-    		success:function(args){
-    			$("#ajax-modal-detail").html(args);
-    		}
-    		}
-    		)
-    	})
-    })
+	 $(".call-ajax").click(function(){
+		 var url="${path}/job-list.do?method=job-detail";
+	 		var params="companyid="+$(this).find('input[type=hidden]').val();
+	 		$.ajax({
+	 		type:"POST",
+	 		url:"${path}/job-list.do?method=job-detail",
+	 		data:params,
+	 		success:function(args){
+	 			$("#ajax-modal-detail").html(args);
+	 			$("#modal-detail").modal("show");
+	 			}
+	 		})
+	 })
     </script>
   </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
@@ -39,9 +40,13 @@ public class CareerCtrl {
 		return "job-list";
 	}
 	@RequestMapping(params="method=job-detail")
-	public String getCompanyInfo(){
-		System.out.println("Á¢¼Ó");
-		return "ajaxTest";
+	public String getCompanyInfo(@RequestParam(value="companyid")int companyid, Model d){
+		Company dto = compService.getCompany(companyid);
+		Career_Sch sch = new Career_Sch();
+		sch.setCompanyid(companyid);
+		dto.setCareers(careerService.listCareer(sch));
+		d.addAttribute("company", dto);
+		return "ajaxJobSearch";
 	}
 	
 	
