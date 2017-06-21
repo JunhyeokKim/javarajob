@@ -52,6 +52,14 @@
   		display:inline;
   	}
   </style>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$("#signOut").click(function(){
+			$(location).attr("href","${path}/accountList.do?method=signOut");
+		})
+	});
+  </script>
   </head>
   <body>
 	<!-- header 11-->

@@ -1,5 +1,7 @@
 package javarajob.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javarajob.service.AccountService;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
+
 
 
 @Controller
@@ -34,7 +37,6 @@ public class AccountCtrl {
 	public String detail(@RequestParam("id") String id, Model d){
 		
 		d.addAttribute("mem", service.getMember(id));
-		
 		return "account/accountDetail";
 	}
 	
@@ -48,5 +50,43 @@ public class AccountCtrl {
 	public String uptProc(Account mem){		
 		service.updateMember(mem);
 		return "redirect:/accountList.do?method=list";
+	}
+	
+	@RequestMapping(params="method=signIn")
+	public String login(@RequestParam("id") String id, @RequestParam("password") String password, HttpSession ses){	
+		if(service.loginMember(id, password))	ses.setAttribute("id",id);			
+		return "index";
+	}
+	
+	@RequestMapping(params="method=signOut")
+	public String logout(HttpSession ses){	
+		ses.invalidate();		
+		return "index";
+	}
+	
+	@RequestMapping(params="method=uptProcGuest1")
+	public String uptProcGuest1(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		return "profile-details";
+	}
+	
+	@RequestMapping(params="method=uptProcGuest2")
+	public String uptProcGuest2(Account mem, HttpSession ses, Model d){		
+		service.updateMember(mem);
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		return "profile-details";
+	}
+	
+	@RequestMapping(params="method=delProcGuest1")
+	public String delProcGuest1(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		return "delete-account";
+	}
+	
+	@RequestMapping(params="method=delProcGuest2")
+	public String delProcGuest2(HttpSession ses){		
+		service.deleteMember(ses.getAttribute("id").toString());
+		ses.invalidate();
+		return "index";
 	}
 }

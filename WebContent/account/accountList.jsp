@@ -25,7 +25,7 @@
 		</script>
 	</head>
 	<body><center>
-		<h3>회원관리 페이지</h3>
+		<h3>회원관리 페이지</h3>		
 		<!-- 조회 항목 -->
 		<form method="post">
 		<table>

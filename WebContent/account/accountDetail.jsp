@@ -26,7 +26,7 @@
 		<form method="post" action="${path}/accountList.do?method=uptProc">		
 		<table>
 			<tr>
-				<td>이름</td><td>${mem.name}<input type="hidden" value="${mem.name}" name="name"/></td>
+				<td>이름</td><td>${mem.name}</td>
 			</tr>
 			<tr>
 				<td>ID</td><td>${mem.id}<input type="hidden" value="${mem.id}" name="id"/></td>
@@ -47,7 +47,7 @@
 				<td>관심분야</td><td><input type="text" value="${mem.interest}" name="interest"/></td>
 			</tr>
 			<tr>
-				<td>가입일자</td><td>${mem.regdate}<input type="hidden" value="${mem.regdate}" name="reg_date"/></td>
+				<td>가입일자</td><td>${mem.regdate}</td>
 			</tr>
 			<tr>
 				<td colspan="2">
