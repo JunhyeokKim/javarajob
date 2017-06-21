@@ -1,19 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+<%@
+	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
+<%
+
+%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Theme Region">
    	<meta name="description" content="">
 
-    <title>Jobs | Job Portal / Job Board HTML Template</title>
-     <!-- CSS -->
+    <title>MY PAGE | 개인정보 수정</title>
+
+   <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
@@ -21,7 +26,6 @@
     <link rel="stylesheet" href="css/main.css">  
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel='stylesheet' href='css/fullcalendar.css' />
 	
 	<!-- font -->
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
@@ -35,19 +39,9 @@
     <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-touch-icon-57-precomposed.png">
     <!-- icons -->
 
-	
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- Template Developed By ThemeRegion -->
-  
-    
-	</head>
-	<body>
-		<!-- header 11-->
+  </head>
+  <body>
+	<!-- header 11-->
 	<header id="header" class="clearfix">
 		<!-- navbar -->
 		<nav class="navbar navbar-default">
@@ -60,7 +54,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="index.jsp"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
 								
@@ -68,18 +62,16 @@
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="index.jsp">Home</a></li>
-							<li class="dropdown active"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
+							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="job-list.jsp">List Type</a></li>
 									<li><a href="job-calendar.jsp">Calendar Type</a></li>
 								</ul>
 							</li>
 							<li><a href="${path}/resume.do">이력서</a></li>
-							<li><a href="${path}/self_intro.do">자소서관리</a></li>
-							<li class="dropdown active"><a href="javascript:void(0);"
-								class="dropdown-toggle" data-toggle="dropdown">My Page<span
-									class="caret"></span></a>
-								<ul class="dropdown-menu">
+							<li><a href="${path}/self_intro.do">자소서관리</a></li> 
+							<li class="dropdown active"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
+								<ul class="dropdown-menu">									
 									<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
 									<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
 									<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
@@ -274,40 +266,134 @@
 								    </div>
 								  </div>
 						        </form>								
-						    </div>
-						    <div class="modal-footer">          
-						    </div>
-						    </div>    
-						    </div>
-						    </div>
-						    </div>		
-						    <!-- Modal -->			
+						        </div>
+						        <div class="modal-footer">          
+						        </div>
+						     	</div>    
+							    </div>
+							  	</div>
+								</div>		
+								<!-- Modal -->			
+				</div><!-- nav-right -->	
 		</nav><!-- navbar -->
 	</header><!-- header -->
 	
-	<section class="job-bg page job-list-page">
-		<div class="container-fluid">
+	<section class="clearfix job-bg  ad-profile-page">
+		<div class="container">
 			<div class="breadcrumb-section">
-				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li>Engineer/Architects</li>
-				</ol><!-- breadcrumb -->						
-				<h2 class="title">Calendar</h2>
-			</div>
-			<div class="container-fluid section job-list-item">	
-			<div class="row">
-			<!--  TODO: filter 추가  -->
-			</div>
-					<div class="calendar-left hidden-xs">
-						<div id="calendar-mini"></div>
+					<li><a href="index.jsp">MY PAGE</a></li>
+					<li>계정 정보</li>
+				</ol>						
+				<h2 class="title">My Profile</h2>
+			</div><!-- breadcrumb-section -->
+			
+			<div class="job-profile section">	
+				<div class="user-profile">
+					<div class="user-images">
+						<img src="images/user.jpg" alt="User Images" class="img-responsive">
 					</div>
-					<div class="calendar-right container-fluid">
-            			<div id="calendar" style="height:500px"></div>
-            		</div>
+					<div class="user">
+						<h2><a href="#">Jhon Doe</a> 님 안녕하세요!</h2>
+						<h5>마지막 로그인 2017-06-16 8:40 AM</h5>
+					</div>
+
+					<div class="favorites-user">
+						<div class="my-ads">
+							<a href="${path}/mypage.do?applied">29<small>Apply Job</small></a>
+						</div>
+						<div class="favorites">
+							<a href="${path}/mypage.do?bookmark">18<small>Favorites</small></a>
+						</div>
+					</div>								
+				</div><!-- user-profile -->
+						
+				<ul class="user-menu">					
+					<li class="active"><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
+					<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
+					<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
+					<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
+					<li><a href="${path}/mypage.do?qanda">Q&A</a>
+				</ul>
+			</div><!-- ad-profile -->	
+
+			<div class="profile job-profile">
+				<div class="user-pro-section">
+					<!-- profile-details -->
+					<div class="profile-details section">
+						<h2>계정 정보 수정</h2>
+						<form action="#">
+							<div class="form-group">
+								<label>이름</label>
+								<input type="text" class="form-control" placeholder="홍길동">
+							</div>
+
+							<div class="form-group">
+								<label>E-mail</label>
+								<input type="email" class="form-control" placeholder="himan@mail.com">
+							</div>
+
+							<div class="form-group">
+								<label>휴대폰 번호</label>
+								<input type="text" class="form-control" placeholder="010 - 1234 - 1234">
+							</div>
+
+							<div class="form-group">
+								<label>주소</label>
+								<input type="text" class="form-control" placeholder="서울특별시 강남구">
+							</div>	
+						</form>				
+					</div><!-- profile-details -->
+
+					<!-- change-password -->
+					<div class="change-password section">
+						<h2>비밀번호 변경</h2>
+						<!-- form -->
+						<div class="form-group">
+							<label>현재 비밀번호</label>
+							<input type="password" class="form-control" >
+						</div>
+						
+						<div class="form-group">
+							<label>새 비밀번호</label>
+							<input type="password" class="form-control">	
+						</div>
+						
+						<div class="form-group">
+							<label>비밀번호 확인</label>
+							<input type="password" class="form-control">
+						</div>															
+					</div><!-- change-password -->
+					
+					<!-- preferences-settings -->
+					<div class="preferences-settings section">
+						<div class="buttons" align="center">
+							<a href="#" class="btn">저장</a>
+							<a href="#" class="btn cancle">취소</a>
+						</div>												
+					</div><!-- preferences-settings -->
+				</div><!-- user-pro-edit -->
+			</div>				
 		</div><!-- container -->
+	</section><!-- ad-profile-page -->
+	
+	<!-- footer -->
+	<footer id="footer" class="clearfix">
+
+		<div class="footer-bottom clearfix text-center">
+			<div class="container">
+				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상 서울시 강남구 역삼로3길 13 건암빌딩 202호
+					| 전화번호: 02-6264-7582 사업자등록 : 138-87-00058 | 직업정보제공사업 :
+					J1200020160017 | 통신판매업 : 2016-서울강남-00784 Copyright Anchoreer Co.,
+					Inc. All rights reserved.</p>
+				<p>
+					Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a
+						href="http://themeregion.com/">ThemeRegion</a>
+				</p>
+			</div>
 		</div>
-	</section><!-- main -->
+		<!-- footer-bottom -->
+	</footer><!-- footer -->
 	
 	<!--/Preset Style Chooser--> 
 	<div class="style-chooser">
@@ -325,17 +411,10 @@
 	<!--/End:Preset Style Chooser-->
 	
     <!-- JS -->
-    
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
     <script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
-	<script src='js/jquery.min.js'></script>
-	<script src='js/moment.min.js'></script>
-	<script src='js/locale/ko.js'></script>
-	<script src='js/fullcalendar.js'></script>
-	<script src='js/calendar.js'></script>
-	
   </body>
 </html>
