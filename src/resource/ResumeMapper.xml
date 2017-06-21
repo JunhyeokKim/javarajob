@@ -186,4 +186,9 @@
 			</choose>
 		)
 	</insert>
+	
+	<select id="oneResume" parameterType="String" resultType="resume">
+		SELECT * FROM RESUME
+		WHERE USERID = #{userId}
+	</select>
 </mapper>

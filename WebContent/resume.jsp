@@ -159,7 +159,7 @@
 												<tr>
 													<th>이름</th>
 													<td><input type="text" class="small-input-text ng-pristine ng-untouched ng-valid"
-														name="name"></td>
+														name="name" value="${resume.name}" /></td>
 													<th>생년월일</th>
 													<td colspan="3">
 														<select	class="ng-pristine ng-untouched ng-valid" name="birthYear">

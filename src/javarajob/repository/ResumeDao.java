@@ -8,4 +8,6 @@ import javarajob.vo.Resume;
 public interface ResumeDao {
 
 	public void insertResume(Resume r);
+
+	public Resume oneResume(String userId);
 }
