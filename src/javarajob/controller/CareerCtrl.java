@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
+import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
 import javarajob.vo.Company_Sch;
@@ -28,14 +29,18 @@ public class CareerCtrl {
 		/*for (Career career: careerService.listCareer(careerSch)) {
 			System.out.println(career.getTitle());
 		}*/
+		int totCareerCnt=0;
 		ArrayList<Company> compList=new ArrayList<>();
 		for (Company company : compService.listCompany(compSch)) {
 			careerSch.setCompanyid(company.getCompanyid());
-			company.setCareers(careerService.listCareer(careerSch));
+			ArrayList<Career> careers=careerService.listCareer(careerSch);  
+			company.setCareers(careers);
+			totCareerCnt+=careers.size();
 			compList.add(company);
 		}
 		System.out.println(compService.listCompany(compSch).size());
 		d.addAttribute("companyList",compList);
+		d.addAttribute("careerCnt",totCareerCnt );
 		//d.addAttribute("careerList",careerService.listCareer(careerSch));
 		return "job-list";
 	}

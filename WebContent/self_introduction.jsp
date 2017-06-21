@@ -60,66 +60,7 @@
 </head>
 <body>
 	<!-- header -->
-	<header id="header" class="clearfix">
-		<!-- navbar -->
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<!-- navbar-header -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.jsp"><img
-						class="img-responsive" src="images/logo.png" alt="Logo"></a>
-				</div>
-				<!-- /navbar-header -->
-
-				<div class="navbar-left">
-					<div class="collapse navbar-collapse" id="navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li><a href="index.jsp">Home</a></li>								
-							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
-								<ul class="dropdown-menu">									
-									<li><a href="job-list.jsp">List Type</a></li>
-									<li><a href="job-calendar.html">Calendar Type</a></li>
-								</ul>
-							</li>							
-							<li><a href="${path}/resume.do">이력서</a></li>
-							<li class="active"><a href="${path}/self_intro.do">자소서관리</a></li> 
-							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
-								<ul class="dropdown-menu">									
-									<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
-									<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
-									<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
-									<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
-									<li><a href="${path}/mypage.do?qanda">Q&A</a>								
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- navbar-left -->
-
-				<!-- nav-right -->
-				<div class="nav-right">
-					<ul class="sign-in">
-						<li><i class="fa fa-user"></i></li>
-						<li><a href="signin.html">Sign In</a></li>
-						<li><a href="signup.html">Register</a></li>
-					</ul>
-					<!-- sign-in -->
-
-					<a href="post.html" class="btn">Post Your Job</a>
-				</div>
-				<!-- nav-right -->
-			</div>
-			<!-- container -->
-		</nav>
-		<!-- navbar -->
-	</header>
+	<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
 
 	<section class=" job-bg page  ad-profile-page">
@@ -146,22 +87,7 @@
 	<!-- ad-profile-page -->
 
 	<!-- footer -->
-	<footer id="footer" class="clearfix">
-
-		<div class="footer-bottom clearfix text-center">
-			<div class="container">
-				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상 서울시 강남구 역삼로3길 13 건암빌딩 202호
-					| 전화번호: 02-6264-7582 사업자등록 : 138-87-00058 | 직업정보제공사업 :
-					J1200020160017 | 통신판매업 : 2016-서울강남-00784 Copyright Anchoreer Co.,
-					Inc. All rights reserved.</p>
-				<p>
-					Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a
-						href="http://themeregion.com/">ThemeRegion</a>
-				</p>
-			</div>
-		</div>
-		<!-- footer-bottom -->
-	</footer>
+	<jsp:include page="footer.jsp"/>
 	<!-- /footer -->
 
 	<!--/Preset Style Chooser-->
