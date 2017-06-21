@@ -14,6 +14,7 @@ import javarajob.vo.Account_Sch;
 @Repository
 public interface AccountDao {
 	public void insertMember(Account mem);
+	public void insertResume(Account mem);
 	public ArrayList<Account> listMember(Account_Sch sch);
 	public Account getMember(String id);
 	public void deleteMember(String id);

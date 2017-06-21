@@ -30,7 +30,8 @@ public class AccountCtrl {
 	@RequestMapping(params="method=insProc")
 	public String insertProc(Account mem){
 		service.insertMember(mem);
-		return "redirect:/accountList.do?method=list";
+		service.insertResume(mem);
+		return "index";
 	}
 	
 	@RequestMapping(params="method=detail")
