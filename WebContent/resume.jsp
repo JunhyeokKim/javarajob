@@ -165,22 +165,49 @@
 														<select	class="ng-pristine ng-untouched ng-valid" name="birthYear">
 															<option value="">-</option>
 															<c:forEach var="year" begin="0" end="63" step="1">
-																<option	value="${2017-year}" class="ng-binding ng-scope" 
+															<c:if test="${resume.birthYear eq 2017-year}">
+																<option	value="${2017-year}" class="ng-binding ng-scope"
 																	selected="selected">
 																	${2017-year}
 																</option>
+															</c:if>
+															<c:if test="${resume.birthIniYear ne 2017-year}">
+																<option	value="${2017-year}" class="ng-binding ng-scope">
+																	${2017-year}
+																</option>
+															</c:if>
 															</c:forEach>
 														</select>
 														<select class="ng-pristine ng-untouched ng-valid"  name="birthMon">
 															<option value="">-</option>
 															<c:forEach var="mon" begin="1" end="12" step="1">
-																<option	value="${mon}" class="ng-binding ng-scope">${mon}</option>
+															<c:if test="${resume.birthMon eq mon}">
+																<option	value="${mon}" class="ng-binding ng-scope"
+																	selected="selected">
+																	${mon}
+																</option>
+															</c:if>
+															<c:if test="${resume.birthMon ne mon}">
+																<option	value="${mon}" class="ng-binding ng-scope">
+																	${mon}
+																</option>
+															</c:if>
 															</c:forEach>
 														</select>
 														<select class="ng-pristine ng-untouched ng-valid" name="birthDay">
 															<option value="">-</option>
 															<c:forEach var="day" begin="1" end="31" step="1">
-																<option	value="${day}" class="ng-binding ng-scope">${day}</option>
+															<c:if test="${resume.birthDay eq day}">
+																<option	value="${day}" class="ng-binding ng-scope"
+																	selected="selected" >
+																	${day}
+																</option>
+															</c:if>
+															<c:if test="${resume.birthDay ne day}">
+																<option	value="${day}" class="ng-binding ng-scope">
+																	${day}
+																</option>
+															</c:if>
 															</c:forEach>
 														</select>
 													</td>
