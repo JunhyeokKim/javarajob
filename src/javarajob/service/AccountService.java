@@ -19,6 +19,9 @@ public class AccountService {
 	public void insertMember(Account mem){
 		dao.insertMember(mem);
 	}
+	public void insertResume(Account mem){
+		dao.insertResume(mem);
+	}
 	public ArrayList<Account> listMember(Account_Sch sch){
 		return dao.listMember(sch);
 	}

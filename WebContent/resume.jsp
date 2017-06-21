@@ -57,7 +57,7 @@
 	<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
 	<form method="post" >
-	<input type="hidden" name="userId" value="" />
+	<input type="hidden" name="userId" value="${id}" />
 	<div class="main-tab ng-scope" >
 		<div class="spec-ctrl ng-scope">
 			<div class="spec-container">

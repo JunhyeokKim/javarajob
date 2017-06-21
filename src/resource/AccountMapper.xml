@@ -50,6 +50,10 @@
 		update account set password=#{password}, email=#{email}, phone=#{phone}, address=#{address}, interest=#{interest} where id=#{id}
 	</update>
 	
-		
-		
+	<insert id="insertResume" parameterType="String">
+		INSERT INTO RESUME(USERID, NAME, CTEL, EMAIL, ADDRESS) VALUES(
+			#{id},#{name},#{phone},#{email},#{address}
+		)
+	</insert>
+	
 </mapper>
