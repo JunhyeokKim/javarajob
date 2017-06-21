@@ -1,4 +1,4 @@
-package javarajob.vo; //javarajob.d01_board.vo.JavarajobMember //
+package javarajob.vo; //javarajob.d01_board.vo.JavarajobMember
 
 import java.util.Date;
 
