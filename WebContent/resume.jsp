@@ -66,7 +66,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img
+					<a class="navbar-brand" href="index.jsp"><img
 						class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
@@ -74,10 +74,10 @@
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="index.html">Home</a></li>								
+							<li><a href="index.jsp">Home</a></li>								
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
-									<li><a href="job-list.html">List Type</a></li>
+									<li><a href="job-list.jsp">List Type</a></li>
 									<li><a href="job-list2.html">Calendar Type</a></li>
 								</ul>
 							</li>							
@@ -89,7 +89,7 @@
 									<li><a href="delete-account.html">탈퇴</a></li>
 									<li><a href="bookmark.html">관심기업</a></li>
 									<li><a href="applied-job.html">지원한 기업</a></li>
-									<li><a href="qanda.html">Q&A</a></li>									
+									<li><a href="qanda.jsp">Q&A</a></li>									
 								</ul>
 							</li>
 						</ul>
