@@ -9,12 +9,13 @@
 		<typeAlias alias="schmem" type="javarajob.vo.Account_Sch"/>
 		<!-- mapper에 쓰이는 공통 dto나 vo에 대한 선언을 별칭(alias) 으로 쓰이게 했다. -->
 		<typeAlias alias="company" type="javarajob.vo.Company" />
+		<typeAlias alias="companySch" type="javarajob.vo.Company_Sch" />
+		<typeAlias alias="career" type="javarajob.vo.Career"/>
+		<typeAlias alias="careerSch" type="javarajob.vo.Career_Sch"/>
 	</typeAliases>
 	<mappers>
-		<!-- 모듈별로 sql을 지정해 놓은 xml 파일 -->		
 		<mapper resource="resource/AccountMapper.xml"/>
-		<!-- 모듈별로 sql을 지정해 높은 xml 파일 -->
 		<mapper resource="resource/CompanyMapper.xml" />
-		<!-- -->
+		<mapper resource="resource/CareerMapper.xml" />
 	</mappers>
 </configuration>

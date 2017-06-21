@@ -57,7 +57,7 @@
 	}
 	.job-list-item .ad-meta li:last-child {
 		margin-left: 0;
-		margin-top: 10px;
+		/* margin-top: 10px; */
 	}
 	.job-list-item .job-ad-item .item-image {
 		margin-top: 20px;

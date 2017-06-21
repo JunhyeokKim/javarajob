@@ -77,7 +77,7 @@
 							<li class="active"><a href="index.jsp">Home</a></li>								
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
-									<li><a href="job-list.jsp">List Type</a></li>
+									<li><a href="${path }/job-list.do?method=list">List Type</a></li>
 									<li><a href="job-calendar.jsp">Calendar Type</a></li>
 								</ul>
 							</li>							

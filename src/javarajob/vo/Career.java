@@ -7,6 +7,8 @@ public class Career {
 	private String preference;
 	private String workingcondition;
 	private String companytype;
+	private String companyname;
+	private String info;
 	private String field;
 	private String location;
 	private String industry;
@@ -19,14 +21,16 @@ public class Career {
 	}
 
 	public Career(int careerid, String task, String requirements, String preference, String workingcondition,
-			String companytype, String field, String location, String industry, String employmenttype, int companyid,
-			String title, int salary) {
+			String companytype, String companyname, String companyinfo, String field, String location, String industry,
+			String employmenttype, int companyid, String title, int salary) {
 		this.careerid = careerid;
 		this.task = task;
 		this.requirements = requirements;
 		this.preference = preference;
 		this.workingcondition = workingcondition;
 		this.companytype = companytype;
+		this.companyname = companyname;
+		this.info = companyinfo;
 		this.field = field;
 		this.location = location;
 		this.industry = industry;
@@ -82,6 +86,22 @@ public class Career {
 
 	public void setCompanytype(String companytype) {
 		this.companytype = companytype;
+	}
+
+	public String getCompanyname() {
+		return companyname;
+	}
+
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String companyinfo) {
+		this.info = companyinfo;
 	}
 
 	public String getField() {

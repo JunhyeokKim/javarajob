@@ -1,10 +1,8 @@
 package javarajob.vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
-public class Company {
-
+public class Company_Sch {
 	private int companyid;
 	private String companyname;
 	private String info;
@@ -16,25 +14,6 @@ public class Company {
 	private String companytype;
 	private String website;
 	private int companysize;
-	private ArrayList<Career> careers;
-
-	public Company(int companyid, String companyname, String info, String tel, String location, Date establishmentdate,
-			int annualsales, String industry, String companytype, String website, int companysize) {
-		this.companyid = companyid;
-		this.companyname = companyname;
-		this.info = info;
-		this.tel = tel;
-		this.location = location;
-		this.establishmentdate = establishmentdate;
-		this.annualsales = annualsales;
-		this.industry = industry;
-		this.companytype = companytype;
-		this.website = website;
-		this.companysize = companysize;
-	}
-
-	public Company() {
-	}
 
 	public int getCompanyid() {
 		return companyid;
@@ -122,14 +101,6 @@ public class Company {
 
 	public void setCompanysize(int companysize) {
 		this.companysize = companysize;
-	}
-
-	public ArrayList<Career> getCareers() {
-		return careers;
-	}
-
-	public void setCareers(ArrayList<Career> careers) {
-		this.careers = careers;
 	}
 
 }
