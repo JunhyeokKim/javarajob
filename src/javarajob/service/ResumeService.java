@@ -8,11 +8,16 @@ import javarajob.vo.Resume;
 
 @Service
 public class ResumeService {
-	
-	@Autowired(required=false)
+
+	@Autowired(required = false)
 	private ResumeDao dao;
-	
-	public void insertResume(Resume r){
-		dao.insertResume(r);
+
+	public void uptResume(Resume r) {
+		dao.uptResume(r);
 	}
+
+	public Resume oneResume(String userId) {
+		return dao.oneResume(userId);
+	}
+
 }
