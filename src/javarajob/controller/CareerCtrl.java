@@ -15,6 +15,7 @@ import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
 import javarajob.vo.Company_Sch;
+import oracle.sql.DATE;
 
 @Controller
 @RequestMapping("/job-list.do")

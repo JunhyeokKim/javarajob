@@ -18,7 +18,7 @@ public class Company {
 	private String shortinfo;
 	private int companysize;
 	private ArrayList<Career> careers;
-
+	
 	public Company(int companyid, String companyname, String info, String tel, String location, Date establishmentdate,
 			int annualsales, String industry, String companytype, String website, String shortinfo, int companysize) {
 		this.companyid = companyid;
