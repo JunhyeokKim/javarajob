@@ -1,11 +1,14 @@
-<%@
-	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
 %>
+<%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%
-
+	Date time = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	String accTime = format.format(time);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,354 +49,72 @@
 <link rel="apple-touch-icon" sizes="57x57"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
 <!-- icons -->
-
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#passBtn").click(function(){
+			var password = ${mem.password};
+			var str = $("#passContentBtn").val();
+			
+			if(password==str){
+				$(location).attr("href","${path}/accountList.do?method=delProcGuest2");
+			}else{
+				alert("비밀번호 불일치합니다.");
+			}
+		})
+	});
+</script>
 </head>
 <body>
 	<!-- header 11-->
-	<header id="header" class="clearfix">
-		<!-- navbar -->
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<!-- navbar-header -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.jsp">
-						<img class="img-responsive" src="images/logo.png" alt="Logo">
-					</a>
-				</div>
-				<!-- /navbar-header -->
-
-				<div class="navbar-left">
-					<div class="collapse navbar-collapse" id="navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li><a href="index.jsp">Home</a></li>
-							<li class="dropdown"><a href="javascript:void(0);"
-								class="dropdown-toggle" data-toggle="dropdown">채용정보<span
-									class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="job-list.jsp">List Type</a></li>
-									<li><a href="job-calendar.jsp">Calendar Type</a></li>
-								</ul></li>
-							<li><a href="${path}/resume.do">이력서</a></li>
-							<li><a href="${path}/self_intro.do">자소서관리</a></li>
-							<li class="dropdown active"><a href="javascript:void(0);"
-								class="dropdown-toggle" data-toggle="dropdown">My Page<span
-									class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
-									<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
-									<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
-									<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
-									<li><a href="${path}/mypage.do?qanda">Q&A</a>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- navbar-left -->
-				<div class="nav-right">
-					<ul class="sign-in">
-						<li><a class="sign-in" data-toggle="modal"
-							data-target="#myModal01">Search /</a></li>
-						<li>
-							<!-- Trigger the modal with a button --> <a class="sign-in"
-							data-toggle="modal" data-target="#myModal02"><i
-								class="fa fa-user"></i>Sign in</a> <!-- Modal -->
-							<div class="modal fade" id="myModal02" role="dialog">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">x</button>
-										</div>
-										<div class="modal-body">
-											<div class="row text-center">
-												<h2>User Login</h2>
-												<!-- user-login -->
-												<div
-													class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-													<div class="user-account">
-														<!-- form -->
-														<form action="#">
-															<div class="form-group">
-																<input type="text" class="form-control"
-																	placeholder="Username">
-															</div>
-															<div class="form-group">
-																<input type="password" class="form-control"
-																	placeholder="Password">
-															</div>
-															<button type="submit" href="#" class="btn">Login</button>
-														</form>
-														<!-- form -->
-													</div>
-													<!-- user-login -->
-												</div>
-												<!-- row -->
-											</div>
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-								</div>
-							</div> <!-- Modal -->
-						</li>
-						<!-- 로그인 -->
-						<li>
-							<!-- Trigger the modal with a button --> <a class="sign-in"
-							data-toggle="modal" data-target="#myModal03">Register</a> <!-- Modal -->
-							<div class="modal fade" id="myModal03" role="dialog">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">x</button>
-										</div>
-										<div class="modal-body">
-											<div class="row text-center">
-												<h2>Create An Account</h2>
-												<!-- user-login -->
-
-												<div class="user-account job-user-account">
-													<div class="tab-content">
-														<div role="tabpanel" class="tab-pane active" id="find-job">
-															<!-- 회원가입 -->
-
-															<form method="post"
-																action="${path}/accountList.do?method=insProc">
-																<div class="form-group">
-																	<input type="text" class="form-control"
-																		placeholder="Name" name="name">
-																</div>
-																<div class="form-group">
-																	<input type="text" class="form-control"
-																		placeholder="ID" name="id">
-																</div>
-																<div class="form-group">
-																	<input type="password" class="form-control"
-																		placeholder="Password" name="password">
-																</div>
-																<div class="form-group">
-																	<input type="email" class="form-control"
-																		placeholder="E-mail" name="email">
-																</div>
-																<div class="form-group">
-																	<input type="text" class="form-control"
-																		placeholder="Mobile Number" name="phone">
-																</div>
-																<div class="form-group">
-																	<input type="text" class="form-control"
-																		placeholder="Address" name="address">
-																</div>
-																<!-- select -->
-																<select class="form-control" name="interest">
-																	<option value="">관심분야</option>
-																	<option value="웹 개발">웹 개발</option>
-																	<option value="소프트웨어 엔지니어">소프트웨어 엔지니어</option>
-																	<option value="시스템 엔지니어">시스템 엔지니어</option>
-																	<option value="네트워크 / 보안 / 운영">네트워크 / 보안 / 운영</option>
-																	<option value="모바일웹 개발">모바일웹 개발</option>
-																	<option value="기획">기획</option>
-																	<option value="IT/솔루션 영업">IT/솔루션 영업</option>
-																	<option value="마케팅">마케팅</option>
-																	<option value="소프트웨어 아키텍트">소프트웨어 아키텍트</option>
-																</select>
-																<!-- select -->
-																<div class="checkbox">
-																	<label class="pull-left checked" for="signing"><input
-																		type="checkbox" name="signing" id="signing">
-																		정보제공 동의여부, 미동의시 가입불가 </label>
-																</div>
-																<!-- checkbox -->
-																<div align="right">
-																	<button type="submit" class="btn">Registration</button>
-																</div>
-															</form>
-														</div>
-														<div role="tabpanel" class="tab-pane" id="post-job">
-															<form action="#">
-																<div class="form-group">
-																	<input type="text" class="form-control"
-																		placeholder="Employer Name">
-																</div>
-																<div class="form-group">
-																	<input type="email" class="form-control"
-																		placeholder="Email Id">
-																</div>
-																<div class="form-group">
-																	<input type="password" class="form-control"
-																		placeholder="Password">
-																</div>
-																<div class="form-group">
-																	<input type="password" class="form-control"
-																		placeholder="Confirm Password">
-																</div>
-																<div class="form-group">
-																	<input type="text" class="form-control"
-																		placeholder="Contact Number">
-																</div>
-																<div class="checkbox">
-																	<label class="pull-left checked" for="signing-2"><input
-																		type="checkbox" name="signing-2" id="signing-2">By
-																		signing up for an account you agree to our Terms and
-																		Conditions</label>
-																</div>
-																<!-- checkbox -->
-																<button type="submit" class="btn">Registration</button>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- user-login -->
-
-										</div>
-										<div class="modal-footer"></div>
-									</div>
-								</div>
-							</div>
-				</div>
-				<!-- Modal -->
-				</li>
-				<!-- 회원가입 -->
-				</ul>
-				<!-- sign-in -->
-
-				<div class="modal fade" id="myModal01" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">x</button>
-							</div>
-							<div class="modal-body">
-								<form action="#">
-									<div class="row">
-										<div class="col-sm-4">
-											<div class="dropdown category-dropdown">
-												<a data-toggle="dropdown" href="#"><span
-													class="change-text">Job Category</span> <i
-													class="fa fa-angle-down"></i></a>
-												<ul class="dropdown-menu category-change">
-													<li><a href="#">Designer</a></li>
-													<li><a href="#">Programming</a></li>
-													<li><a href="#">SI</a></li>
-													<li><a href="#">Data Science</a></li>
-													<li><a href="#">Security</a></li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-sm-4">
-											<!-- language-dropdown -->
-											<div class="dropdown category-dropdown language-dropdown">
-												<a data-toggle="dropdown" href="#"><span
-													class="change-text">Job Location</span> <i
-													class="fa fa-angle-down"></i></a>
-												<ul class="dropdown-menu category-change language-change">
-													<li><a href="#">서울</a></li>
-													<li><a href="#">경기</a></li>
-													<li><a href="#">그 외</a></li>
-												</ul>
-											</div>
-											<!-- language-dropdown -->
-										</div>
-										<div class="col-sm-4">
-											<!-- language-dropdown -->
-											<div class="dropdown category-dropdown language-dropdown">
-												<a data-toggle="dropdown" href="#"><span
-													class="change-text">Language</span> <i
-													class="fa fa-angle-down"></i></a>
-												<ul class="dropdown-menu category-change language-change">
-													<li><a href="#">JAVA</a></li>
-													<li><a href="#">C</a></li>
-													<li><a href="#">C++</a></li>
-													<li><a href="#">Python</a></li>
-													<li><a href="#">Ruby</a></li>
-												</ul>
-											</div>
-											<!-- language-dropdown -->
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-8">
-											<input type="text" class="form-control"
-												placeholder="Type your key word">
-										</div>
-										<div class="col-sm-4">
-											<button type="submit" class="btn btn-primary" value="Search">Search</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="modal-footer"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Modal -->
-			</div>
-			<!-- nav-right -->
-		</nav>
-		<!-- navbar -->
-	</header>
-	<!-- header -->
+	<jsp:include page="navHeader.jsp"/>
 
 	<section class="clearfix job-bg  ad-profile-page">
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
-					<li><a href="index.jsp">HOME</a></li>
-					<li>MY PAGE</li>
-					<li><a href="${path}/mypage.do?delete">탈퇴</a></li>
-				</ol>
+					<li><a href="index.jsp">MY PAGE</a></li>
+					<li>회원정보 수정</li>
+				</ol>						
 				<h2 class="title">My Profile</h2>
-			</div>
-			<!-- breadcrumb-section -->
-
-			<div class="job-profile section">
+			</div><!-- breadcrumb-section -->
+			
+			<div class="job-profile section">	
 				<div class="user-profile">
 					<div class="user-images">
-						<img src="images/user.jpg" alt="User Images"
-							class="img-responsive">
+						<img src="images/user.jpg" alt="User Images" class="img-responsive">
 					</div>
 					<div class="user">
-						<h2>
-							<a href="#">Jhon Doe</a> 님 안녕하세요!
-						</h2>
-						<h5>마지막 로그인 2017-06-16 8:40 AM</h5>
+						<h2><a href="#">${id}</a> 님 안녕하세요!</h2>
+						
+						<h5>마지막 로그인 <%=accTime %></h5>
 					</div>
 
 					<div class="favorites-user">
 						<div class="my-ads">
-							<a href="${path}/mypage.do?applied">29<small>Apply Job</small></a>
+							<a href="applied-job.html">29<small>Apply Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="${path}/mypage.do?bookmark">18<small>Favorites</small></a>
+							<a href="bookmark.html">18<small>Favorites</small></a>
 						</div>
-					</div>
-				</div>
-				<!-- user-profile -->
-
-				<ul class="user-menu">
-					<li><a href="${path}/mypage.do?modify">회원정보 수정</a></li>
-					<li class="active"><a href="${path}/mypage.do?delete">탈퇴</a></li>
-					<li><a href="${path}/mypage.do?bookmark">관심기업</a></li>
-					<li><a href="${path}/mypage.do?applied">지원한 기업</a></li>
-					<li><a href="${path}/mypage.do?qanda">Q&A</a>
+					</div>								
+				</div><!-- user-profile -->
+						
+				<ul class="user-menu">					
+					<li><a href="${path}/accountList.do?method=uptProcGuest1">회원정보 수정</a></li>
+					<li class="active"><a href="${path}/accountList.do?method=delProcGuest1">탈퇴</a></li>
+					<li><a href="bookmark.html">관심기업</a></li>
+					<li><a href="applied-job.html">지원한 기업</a></li>
+					<li><a href="qanda.html">Q&A</a></li>
 				</ul>
-			</div>
-			<!-- ad-profile -->
+			</div><!-- ad-profile -->	
 
 			<div class="profile job-profile">
 				<div class="user-pro-section">
 					<!-- profile-details -->
 					<div class="profile-details section">
 						<h2>탈퇴하기</h2>
-						사용자 확인을 위해 비밀번호를 다시 입력해주십시오.
+						사용자 확인을 위해 비밀번호를 다시 입력해주십시오. ${mem.password}
 					</div>
 					<!-- profile-details -->
 
@@ -401,15 +122,15 @@
 					<div class="change-password section">
 						<!-- form -->
 						<div class="form-group">
-							<label>비밀 번호 확인</label> <input type="password"
-								class="form-control">
+							<label>비밀 번호 확인</label> 
+							<input type="text" class="form-control" id="passContentBtn"/>
 						</div>
 					</div>
 					<!-- change-password -->
 					<!-- preferences-settings -->
 					<div class="preferences-settings section">
 						<div class="buttons" align="center">
-							<a href="#" class="btn">탈퇴하기</a> <a href="#" class="btn cancle">취소</a><br>
+							<button id="passBtn">탈퇴하기</button> <a href="#" class="btn cancle">취소</a><br>
 							<br>
 							<p>개인정보보호법에 따라 개인정보는 탈퇴 즉시 삭제됩니다.</p>
 						</div>
