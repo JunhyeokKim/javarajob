@@ -1,17 +1,8 @@
-package javarajob.vo; //javarajob.d01_board.vo.JavarajobMember 
+package javarajob.vo; //javarajob.d01_board.vo.JavarajobMember //
 
 import java.util.Date;
 
 public class Account {
-	/*
-	계정 정보 :
-		이름
-		아이디
-		비밀번호
-		핸드폰
-		주소
-		관심 직종
-	*/	
 	String name;
 	String id;
 	String password;
