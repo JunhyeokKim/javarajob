@@ -4,191 +4,82 @@
 
 <mapper namespace="javarajob.repository.ResumeDao">
 	<resultMap type="resume" id="resumeResult" />
-	<insert id="insertResume" parameterType="resume">
-		INSERT INTO RESUME VALUES(
-			null,
-			#{name},
-			#{birthYear},
-			#{birthMon},
-			#{birthDay},
-			#{gender},
-			#{hTel},
-			#{cTel},
-			#{email},
-			#{sns},
-			#{address},
-			<choose>
-				<when test="highName!=null and highName!=''">
-					#{highIniYear},
-					#{highIniMon},
-					#{highFinYear},
-					#{highFinMon},
-					#{highName},
-					#{highKind},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="univName!=null and univName!=''">
-					#{univIniYear},
-					#{univIniMon},
-					#{univFinYear},
-					#{univFinMon},
-					#{univName},
-					#{univKind},
-					#{univScore},
-					#{univMajor},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="graduName!=null and graduName!=''">
-					#{graduIniYear},
-					#{graduIniMon},
-					#{graduFinYear},
-					#{graduFinMon},
-					#{graduName},
-					#{graduKind},
-					#{graduScore},
-					#{graduMajor},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="licenName!=null and licenName!=''">
-					#{licenName},
-					#{licenInsti},
-					#{licenGrad},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="jobName!=null and jobName!=''">
-					#{jobName},
-					#{jobIniYear},
-					#{jobIniMon},
-					#{jobFinYear},
-					#{jobFinMon},
-					#{jobRank},
-					#{jobDept},
-					#{jobContent},
-					#{jobFire},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="langName!=null and langName!=''">
-					#{langName},
-					#{langTest},
-					#{langScore},
-					#{langDateYear},
-					#{langDateMon},
-					#{langDateDay},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="langName!=null and langName!=''">
-					#{awardName},
-					#{awardContent},
-					#{awardInsti},
-					#{awardDateYear},
-					#{awardDateMon},
-					#{awardDateDay},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-			<choose>
-				<when test="langName!=null and langName!=''">
-					#{abroadNation},
-					#{abroadInsti},
-					#{abroadCont},
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-				</otherwise>
-			</choose>
-					#{vete},
-					#{handi},
-					#{milit},
-			<choose>
-				<when test="milit == 0">
-					#{militIniYear},
-					#{militIniMon},
-					#{militFinYear},
-					#{militFinMon},
-					#{militKind},
-					#{militRank}
-				</when>
-				<otherwise>
-					null,
-					null,
-					null,
-					null,
-					null,
-					null
-				</otherwise>
-			</choose>
-		)
-	</insert>
-	
+	<update id="uptResume" parameterType="resume">
+		UPDATE RESUME SET
+			NAME = #{name},
+			BIRTHYEAR = #{birthYear},
+			BIRTHMON = #{birthMon},
+			BIRTHDAY = #{birthDay},
+			GENDER = #{gender},
+			HTEL = #{hTel},
+			CTEL = #{cTel},
+			EMAIL = #{email},
+			SNS = #{sns},
+			ADDRESS = #{address},
+			HIGHINIYEAR = #{highIniYear},
+			HIGHINIMON = #{highIniMon},
+			HIGHFINYEAR = #{highFinYear},
+			HIGHFINMON = #{highFinMon},
+			HIGHNAME = #{highName},
+			HIGHKIND = #{highKind},
+			UNIVINIYEAR = #{univIniYear},
+			UNIVINIMON = #{univIniMon},
+			UNIVFINYEAR = #{univFinYear},
+			UNIVFINMON = #{univFinMon},
+			UNIVNAME = #{univName},
+			UNIVKIND = #{univKind},
+			UNIVSCORE = #{univScore},
+			UNIVMAJOR = #{univMajor},
+			GRADUINIYEAR = #{graduIniYear},
+			GRADUINIMON = #{graduIniMon},
+			GRADUFINYEAR = #{graduFinYear},
+			GRADUFINMON = #{graduFinMon},
+			GRADUNAME = #{graduName},
+			GRADUKIND = #{graduKind},
+			GRADUSCORE = #{graduScore},
+			GRADUMAJOR = #{graduMajor},
+			LICENNAME = #{licenName},
+			LICENINSTI = #{licenInsti},
+			LICENGRAD = #{licenGrad},
+			JOBNAME = #{jobName},
+			JOBINIYEAR = #{jobIniYear},
+			JOBINIMON = #{jobIniMon},
+			JOBFINYEAR = #{jobFinYear},
+			JOBFINMON = #{jobFinMon},
+			JOBRANK = #{jobRank},
+			JOBDEPT = #{jobDept},
+			JOBCONTENT = #{jobContent},
+			JOBFIRE = #{jobFire},
+			LANGNAME = #{langName},
+			LANGTEST = #{langTest},
+			LANGSCORE = #{langScore},
+			LANGDATEYEAR = #{langDateYear},
+			LANGDATEMON = #{langDateMon},
+			LANGDATEDAY = #{langDateDay},
+			AWARDNAME = #{awardName},
+			AWARDCONTENT = #{awardContent},
+			AWARDINSTI = #{awardInsti},
+			AWARDDATEYEAR = #{awardDateYear},
+			AWARDDATEMON = #{awardDateMon},
+			AWARDDATEDAY = #{awardDateDay},
+			ABROADNATION = #{abroadNation},
+			ABROADINSTI = #{abroadInsti},
+			ABROADCONT = #{abroadCont},
+			VETE = #{vete},
+			HANDI = #{handi},
+			MILIT = #{milit},
+			MILITINIYEAR = #{militIniYear},
+			MILITINIMON = #{militIniMon},
+			MILITFINYEAR = #{militFinYear},
+			MILITFINMON = #{militFinMon},
+			MILITKIND = #{militKind},
+			MILITRANK = #{militRank}
+		WHERE USERID = #{userId}
+	</update>
+
 	<select id="oneResume" parameterType="String" resultType="resume">
-		SELECT * FROM RESUME
+		SELECT
+		* FROM RESUME
 		WHERE USERID = #{userId}
 	</select>
 </mapper>

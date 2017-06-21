@@ -17,16 +17,12 @@ public class ResumeCtrl {
 	private ResumeService s;
 
 	// http://localhost:6080/javarajob/resume.do
-	public String insertResume(Resume r) {
-		if (r.getName() != null && r.getName() != "") {
-			s.insertResume(r);
-		}
-		return "resume";
-	}
-
-	public String resumeView(@RequestParam("userId") String userId, Model d) {
-		if (userId != null && userId != "")
+	public String resumeView(Resume r, Model d) {
+		String userId = r.getUserId();
+		if (userId != null && userId != "") {
 			d.addAttribute("resume", s.oneResume(userId));
+			s.uptResume(r);
+		}
 		return "resume";
 	}
 

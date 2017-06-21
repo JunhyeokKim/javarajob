@@ -7,7 +7,7 @@ import javarajob.vo.Resume;
 @Repository
 public interface ResumeDao {
 
-	public void insertResume(Resume r);
+	public void uptResume(Resume r);
 
 	public Resume oneResume(String userId);
 }
