@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- mybatis 관련 설정파일 resource/mybatis.Spring.xml -->
 <configuration>
+
 	<typeAliases>
 		<typeAlias alias="mem" type="javarajob.vo.Account"/>
 		<typeAlias alias="schmem" type="javarajob.vo.Account_Sch"/>
@@ -12,10 +13,12 @@
 		<typeAlias alias="careerSch" type="javarajob.vo.Career_Sch"/>
 		<typeAlias alias="resume" type="javarajob.vo.Resume" />
 	</typeAliases>
+	
 	<mappers>
 		<mapper resource="resource/AccountMapper.xml"/>
 		<mapper resource="resource/CompanyMapper.xml" />
 		<mapper resource="resource/CareerMapper.xml" />
 		<mapper resource="resource/ResumeMapper.xml" />
 	</mappers>
+	
 </configuration>

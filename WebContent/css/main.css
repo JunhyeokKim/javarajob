@@ -336,7 +336,7 @@ textarea {
 
 #header a.btn,
 .download-button a.btn, .export-pdf a.btnn,
-.sid-button a.btn{
+.sid-button .btn{
 	padding: 5px 25px 7px;
 	background-color: #0072bc;
 	font-weight: 400;
@@ -1823,7 +1823,7 @@ a.verified i {
 
 .profile a.btn,
 .buttons a.btn,
-.sid-button a.btn {
+.sid-button .btn {
     background-color: #00a651;
     color: #fff;
     padding: 6px 26px 7px;
@@ -2887,7 +2887,7 @@ section, .job-list-item {
 	margin-top: 0;
 }
 
-.sid-button a.btn {
+.sid-button .btn {
 	margin-top: 0;
 }
 

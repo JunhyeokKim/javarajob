@@ -17,14 +17,25 @@ public class ResumeCtrl {
 
 	// http://localhost:6080/javarajob/resume.do
 	@RequestMapping("/resume.do")
-	public String resumeView(@RequestParam(value = "id", defaultValue = "0") String id, Model d) {
-		Resume r = null;
-		if (!id.equals("0")) {
-			r = s.oneResume(id);
-			d.addAttribute("resume", r);
-			s.uptResume(r);
-		}
+	public String resumeView(@RequestParam(value = "userId", defaultValue = "0") String id, Model d) {
+		d.addAttribute("resume", s.oneResume(id));
+		System.out.println("id? "+id);
+		Resume r = s.oneResume(id);
+		System.out.println(r.getUserId());
+		System.out.println(r.getName());
+		System.out.println(r.getBirthDay());
+		System.out.println(r.getCtel());
 		return "resume";
+	}
+	
+	@RequestMapping("/resume_upt.do")
+	public String uptResume(Resume r){
+		s.uptResume(r);
+		System.out.println(r.getUserId());
+		System.out.println(r.getName());
+		System.out.println(r.getBirthDay());
+		System.out.println(r.getCtel());
+		return "forward:/resume.do";
 	}
 
 }

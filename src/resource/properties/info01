@@ -1,0 +1,6 @@
+selfUp=C:/a01_prog/eclipse/workspace_server/springweb/WebContent/upload/selfDoc/
+picUp=C:/a01_prog/eclipse/workspace_server/springweb/WebContent/upload/resumePic/
+driver=oracle.jdbc.driver.OracleDriver
+dbserver=jdbc:oracle:thin:@192.168.0.110:1522:orcl
+name=tiger
+pass=scott

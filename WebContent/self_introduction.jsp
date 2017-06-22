@@ -69,7 +69,13 @@
 				<h2 class="title">자기소개서 List</h2>
 				<div class="btn-box">
 					<div class="sid-button">
-						<a href="#" class="btn">파일 업로드</a>
+						<input type="file" class="btn" value="파일 다운로드" />
+					</div>
+					<div class="sid-button">
+						<a href="#" class="btn">등록</a>
+					</div>
+					<div class="sid-button">
+						<a href="#" class="btn">선택 삭제</a>
 					</div>
 					<div class="sid-button">
 						<a href="#" class="btn">파일 다운로드</a>
@@ -77,7 +83,13 @@
 				</div>
 			</div>
 			<div class="resume-content">
-				<div class="self-introduction-upload-section"></div>
+				<div class="self-introduction-upload-section">
+					<table>
+						<tr>
+							<th>파일 선택</th><th>파일 이름</th><th>등록일</th>
+						</tr>
+					</table>
+				</div>
 				<!-- educational-background -->
 			</div>
 			<!-- resume-content -->

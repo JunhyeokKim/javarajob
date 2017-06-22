@@ -12,6 +12,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
+	<context:property-placeholder location="classpath:/resource/properties/info01" />
 	<!-- DB 연결 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<!-- driver, connection(url,port,sid,id,pass) -->
