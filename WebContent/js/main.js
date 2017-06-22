@@ -120,7 +120,7 @@ jQuery(function ($) {
     }()); 
     
     // -------------------------------------------------------------
-    //  joblist ajax call
+    //  joblist
     // -------------------------------------------------------------
     $(document).ready(function(){
     	$(".call-ajax").click(function(){
@@ -136,6 +136,14 @@ jQuery(function ($) {
    	 			}
    	 		})
    	 })
+    })
+    
+    $(document).ready(function(){
+    	$("input[name=querytype]").val($("#quetype").text());
+    	$("#sch").click(function(){
+    		$("input[name=querytype]").val($("#quetype").text());
+    		$("form").submit();
+    	})
     })
     
 	 

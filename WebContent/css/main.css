@@ -444,6 +444,7 @@ textarea {
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	height:100%;
+	margin-bottom: 2px;
 }
 
 .banner-form button:hover {

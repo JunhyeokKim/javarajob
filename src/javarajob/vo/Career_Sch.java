@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Career_Sch {
 	private int careerid;
-	private String companytype;
+	private int[] companytype;
 	private String companyname;
 	private int companyid;
-	private String field;
-	private String location;
-	private String industry;
-	private String employmenttype;
+	private int[] field;
+	private int[] location;
+	private int[] industry;
+	private int[] employmenttype;
 	private String title;
 	private Date postdate;
 	private Date enddate;
@@ -23,11 +23,11 @@ public class Career_Sch {
 		this.careerid = careerid;
 	}
 
-	public String getCompanytype() {
+	public int[] getCompanytype() {
 		return companytype;
 	}
 
-	public void setCompanytype(String companytype) {
+	public void setCompanytype(int[] companytype) {
 		this.companytype = companytype;
 	}
 
@@ -47,35 +47,35 @@ public class Career_Sch {
 		this.companyid = companyid;
 	}
 
-	public String getField() {
+	public int[] getField() {
 		return field;
 	}
 
-	public void setField(String field) {
+	public void setField(int[] field) {
 		this.field = field;
 	}
 
-	public String getLocation() {
+	public int[] getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(int[] location) {
 		this.location = location;
 	}
 
-	public String getIndustry() {
+	public int[] getIndustry() {
 		return industry;
 	}
 
-	public void setIndustry(String industry) {
+	public void setIndustry(int[] industry) {
 		this.industry = industry;
 	}
 
-	public String getEmploymenttype() {
+	public int[] getEmploymenttype() {
 		return employmenttype;
 	}
 
-	public void setEmploymenttype(String employmenttype) {
+	public void setEmploymenttype(int[] employmenttype) {
 		this.employmenttype = employmenttype;
 	}
 

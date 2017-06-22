@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,34 +28,52 @@ public class CareerCtrl {
 	@Autowired(required = false)
 	CompService compService;
 
-	@RequestMapping(params = "method=list")
-	public String listCareers(@ModelAttribute("careerSch") Career_Sch careerSch,
-			@RequestParam(value = "orderby", defaultValue = "desc") String orderby,
-			@ModelAttribute("companySch") Company_Sch compSch, Model d) {
+	@RequestMapping(params = "method=sch")
+	public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
+			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType, Career_Sch careerSch,
+			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
 		int totCareerCnt = 0;
 		ArrayList<Company> dtoCompList = new ArrayList<>();
-		HashMap<Integer, Company> companyMap= new HashMap<>();
 		ArrayList<Career> totCareerList = new ArrayList<>();
-		ArrayList<Integer> companyOrder = new ArrayList<>();
-
+		HashMap<Integer, Company> companys = new HashMap<>();
 		Descending<Career> descOrderObj = new Descending<>();
 		AscendingCareer AscOrderObj = new AscendingCareer();
+		queryType = queryType.trim();
+		System.out.println("querytype: " + queryType);
+		System.out.println("query: " + query);
+		if (queryType.equals("채용 공고")) {
+			careerSch.setTitle(query);
+		} else if (queryType.equals("기업명")) {
+			careerSch.setCompanyname(query);
+		} else if (queryType.equals("통합 검색")) {
+			careerSch.setTitle(query);
+			careerSch.setCompanyname(query);
+		}
 
-		for (Company company : compService.listCompany(compSch)) {
-			careerSch.setCompanyid(company.getCompanyid());
-			ArrayList<Career> careers = careerService.listCareer(careerSch);
-			company.setCareers(careers);
-			totCareerList.addAll(careers);
-			totCareerCnt += careers.size();
+		totCareerList = careerService.listCareer(careerSch);
+		totCareerCnt = totCareerList.size();
+		for (Career career : totCareerList) {
+			if (!companys.containsKey(career.getCompanyid())) {
+				Company vo = compService.getCompany(career.getCompanyid());
+				vo.getCareers().add(career);
+				companys.put(career.getCompanyid(), vo);
+			} else {
+				Company vo = companys.get(career.getCompanyid());
+				vo.getCareers().add(career);
+				companys.put(career.getCompanyid(), vo);
+			}
+		}
+
+		for (Company company : companys.values()) {
 			dtoCompList.add(company);
 		}
+
+		// TODO: orderby 구현
 		if (orderby.equals("desc")) {
 			Collections.sort(totCareerList, descOrderObj);
 		} else if (orderby.equals("asc")) {
 			Collections.sort(totCareerList, AscOrderObj);
 		}
-		
-		System.out.println(compService.listCompany(compSch).size());
 		d.addAttribute("companyList", dtoCompList);
 		d.addAttribute("totCareerCnt", totCareerCnt);
 		d.addAttribute("totCompanyCnt", dtoCompList.size());
@@ -76,11 +95,11 @@ public class CareerCtrl {
 		@Override
 		public int compare(T o1, T o2) {
 			// TODO Auto-generated method stub
-			if(o1 instanceof Career && o2 instanceof Career){
-				return ((Career)o1).getPostdate().compareTo(((Career)o2).getPostdate());
-			}else{
+			if (o1 instanceof Career && o2 instanceof Career) {
+				return ((Career) o1).getPostdate().compareTo(((Career) o2).getPostdate());
+			} else {
 			}
-				
+
 			return 1;
 		}
 

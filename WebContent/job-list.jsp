@@ -71,7 +71,7 @@
 	
 	<section class="job-bg page job-list-page container">
 		<div class="list-view">
-		<form action="" method="post" name="">
+	
 			<div class="breadcrumb-section">
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
@@ -82,17 +82,21 @@
 			</div>
 
 			<div class="banner-form job-list-form">
+				<form action="${path }/careerlist.do?method=sch" method="post">
 					<!-- category-change -->
 					<div class="dropdown category-dropdown">						
-						<a data-toggle="dropdown" href="#"><span class="change-text">통합 검색</span> <i class="fa fa-angle-down"></i></a>
+						<a data-toggle="dropdown" href="#"><span class="change-text" id="quetype">통합 검색</span> <i class="fa fa-angle-down"></i></a>
+						<input type="hidden" name="querytype"/>
 						<ul class="dropdown-menu category-change">
+							<li><a href="#">통합 검색</a></li>
 							<li><a href="#">채용 공고</a></li>
 							<li><a href="#">기업명</a></li>
 						</ul>								
 					</div><!-- category-change -->
 				
-					<input type="text" id="search" class="form-control" placeholder="키워드, 기업 이름 검색" autocomplete="off">
-					<button type="submit" class="btn btn-primary" value="Search">검색</button>
+					<input type="text" id="search" name="query" class="form-control" placeholder="키워드, 기업 이름 검색" autocomplete="off">
+					<button type="button" class="btn btn-primary" value="Search" id="sch">검색</button>
+					</form>
 			</div><!-- banner-form -->
 	
 			<div class="category-info">	
@@ -116,17 +120,17 @@
 									<div id="accordion-one" class="panel-collapse collapse in">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<label for="type-0"><input type="checkbox" class="filter" name="type"  id="type-0" value="0"> 전체(129)</label>
-										<label for="type-1"><input type="checkbox" class="filter" name="type" id="type-1" value="1"> 대기업(22)</label>
-										<label for="type-2"><input type="checkbox" class="filter" name="type" id="type-2" value="2"> 중소기업(11)</label>
-										<label for="type-3"><input type="checkbox" class="filter" name="type" id="type-3" value="3"> 중견기업(5)</label>
-										<label for="type-4"><input type="checkbox" class="filter" name="type" id="type-4" value="4"> 스타트업(40)</label>
+										<label for="type-0"><input type="checkbox" class="filter" name="companytype"  id="type-0" value="0"> 전체(129)</label>
+										<label for="type-1"><input type="checkbox" class="filter" name="companytype" id="type-1" value="1"> 대기업(22)</label>
+										<label for="type-2"><input type="checkbox" class="filter" name="companytype" id="type-2" value="2"> 중소기업(11)</label>
+										<label for="type-3"><input type="checkbox" class="filter" name="companytype" id="type-3" value="3"> 중견기업(5)</label>
+										<label for="type-4"><input type="checkbox" class="filter" name="companytype" id="type-4" value="4"> 스타트업(40)</label>
 											<div class="see-more">
 												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
 												<ul class="more-category one">
-													<li><label for="type-5"><input type="checkbox" class="filter" name="type" id="type-5" value="5"> 공공기관(40)</label></li>
-													<li><label for="type-6"><input type="checkbox" class="filter"  name="type" id="type-6" value="6"> 외국계 기업(40)</label></li>
-													<li><label for="type-7"><input type="checkbox" class="filter" name="type" id="type-7" value="7"> 기타(40)</label></li>
+													<li><label for="type-5"><input type="checkbox" class="filter" name="companytype" id="type-5" value="5"> 공공기관(40)</label></li>
+													<li><label for="type-6"><input type="checkbox" class="filter"  name="companytype" id="type-6" value="6"> 외국계 기업(40)</label></li>
+													<li><label for="type-7"><input type="checkbox" class="filter" name="companytype" id="type-7" value="7"> 기타(40)</label></li>
 												</ul>
 											</div>
 
@@ -259,13 +263,13 @@
 									<div id="accordion-five" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="emptype-0"><input type="checkbox" class="filter" name="emptype" id="emptype-0">전체</label>
-											<label for="emptype-1"><input type="checkbox" class="filter" name="emptype" id="emptype-1">정규직</label>
-											<label for="emptype-2"><input type="checkbox" class="filter" name="emptype" id="emptype-2">계약직</label>
-											<label for="emptype-3"><input type="checkbox" class="filter" name="emptype" id="emptype-3">병역특례</label>
-											<label for="emptype-4"><input type="checkbox" class="filter" name="emptype" id="emptype-4">인턴직</label>
-											<label for="emptype-5"><input type="checkbox" class="filter" name="emptype" id="emptype-5">시간제/일용직</label>
-											<label for="emptype-9"><input type="checkbox" class="filter" name="emptype" id="emptype-9">프리랜서</label>
+											<label for="emptype-0"><input type="checkbox" class="filter" name="employmenttype" id="emptype-0">전체</label>
+											<label for="emptype-1"><input type="checkbox" class="filter" name="employmenttype" id="emptype-1">정규직</label>
+											<label for="emptype-2"><input type="checkbox" class="filter" name="employmenttype" id="emptype-2">계약직</label>
+											<label for="emptype-3"><input type="checkbox" class="filter" name="employmenttype" id="emptype-3">병역특례</label>
+											<label for="emptype-4"><input type="checkbox" class="filter" name="employmenttype" id="emptype-4">인턴직</label>
+											<label for="emptype-5"><input type="checkbox" class="filter" name="employmenttype" id="emptype-5">시간제/일용직</label>
+											<label for="emptype-9"><input type="checkbox" class="filter" name="employmenttype" id="emptype-9">프리랜서</label>
 										</div><!-- panel-body -->
 									</div>
 								</div><!-- panel -->
@@ -357,7 +361,6 @@
 					</div>
 				</div>
 			</div>
-			</form>
 		</div><!-- container -->
 	</section><!-- main -->
 	
@@ -396,7 +399,7 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
-    <script src="js/main.js?ver=3"></script>
+    <script src="js/main.js?ver=2"></script>
 	<script src="js/switcher.js"></script>
   </body>
 </html>
