@@ -198,48 +198,39 @@
 								</div>							
 							</div><!-- featured-top -->	
 							
-							
-							<c:forEach var="company" varStatus="status" items="${companyList }">
-							<div class="job-ad-item text-center">
+							<!-- 회사 리스트 -->
+							<input type="hidden" name="companyid" value="${company.companyid }"/>
+							<c:forEach var="company" varStatus="status" items="${companyList }">														
+							<div class="job-ad-item"><!-- 한 줄 단위 전체 -->
 								<div class="item-info">
-									<!-- item-image -->
-									<!-- 
-									<div class="item-image-box">
+									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
-											<a href="job-details.html"><img src="images/job/1.png" alt="Image" class="img-responsive"></a>
-										</div>
-									</div>
-									 -->
-									<input type="hidden" name="companyid" value="${company.companyid }"/>
-									<div class="ad-info" style="width:80%">
-									<!-- 
-										<h3><span><a class="call-ajax">${company.companyname }<input type="hidden" value="${company.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
-										<h5><a class="title">${company.shortinfo }</a></h5>
-									 -->
+											<a href="job-details.html"><img src="images/job/3.png"
+												alt="Image" class="img-responsive"></a>
+										</div><!-- item-image -->
+									</div><!-- 이미지 -->									
+									<c:forEach var="career" items="${company.careers }"><!-- 회사내용 -->
+									<div class="ad-info">									
+										<span><a href="job-details.html" class="title">${career.title}</a>
+											@ <a href="#">${company.companyname}</a></span>
 										<div class="ad-meta">
-										<div class="collapse in" id="items-${status.count }">
-									 	
-										<c:forEach var="career" items="${company.careers }">
-											<div class="position-item">
-												<span><a href="job-details.html"><h3>${career.title }</h3><h2>@${company.companyname }</h2></a></span>
-												<ul>
-													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${career.location }</a></li>
-													<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>${career.employmenttype }</a></li>
-													<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>${career.salary }만원</a></li>
-												</ul>
-											</div>
-										</c:forEach>
-										
+											<ul>
+												<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${career.location }</a></li>
+												<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>${career.employmenttype }</a></li>
+												<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>${career.salary }만원</a></li>
+											</ul>
+										</div>										
+									</div>									
+									</c:forEach><!-- 회사내용 -->																	
+									<div class="close-icon"><!-- 오른쪽 상단 공간 -->
+										<div class="button">											
+											<a href="#" class="btn btn-primary bookmark"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a>
 										</div>
-										</div><!-- ad-meta -->
-									</div><!-- ad-info -->
+									</div><!-- 오른쪽 상단 공간 -->
 								</div><!-- item-info -->
-								<div class="col-xs-offset-2">								
-								</div>
-							</div>
-							</c:forEach><!-- job-ad-item -->
-							<div id="result" style="width:200px; heigh:200px">
-							</div>
+							</div><!-- 한 줄 단위 전체 -->
+							</c:forEach>
+							<!-- 회사 리스트 -->
 							
 							
 

@@ -128,10 +128,8 @@
 						<div class="close-icon">
 							<i class="fa fa-window-close" aria-hidden="true"></i>
 						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
+					</div><!-- item-info -->
+				</div><!-- ad-item -->
 
 				<div class="job-ad-item">
 					<div class="item-info">
