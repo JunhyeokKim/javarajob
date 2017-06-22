@@ -1,5 +1,7 @@
 package javarajob.vo;
 
+import java.util.Date;
+
 public class Career_Sch {
 	private int careerid;
 	private String companytype;
@@ -10,6 +12,8 @@ public class Career_Sch {
 	private String industry;
 	private String employmenttype;
 	private String title;
+	private Date postdate;
+	private Date enddate;
 
 	public int getCareerid() {
 		return careerid;
@@ -82,5 +86,22 @@ public class Career_Sch {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public Date getPostdate() {
+		return postdate;
+	}
+
+	public void setPostdate(Date postdate) {
+		this.postdate = postdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+	
 
 }

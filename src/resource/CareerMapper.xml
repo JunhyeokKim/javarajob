@@ -32,7 +32,7 @@
 		<if test="employmenttype!=null and employmenttype!=''">
 			and employmenttype like '%' || #{employmenttype} || '%'
 		</if>
-		order by sysdate desc
+		order by ${postdate} desc
 	</select>
 	<select id="getCareer" parameterType="int" resultType="career">
 		select * from CAREER 

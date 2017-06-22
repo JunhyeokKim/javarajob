@@ -429,7 +429,6 @@ textarea {
 }
 
 .banner-form button.btn.btn-primary {
-	position:absolute;
 	right:-2px;
 	bottom:0;
 	font-size: 16px;
@@ -445,7 +444,6 @@ textarea {
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	height:100%;
-	padding: 10px 20px;
 }
 
 .banner-form button:hover {

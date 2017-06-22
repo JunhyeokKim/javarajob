@@ -38,7 +38,7 @@
                     <!-- item-info -->
                     <div class="social-media">
                         <div class="button">
-                            <a href="#" class="btn btn-primary"><i
+                            <a href="${company.website }" class="btn btn-primary"><i
                                 class="fa fa-briefcase" aria-hidden="true"></i>홈페이지</a> <a
                                 href="#" class="btn btn-primary bookmark"><i
                                 class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩</a>
