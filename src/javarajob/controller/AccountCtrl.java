@@ -30,7 +30,7 @@ public class AccountCtrl {
 	@RequestMapping(params="method=insProc")
 	public String insertProc(Account mem){
 		service.insertMember(mem);
-		return "index";
+		return "redirect:/index.do";
 	}
 	
 	@RequestMapping(params="method=detail")
@@ -55,13 +55,13 @@ public class AccountCtrl {
 	@RequestMapping(params="method=signIn")
 	public String login(@RequestParam("id") String id, @RequestParam("password") String password, HttpSession ses){	
 		if(service.loginMember(id, password))	ses.setAttribute("id",id);			
-		return "index";
+		return "redirect:/index.do";
 	}
 	
 	@RequestMapping(params="method=signOut")
 	public String logout(HttpSession ses){	
 		ses.invalidate();		
-		return "index";
+		return "redirect:/index.do";
 	}
 	
 	@RequestMapping(params="method=uptProcGuest1")
@@ -87,7 +87,7 @@ public class AccountCtrl {
 	public String delProcGuest2(HttpSession ses){		
 		service.deleteMember(ses.getAttribute("id").toString());
 		ses.invalidate();
-		return "index";
+		return "redirect:/index.do";
 	}
 	
 	@RequestMapping(params="bookmark")

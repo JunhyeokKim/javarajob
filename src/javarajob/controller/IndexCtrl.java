@@ -1,0 +1,20 @@
+package javarajob.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import javarajob.service.CareerService;
+
+
+@Controller
+public class IndexCtrl {
+	@Autowired(required=false)
+	CareerService careerService;	
+	
+	@RequestMapping("/index.do")
+	public String listCareerforindex(Model d){
+		d.addAttribute("careerList", careerService.listCareerforindex());		
+		return "index";
+	}
+}

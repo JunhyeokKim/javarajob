@@ -14,4 +14,5 @@ public interface CareerDao {
 	public Career getCareer(int careerid);
 	public void deleteCareer(int careerid);
 	public void updateCareer(Career upt);
+	public ArrayList<Career> listCareerforindex();
 }

@@ -117,149 +117,244 @@
 	<div class="page">
 		<br>
 		
-		<div class="row" id="temp01">
-			<!--  -->
-			<div class="col-sm-2">
-				<div class="section category-items job-category-items  text-center">
-					<a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/6.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Design</span>
-							<span class="category-quantity">(76212)</span>
+		<div class="row" id="temp01"><!-- row -->			
+			<div class="col-sm-2"><!-- col-sm-2 -->
+				<div class="panel-group" id="accordion">
+					<!-- panel group -->
+					<div class="panel panel-default panel-faq">
+						<!-- panel -->
+						<div class="panel-heading">
+							<!-- panel-heading -->
+							<div class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#accordion-one">
+									<h4>
+										기업 형태<span class="pull-right"><i class="fa fa-minus"></i></span>
+									</h4>
+								</a>
+							</div>
 						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/3.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Engineer</span>
-							<span class="category-quantity">(212)</span>
+						<!-- panel-heading -->
+						<div id="accordion-one" class="panel-collapse collapse in">
+							<!-- accordion -->
+							<div class="panel-body">
+								<ul>
+									<li><a href="#">전체<span>(129)</span></a></li>
+									<li><a href="#">대기업<span>(8342)</span></a></li>
+									<li><a href="#">중소기업<span>(782)</span></a></li>
+									<li><a href="#">중견기업<span>(5247)</span></a></li>
+									<li><a href="#">외국계<span>(634)</span></a></li>
+									<li><a href="#">스타트업<span>(453)</span></a></li>
+								</ul>
+								<div class="see-more">
+									<button type="button" class="show-more one">
+										<i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기
+									</button>
+									<ul class="more-category one">
+										<li><a href="#">국내 공공기관<span>(289)</span></a></li>
+										<li><a href="#">병원<span>(289)</span></a></li>
+										<li><a href="#">기타<span>(3829)</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- panel-body -->
 						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/5.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Develop</span>
-							<span class="category-quantity">(1298)</span>
-						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/7.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Research</span>
-							<span class="category-quantity">(1298)</span>
-						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/1.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Finance</span>
-							<span class="category-quantity">(1298)</span>
-						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/2.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Training</span>
-							<span class="category-quantity">(76212)</span>
-						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/3.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Engineer</span>
-							<span class="category-quantity">(212)</span>
-						</div>
-					</a><br> <a href="job-list.jsp">
-						<div class="category-icon">
-							<img src="images/icon/5.png" alt="images" class="img-responsive"
-								id="temp02"> <span class="category-title" id="temp02">Develop</span>
-							<span class="category-quantity">(1298)</span>
-						</div>
-					</a><br>
+						<!-- accordion -->
+					</div>
+					<!-- panel -->
 				</div>
-				<!-- category ad -->
-			</div>
-			<!-- 11 -->
-			<div class="col-sm-10">
-			
-			
-			
-				
-			
-			<!-- recommended-ads -->
-			<!-- class="col-sm-8 col-md-7" -->
-					<div >				
-						<div class="section job-list-item">
-							<div class="featured-top">
-								<h4>검색 결과 (65), 현재 1 페이지(1-25)</h4>
-								<div class="dropdown pull-right">
-									<div class="dropdown category-dropdown">
-										<h5>정렬 기준:</h5>						
-										<a data-toggle="dropdown" href="#"><span class="change-text">최근 등록 순</span><i class="fa fa-caret-square-o-down"></i></a>
-										<ul class="dropdown-menu category-change">
-											<li><a href="#">최근 등록 순 </a></li>
-											<li><a href="#">인기 순</a></li>
-										</ul>								
-									</div><!-- category-change -->		
-								</div>							
-							</div><!-- featured-top -->	
-							
-							<!-- 회사 리스트 -->
-							<input type="hidden" name="companyid" value="${company.companyid }"/>
-							<c:forEach var="company" varStatus="status" items="${companyList }">														
-							<div class="job-ad-item"><!-- 한 줄 단위 전체 -->
+				<!-- panel group-->
+			</div><!-- col-sm-2 -->
+	
+			<div class="col-sm-10"><!-- col-sm-10 -->
+				<div><!-- career list 전체 -->
+					<div class="section job-list-item">
+						<div class="featured-top">
+							<h4>검색 결과 (65), 현재 1 페이지(1-25)</h4>
+							<div class="dropdown pull-right">
+								<div class="dropdown category-dropdown">
+									<h5>정렬 기준:</h5>
+									<a data-toggle="dropdown" href="#"><span
+										class="change-text">최근 등록 순</span><i
+										class="fa fa-caret-square-o-down"></i></a>
+									<ul class="dropdown-menu category-change">
+										<li><a href="#">최근 등록 순 </a></li>
+										<li><a href="#">인기 순</a></li>
+									</ul>
+								</div>
+								<!-- category-change -->
+							</div>
+						</div><!-- featured-top -->
+						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->
+							<div class="job-ad-item">
+								<!-- 한 줄 단위 전체 -->
 								<div class="item-info">
 									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
 											<a href="job-details.html"><img src="images/job/3.png"
 												alt="Image" class="img-responsive"></a>
-										</div><!-- item-image -->
-									</div><!-- 이미지 -->									
-									<c:forEach var="career" items="${company.careers }"><!-- 회사내용 -->
-									<div class="ad-info">									
+										</div><!-- item-image -->		
+									</div><!-- 이미지 -->
+									<div class="ad-info"><!-- 회사내용 -->
 										<span><a href="job-details.html" class="title">${career.title}</a>
-											@ <a href="#">${company.companyname}</a></span>
+											@ <a href="#">${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
-												<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${career.location }</a></li>
-												<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>${career.employmenttype }</a></li>
-												<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>${career.salary }만원</a></li>
+												<li>
+													<a href="#"><i class="fa fa-map-marker"	aria-hidden="true"></i>
+													<c:choose>
+														<c:when test="${career.location==1}">서울</c:when>
+														<c:when test="${career.location==2}">경기</c:when>
+														<c:when test="${career.location==3}">광주</c:when>
+														<c:when test="${career.location==4}">대구</c:when>
+														<c:when test="${career.location==5}">대전</c:when>
+														<c:when test="${career.location==6}">부산</c:when>
+														<c:when test="${career.location==7}">울산</c:when>
+														<c:when test="${career.location==8}">인천</c:when>
+														<c:when test="${career.location==9}">강원</c:when>
+														<c:when test="${career.location==10}">경남</c:when>
+														<c:when test="${career.location==11}">경북</c:when>
+														<c:when test="${career.location==12}">전남</c:when>
+														<c:when test="${career.location==13}">전북</c:when>
+														<c:when test="${career.location==14}">충북</c:when>
+														<c:when test="${career.location==15}">충남</c:when>
+														<c:when test="${career.location==16}">제주</c:when>
+														<c:when test="${career.location==17}">전국</c:when>
+														<c:when test="${career.location==18}">세종</c:when>
+														<c:when test="${career.location==19}">기타해외</c:when>
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-check" aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.companytype==1}">대기업</c:when>
+														<c:when test="${career.companytype==2}">중소기업</c:when>
+														<c:when test="${career.companytype==3}">중견기업</c:when>
+														<c:when test="${career.companytype==4}">스타트업</c:when>
+														<c:when test="${career.companytype==5}">공공기관</c:when>
+														<c:when test="${career.companytype==6}">외국계 기업</c:when>
+														<c:when test="${career.companytype==7}">기타</c:when>
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-industry" aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.industry==1}">서비스업</c:when>
+														<c:when test="${career.industry==2}">생산/제조</c:when>
+														<c:when test="${career.industry==3}">IT/인터넷</c:when>
+														<c:when test="${career.industry==4}">연구개발/설계</c:when>
+														<c:when test="${career.industry==5}">전문/특수직</c:when>
+														<c:when test="${career.industry==6}">미디어</c:when>
+														<c:when test="${career.industry==7}">서비스</c:when>
+														<c:when test="${career.industry==8}">건설</c:when>														
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.employmenttype==1}">정규직</c:when>
+														<c:when test="${career.employmenttype==2}">계약직</c:when>
+														<c:when test="${career.employmenttype==3}">병역특례</c:when>
+														<c:when test="${career.employmenttype==4}">인턴직</c:when>
+														<c:when test="${career.employmenttype==5}">시간제/일용직</c:when>
+														<c:when test="${career.employmenttype==9}">프리랜서</c:when>																												
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-pencil"	aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.field==1}">서버 개발자</c:when>
+														<c:when test="${career.field==2}">웹 개발자</c:when>
+														<c:when test="${career.field==3}">프론트엔드 개발자</c:when>
+														<c:when test="${career.field==4}">데이터 엔지니어</c:when>
+														<c:when test="${career.field==5}">안드로이드 개발자</c:when>
+														<c:when test="${career.field==6}">자바 개발자</c:when>
+														<c:when test="${career.field==7}">IOS 개발자</c:when>
+														<c:when test="${career.field==8}">파이썬 개발자</c:when>
+														<c:when test="${career.field==9}">C, C++ 개발자</c:when>
+														<c:when test="${career.field==10}">Node.js 개발자</c:when>
+														<c:when test="${career.field==11}">시스템, 네트워크 관리자</c:when>
+														<c:when test="${career.field==12}">웹퍼블리셔</c:when>
+														<c:when test="${career.field==13}">그래픽 엔지니어</c:when>
+														<c:when test="${career.field==14}">보안 엔지니어</c:when>
+														<c:when test="${career.field==15}">프로덕트 매니저</c:when>
+														<c:when test="${career.field==16}">QA, 테스트 엔지니어</c:when>																												
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-money" aria-hidden="true"></i>
+													<c:choose>
+														<c:when test="${career.salary==0}">회사내규에 따름</c:when>
+														<c:when test="${career.salary==1}">1,400 만원 이하</c:when>
+														<c:when test="${career.salary==2}">1,400~1,600만원</c:when>
+														<c:when test="${career.salary==3}">1,600~1,800만원</c:when>
+														<c:when test="${career.salary==4}">1,800~2,000만원</c:when>
+														<c:when test="${career.salary==5}">2,000~2,200만원</c:when>
+														<c:when test="${career.salary==6}">2,200~2,400만원</c:when>
+														<c:when test="${career.salary==7}">2,400~2,600만원</c:when>
+														<c:when test="${career.salary==8}">2,600~2,800만원</c:when>
+														<c:when test="${career.salary==9}">2,800~3,000만원</c:when>
+														<c:when test="${career.salary==10}">3,000~3,200만원</c:when>
+														<c:when test="${career.salary==11}">3,200~3,400만원</c:when>
+														<c:when test="${career.salary==12}">3,400~3,600만원</c:when>
+														<c:when test="${career.salary==13}">3,600~3,800만원</c:when>
+														<c:when test="${career.salary==14}">3,800~4,000만원</c:when>
+														<c:when test="${career.salary==15}">4,000~5,000만원</c:when>
+														<c:when test="${career.salary==16}">5,000~6,000만원</c:when>
+														<c:when test="${career.salary==17}">6,000~7,000만원</c:when>
+														<c:when test="${career.salary==18}">7,000~8,000만원</c:when>
+														<c:when test="${career.salary==19}">8,000~9,000만원</c:when>
+														<c:when test="${career.salary==20}">9,000~1억원</c:when>
+														<c:when test="${career.salary==21}">1억원 이상</c:when>
+														<c:when test="${career.salary==99}">면접후 결정</c:when>
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+													<fmt:formatDate value="${career.postdate}"	pattern="yy-MM-dd" />~<fmt:formatDate value="${career.enddate}" pattern="yy-MM-dd" /></a>
+												</li>
 											</ul>
-										</div>										
-									</div>									
-									</c:forEach><!-- 회사내용 -->																	
-									<div class="close-icon"><!-- 오른쪽 상단 공간 -->
-										<div class="button">											
-											<a href="#" class="btn btn-primary bookmark"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a>
 										</div>
-									</div><!-- 오른쪽 상단 공간 -->
-								</div><!-- item-info -->
-							</div><!-- 한 줄 단위 전체 -->
-							</c:forEach>
-							<!-- 회사 리스트 -->
-							
-							
-
-							<div class="ad-section text-center">
-								<a href="#"><img src="images/ads/3.jpg" alt="Image" class="img-responsive"></a>
-							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
-	
-							
-							<!-- pagination  -->
-							<div class="text-center">
-								<ul class="pagination ">
-									<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-									<li><a href="#">1</a></li>
-									<li class="active"><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">...</a></li>
-									<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-								</ul>
-							</div><!-- pagination  -->					
+									</div><!-- 회사내용 -->									
+									<div class="close-icon"><!-- 오른쪽 상단 공간 -->										
+										<div class="button">
+											<a href="#" class="btn btn-primary bookmark"><i
+												class="fa fa-bookmark-o" aria-hidden="true"></i></a>
+										</div>
+									</div><!-- 오른쪽 상단 공간 -->									
+								</div><!-- item-info -->								
+							</div><!-- 한 줄 단위 전체 -->							
+						</c:forEach><!-- 회사 리스트 -->
+						
+						<div class="ad-section text-center">
+							<a href="#"><img src="images/ads/3.jpg" alt="Image"
+								class="img-responsive"></a>
 						</div>
-					</div><!-- recommended-ads -->
-			
-			
-			</div><!-- 11 -->
-		</div>
+						<div class="text-center"><!-- pagination  -->
+							<ul class="pagination ">
+								<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+								<li><a href="#">1</a></li>
+								<li class="active"><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">...</a></li>
+								<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+							</ul>
+						</div>
+						<!-- pagination  -->
+					</div>
+				</div>
+				<!-- career list 전체 -->
+			</div><!-- col-sm-10 -->
+		</div><!-- row -->
 	</div><!-- page -->
-	
 	
 	<!-- footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
