@@ -79,11 +79,11 @@
 				</div><!-- user-profile -->
 						
 				<ul class="user-menu">					
-					<li class="active"><a href="profile-details.jsp">회원정보 수정</a></li>
-					<li><a href="${path}/accountList.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="bookmark.html">관심기업</a></li>
-					<li><a href="applied-job.html">지원한 기업</a></li>
-					<li><a href="qanda.html">Q&A</a></li>
+					<li class="active"><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
+					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
+					<li><a href="${path}/account.do?bookmark">관심기업</a></li>
+					<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
+					<li><a href="${path}/account.do?qanda">Q&A</a></li>
 				</ul>
 			</div><!-- ad-profile -->	
 
@@ -93,7 +93,7 @@
 					<div class="profile-details section">
 						<h2>회원정보 수정</h2>
 						
-						<form method="post" action="${path}/accountList.do?method=uptProcGuest2">
+						<form method="post" action="${path}/account.do?method=uptProcGuest2">
 							<div class="form-group">
 								<label>이름</label>
 								<a class="form-control"><h5>${mem.name}</h5></a>
@@ -133,7 +133,7 @@
 								<label>가입일자</label>
 								<a class="form-control"><h5>${mem.regdate}</h5></a>
 							</div>	
-							<input type="submit" value="저장"/>
+							<center><input type="submit" class="btn temp04" value="저장" style="color:white;"/></center>
 							</form>	
 							<div class="preferences-settings section">
 								<div class="buttons" align="center">									

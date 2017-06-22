@@ -11,7 +11,7 @@
   	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#signOut").click(function(){
-				$(location).attr("href","${path}/accountList.do?method=signOut");
+				$(location).attr("href","${path}/account.do?method=signOut");
 			})
 		});
   	</script>
@@ -29,14 +29,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.jsp"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="${path}/index.do"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
 								
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.jsp">Home</a></li>								
+							<li class="active"><a href="${path}/index.do">Home</a></li>								
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="${path }/careerlist.do?method=sch">List Type</a></li>
@@ -48,11 +48,11 @@
 							<li><a href="${path}/self_intro.do">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
-									<li><a href="${path}/accountList.do?method=uptProcGuest1">회원정보 수정</a></li>
-									<li><a href="${path}/accountList.do?method=delProcGuest1">탈퇴</a></li>									
-									<li><a href="bookmark.html">관심기업</a></li>
-									<li><a href="applied-job.html">지원한 기업</a></li>
-									<li><a href="delete-account.jsp">Q&A</a></li>									
+									<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
+									<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>									
+									<li><a href="${path}/account.do?bookmark">관심기업</a></li>
+									<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
+									<li><a href="${path}/account.do?qanda">Q&A</a></li>									
 								</ul>
 							</li>
 							</c:if>
@@ -62,14 +62,14 @@
 				<div class="nav-right">					
 					<ul class="sign-in">
 						<li>
-							<a class="sign-in" data-toggle="modal" data-target="#myModal01">Search</a> 			
+							<a class="sign-in" data-toggle="modal" data-target="#myModal01"><i class="fa fa-search" aria-hidden="true"></i>Search</a> 			
 						</li>					
 						
 						<!-- 로그인 -->
 						<c:if test="${empty id}">
 								<li>	
 								  <!-- Trigger the modal with a button -->  
-								  <a class="sign-in" data-toggle="modal" data-target="#myModal02">/ Sign in</a>
+								  <a class="sign-in" data-toggle="modal" data-target="#myModal02">/ <i class="fa fa-check"></i>Sign in</a>
 								  	<!-- Modal -->
 								  	<div class="modal fade" id="myModal02" role="dialog">
 								    <div class="modal-dialog">
@@ -85,7 +85,7 @@
 											<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 												<div class="user-account">											
 													<!-- form -->
-													<form method="post" action="${path}/accountList.do?method=signIn">
+													<form method="post" action="${path}/account.do?method=signIn">
 														<div class="form-group">
 															<input type="text" class="form-control" placeholder="Username" name="id">
 														</div>
@@ -106,7 +106,7 @@
 								</li><!-- 로그인 -->						
 								<li>	
 								  <!-- Trigger the modal with a button -->  
-								  <a class="sign-in" data-toggle="modal" data-target="#myModal03">Register</a>
+								  <a class="sign-in" data-toggle="modal" data-target="#myModal03"><i class="fa fa-book"></i>Register</a>
 								  	<!-- Modal -->
 								  	<div class="modal fade" id="myModal03" role="dialog">
 								    <div class="modal-dialog">
@@ -125,7 +125,7 @@
 														<div role="tabpanel" class="tab-pane active" id="find-job">
 															<!-- 회원가입 -->
 															
-															<form method="post" action="${path}/accountList.do?method=insProc">
+															<form method="post" action="${path}/account.do?method=insProc">
 																<div class="form-group">
 																	<input type="text" class="form-control" placeholder="Name" name="name">
 																</div>
@@ -202,11 +202,11 @@
 								</li><!-- 회원가입 -->
 						</c:if>
 						<c:if test="${not empty id}">
-							<br><li>
-								<a class="sign-in"><i class="fa fa-user"></i>${id}</a>			
+							<li>
+								<a class="sign-in">/ <i class="fa fa-user"></i>${id}</a>			
 							</li>
 							<li>
-								<a class="sign-in" id="signOut">Sign out</a>			
+								<a class="sign-in" id="signOut"><i class="fa fa-remove"></i>Sign out</a>			
 							</li>	
 						</c:if>
 					</ul><!-- sign-in -->					

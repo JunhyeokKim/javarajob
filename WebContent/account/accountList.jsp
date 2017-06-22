@@ -19,7 +19,7 @@
 				$(".data").dblclick(function(){
 					//alert($(this).children().html());
 					var id=$(this).children().html();
-					$(location).attr("href","${path}/accountList.do?method=detail&id="+id);
+					$(location).attr("href","${path}/account.do?method=detail&id="+id);
 				});
 			})
 		</script>

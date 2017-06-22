@@ -21,4 +21,7 @@ public class CompService {
 	public Company getCompany(int companyid){
 		return dao.getCompany(companyid);
 	}
+	public int getCount(){
+		return dao.getCount();
+	}
 }

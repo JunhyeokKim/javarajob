@@ -57,7 +57,7 @@
 			var str = $("#passContentBtn").val();
 			
 			if(password==str){
-				$(location).attr("href","${path}/accountList.do?method=delProcGuest2");
+				$(location).attr("href","${path}/account.do?method=delProcGuest2");
 			}else{
 				alert("비밀번호 불일치합니다.");
 			}
@@ -101,11 +101,11 @@
 				</div><!-- user-profile -->
 						
 				<ul class="user-menu">					
-					<li><a href="${path}/accountList.do?method=uptProcGuest1">회원정보 수정</a></li>
-					<li class="active"><a href="${path}/accountList.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="bookmark.html">관심기업</a></li>
-					<li><a href="applied-job.html">지원한 기업</a></li>
-					<li><a href="qanda.html">Q&A</a></li>
+					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
+					<li class="active"><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
+					<li><a href="${path}/account.do?bookmark">관심기업</a></li>
+					<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
+					<li><a href="${path}/account.do?qanda">Q&A</a></li>
 				</ul>
 			</div><!-- ad-profile -->	
 
@@ -130,7 +130,7 @@
 					<!-- preferences-settings -->
 					<div class="preferences-settings section">
 						<div class="buttons" align="center">
-							<button id="passBtn">탈퇴하기</button> <a href="#" class="btn cancle">취소</a><br>
+							<a class="btn" id="passBtn">탈퇴하기</a><br>
 							<br>
 							<p>개인정보보호법에 따라 개인정보는 탈퇴 즉시 삭제됩니다.</p>
 						</div>

@@ -33,5 +33,13 @@ public class CareerService {
 	public void updateCareer(Career upt) {
 		dao.updateCareer(upt);
 	}
+	
+	public ArrayList<Career> listCareerforindex() {
+		return dao.listCareerforindex();
+	}
+	
+	public int getCount(){
+		return dao.getCount();
+	}
 
 }

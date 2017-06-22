@@ -48,5 +48,7 @@ public class AccountService {
 		return isLogin;
 	}
 	
-	
+	public int getCount(){
+		return dao.getCount();
+	}
 }

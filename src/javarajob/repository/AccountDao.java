@@ -18,5 +18,6 @@ public interface AccountDao {
 	public ArrayList<Account> listMember(Account_Sch sch);
 	public Account getMember(String id);
 	public void deleteMember(String id);
-	public void updateMember(Account mem);	
+	public void updateMember(Account mem);
+	public int getCount();
 }
