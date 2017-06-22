@@ -26,7 +26,7 @@ public class SelfIntroCtrl {
 		return "self_introduction";
 	}
 	
-	@Value("${upload}")
+	@Value("${selfUp}")
 	String fpath01;
 	
 	private void uploadDoc(MultipartFile report){

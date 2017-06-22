@@ -47,7 +47,7 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	.banner-form button.form-control, a.verified i, .pagination>li>a:hover,
 	.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
 	.user-account .btn, .user-page .btn-primary:hover, .profile a.btn,
-	.sid-button a.btn, .export-pdf, .feedback .btn, .pricing-section .pric .popular h2,
+	.sid-button .btn, .export-pdf, .feedback .btn, .pricing-section .pric .popular h2,
 	.badge, .home-banner .contact-form .form-control, .download-button a.btn:hover,
 	.buttons a.btn, .post-resume .upload-image:hover, .post-resume form .buttons a.btn:hover
 	{
@@ -56,7 +56,7 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 
 .form-control:focus, .navbar-default .navbar-toggle, .banner-form button.form-control,
 	.home-banner .contact-form .form-control, .col-to-action .form-control,
-	.sid-button a.btn, .export-pdf, .buttons a.btn, .post-resume form .buttons a.btn:hover
+	.sid-button .btn, .export-pdf, .buttons a.btn, .post-resume form .buttons a.btn:hover
 	{
 	border-color: #0054a6;
 }
