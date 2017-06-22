@@ -20,12 +20,21 @@ public class ResumeCtrl {
 	public String resumeView(@RequestParam(value = "userId", defaultValue = "0") String id, Model d) {
 		d.addAttribute("resume", s.oneResume(id));
 		System.out.println("id? "+id);
-		return "resume2";
+		Resume r = s.oneResume(id);
+		System.out.println(r.getUserId());
+		System.out.println(r.getName());
+		System.out.println(r.getBirthDay());
+		System.out.println(r.getCtel());
+		return "resume";
 	}
 	
 	@RequestMapping("/resume_upt.do")
 	public String uptResume(Resume r){
 		s.uptResume(r);
+		System.out.println(r.getUserId());
+		System.out.println(r.getName());
+		System.out.println(r.getBirthDay());
+		System.out.println(r.getCtel());
 		return "forward:/resume.do";
 	}
 

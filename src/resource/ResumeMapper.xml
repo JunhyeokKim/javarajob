@@ -11,8 +11,8 @@
 			BIRTHMON = #{birthMon, jdbcType=VARCHAR},
 			BIRTHDAY = #{birthDay, jdbcType=VARCHAR},
 			GENDER = #{gender, jdbcType=VARCHAR},
-			HTEL = #{hTel, jdbcType=VARCHAR},
-			CTEL = #{cTel, jdbcType=VARCHAR},
+			HTEL = #{htel, jdbcType=VARCHAR},
+			CTEL = #{ctel, jdbcType=VARCHAR},
 			EMAIL = #{email, jdbcType=VARCHAR},
 			SNS = #{sns, jdbcType=VARCHAR},
 			ADDRESS = #{address, jdbcType=VARCHAR},
@@ -74,7 +74,7 @@
 			MILITFINMON = #{militFinMon, jdbcType=VARCHAR},
 			MILITKIND = #{militKind, jdbcType=VARCHAR},
 			MILITRANK = #{militRank, jdbcType=VARCHAR}
-		WHERE USERID = #{userId, jdbcType=VARCHAR}
+		WHERE USERID = #{userId}
 	</update>
 
 	<select id="oneResume" parameterType="String" resultType="resume">

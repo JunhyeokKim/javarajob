@@ -7,8 +7,8 @@ public class Resume {
 	private int birthMon;
 	private int birthDay;
 	private String gender;
-	private String hTel;
-	private String cTel;
+	private String htel;
+	private String ctel;
 	private String email;
 	private String sns;
 	private String address;
@@ -131,20 +131,20 @@ public class Resume {
 		this.gender = gender;
 	}
 
-	public String gethTel() {
-		return hTel;
+	public String getHtel() {
+		return htel;
 	}
 
-	public void sethTel(String hTel) {
-		this.hTel = hTel;
+	public void setHtel(String htel) {
+		this.htel = htel;
 	}
 
-	public String getcTel() {
-		return cTel;
+	public String getCtel() {
+		return ctel;
 	}
 
-	public void setcTel(String cTel) {
-		this.cTel = cTel;
+	public void setCtel(String ctel) {
+		this.ctel = ctel;
 	}
 
 	public String getEmail() {

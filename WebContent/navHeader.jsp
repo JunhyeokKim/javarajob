@@ -13,9 +13,6 @@
 			$("#signOut").click(function(){
 				$(location).attr("href","${path}/accountList.do?method=signOut");
 			})
-			$("#signOut").click(function(){
-				$(location).attr("href","${path}/accountList.do?method=signOut");
-			})
 		});
   	</script>
 	</head>
