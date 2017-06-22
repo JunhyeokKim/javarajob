@@ -437,8 +437,7 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script type="text/javascript">
-	 $(".call-ajax").click(function(){
-		 var url="${path}/job-list.do?method=job-detail";
+	 $(".call-ajax").click(function(){		 
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",

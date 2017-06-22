@@ -9,7 +9,6 @@ import javarajob.service.AccountService;
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
 
-
 @Controller
 public class IndexCtrl {
 	@Autowired(required=false)
@@ -18,7 +17,6 @@ public class IndexCtrl {
 	AccountService accountService;
 	@Autowired(required=false)
 	CompService companyService;
-	
 	
 	@RequestMapping("/index.do")
 	public String listCareerforindex(Model d){	

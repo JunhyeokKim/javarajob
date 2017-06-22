@@ -56,6 +56,32 @@
 <body>
 	<!-- header 11-->
 	<jsp:include page="navHeader.jsp"/>
+	
+	<!-- ajax -->
+	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-fullsize" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">상세 정보</h4>
+                </div>
+                <div class="modal-body" id="ajax-modal-detail">
+            <!-- breadcrumb -->
+            <!-- job-details -->
+        </div>
+        <!-- container -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- ajax -->
+	
+	
 	<!-- header -->
 	<div class="banner-job">
 		<div class="banner-overlay"></div>
@@ -170,7 +196,7 @@
 				<div><!-- career list 전체 -->
 					<div class="section job-list-item">
 						<div class="featured-top">
-							<h4>검색 결과 (65), 현재 1 페이지(1-25)</h4>
+							<h4></h4>
 							<div class="dropdown pull-right">
 								<div class="dropdown category-dropdown">
 									<h5>정렬 기준:</h5>
@@ -185,7 +211,8 @@
 								<!-- category-change -->
 							</div>
 						</div><!-- featured-top -->
-						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->
+												
+						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->						
 							<div class="job-ad-item">
 								<!-- 한 줄 단위 전체 -->
 								<div class="item-info">
@@ -196,8 +223,8 @@
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a href="job-details.html" class="title">${career.title}</a>
-											@ <a href="#">${career.companyname}</a></span>
+										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
+											@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
 												<li>
@@ -335,20 +362,7 @@
 						<div class="ad-section text-center">
 							<a href="#"><img src="images/ads/3.jpg" alt="Image"
 								class="img-responsive"></a>
-						</div>
-						<div class="text-center"><!-- pagination  -->
-							<ul class="pagination ">
-								<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-								<li><a href="#">1</a></li>
-								<li class="active"><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">...</a></li>
-								<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-							</ul>
-						</div>
-						<!-- pagination  -->
+						</div>						
 					</div>
 				</div>
 				<!-- career list 전체 -->
@@ -385,5 +399,19 @@
 	<script src="js/price-range.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
+	<script type="text/javascript">
+	 $(".call-ajax").click(function(){		 
+	 		var params="companyid="+$(this).find('input[type=hidden]').val();
+	 		$.ajax({
+	 		type:"POST",
+	 		url:"${path}/job-list.do?method=job-detail",
+	 		data:params,
+	 		success:function(args){
+	 			$("#ajax-modal-detail").html(args);
+	 			$("#modal-detail").modal("show");
+	 			}
+	 		})
+	 })
+    </script>
 </body>
 </html>
