@@ -20,6 +20,8 @@ public class Career {
 	private int salary;
 	private Date postdate;
 	private Date enddate;
+	// for order
+	private int priorityOrder;
 
 	public Career() {
 	}
@@ -181,6 +183,15 @@ public class Career {
 	public void setEnddate(Date enddate) {
 		this.enddate = enddate;
 	}
+
+	public int getPriorityOrder() {
+		return priorityOrder;
+	}
+
+	public void setPriorityOrder(int priorityOrder) {
+		this.priorityOrder = priorityOrder;
+	}
+	
 	
 	
 

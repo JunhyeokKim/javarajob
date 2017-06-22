@@ -118,7 +118,35 @@ jQuery(function ($) {
         });
 
     }()); 
-	
+    
+    // -------------------------------------------------------------
+    //  joblist
+    // -------------------------------------------------------------
+    $(document).ready(function(){
+    	$(".call-ajax").click(function(){
+   		 var url="careerlist.do?method=job-detail";
+   	 		var params="companyid="+$(this).find('input[type=hidden]').val();
+   	 		$.ajax({
+   	 		type:"POST",
+   	 		url:url,
+   	 		data:params,
+   	 		success:function(args){
+   	 			$("#ajax-modal-detail").html(args);
+   	 			$("#modal-detail").modal("show");
+   	 			}
+   	 		})
+   	 })
+    })
+    
+    $(document).ready(function(){
+    	$("input[name=querytype]").val($("#quetype").text());
+    	$("#sch").click(function(){
+    		$("input[name=querytype]").val($("#quetype").text());
+    		$("form").submit();
+    	})
+    })
+    
+	 
 	
 	 // -------------------------------------------------------------
     //  select-category Change

@@ -16,7 +16,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css?ver=2">  
+	    <link rel="stylesheet" href="css/main.css">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
 		
@@ -44,7 +44,7 @@
 	</head>
 	<body>
 		<!-- header 11-->
-		<jsp:include page="navHeader.jsp"></jsp:include>
+		<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
 	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
@@ -71,6 +71,7 @@
 	
 	<section class="job-bg page job-list-page container">
 		<div class="list-view">
+	
 			<div class="breadcrumb-section">
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
@@ -80,20 +81,22 @@
 				<h2 class="title">소프트웨어 개발자</h2>
 			</div>
 
-			<div class="banner-form banner-form-full job-list-form">
-				<form action="#" method="post" name="search-form">
+			<div class="banner-form job-list-form">
+				<form action="${path }/careerlist.do?method=sch" method="post">
 					<!-- category-change -->
 					<div class="dropdown category-dropdown">						
-						<a data-toggle="dropdown" href="#"><span class="change-text">통합 검색</span> <i class="fa fa-angle-down"></i></a>
+						<a data-toggle="dropdown" href="#"><span class="change-text" id="quetype">통합 검색</span> <i class="fa fa-angle-down"></i></a>
+						<input type="hidden" name="querytype"/>
 						<ul class="dropdown-menu category-change">
+							<li><a href="#">통합 검색</a></li>
 							<li><a href="#">채용 공고</a></li>
 							<li><a href="#">기업명</a></li>
 						</ul>								
 					</div><!-- category-change -->
 				
-					<input type="text" id="search" class="form-control" placeholder="키워드, 기업 이름 검색" autocomplete="off">
-					<button type="submit" class="btn btn-primary" value="Search">검색</button>
-				</form>
+					<input type="text" id="search" name="query" class="form-control" placeholder="키워드, 기업 이름 검색" autocomplete="off">
+					<button type="button" class="btn btn-primary" value="Search" id="sch">검색</button>
+					</form>
 			</div><!-- banner-form -->
 	
 			<div class="category-info">	
@@ -117,20 +120,17 @@
 									<div id="accordion-one" class="panel-collapse collapse in">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<ul>
-												<li><a href="#">전체<span>(129)</span></a></li>
-												<li><a href="#">대기업<span>(8342)</span></a></li>
-												<li><a href="#">중소기업<span>(782)</span></a></li>
-												<li><a href="#">중견기업<span>(5247)</span></a></li>
-												<li><a href="#">외국계<span>(634)</span></a></li>
-												<li><a href="#">스타트업<span>(453)</span></a></li>
-											</ul>
+										<label for="type-0"><input type="checkbox" class="filter" name="companytype"  id="type-0" value="0"> 전체(129)</label>
+										<label for="type-1"><input type="checkbox" class="filter" name="companytype" id="type-1" value="1"> 대기업(22)</label>
+										<label for="type-2"><input type="checkbox" class="filter" name="companytype" id="type-2" value="2"> 중소기업(11)</label>
+										<label for="type-3"><input type="checkbox" class="filter" name="companytype" id="type-3" value="3"> 중견기업(5)</label>
+										<label for="type-4"><input type="checkbox" class="filter" name="companytype" id="type-4" value="4"> 스타트업(40)</label>
 											<div class="see-more">
 												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
 												<ul class="more-category one">
-													<li><a href="#">국내 공공기관<span>(289)</span></a></li>
-													<li><a href="#">병원<span>(289)</span></a></li>
-													<li><a href="#">기타<span>(3829)</span></a></li>
+													<li><label for="type-5"><input type="checkbox" class="filter" name="companytype" id="type-5" value="5"> 공공기관(40)</label></li>
+													<li><label for="type-6"><input type="checkbox" class="filter"  name="companytype" id="type-6" value="6"> 외국계 기업(40)</label></li>
+													<li><label for="type-7"><input type="checkbox" class="filter" name="companytype" id="type-7" value="7"> 기타(40)</label></li>
 												</ul>
 											</div>
 
@@ -152,19 +152,26 @@
 									<div id="accordion-two" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="field-total"><input type="checkbox" name="field-total" id="field-total"> 전체</label>
-											<label for="software-engineer"><input type="checkbox" name="software-engineer" id="software-engineer"> 소프트웨어엔지니어</label>
-											<label for="web-developer"><input type="checkbox" name="web-developer" id="web-developer"> 웹개발</label>
-											<label for="system-engineer"><input type="checkbox" name="system-engineer" id="system-engineer"> 시스템엔지니어</label>
-											<label for="network-operation"><input type="checkbox" name="network-operation" id="network-operation"> 네트워크보안/운영</label>
+											<label for="field-0"><input type="checkbox" class="filter" name="field" id="field-0" value="0"> 전체</label>
+											<label for="field-1"><input type="checkbox" class="filter" name="field" id="field-1" value="1">서버 개발자</label>
+											<label for="field-2"><input type="checkbox" class="filter" name="field" id="field-2" value="2">웹 개발자</label>
+											<label for="field-3"><input type="checkbox" class="filter" name="field" id="field-3" value="3">프론트엔드 개발자</label>
+											<label for="field-4"><input type="checkbox" class="filter" name="field" id="field-4" value="4">데이터 엔지니어</label>
 											<div class="see-more">
 												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
 												<ul class="more-category one">
-													<li><label for="game-development"><input type="checkbox" name="game-development" id="game-development"> 게임 개발</label></li>
-													<li><label for="planning"><input type="checkbox" name="planning" id="planning"> 기획</label></li>
-													<li><label for="mobile-application-development"><input type="checkbox" name="mobile-application-development" id="mobile-application-development"> 모바일앱개발</label></li>
-													<li><label for="sales"><input type="checkbox" name="sales" id="sales"> 영업기획/관리지원</label></li>
-													<li><label for="field-etc"><input type="checkbox" name="field-etc" id="field-etc"> 기타</label></li>
+													<li><label for="field-5"><input type="checkbox" class="filter" name="field" id="field-5" value="5">안드로이드 개발자</label></li>
+													<li><label for="field-6"><input type="checkbox" class="filter" name="field" id="field-6" value="6">자바 개발자</label></li>
+													<li><label for="field-7"><input type="checkbox" class="filter" name="field" id="field-7" value="7">IOS 개발자</label></li>
+													<li><label for="field-8"><input type="checkbox" class="filter" name="field" id="field-8" value="8">파이썬 개발자</label></li>
+													<li><label for="field-9"><input type="checkbox" class="filter" name="field" id="field-9" value="9">C, C++ 개발자</label></li>
+													<li><label for="field-10"><input type="checkbox" class="filter" name="field" id="field-10" value="10">Node.js 개발자</label></li>
+													<li><label for="field-11"><input type="checkbox" class="filter" name="field" id="field-11" value="11">시스템, 네트워크 관리자</label></li>
+													<li><label for="field-12"><input type="checkbox" class="filter" name="field" id="field-12" value="12">웹퍼블리셔</label></li>
+													<li><label for="field-13"><input type="checkbox" class="filter" name="field" id="field-13" value="13">그래픽 엔지니어</label></li>
+													<li><label for="field-14"><input type="checkbox" class="filter" name="field" id="field-14" value="14">보안 엔지니어</label></li>
+													<li><label for="field-15"><input type="checkbox" class="filter" name="field" id="field-15" value="15">프로덕트 매니저</label></li>
+													<li><label for="field-16"><input type="checkbox" class="filter" name="field"  id="field-16" value="16">QA, 테스트 엔지니어</label></li>
 												</ul>
 											</div>
 											
@@ -187,22 +194,28 @@
 									<div id="accordion-three" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<input type="text" placeholder="상세 지역명을 입력하세요" class="form-control">
-											<label for="location-total"><input type="checkbox" name="location-total" id="location-total"> 전체</label>
-											<label for="seoul"><input type="checkbox" name="seoul" id="seoul"> 서울</label>
-											<label for="gyongi"><input type="checkbox" name="gyongi" id="gyongi"> 경기</label>
-											<label for="incheon"><input type="checkbox" name=incheon id="incheon"> 인천</label>
-											<label for="chungnam"><input type="checkbox" name="chungnam" id="chungnam"> 충남</label>
+										<label for="location-17"><input type="checkbox" class="filter" name="location" id="location-17" value="17" >전국</label>
+										<label for="location-1"><input type="checkbox" class="filter" name="location" id="location-1" value="1" >서울</label>
+										<label for="location-2"><input type="checkbox" class="filter" name="location" id="location-2" value="2" >경기</label>
+										<label for="location-3"><input type="checkbox" class="filter" name="location" id="location-3" value="3" >광주</label>
+										<label for="location-4"><input type="checkbox" class="filter" name="location" id="location-4" value="4" >대구</label>
+										<label for="location-5"><input type="checkbox" class="filter" name="location" id="location-5" value="5" >대전</label>
+										<label for="location-6"><input type="checkbox" class="filter" name="location" id="location-6" value="6" >부산</label>
 											<div class="see-more">
 												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
 												<ul class="more-category one">
-													<li><label for="daegu"><input type="checkbox" name="daegu" id="daegu"> 대구</label></li>
-													<li><label for="busan"><input type="checkbox" name="busan" id="busan"> 부산</label></li>
-													<li><label for="daejeon"><input type="checkbox" name="daejeon" id="daejeon"> 대전</label></li>
-													<li><label for="gyeongbuk"><input type="checkbox" name="gyeongbuk" id="gyeongbuk"> 경북</label></li>
-													<li><label for="gyeongnam"><input type="checkbox" name="gyeongnam" id="gyeongnam"> 경남</label></li>
-													<li><label for="gangwon"><input type="checkbox" name="gangwon" id="gangwon"> 강원</label></li>
-													<li><label for="location-etc"><input type="checkbox" name="location-etc" id="location-etc"> 기타</label></li>
+													<li><label for="location-7"><input type="checkbox" class="filter" name="location" id="location-7" value="7" >울산</label></li>
+													<li><label for="location-8"><input type="checkbox" class="filter" name="location" id="location-8" value="8" >인천</label></li>
+													<li><label for="location-9"><input type="checkbox" class="filter" name="location" id="location-9" value="9" >강원</label></li>
+													<li><label for="location-10"><input type="checkbox" class="filter" name="location" id="location-10" value="10" >경남</label></li>
+													<li><label for="location-11"><input type="checkbox" class="filter" name="location" id="location-11" value="11" >경북</label></li>
+													<li><label for="location-12"><input type="checkbox" class="filter" name="location" id="location-12" value="12" >전남</label></li>
+													<li><label for="location-13"><input type="checkbox" class="filter" name="location" id="location-13" value="13" >전북</label></li>
+													<li><label for="location-14"><input type="checkbox" class="filter" name="location" id="location-14" value="14" >충북</label></li>
+													<li><label for="location-15"><input type="checkbox" class="filter" name="location" id="location-15" value="15" >충남</label></li>
+													<li><label for="location-16"><input type="checkbox" class="filter" name="location" id="location-16" value="16" >제주</label></li>
+													<li><label for="location-18"><input type="checkbox" class="filter" name="location" id="location-18" value="18" >세종</label></li>
+													<li><label for="location-19"><input type="checkbox" class="filter" name="location" id="location-19" value="19" >기타해외</label></li>
 												</ul>
 											</div>
 											
@@ -224,25 +237,15 @@
 									<div id="accordion-four" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="industry-total"><input type="checkbox" name="industry-total" id="industry-total"> 전체</label>
-											<label for="solution/si/erp/crm"><input type="checkbox" name="solution/si/erp/crm" id="solution/si/erp/crm">솔루션/SI/ERP/CRM</label>
-											<label for="machinary/auto"><input type="checkbox" name="machinary/auto" id="machinary/auto"> 기계/설비/자동차</label>
-											<label for="sales"><input type="checkbox" name="sales" id="sales"> 판매유통</label>
-											<label for="game"><input type="checkbox" name="game" id="game"> 게임</label>
-											<div class="see-more">
-												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
-												<ul class="more-category one">
-													<li><label for="portal/internet/content"><input type="checkbox" name="portal/internet/content" id="portal/internet/content"> 포털/인터넷/컨텐츠</label></li>
-													<li><label for="electronic"><input type="checkbox" name="electronic" id="electronic"> 전기/전자/제어</label></li>
-													<li><label for="chemical/energy"><input type="checkbox" name="chemical/energy" id="chemical/energy"> 석유/화학/에너지</label></li>
-													<li><label for="lab/research"><input type="checkbox" name="lab/research" id="lab/research"> 연구소/컨설팅/조사</label></li>
-													<li><label for="ad"><input type="checkbox" name="ad" id="ad"> 광고/홍보/전시</label></li>
-													<li><label for="semiconductor"><input type="checkbox" name="semiconductor" id="semiconductor"> 반도체/광학/디스플레이</label></li>
-													<li><label for="industry-etc"><input type="checkbox" name="industry-etc" id="industry-etc"> 기타</label></li>
-												</ul>
-											</div>
-											
-											
+											<label for="industry-0"><input type="checkbox" class="filter" name="industry" id="industry-0" value="0"> 전체</label>
+											<label for="industry-1"><input type="checkbox" class="filter" name="industry" id="industry-1" value="1">서비스업</label>
+											<label for="industry-2"><input type="checkbox" class="filter" name="industry" id="industry-2" value="2">생산/제조</label>
+											<label for="industry-3"><input type="checkbox" class="filter" name="industry" id="industry-3" value="3">IT/인터넷</label>
+											<label for="industry-4"><input type="checkbox" class="filter" name="industry" id="industry-4" value="4">연구개발/설계</label>
+											<label for="industry-5"><input type="checkbox" class="filter" name="industry" id="industry-5" value="5">전문/특수직</label>
+											<label for="industry-6"><input type="checkbox" class="filter" name="industry" id="industry-6" value="6">미디어</label>
+											<label for="industry-7"><input type="checkbox" class="filter" name="industry" id="industry-7" value="7">서비스</label>
+											<label for="industry-8"><input type="checkbox" class="filter" name="industry" id="industry-8" value="8">건설</label>
 										</div><!-- panel-body -->
 									</div>
 								</div><!-- panel -->
@@ -260,55 +263,17 @@
 									<div id="accordion-five" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="hiretype-total"><input type="checkbox" name="hiretype-total" id="hiretype-total"> 전체</label>
-											<label for="full-time"><input type="checkbox" name="full-time" id="full-time">정규직</label>
-											<label for="part-time"><input type="checkbox" name="part-time" id="part-time"> 계약직</label>
-											<label for="intern"><input type="checkbox" name="intern" id="intern"> 인턴</label>
-											<label for="freelancer"><input type="checkbox" name="freelancer" id="freelancer"> 프리랜서</label>
-											<div class="see-more">
-												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
-												<ul class="more-category one">
-													<li><label for="arbeit"><input type="checkbox" name="arbeit" id="arbeit"> 아르바이트</label></li>
-													<li><label for="hiretype-etc"><input type="checkbox" name="hiretype-etc" id="hiretype-etc"> 기타</label></li>
-												</ul>
-											</div>
-											
-											
+											<label for="emptype-0"><input type="checkbox" class="filter" name="employmenttype" id="emptype-0">전체</label>
+											<label for="emptype-1"><input type="checkbox" class="filter" name="employmenttype" id="emptype-1">정규직</label>
+											<label for="emptype-2"><input type="checkbox" class="filter" name="employmenttype" id="emptype-2">계약직</label>
+											<label for="emptype-3"><input type="checkbox" class="filter" name="employmenttype" id="emptype-3">병역특례</label>
+											<label for="emptype-4"><input type="checkbox" class="filter" name="employmenttype" id="emptype-4">인턴직</label>
+											<label for="emptype-5"><input type="checkbox" class="filter" name="employmenttype" id="emptype-5">시간제/일용직</label>
+											<label for="emptype-9"><input type="checkbox" class="filter" name="employmenttype" id="emptype-9">프리랜서</label>
 										</div><!-- panel-body -->
 									</div>
 								</div><!-- panel -->
 								
-								<!-- panel -->
-								<div class="panel panel-default panel-faq">
-									<!-- panel-heading -->
-									<div class="panel-heading">
-										<div class="panel-title"></div>
-										<a data-toggle="collapse" data-parent="#accordion" href="#accordion-six">
-											<h4>기업<span class="pull-right"><i class="fa fa-plus"></i></span></h4>
-										</a>
-									</div><!-- panel-heading -->
-
-									<div id="accordion-six" class="panel-collapse collapse">
-										<!-- panel-body -->
-										<div class="panel-body">
-											<input type="text" placeholder="Search Company" class="form-control">
-											<label for="apple"><input type="checkbox" name="apple" id="apple"> Apple</label>
-											<label for="dropbox"><input type="checkbox" name="dropbox" id="dropbox"> Dropbox</label>
-											<label for="micromax"><input type="checkbox" name="micromax" id="micromax"> Micromax</label>
-											<label for="nokia"><input type="checkbox" name="nokia" id="nokia"> Nokia</label>
-											<label for="microsoft"><input type="checkbox" name="microsoft" id="microsoft"> Microsoft</label>
-											<label for="samsung"><input type="checkbox" name="samsung" id="samsung"> Samsung</label>
-											<div class="see-more">
-												<button type="button" class="show-more two"><i class="fa fa-plus-square-o" aria-hidden="true"></i>See More</button>
-												<div class="more-category two">
-													<label for="blackBerry"><input type="checkbox" name="blackBerry" id="blackBerry">BlackBerry</label>
-													<label for="motorola"><input type="checkbox" name="motorola" id="motorola">Motorola</label>
-													<label for="lenovo"><input type="checkbox" name="lenovo" id="lenovo">Lenovo</label>
-												</div>
-											</div>											
-										</div><!-- panel-body -->
-									</div>
-								</div> <!-- panel -->
 							 </div><!-- panel-group -->
 						</div>
 					</div><!-- accordion-->
@@ -320,7 +285,7 @@
 					<div class="col-sm-8 col-md-7">				
 						<div class="section job-list-item">
 							<div class="featured-top">
-								<h4>검색 결과 (65), 현재 1 페이지(1-25)</h4>
+								<h4>모든 채용 정보  (${totCareerCnt }), 현재 1 페이지(1-25)</h4>
 								<div class="dropdown pull-right">
 									<div class="dropdown category-dropdown">
 										<h5>정렬 기준:</h5>						
@@ -434,22 +399,7 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
-    <script src="js/main.js"></script>
+    <script src="js/main.js?ver=2"></script>
 	<script src="js/switcher.js"></script>
-	 <script type="text/javascript">
-	 $(".call-ajax").click(function(){
-		 var url="${path}/job-list.do?method=job-detail";
-	 		var params="companyid="+$(this).find('input[type=hidden]').val();
-	 		$.ajax({
-	 		type:"POST",
-	 		url:"${path}/job-list.do?method=job-detail",
-	 		data:params,
-	 		success:function(args){
-	 			$("#ajax-modal-detail").html(args);
-	 			$("#modal-detail").modal("show");
-	 			}
-	 		})
-	 })
-    </script>
   </body>
 </html>
