@@ -37,5 +37,9 @@ public class CareerService {
 	public ArrayList<Career> listCareerforindex() {
 		return dao.listCareerforindex();
 	}
+	
+	public int getCount(){
+		return dao.getCount();
+	}
 
 }

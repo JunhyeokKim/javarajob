@@ -34,6 +34,7 @@
 		</if>
 		order by sysdate desc
 	</select>
+	
 	<select id="getCareer" parameterType="int" resultType="career">
 		select * from CAREER 
 		where careerid = #{careerid}
@@ -58,6 +59,9 @@
 	<select id="listCareerforindex" resultMap="careerResult">
 		SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, A.EMPLOYMENTTYPE, A.COMPANYID,B.COMPANYNAME, A.TITLE, A.SALARY, A.TASK, A.REQUIREMENTS, A.PREFERENCE, A.WORKINGCONDITION, A.POSTDATE, A.ENDDATE FROM CAREER A, COMPANY B WHERE A.COMPANYID=B.COMPANYID ORDER BY POSTDATE DESC
 	</select>
-		
+	
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*) FROM CAREER
+	</select>	
 		
 </mapper>

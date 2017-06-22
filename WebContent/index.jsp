@@ -60,8 +60,8 @@
 	<div class="banner-job">
 		<div class="banner-overlay"></div>
 		<div class="container text-center">
-			<h1 class="title">The Easiest Way to Get Your New Job</h1>
-			<h3>We offer 12000 jobs vacation right now</h3>
+			<h1 class="title">당신이 일자리를 찾는 가장 쉬운 방법</h1>
+			<h2>JAVARAJOB</h2>
 			<div class="section cta cta-two text-center">
 				<div class="row">
 					<div class="col-sm-4">
@@ -70,9 +70,9 @@
 								<img src="images/icon/31.png" alt="Icon" class="img-responsive">
 							</div>
 							<!-- cta-icon -->
-							<h3>3,412</h3>
+							<h3>${careerCount}</h3>
 							<h4>Live Jobs</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+							<p>JAVARAJOB은 어느 사이트보다 많은 일자리를 제공합니다</p>
 						</div>
 					</div>
 					<!-- single-cta -->
@@ -84,9 +84,9 @@
 								<img src="images/icon/32.png" alt="Icon" class="img-responsive">
 							</div>
 							<!-- cta-icon -->
-							<h3>12,043</h3>
+							<h3>${companyCount}</h3>
 							<h4>Total Company</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+							<p>JAVARAJOB은 방대하고 다양한 기업정보를 제공합니다</p>
 						</div>
 					</div>
 					<!-- single-cta -->
@@ -97,9 +97,9 @@
 								<img src="images/icon/33.png" alt="Icon" class="img-responsive">
 							</div>
 							<!-- cta-icon -->
-							<h3>5,798,298</h3>
+							<h3>${accountCount}</h3>
 							<h4>Total Candidate</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+							<p>JAVARAJOB은 가장 많은 회원을 보유하고 있습니다</p>
 						</div>
 					</div>
 					<!-- single-cta -->

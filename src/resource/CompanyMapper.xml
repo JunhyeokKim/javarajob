@@ -24,4 +24,7 @@
 	select * from company
 	where companyid= #{companyid}
 	</select>
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*) FROM COMPANY
+	</select>	
 </mapper>
