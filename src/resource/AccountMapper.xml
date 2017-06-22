@@ -52,7 +52,7 @@
 	
 	<insert id="insertResume" parameterType="String">
 		INSERT INTO RESUME(USERID, NAME, CTEL, EMAIL, ADDRESS) VALUES(
-			#{id},#{name},#{phone},#{email},#{address}
+			#{id}, #{name}, #{phone}, #{email}, #{address}
 		)
 	</insert>
 	

@@ -46,8 +46,8 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".export-pdf").click(function(){
-			$("form").submit();
+		$("#saveResume").click(function(){
+			$("form").submit;
 		})
 	})
 </script>
@@ -56,7 +56,7 @@
 	<!-- header -->
 	<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
-	<form method="post" >
+	<form method="get" action="${path}/resume_upt.do" >
 	<input type="hidden" name="userId" value="${id}" />
 	<div class="main-tab ng-scope" >
 		<div class="spec-ctrl ng-scope">
@@ -64,8 +64,9 @@
 				<div class="section-container spec-saver">
 					<div class="section-title">
 						이력서
-						<div class="export-pdf">저장하기</div>
+						<div id="#saveResume" class="export-pdf">저장하기</div>
 					</div>
+					<input type="submit" value="dddd" />
 					<div class="section-content new ng-scope" >
 						<div class="specs edit-spec ng-scope basic-information" >
 							<div class="subtitle ng-scope" >
@@ -113,7 +114,7 @@
 																	${2017-year}
 																</option>
 															</c:if>
-															<c:if test="${resume.birthIniYear ne 2017-year}">
+															<c:if test="${resume.birthYear ne 2017-year}">
 																<option	value="${2017-year}" class="ng-binding ng-scope">
 																	${2017-year}
 																</option>
@@ -156,7 +157,7 @@
 													<th>성별</th>
 													<td>
 														<select	class="ng-pristine ng-untouched ng-valid" name="gender">
-															<c:if test="${resume.gender eq ''}">
+															<c:if test="${resume.gender eq null}">
 																<option value="" selected="selected">-</option>
 																<option value="0">남자</option>
 																<option value="1">여자</option>
@@ -183,7 +184,7 @@
 													<th>휴대폰번호</th>
 													<td colspan="3">
 														<input type="text" class="ng-pristine ng-untouched ng-valid"
-															name="cTel" value="${resume.hTel }" />
+															name="cTel" value="${resume.cTel }" />
 													</td>
 												</tr>
 												<tr>
@@ -233,17 +234,23 @@
 												<tr>
 													<th>보훈사항</th>
 														<td colspan="3">
-															<c:if test="${resume.vete eq 'tru'}">
+															<c:if test="${resume.vete eq 'true'}">
 																<input type="radio" name="vete" checked="checked"
-																value="tru" class="ng-pristine ng-untouched ng-valid" />대상
-																<input type="radio" name="vete" value="fals"
+																value="true" class="ng-pristine ng-untouched ng-valid" />대상
+																<input type="radio" name="vete" value="false"
 																class="ng-pristine ng-untouched ng-valid" />비대상
 															</c:if>
-															<c:if test="${resume.vete eq 'fals'}">
-																<input type="radio" name="vete" value="tru"
+															<c:if test="${resume.vete eq 'false'}">
+																<input type="radio" name="vete" value="true"
 																	class="ng-pristine ng-untouched ng-valid" />대상
-																<input type="radio" name="vete" value="fals"
+																<input type="radio" name="vete" value="false"
 																	checked="checked"
+																	class="ng-pristine ng-untouched ng-valid" />비대상
+															</c:if>
+															<c:if test="${resume.vete eq null}">
+																<input type="radio" name="vete" value="true"
+																	class="ng-pristine ng-untouched ng-valid" />대상
+																<input type="radio" name="vete" value="false"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
 															</c:if>
 														</td>
@@ -263,11 +270,25 @@
 															type="radio" name="handi" value="false" checked="checked"
 															class="ng-pristine ng-untouched ng-valid" />비대상
 														</c:if>
+														<c:if test="${resume.handi eq null}">
+														<input type="radio" name="handi" value="true"
+															class="ng-pristine ng-untouched ng-valid" />대상 <input
+															type="radio" name="handi" value="false"
+															class="ng-pristine ng-untouched ng-valid" />비대상
+														</c:if>
 													</td>
 												</tr>
 												<tr>
 													<th>병역구분</th>
 													<td>
+														<c:if test="${resume.milit eq null }">
+														<input type="radio" name="milit"
+															class="ng-pristine ng-untouched ng-valid" value="0" />군필
+															<input type="radio" name="milit"
+															class="ng-pristine ng-untouched ng-valid" value="1" />미필
+															<input type="radio" name="milit"
+															class="ng-pristine ng-untouched ng-valid" value="2" />면제
+														</c:if>
 														<c:if test="${resume.milit eq '0' }">
 														<input type="radio" name="milit" checked="checked"
 															class="ng-pristine ng-untouched ng-valid" value="0" />군필
@@ -298,11 +319,11 @@
 														<select class="ng-pristine ng-untouched ng-valid" name="militIniYear">
 															<option value="">-</option>
 																<c:forEach var="year" begin="0" end="63" step="1">
-																	<c:if test="${resume.militIniYear eq year}">
+																	<c:if test="${resume.militIniYear eq 2017-year}">
 																		<option value="${2017-year}" selected="selected"
 																			class="ng-binding ng-scope">${2017-year}</option>
 																	</c:if>
-																	<c:if test="${resume.militIniYear ne year}">
+																	<c:if test="${resume.militIniYear ne 2017-year}">
 																		<option value="${2017-year}"
 																			class="ng-binding ng-scope">${2017-year}</option>
 																	</c:if>
@@ -325,7 +346,7 @@
 														<select class="ng-pristine ng-untouched ng-valid" name="militFinYear">
 															<option value="">-</option>
 																<c:forEach var="year" begin="0" end="63" step="1">
-																	<c:if test="${resume.militFinYear eq year}">
+																	<c:if test="${resume.militFinYear eq 2017-year}">
 																		<option value="${2017-year}" selected="selected"
 																			class="ng-binding ng-scope">${2017-year}</option>
 																	</c:if>
@@ -451,7 +472,7 @@
 												<th>분류</th>
 												<td>
 													<select class="select-to-save ng-pristine ng-untouched ng-valid" name="highKind">
-														<c:if test="${resume.highKind eq ''}">
+														<c:if test="${resume.highKind eq null}">
 															<option value="" selected="selected">-</option>
 															<option value="0">문과</option>
 															<option value="1">이과</option>
@@ -544,13 +565,13 @@
 													<select class="ng-pristine ng-untouched ng-valid" name="univFinYear">
 														<option value="">-</option>
 														<c:forEach var="year" begin="0" end="68" step="1">
-															<c:if test="${resume.univFinYear eq 2017-year}">
-																<option value="${2017-year}" selected="selected"
-																	class="ng-binding ng-scope">${2017-year}</option>
+															<c:if test="${resume.univFinYear eq 2022-year}">
+																<option value="${2022-year}" selected="selected"
+																	class="ng-binding ng-scope">${2022-year}</option>
 															</c:if>
-															<c:if test="${resume.univFinYear ne 2017-year}">
-																<option value="${2017-year}"
-																	class="ng-binding ng-scope">${2017-year}</option>
+															<c:if test="${resume.univFinYear ne 2022-year}">
+																<option value="${2022-year}"
+																	class="ng-binding ng-scope">${2022-year}</option>
 															</c:if>
 														</c:forEach>
 													</select>
@@ -577,7 +598,7 @@
 												<th>분류</th>
 												<td>
 													<select class="ng-pristine ng-untouched ng-valid" name="univKind" >
-														<c:if test="${resume.univKind eq ''}">
+														<c:if test="${resume.univKind eq null}">
 															<option value="" selected="selected">-</option>
 															<option value="0">2년제</option>
 															<option value="1">3년제</option>
@@ -681,13 +702,13 @@
 													<select class="ng-pristine ng-untouched ng-valid" name="graduFinYear">
 														<option value="">-</option>
 														<c:forEach var="year" begin="0" end="68" step="1">
-															<c:if test="${resume.graduFinYear eq 2017-year }">
-																<option value="${2017-year}" selected="selected"
-																	class="ng-binding ng-scope">${2017-year}</option>
+															<c:if test="${resume.graduFinYear eq 2022-year }">
+																<option value="${2022-year}" selected="selected"
+																	class="ng-binding ng-scope">${2022-year}</option>
 															</c:if>
-															<c:if test="${resume.graduFinYear ne 2017-year }">
-																<option value="${2017-year}"
-																	class="ng-binding ng-scope">${2017-year}</option>
+															<c:if test="${resume.graduFinYear ne 2022-year }">
+																<option value="${2022-year}"
+																	class="ng-binding ng-scope">${2022-year}</option>
 															</c:if>
 														</c:forEach>
 													</select>
@@ -711,7 +732,7 @@
 												<th>분류</th>
 												<td>
 													<select class="ng-pristine ng-untouched ng-valid" name="graduKind" >
-														<c:if test="${resume.graduKind eq ''}">
+														<c:if test="${resume.graduKind eq null}">
 															<option value="" selected="selected">-</option>
 															<option value="3">석사과정</option>
 															<option value="4">박사과정</option>

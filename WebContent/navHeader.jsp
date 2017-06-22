@@ -13,6 +13,9 @@
 			$("#signOut").click(function(){
 				$(location).attr("href","${path}/accountList.do?method=signOut");
 			})
+			$("#signOut").click(function(){
+				$(location).attr("href","${path}/accountList.do?method=signOut");
+			})
 		});
   	</script>
 	</head>
@@ -44,7 +47,7 @@
 								</ul>
 							</li>							
 							<c:if test="${not empty id}">
-							<li><a href="${path}/resume.do">이력서</a></li>
+							<li><a href="${path}/resume.do?userId=${id}">이력서</a></li>
 							<li><a href="${path}/self_intro.do">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
