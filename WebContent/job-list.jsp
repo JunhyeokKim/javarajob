@@ -298,7 +298,7 @@
 								</div>							
 							</div><!-- featured-top -->	
 
-							<c:forEach var="company" varStatus="status" items="${companyList }">
+							<c:forEach var="company" varStatus="status" items="${companyMap }">
 							<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
@@ -306,13 +306,13 @@
 											<a href="job-details.html"><img src="images/job/1.png" alt="Image" class="img-responsive"></a>
 										</div><!-- item-image -->
 									</div>
-									<input type="hidden" name="companyid" value="${company.companyid }"/>
+									<input type="hidden" name="companyid" value="${company.value.companyid }"/>
 									<div class="ad-info" style="width:80%">
-										<h3><span><a class="call-ajax">${company.companyname }<input type="hidden" value="${company.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
-										<h5><a class="title">${company.shortinfo }</a></h5>
+										<h3><span><a class="call-ajax">${company.value.companyname }<input type="hidden" value="${company.value.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
+										<h5><a class="title">${company.value.shortinfo }</a></h5>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
-										<c:forEach var="career" items="${company.careers }">
+										<c:forEach var="career" items="${company.value.careers }">
 											<div class="position-item">
 												<span><a href="job-details.html">${career.title }</a></span>
 												<ul>
@@ -399,7 +399,7 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
-    <script src="js/main.js?ver=3"></script>
+    <script src="js/main.js?ver=1"></script>
 	<script src="js/switcher.js"></script>
   </body>
 </html>

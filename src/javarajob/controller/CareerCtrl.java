@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import javarajob.service.CompService;
 import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
-import javarajob.vo.Company_Sch;
 
 @Controller
 @RequestMapping("/careerlist.do")
@@ -29,41 +29,41 @@ public class CareerCtrl {
 	CompService compService;
 
 	@RequestMapping(params = "method=sch")
-	public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
+	public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
 			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType, Career_Sch careerSch,
 			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
 		int totCareerCnt = 0;
 		ArrayList<Company> dtoCompList = new ArrayList<>();
 		ArrayList<Career> totCareerList = new ArrayList<>();
-		HashMap<Integer, Company> companys = new HashMap<>();
+		HashMap<String, Company> companys = new HashMap<>();
 		Descending<Career> descOrderObj = new Descending<>();
 		AscendingCareer AscOrderObj = new AscendingCareer();
 		queryType = queryType.trim();
-		query=query.trim();
+		query = query.trim();
 		System.out.println("querytype: " + queryType);
 		System.out.println("query: " + query);
-		if (queryType.equals("채용 공고")) {
+		if (queryType.equals("통합 검색")) {
+			careerSch.setCompanyname(query);
+			careerSch.setTitle(query);
+		} else if (queryType.equals("채용 공고")) {
 			careerSch.setTitle(query);
 		} else if (queryType.equals("기업명")) {
-			careerSch.setCompanyname(query);
-		} else if (queryType.equals("통합 검색")) {
-			careerSch.setTitle(query);
 			careerSch.setCompanyname(query);
 		}
 
 		totCareerList = careerService.listCareer(careerSch);
 		totCareerCnt = totCareerList.size();
 		for (Career career : totCareerList) {
-			if (!companys.containsKey(career.getCompanyid())) {
+			if (!companys.containsKey(String.valueOf(career.getCompanyid()))) {
 				Company vo = compService.getCompany(career.getCompanyid());
-				ArrayList<Career> allocCareers= new ArrayList<>();
+				ArrayList<Career> allocCareers = new ArrayList<>();
 				allocCareers.add(career);
 				vo.setCareers(allocCareers);
-				companys.put(career.getCompanyid(), vo);
+				companys.put(String.valueOf(career.getCompanyid()), vo);
 			} else {
-				Company vo = companys.get(career.getCompanyid());
+				Company vo = companys.get(String.valueOf(career.getCompanyid()));
 				vo.getCareers().add(career);
-				companys.put(career.getCompanyid(), vo);
+				companys.put(String.valueOf(career.getCompanyid()), vo);
 			}
 		}
 		for (Company company : companys.values()) {
@@ -76,7 +76,7 @@ public class CareerCtrl {
 		} else if (orderby.equals("asc")) {
 			Collections.sort(totCareerList, AscOrderObj);
 		}
-		d.addAttribute("companyList", dtoCompList);
+		session.setAttribute("companyMap", companys);
 		d.addAttribute("totCareerCnt", totCareerCnt);
 		d.addAttribute("totCompanyCnt", dtoCompList.size());
 		// d.addAttribute("careerList",careerService.listCareer(careerSch));
@@ -84,12 +84,10 @@ public class CareerCtrl {
 	}
 
 	@RequestMapping(params = "method=job-detail")
-	public String getCompanyInfo(@RequestParam(value = "companyid") int companyid, Model d) {
-		Company dto = compService.getCompany(companyid);
-		Career_Sch sch = new Career_Sch();
-		sch.setCompanyid(companyid);
-		dto.setCareers(careerService.listCareer(sch));
-		d.addAttribute("company", dto);
+	public String getCompanyInfo(@RequestParam(value = "companyid", defaultValue = "-1") int companyid,
+			HttpSession session, Model d) {
+		HashMap<String, Company> companyMap = (HashMap<String, Company>) session.getAttribute("companyMap");
+		d.addAttribute("company", companyMap.get(String.valueOf(companyid)));
 		return "ajaxJobSearch";
 	}
 

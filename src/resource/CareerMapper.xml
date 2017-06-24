@@ -8,45 +8,51 @@
 		insert into ACCOUNT values(#{name},#{id},#{password},#{email},#{phone},#{address},#{interest},sysdate)
 	</insert>
 	<select id="listCareer" resultMap="careerResult" parameterType="careerSch">
-		select A.*, B.companyname from CAREER A, COMPANY B
+		select c.* from
+		(select a.*, b.COMPANYNAME 
+		from career a, company b 
+		where a.COMPANYID=b.COMPANYID) c
 		where 1=1
-		and A.companyid= B.companyid
 		<if test="careerid!=null and careerid!=''">
-			and careerid = #{careerid}
+			and c.careerid = #{careerid}
 		</if>
-		<if test="title!=null and title!=''">
-			and title like '%' || #{title} || '%'
-		</if>
-		
-		<if test="companyname!=null and companyname!=''">
-			and companyname like '%' || #{companyname} || '%'
-		</if>
+		<choose>
+			<when test="(title!=null and companyname==null)">
+				and c.title like '%' || #{title} || '%'
+			</when>
+			<when test="(companyname!=null and title==null)">
+				and c.companyname like '%' || #{companyname} || '%'
+			</when>
+			<otherwise>
+				and c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%'  
+			</otherwise>
+		</choose>
 		<if test="companytype!=null">
-			and companytype in
+			and c.companytype in
 			<foreach collection="companytype" item="ckcomptype" open="(" close=")" separator=",">
 	 			#{ckcomptype}
 	 		</foreach>
 		</if>
 		<if test="location!=null">
-			and location in 
+			and c.location in 
 			<foreach collection="location" item="cklocation" open="(" close=")" separator=",">
 	 			#{cklocation}
 	 		</foreach>
 		</if>
 		<if test="field!=null">
-			and field in
+			and c.field in
 			<foreach collection="field" item="ckfield" open="(" close=")" separator=",">
 	 			#{ckfield}
 	 		</foreach>
 		</if>
 		<if test="industry!=null">
-			and industry in 
+			and c.industry in 
 			<foreach collection="industry" item="ckindustry" open="(" close=")" separator=",">
 	 			#{ckindustry}
 	 		</foreach>
 		</if>
 		<if test="employmenttype!=null">
-			and employmenttype in 
+			and c.employmenttype in 
 			<foreach collection="employmenttype" item="ckemptype" open="(" close=")" separator=",">
 	 			#{ckemptype}
 	 		</foreach>
