@@ -39,6 +39,7 @@ public class CareerCtrl {
 		Descending<Career> descOrderObj = new Descending<>();
 		AscendingCareer AscOrderObj = new AscendingCareer();
 		queryType = queryType.trim();
+		query=query.trim();
 		System.out.println("querytype: " + queryType);
 		System.out.println("query: " + query);
 		if (queryType.equals("채용 공고")) {
@@ -55,7 +56,9 @@ public class CareerCtrl {
 		for (Career career : totCareerList) {
 			if (!companys.containsKey(career.getCompanyid())) {
 				Company vo = compService.getCompany(career.getCompanyid());
-				vo.getCareers().add(career);
+				ArrayList<Career> allocCareers= new ArrayList<>();
+				allocCareers.add(career);
+				vo.setCareers(allocCareers);
 				companys.put(career.getCompanyid(), vo);
 			} else {
 				Company vo = companys.get(career.getCompanyid());
@@ -63,7 +66,6 @@ public class CareerCtrl {
 				companys.put(career.getCompanyid(), vo);
 			}
 		}
-
 		for (Company company : companys.values()) {
 			dtoCompList.add(company);
 		}

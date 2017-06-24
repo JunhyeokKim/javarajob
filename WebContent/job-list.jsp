@@ -85,17 +85,17 @@
 				<form action="${path }/careerlist.do?method=sch" method="post">
 					<!-- category-change -->
 					<div class="dropdown category-dropdown">						
-						<a data-toggle="dropdown" href="#"><span class="change-text" id="quetype">통합 검색</span> <i class="fa fa-angle-down"></i></a>
-						<input type="hidden" name="querytype"/>
+						<a data-toggle="dropdown" href="#" class="dropdown-quetype"><span class="change-text" id="quetype">통합 검색</span> <i class="fa fa-angle-down"></i></a>
+						<input type="hidden" name="querytype" value="통합 검색"/>
 						<ul class="dropdown-menu category-change">
-							<li><a href="#">통합 검색</a></li>
-							<li><a href="#">채용 공고</a></li>
-							<li><a href="#">기업명</a></li>
+							<li><a class="dropdown-quetype" href="#">통합 검색</a></li>
+							<li><a class="dropdown-quetype" href="#">채용 공고</a></li>
+							<li><a class="dropdown-quetype" href="#">기업명</a></li>
 						</ul>								
 					</div><!-- category-change -->
 				
 					<input type="text" id="search" name="query" class="form-control" placeholder="키워드, 기업 이름 검색" autocomplete="off">
-					<button type="button" class="btn btn-primary" value="Search" id="sch">검색</button>
+					<button type="submit" class="btn btn-primary" value="Search" id="sch">검색</button>
 					</form>
 			</div><!-- banner-form -->
 	
@@ -399,7 +399,7 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
-    <script src="js/main.js?ver=2"></script>
+    <script src="js/main.js?ver=3"></script>
 	<script src="js/switcher.js"></script>
   </body>
 </html>
