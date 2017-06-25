@@ -24,7 +24,7 @@
 				and c.companyname like '%' || #{companyname} || '%'
 			</when>
 			<otherwise>
-				and c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%'  
+				and (c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%')  
 			</otherwise>
 		</choose>
 		<if test="companytype!=null">
@@ -56,6 +56,7 @@
 			<foreach collection="employmenttype" item="ckemptype" open="(" close=")" separator=",">
 	 			#{ckemptype}
 	 		</foreach>
+	 		orderby postdate asc;
 		</if>
 	</select>
 	<select id="getCareer" parameterType="int" resultType="career">

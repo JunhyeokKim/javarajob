@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
@@ -22,16 +23,21 @@ import javarajob.vo.Company;
 
 @Controller
 @RequestMapping("/careerlist.do")
+@SessionAttributes("careerSch")
 public class CareerCtrl {
 	@Autowired(required = false)
 	CareerService careerService;
 	@Autowired(required = false)
 	CompService compService;
+	@ModelAttribute("careerSch")
+	public Career_Sch Career_sch(){
+		return new Career_Sch();
+	}
 
 	@RequestMapping(params = "method=sch")
 	public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
-			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType, Career_Sch careerSch,
-			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
+			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType, @ModelAttribute("careerSch")Career_Sch careerSch,
+			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, @RequestParam(value="page", defaultValue="1") int page, Model d) {
 		int totCareerCnt = 0;
 		ArrayList<Company> dtoCompList = new ArrayList<>();
 		ArrayList<Career> totCareerList = new ArrayList<>();
@@ -54,6 +60,9 @@ public class CareerCtrl {
 		totCareerList = careerService.listCareer(careerSch);
 		totCareerCnt = totCareerList.size();
 		for (Career career : totCareerList) {
+			// TODO: paging 처리는 controller에서 하면 될듯
+			if(companys.size()>2)
+				break;
 			if (!companys.containsKey(String.valueOf(career.getCompanyid()))) {
 				Company vo = compService.getCompany(career.getCompanyid());
 				ArrayList<Career> allocCareers = new ArrayList<>();
@@ -79,6 +88,7 @@ public class CareerCtrl {
 		session.setAttribute("companyMap", companys);
 		d.addAttribute("totCareerCnt", totCareerCnt);
 		d.addAttribute("totCompanyCnt", dtoCompList.size());
+		d.addAttribute("queType",queryType);
 		// d.addAttribute("careerList",careerService.listCareer(careerSch));
 		return "job-list";
 	}
@@ -86,6 +96,7 @@ public class CareerCtrl {
 	@RequestMapping(params = "method=job-detail")
 	public String getCompanyInfo(@RequestParam(value = "companyid", defaultValue = "-1") int companyid,
 			HttpSession session, Model d) {
+		@SuppressWarnings("unchecked")
 		HashMap<String, Company> companyMap = (HashMap<String, Company>) session.getAttribute("companyMap");
 		d.addAttribute("company", companyMap.get(String.valueOf(companyid)));
 		return "ajaxJobSearch";

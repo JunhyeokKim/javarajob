@@ -82,6 +82,7 @@
 			</div>
 
 			<div class="banner-form job-list-form">
+			<div class="sch-bar">
 				<form action="${path }/careerlist.do?method=sch" method="post">
 					<!-- category-change -->
 					<div class="dropdown category-dropdown">						
@@ -96,7 +97,7 @@
 				
 					<input type="text" id="search" name="query" class="form-control" placeholder="키워드, 기업 이름 검색" autocomplete="off">
 					<button type="submit" class="btn btn-primary" value="Search" id="sch">검색</button>
-					</form>
+					</div>
 			</div><!-- banner-form -->
 	
 			<div class="category-info">	
@@ -120,7 +121,7 @@
 									<div id="accordion-one" class="panel-collapse collapse in">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<label for="type-0"><input type="checkbox" class="filter" name="companytype"  id="type-0" value="0"> 전체(129)</label>
+										<label for="type-0"><input type="checkbox" class="filter" id="type-0" value="0" > 전체(129)</label>
 										<label for="type-1"><input type="checkbox" class="filter" name="companytype" id="type-1" value="1"> 대기업(22)</label>
 										<label for="type-2"><input type="checkbox" class="filter" name="companytype" id="type-2" value="2"> 중소기업(11)</label>
 										<label for="type-3"><input type="checkbox" class="filter" name="companytype" id="type-3" value="3"> 중견기업(5)</label>
@@ -152,7 +153,7 @@
 									<div id="accordion-two" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="field-0"><input type="checkbox" class="filter" name="field" id="field-0" value="0"> 전체</label>
+											<label for="field-0"><input type="checkbox" class="filter" id="field-0" value="0"> 전체</label>
 											<label for="field-1"><input type="checkbox" class="filter" name="field" id="field-1" value="1">서버 개발자</label>
 											<label for="field-2"><input type="checkbox" class="filter" name="field" id="field-2" value="2">웹 개발자</label>
 											<label for="field-3"><input type="checkbox" class="filter" name="field" id="field-3" value="3">프론트엔드 개발자</label>
@@ -194,7 +195,7 @@
 									<div id="accordion-three" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<label for="location-17"><input type="checkbox" class="filter" name="location" id="location-17" value="17" >전국</label>
+										<label for="location-17"><input type="checkbox" class="filter" id="location-17" value="17" >전국</label>
 										<label for="location-1"><input type="checkbox" class="filter" name="location" id="location-1" value="1" >서울</label>
 										<label for="location-2"><input type="checkbox" class="filter" name="location" id="location-2" value="2" >경기</label>
 										<label for="location-3"><input type="checkbox" class="filter" name="location" id="location-3" value="3" >광주</label>
@@ -237,7 +238,7 @@
 									<div id="accordion-four" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="industry-0"><input type="checkbox" class="filter" name="industry" id="industry-0" value="0"> 전체</label>
+											<label for="industry-0"><input type="checkbox" class="filter" id="industry-0" value="0"> 전체</label>
 											<label for="industry-1"><input type="checkbox" class="filter" name="industry" id="industry-1" value="1">서비스업</label>
 											<label for="industry-2"><input type="checkbox" class="filter" name="industry" id="industry-2" value="2">생산/제조</label>
 											<label for="industry-3"><input type="checkbox" class="filter" name="industry" id="industry-3" value="3">IT/인터넷</label>
@@ -263,13 +264,13 @@
 									<div id="accordion-five" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="emptype-0"><input type="checkbox" class="filter" name="employmenttype" id="emptype-0">전체</label>
-											<label for="emptype-1"><input type="checkbox" class="filter" name="employmenttype" id="emptype-1">정규직</label>
-											<label for="emptype-2"><input type="checkbox" class="filter" name="employmenttype" id="emptype-2">계약직</label>
-											<label for="emptype-3"><input type="checkbox" class="filter" name="employmenttype" id="emptype-3">병역특례</label>
-											<label for="emptype-4"><input type="checkbox" class="filter" name="employmenttype" id="emptype-4">인턴직</label>
-											<label for="emptype-5"><input type="checkbox" class="filter" name="employmenttype" id="emptype-5">시간제/일용직</label>
-											<label for="emptype-9"><input type="checkbox" class="filter" name="employmenttype" id="emptype-9">프리랜서</label>
+											<label for="emptype-0"><input type="checkbox" class="filter" id="emptype-0">전체</label>
+											<label for="emptype-1"><input type="checkbox" class="filter" name="employmenttype" id="emptype-1" value="1">정규직</label>
+											<label for="emptype-2"><input type="checkbox" class="filter" name="employmenttype" id="emptype-2" value="2">계약직</label>
+											<label for="emptype-3"><input type="checkbox" class="filter" name="employmenttype" id="emptype-3" value="3">병역특례</label>
+											<label for="emptype-4"><input type="checkbox" class="filter" name="employmenttype" id="emptype-4" value="4">인턴직</label>
+											<label for="emptype-5"><input type="checkbox" class="filter" name="employmenttype" id="emptype-5" value="5">시간제/일용직</label>
+											<label for="emptype-9"><input type="checkbox" class="filter" name="employmenttype" id="emptype-9" value="6">프리랜서</label>
 										</div><!-- panel-body -->
 									</div>
 								</div><!-- panel -->
@@ -277,6 +278,7 @@
 							 </div><!-- panel-group -->
 						</div>
 					</div><!-- accordion-->
+					</form>
 					
 					
 					
@@ -298,7 +300,7 @@
 								</div>							
 							</div><!-- featured-top -->	
 
-							<c:forEach var="company" varStatus="status" items="${companyMap }">
+							<c:forEach var="entry" varStatus="status" items="${companyMap }">
 							<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
@@ -306,15 +308,15 @@
 											<a href="job-details.html"><img src="images/job/1.png" alt="Image" class="img-responsive"></a>
 										</div><!-- item-image -->
 									</div>
-									<input type="hidden" name="companyid" value="${company.value.companyid }"/>
+									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>
 									<div class="ad-info" style="width:80%">
-										<h3><span><a class="call-ajax">${company.value.companyname }<input type="hidden" value="${company.value.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
-										<h5><a class="title">${company.value.shortinfo }</a></h5>
+										<h3><span><a class="call-ajax" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
+										<h5><a class="title">${entry.value.shortinfo }</a></h5>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
-										<c:forEach var="career" items="${company.value.careers }">
+										<c:forEach var="career" items="${entry.value.careers }">
 											<div class="position-item">
-												<span><a href="job-details.html">${career.title }</a></span>
+												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
 													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${career.location }</a></li>
 													<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>${career.employmenttype }</a></li>
@@ -365,7 +367,6 @@
 	</section><!-- main -->
 	
 	
-	
 	<!-- footer -->
 	<footer id="footer" class="clearfix">      
 
@@ -401,5 +402,52 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/price-range.js"></script>   
     <script src="js/main.js?ver=1"></script>
 	<script src="js/switcher.js"></script>
+	<script type="text/javascript">
+		$('#type-0').click(function(){
+			$('input[name=companytype]').trigger('click');
+		});
+		$('#field-0').click(function(){
+			$('input[name=field]').trigger('click');
+		});
+		$('#location-17').click(function(){
+			$('input[name=location]').trigger('click');
+		});
+		$('#industry-0').click(function(){
+			$('input[name=industry]').trigger('click');
+		});
+		$('#emptype-0').click(function(){
+			$('input[name=employmenttype]').trigger('click');
+		});
+		var companyTypes= ["${careerSch.companytype[0]}","${careerSch.companytype[1]}","${careerSch.companytype[2]}","${careerSch.companytype[3]}",
+			"${careerSch.companytype[4]}","${careerSch.companytype[5]}","${careerSch.companytype[6]}"];
+		console.log(companyTypes)
+		var fields= ["${careerSch.field[0]}","${careerSch.field[1]}","${careerSch.field[2]}","${careerSch.field[3]}",
+			"${careerSch.field[4]}","${careerSch.field[5]}","${careerSch.field[6]}"];
+		
+		/* $("input[name=companytype]").each(function(){
+			for(var i=0; i<companyTypes.length; i++){
+				if($(this).val()==companyTypes[i]){
+					console.log("같음")
+					$(this).attr("checked",true);
+				}
+			}
+		})
+		$("input[name=field]").each(function(){
+			for(var i=0; i<fields.length; i++){
+				if($(this).val()==fields[i])
+					$(this).attr("checked",true);
+			}
+		}) */
+		$(document).ready(function(){
+			$("#search").val("${careerSch.title}")
+			$("#quetype").text("${queType}")
+			$("input[name=querytype]").val($("#quetype").text());
+    		
+			$(".dropdown-quetype").click(function(){
+    		$("input[name=querytype]").val($(this).text());
+    	})
+    })
+	
+	</script>
   </body>
 </html>

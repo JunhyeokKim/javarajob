@@ -139,11 +139,9 @@ jQuery(function ($) {
    	 })
     })
     
-    $(document).ready(function(){
-    	$(".dropdown-quetype").click(function(){
-    		$("input[name=querytype]").val($(this).text());
-    	})
-    })
+    
+    
+    
 	
 	 // -------------------------------------------------------------
     //  select-category Change
