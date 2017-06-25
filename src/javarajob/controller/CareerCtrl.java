@@ -61,8 +61,8 @@ public class CareerCtrl {
 		totCareerCnt = totCareerList.size();
 		for (Career career : totCareerList) {
 			// TODO: paging 처리는 controller에서 하면 될듯
-			if(companys.size()>2)
-				break;
+			/*if(companys.size()>2)
+				break;*/
 			if (!companys.containsKey(String.valueOf(career.getCompanyid()))) {
 				Company vo = compService.getCompany(career.getCompanyid());
 				ArrayList<Career> allocCareers = new ArrayList<>();
