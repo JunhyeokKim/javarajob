@@ -7,37 +7,55 @@
 		http://www.springframework.org/schema/context
     	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<context:component-scan base-package="javarajob" >
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	<context:component-scan base-package="javarajob">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
 	<context:property-placeholder location="classpath:/resource/properties/info01" />
 	<!-- DB 연결 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<!-- driver, connection(url,port,sid,id,pass) -->
 		<!-- dirver : jdbc -->
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<!-- 접속 DB 서버 정보 port와 sid -->
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl"/>
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl" />
 		<!-- 계정정보 -->
-		<property name="username" value="tiger"/>
-		<property name="password" value="scott"/>
+		<property name="username" value="tiger" />
+		<property name="password" value="scott" />
 	</bean>
 	<!-- Mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 		<!-- mybatis 설정 xml -->
 		<property name="configLocation" value="classpath:resource/mybatis.Spring.xml" />
 	</bean>
 	<!-- Repository interface 패키지 등록 -->
 	<!-- default mybatis 연결 dao 인터페이스 패키지 위치 지정 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="javarajob.repository"/>
+		<property name="basePackage" value="javarajob.repository" />
 	</bean>
-	
+
+	<!-- viewResolver 설정 -->
+	<bean id="bnViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+		<!-- bean이름(id)으로 호출하는 Resolver 최우선 -->
+	</bean>
+
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="" />
 		<property name="suffix" value=".jsp" />
+		<!-- view호출시, .jsp는 생략 setSuffix("view단"+".jsp") -->
+		<property name="order" value="1" /><!-- jsp는 차순위.. -->
 	</bean>
+	<!--
+		view를 호출하는데, 조립기에 선언된 id가 있으면 해당 id에 맞는 viewResolver를 선택하고, 그외에는 .jsp가 
+		붙어서 jsp해당 화면을 호출한다.
+	-->
+	<!-- 파일 업로드 ViewResolver 처리 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>
