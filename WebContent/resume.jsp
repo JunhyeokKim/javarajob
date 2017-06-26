@@ -59,7 +59,7 @@
 	<!-- header -->
 	<jsp:include page="navHeader.jsp" />
 	<!-- header -->
-	<form method="get" action="${path}/resume_upt.do">
+	<form method="post" action="${path}/resume_upt.do">
 		<input type="hidden" name="userId" value="${id}" />
 		<div class="main-tab ng-scope">
 			<div class="spec-ctrl ng-scope">
@@ -67,9 +67,8 @@
 					<div class="section-container spec-saver">
 						<div class="section-title">
 							이력서
-							<div id="#saveResume" class="export-pdf">저장하기</div>
+							<input type="submit" class="export-pdf" value="저장하기" />
 						</div>
-						<input type="submit" value="dddd" />
 						<div class="section-content new ng-scope">
 							<div class="specs edit-spec ng-scope basic-information">
 								<div class="subtitle ng-scope">
@@ -82,11 +81,14 @@
 											<div class="image">
 												<div class="image-area">
 													<!-- 증명사진 공간 -->
-													<img class="ng-scope">
+													<img src="upload/pic/${resume.pic }" width="100%" class="ng-scope">
 												</div>
 												<div class="image-buttons">
 													<div class="btn button-blue button-bordered ng-scope">
-														이미지 올리기</div>
+														<label for="picUpload">이미지 올리기</label>
+														<input type="file" id="picUpload" />
+													</div>
+													 
 												</div>
 											</div>
 											<table class="basic-information-table">

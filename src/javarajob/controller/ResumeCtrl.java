@@ -25,6 +25,7 @@ public class ResumeCtrl {
 		System.out.println(r.getName());
 		System.out.println(r.getBirthDay());
 		System.out.println(r.getCtel());
+		System.out.println(r.getPic());
 		return "resume";
 	}
 	
