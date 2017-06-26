@@ -12,31 +12,14 @@ public class Company {
 	private String location;
 	private Date establishmentdate;
 	private int annualsales;
-	private String industry;
-	private String companytype;
+	private int industry;
+	private int companytype;
 	private String website;
 	private String shortinfo;
 	private int companysize;
 	private ArrayList<Career> careers;
 	
-	public Company(int companyid, String companyname, String info, String tel, String location, Date establishmentdate,
-			int annualsales, String industry, String companytype, String website, String shortinfo, int companysize) {
-		this.companyid = companyid;
-		this.companyname = companyname;
-		this.info = info;
-		this.tel = tel;
-		this.location = location;
-		this.establishmentdate = establishmentdate;
-		this.annualsales = annualsales;
-		this.industry = industry;
-		this.companytype = companytype;
-		this.website = website;
-		this.shortinfo=shortinfo;
-		this.companysize = companysize;
-	}
 
-	public Company() {
-	}
 
 	public int getCompanyid() {
 		return companyid;
@@ -94,19 +77,19 @@ public class Company {
 		this.annualsales = annualsales;
 	}
 
-	public String getIndustry() {
+	public int getIndustry() {
 		return industry;
 	}
 
-	public void setIndustry(String industry) {
+	public void setIndustry(int industry) {
 		this.industry = industry;
 	}
 
-	public String getCompanytype() {
+	public int getCompanytype() {
 		return companytype;
 	}
 
-	public void setCompanytype(String companytype) {
+	public void setCompanytype(int companytype) {
 		this.companytype = companytype;
 	}
 
@@ -142,4 +125,13 @@ public class Company {
 		this.careers = careers;
 	}
 
+	@Override
+	public String toString() {
+		return "Company [companyid=" + companyid + ", companyname=" + companyname + ", info=" + info + ", tel=" + tel
+				+ ", location=" + location + ", establishmentdate=" + establishmentdate + ", annualsales=" + annualsales
+				+ ", industry=" + industry + ", companytype=" + companytype + ", website=" + website + ", shortinfo="
+				+ shortinfo + ", companysize=" + companysize + ", careers=" + careers + "]";
+	}
+
+	
 }

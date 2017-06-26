@@ -126,6 +126,7 @@ jQuery(function ($) {
     	$(".call-ajax").click(function(){
    		 var url="careerlist.do?method=job-detail";
    	 		var params="companyid="+$(this).find('input[type=hidden]').val();
+   	 		console.log(params);
    	 		$.ajax({
    	 		type:"POST",
    	 		url:url,
@@ -138,15 +139,9 @@ jQuery(function ($) {
    	 })
     })
     
-    $(document).ready(function(){
-    	$("input[name=querytype]").val($("#quetype").text());
-    	$("#sch").click(function(){
-    		$("input[name=querytype]").val($("#quetype").text());
-    		$("form").submit();
-    	})
-    })
     
-	 
+    
+    
 	
 	 // -------------------------------------------------------------
     //  select-category Change
