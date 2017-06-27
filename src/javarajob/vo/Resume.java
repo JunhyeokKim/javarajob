@@ -12,7 +12,7 @@ public class Resume {
 	private String email;
 	private String sns;
 	private String address;
-	private String pic;
+	private String picName;
 
 	private String highIniYear;
 	private String highIniMon;
@@ -172,12 +172,12 @@ public class Resume {
 		this.address = address;
 	}
 
-	public String getPic() {
-		return pic;
+	public String getPicName() {
+		return picName;
 	}
 
-	public void setPic(String pic) {
-		this.pic = pic;
+	public void setPicName(String pic) {
+		this.picName = pic;
 	}
 
 	public String getHighIniYear() {

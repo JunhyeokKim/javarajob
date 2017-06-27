@@ -16,8 +16,8 @@ public class FileUploadService {
 	@Value("${picUp}")
 	String picUp;
 
-	public void uploadPic(MultipartFile pic) {
-		String name = pic.getOriginalFilename();
+	public void uploadPic(MultipartFile pic, String id) {
+		String name = id + "_" + pic.getOriginalFilename();
 		String picpath = picUp + name;
 		File picture = new File(picpath);
 		try {

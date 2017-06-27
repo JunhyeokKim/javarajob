@@ -59,7 +59,7 @@
 	<!-- header -->
 	<jsp:include page="navHeader.jsp" />
 	<!-- header -->
-	<form method="post" action="${path}/resume_upt.do">
+	<form method="post" action="${path}/resume_upt.do" enctype="multipart/form-data">
 		<input type="hidden" name="userId" value="${id}" />
 		<div class="main-tab ng-scope">
 			<div class="spec-ctrl ng-scope">
@@ -81,12 +81,12 @@
 											<div class="image">
 												<div class="image-area">
 													<!-- 증명사진 공간 -->
-													<img src="upload/pic/${resume.pic }" width="100%" class="ng-scope">
+													<img src="upload/pic/${resume.picName}" width="100%" class="ng-scope">
 												</div>
 												<div class="image-buttons">
 													<div class="btn button-blue button-bordered ng-scope">
-														<label for="picUpload">이미지 올리기</label>
-														<input type="file" id="picUpload" />
+														<label for="picUpload">이미지 올리기${resume.picName}</label>
+														<input type="file" id="picUpload" name="pic" />
 													</div>
 													 
 												</div>
