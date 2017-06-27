@@ -787,7 +787,7 @@ a.verified i {
 }
 
 .breadcrumb-section .title {
-	color: black;
+	color: white;
 	z-index: 1;
 }
 
@@ -2061,7 +2061,7 @@ section, .job-list-item {
  	Banner Job
 ========================================================================== */
 .banner-job {
-	background-image: url(../images/bg/job-bg.jpg);
+	background-image: url(../images/bg/374.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #fff;
@@ -2077,7 +2077,7 @@ section, .job-list-item {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(40, 45, 50, 0.9);
+	background-color: rgba(55, 55, 55, 0.3);
 }
 
 .banner-job h1 {
@@ -2317,7 +2317,7 @@ section, .job-list-item {
 
 /* Job List Page */
 .job-bg {
-	background-image: url(../images/bg/job-list-bg.jpg);
+	background-image: url(../images/bg/636.jpg);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
@@ -2632,10 +2632,10 @@ section, .job-list-item {
 }
 
 .resume-content .self-introduction-upload-section {
-	background-color: #898989;
+	background-color: rgba(150, 150, 150, 0.5);
 	height: 500%;
-	min-width: 500px;
-	min-height: 700px;
+	min-width: 600px;
+	min-height: 800px;
 }
 
 .resume-content .career-info, .resume-content .declaration-info,

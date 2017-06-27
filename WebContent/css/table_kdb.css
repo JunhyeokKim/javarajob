@@ -1,3 +1,17 @@
+
+/* 드래그 금지 */
+div {
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+/* 드래그 금지 */
+
+
+
+/* table 색, 모양 등등 */
 .kdb-table table, .kdb-table td, .kdb-table th {
 	border-collapse: collapse;
 	padding: 5px;
@@ -13,31 +27,6 @@
 	line-height: 18px;
 }
 
-.filebox label {
-	display: inline-block;
-	padding: .5em .75em;
-	color: #999;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #fdfdfd;
-	cursor: pointer;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-}
-
-.filebox input[type="file"] { /* 파일 필드 숨기기 */
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-
 .kdb-table td {
 	border-right: 1px solid gray;
 	border-left: 1px solid gray;
@@ -46,9 +35,8 @@
 }
 
 .kdb-table th {
-	background-color: #bbbbbb;
 	border: 1px solid white;
-	color: black;
+	color: white;
 	padding: 10px;
 	font-weight: bold;
 	text-align: center;
@@ -57,11 +45,45 @@
 .kdb-table .no-content {
 	min-height: 70px;
 }
+/* table 색, 모양 등등 */
 
-div {
-	-ms-user-select: none;
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
+
+
+/* 자소서 배경 불투명 처리... 근데 안됨 */
+.job-bg .self-overlay {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: rgba(55, 55, 55, 0.8);
 }
+/* 자소서 배경 불투명 처리... 근데 안됨 */
+
+
+
+/* input button 숨기기 */
+.file_input_textbox {
+    float:left;
+    height:29px;
+}
+.file_input_div {
+    position:relative;
+    width:80px;
+    height:36px;
+    overflow:hidden;
+}
+.file_input_img_btn {
+    padding:0 0 0 5px;
+}
+.file_input_hidden {
+    font-size:29px;
+    position:absolute;
+    right:0px;
+    top:0px;
+    opacity:0;
+    filter: alpha(opacity=0);
+    -ms-filter: alpha(opacity=0);
+    cursor:pointer;
+}
+/* input button 숨기기 */

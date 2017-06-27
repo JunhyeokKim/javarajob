@@ -23,10 +23,13 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
+<link rel="stylesheet" href="css/resume.css">
 <link rel="stylesheet" href="css/main.css">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/table_kdb.css">
 <style type="text/css">
+	.std-button{float:left;}
 </style>
 <!-- font -->
 <link
@@ -64,29 +67,52 @@
 	<!-- header -->
 
 	<section class=" job-bg page  ad-profile-page">
+		<div class="self-overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-section">
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li><a href="${path}/index.do">Home</a></li>
+					<li>자소서관리</li>
+				</ol><!-- breadcrumb -->
 				<h2 class="title">자기소개서 List</h2>
-				<div class="btn-box">
-					<div class="sid-button">
-						<input type="file" class="btn" value="파일 다운로드" />
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="file_input_div">
+							<div class="sid-button">
+								<a href="#" class="btn">파일 업로드</a>
+							</div>
+							<input type="file" class="file_input_hidden" value="파일 다운로드" />
+						</div>
 					</div>
-					<div class="sid-button">
-						<a href="#" class="btn">등록</a>
+					<div class="col-sm-2">
+						<div class="sid-button">
+							<a href="#" class="btn">등록</a>
+						</div>
 					</div>
-					<div class="sid-button">
-						<a href="#" class="btn">선택 삭제</a>
+					<div class="col-sm-2">
+						<div class="sid-button">
+							<a href="#" class="btn">선택 삭제</a>
+						</div>
 					</div>
-					<div class="sid-button">
-						<a href="#" class="btn">파일 다운로드</a>
+					<div class="col-sm-1">
+						<div class="sid-button">
+							<a href="#" class="btn">파일 다운로드</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="resume-content">
-				<div class="self-introduction-upload-section">
+				<div class="kdb-table self-introduction-upload-section">
 					<table>
-						<tr>
-							<th>파일 선택</th><th>파일 이름</th><th>등록일</th>
+						<colgroup>
+						<col width="10%">
+						<col width="20%">
+						<col width="50%">
+						<col width="20%">
+						</colgroup>
+						<tr class="preColor">
+							<th>파일 선택</th><th colspan="2">파일 이름</th><th>등록일</th>
 						</tr>
 					</table>
 				</div>
