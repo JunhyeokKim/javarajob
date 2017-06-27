@@ -3,39 +3,40 @@ package javarajob.vo;
 public class Resume {
 	private String userId;
 	private String name;
-	private int birthYear;
-	private int birthMon;
-	private int birthDay;
+	private String birthYear;
+	private String birthMon;
+	private String birthDay;
 	private String gender;
 	private String htel;
 	private String ctel;
 	private String email;
 	private String sns;
 	private String address;
+	private String picName;
 
-	private int highIniYear;
-	private int highIniMon;
-	private int highFinYear;
-	private int highFinMon;
+	private String highIniYear;
+	private String highIniMon;
+	private String highFinYear;
+	private String highFinMon;
 	private String highName;
 	private String highKind;
 
-	private int univIniYear;
-	private int univIniMon;
-	private int univFinYear;
-	private int univFinMon;
+	private String univIniYear;
+	private String univIniMon;
+	private String univFinYear;
+	private String univFinMon;
 	private String univName;
 	private String univKind;
-	private double univScore;
+	private String univScore;
 	private String univMajor;
 
-	private int graduIniYear;
-	private int graduIniMon;
-	private int graduFinYear;
-	private int graduFinMon;
+	private String graduIniYear;
+	private String graduIniMon;
+	private String graduFinYear;
+	private String graduFinMon;
 	private String graduName;
 	private String graduKind;
-	private double graduScore;
+	private String graduScore;
 	private String graduMajor;
 
 	private String licenName;
@@ -43,10 +44,10 @@ public class Resume {
 	private String licenGrad;
 
 	private String jobName;
-	private int jobIniYear;
-	private int jobIniMon;
-	private int jobFinYear;
-	private int jobFinMon;
+	private String jobIniYear;
+	private String jobIniMon;
+	private String jobFinYear;
+	private String jobFinMon;
 	private String jobRank;
 	private String jobDept;
 	private String jobContent;
@@ -55,16 +56,16 @@ public class Resume {
 	private String langName;
 	private String langTest;
 	private String langScore;
-	private int langDateYear;
-	private int langDateMon;
-	private int langDateDay;
+	private String langDateYear;
+	private String langDateMon;
+	private String langDateDay;
 
 	private String awardName;
 	private String awardContent;
 	private String awardInsti;
-	private int awardDateYear;
-	private int awardDateMon;
-	private int awardDateDay;
+	private String awardDateYear;
+	private String awardDateMon;
+	private String awardDateDay;
 
 	private String abroadNation;
 	private String abroadInsti;
@@ -73,10 +74,10 @@ public class Resume {
 	private String vete;
 	private String handi;
 	private String milit;
-	private int militIniYear;
-	private int militIniMon;
-	private int militFinYear;
-	private int militFinMon;
+	private String militIniYear;
+	private String militIniMon;
+	private String militFinYear;
+	private String militFinMon;
 	private String militKind;
 	private String militRank;
 
@@ -99,27 +100,27 @@ public class Resume {
 		this.name = name;
 	}
 
-	public int getBirthYear() {
+	public String getBirthYear() {
 		return birthYear;
 	}
 
-	public void setBirthYear(int birthYear) {
+	public void setBirthYear(String birthYear) {
 		this.birthYear = birthYear;
 	}
 
-	public int getBirthMon() {
+	public String getBirthMon() {
 		return birthMon;
 	}
 
-	public void setBirthMon(int birthMon) {
+	public void setBirthMon(String birthMon) {
 		this.birthMon = birthMon;
 	}
 
-	public int getBirthDay() {
+	public String getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(int birthDay) {
+	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
 	}
 
@@ -171,35 +172,43 @@ public class Resume {
 		this.address = address;
 	}
 
-	public int getHighIniYear() {
+	public String getPicName() {
+		return picName;
+	}
+
+	public void setPicName(String pic) {
+		this.picName = pic;
+	}
+
+	public String getHighIniYear() {
 		return highIniYear;
 	}
 
-	public void setHighIniYear(int highIniYear) {
+	public void setHighIniYear(String highIniYear) {
 		this.highIniYear = highIniYear;
 	}
 
-	public int getHighIniMon() {
+	public String getHighIniMon() {
 		return highIniMon;
 	}
 
-	public void setHighIniMon(int highIniMon) {
+	public void setHighIniMon(String highIniMon) {
 		this.highIniMon = highIniMon;
 	}
 
-	public int getHighFinYear() {
+	public String getHighFinYear() {
 		return highFinYear;
 	}
 
-	public void setHighFinYear(int highFinYear) {
+	public void setHighFinYear(String highFinYear) {
 		this.highFinYear = highFinYear;
 	}
 
-	public int getHighFinMon() {
+	public String getHighFinMon() {
 		return highFinMon;
 	}
 
-	public void setHighFinMon(int highFinMon) {
+	public void setHighFinMon(String highFinMon) {
 		this.highFinMon = highFinMon;
 	}
 
@@ -219,35 +228,35 @@ public class Resume {
 		this.highKind = highKind;
 	}
 
-	public int getUnivIniYear() {
+	public String getUnivIniYear() {
 		return univIniYear;
 	}
 
-	public void setUnivIniYear(int univIniYear) {
+	public void setUnivIniYear(String univIniYear) {
 		this.univIniYear = univIniYear;
 	}
 
-	public int getUnivIniMon() {
+	public String getUnivIniMon() {
 		return univIniMon;
 	}
 
-	public void setUnivIniMon(int univIniMon) {
+	public void setUnivIniMon(String univIniMon) {
 		this.univIniMon = univIniMon;
 	}
 
-	public int getUnivFinYear() {
+	public String getUnivFinYear() {
 		return univFinYear;
 	}
 
-	public void setUnivFinYear(int univFinYear) {
+	public void setUnivFinYear(String univFinYear) {
 		this.univFinYear = univFinYear;
 	}
 
-	public int getUnivFinMon() {
+	public String getUnivFinMon() {
 		return univFinMon;
 	}
 
-	public void setUnivFinMon(int univFinMon) {
+	public void setUnivFinMon(String univFinMon) {
 		this.univFinMon = univFinMon;
 	}
 
@@ -267,11 +276,11 @@ public class Resume {
 		this.univKind = univKind;
 	}
 
-	public double getUnivScore() {
+	public String getUnivScore() {
 		return univScore;
 	}
 
-	public void setUnivScore(double univScore) {
+	public void setUnivScore(String univScore) {
 		this.univScore = univScore;
 	}
 
@@ -283,35 +292,35 @@ public class Resume {
 		this.univMajor = univMajor;
 	}
 
-	public int getGraduIniYear() {
+	public String getGraduIniYear() {
 		return graduIniYear;
 	}
 
-	public void setGraduIniYear(int graduIniYear) {
+	public void setGraduIniYear(String graduIniYear) {
 		this.graduIniYear = graduIniYear;
 	}
 
-	public int getGraduIniMon() {
+	public String getGraduIniMon() {
 		return graduIniMon;
 	}
 
-	public void setGraduIniMon(int graduIniMon) {
+	public void setGraduIniMon(String graduIniMon) {
 		this.graduIniMon = graduIniMon;
 	}
 
-	public int getGraduFinYear() {
+	public String getGraduFinYear() {
 		return graduFinYear;
 	}
 
-	public void setGraduFinYear(int graduFinYear) {
+	public void setGraduFinYear(String graduFinYear) {
 		this.graduFinYear = graduFinYear;
 	}
 
-	public int getGraduFinMon() {
+	public String getGraduFinMon() {
 		return graduFinMon;
 	}
 
-	public void setGraduFinMon(int graduFinMon) {
+	public void setGraduFinMon(String graduFinMon) {
 		this.graduFinMon = graduFinMon;
 	}
 
@@ -331,11 +340,11 @@ public class Resume {
 		this.graduKind = graduKind;
 	}
 
-	public double getGraduScore() {
+	public String getGraduScore() {
 		return graduScore;
 	}
 
-	public void setGraduScore(double graduScore) {
+	public void setGraduScore(String graduScore) {
 		this.graduScore = graduScore;
 	}
 
@@ -379,35 +388,35 @@ public class Resume {
 		this.jobName = jobName;
 	}
 
-	public int getJobIniYear() {
+	public String getJobIniYear() {
 		return jobIniYear;
 	}
 
-	public void setJobIniYear(int jobIniYear) {
+	public void setJobIniYear(String jobIniYear) {
 		this.jobIniYear = jobIniYear;
 	}
 
-	public int getJobIniMon() {
+	public String getJobIniMon() {
 		return jobIniMon;
 	}
 
-	public void setJobIniMon(int jobIniMon) {
+	public void setJobIniMon(String jobIniMon) {
 		this.jobIniMon = jobIniMon;
 	}
 
-	public int getJobFinYear() {
+	public String getJobFinYear() {
 		return jobFinYear;
 	}
 
-	public void setJobFinYear(int jobFinYear) {
+	public void setJobFinYear(String jobFinYear) {
 		this.jobFinYear = jobFinYear;
 	}
 
-	public int getJobFinMon() {
+	public String getJobFinMon() {
 		return jobFinMon;
 	}
 
-	public void setJobFinMon(int jobFinMon) {
+	public void setJobFinMon(String jobFinMon) {
 		this.jobFinMon = jobFinMon;
 	}
 
@@ -467,27 +476,27 @@ public class Resume {
 		this.langScore = langScore;
 	}
 
-	public int getLangDateYear() {
+	public String getLangDateYear() {
 		return langDateYear;
 	}
 
-	public void setLangDateYear(int langDateYear) {
+	public void setLangDateYear(String langDateYear) {
 		this.langDateYear = langDateYear;
 	}
 
-	public int getLangDateMon() {
+	public String getLangDateMon() {
 		return langDateMon;
 	}
 
-	public void setLangDateMon(int langDateMon) {
+	public void setLangDateMon(String langDateMon) {
 		this.langDateMon = langDateMon;
 	}
 
-	public int getLangDateDay() {
+	public String getLangDateDay() {
 		return langDateDay;
 	}
 
-	public void setLangDateDay(int langDateDay) {
+	public void setLangDateDay(String langDateDay) {
 		this.langDateDay = langDateDay;
 	}
 
@@ -515,27 +524,27 @@ public class Resume {
 		this.awardInsti = awardInsti;
 	}
 
-	public int getAwardDateYear() {
+	public String getAwardDateYear() {
 		return awardDateYear;
 	}
 
-	public void setAwardDateYear(int awardDateYear) {
+	public void setAwardDateYear(String awardDateYear) {
 		this.awardDateYear = awardDateYear;
 	}
 
-	public int getAwardDateMon() {
+	public String getAwardDateMon() {
 		return awardDateMon;
 	}
 
-	public void setAwardDateMon(int awardDateMon) {
+	public void setAwardDateMon(String awardDateMon) {
 		this.awardDateMon = awardDateMon;
 	}
 
-	public int getAwardDateDay() {
+	public String getAwardDateDay() {
 		return awardDateDay;
 	}
 
-	public void setAwardDateDay(int awardDateDay) {
+	public void setAwardDateDay(String awardDateDay) {
 		this.awardDateDay = awardDateDay;
 	}
 
@@ -587,35 +596,35 @@ public class Resume {
 		this.milit = milit;
 	}
 
-	public int getMilitIniYear() {
+	public String getMilitIniYear() {
 		return militIniYear;
 	}
 
-	public void setMilitIniYear(int militIniYear) {
+	public void setMilitIniYear(String militIniYear) {
 		this.militIniYear = militIniYear;
 	}
 
-	public int getMilitIniMon() {
+	public String getMilitIniMon() {
 		return militIniMon;
 	}
 
-	public void setMilitIniMon(int militIniMon) {
+	public void setMilitIniMon(String militIniMon) {
 		this.militIniMon = militIniMon;
 	}
 
-	public int getMilitFinYear() {
+	public String getMilitFinYear() {
 		return militFinYear;
 	}
 
-	public void setMilitFinYear(int militFinYear) {
+	public void setMilitFinYear(String militFinYear) {
 		this.militFinYear = militFinYear;
 	}
 
-	public int getMilitFinMon() {
+	public String getMilitFinMon() {
 		return militFinMon;
 	}
 
-	public void setMilitFinMon(int militFinMon) {
+	public void setMilitFinMon(String militFinMon) {
 		this.militFinMon = militFinMon;
 	}
 

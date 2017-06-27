@@ -73,7 +73,8 @@
 			MILITFINYEAR = #{militFinYear, jdbcType=VARCHAR},
 			MILITFINMON = #{militFinMon, jdbcType=VARCHAR},
 			MILITKIND = #{militKind, jdbcType=VARCHAR},
-			MILITRANK = #{militRank, jdbcType=VARCHAR}
+			MILITRANK = #{militRank, jdbcType=VARCHAR},
+			PICNAME = #{picName, jdbcType=VARCHAR}
 		WHERE USERID = #{userId}
 	</update>
 

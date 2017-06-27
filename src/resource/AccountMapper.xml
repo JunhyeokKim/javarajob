@@ -22,6 +22,10 @@
 	<insert id="insertMember" parameterType="mem">
 		insert into ACCOUNT values(#{name},#{id},#{password},#{email},#{phone},#{address},#{interest},sysdate)
 	</insert>
+	<insert id="insertResume">
+		INSERT INTO RESUME(USERID, NAME, CTEL, EMAIL, ADDRESS, PICNAME)
+		VALUES(#{id}, #{name}, #{phone}, #{email}, #{address}, 'default.png')
+	</insert>
 	<select id="listMember" resultMap="memResult">
 		select * from ACCOUNT
 		where 1=1
