@@ -8,13 +8,13 @@ public class Career {
 	private String requirements;
 	private String preference;
 	private String workingcondition;
-	private String companytype;
+	private int companytype;
 	private String companyname;
 	private String info;
-	private String field;
-	private String location;
-	private String industry;
-	private String employmenttype;
+	private int field;
+	private int location;
+	private int industry;
+	private int employmenttype;
 	private int companyid;
 	private String title;
 	private int salary;
@@ -22,29 +22,6 @@ public class Career {
 	private Date enddate;
 	// for order
 	private int priorityOrder;
-
-	public Career() {
-	}
-
-	public Career(int careerid, String task, String requirements, String preference, String workingcondition,
-			String companytype, String companyname, String companyinfo, String field, String location, String industry,
-			String employmenttype, int companyid, String title, int salary) {
-		this.careerid = careerid;
-		this.task = task;
-		this.requirements = requirements;
-		this.preference = preference;
-		this.workingcondition = workingcondition;
-		this.companytype = companytype;
-		this.companyname = companyname;
-		this.info = companyinfo;
-		this.field = field;
-		this.location = location;
-		this.industry = industry;
-		this.employmenttype = employmenttype;
-		this.companyid = companyid;
-		this.title = title;
-		this.salary = salary;
-	}
 
 	public int getCareerid() {
 		return careerid;
@@ -86,11 +63,11 @@ public class Career {
 		this.workingcondition = workingcondition;
 	}
 
-	public String getCompanytype() {
+	public int getCompanytype() {
 		return companytype;
 	}
 
-	public void setCompanytype(String companytype) {
+	public void setCompanytype(int companytype) {
 		this.companytype = companytype;
 	}
 
@@ -101,8 +78,6 @@ public class Career {
 	public void setCompanyname(String companyname) {
 		this.companyname = companyname;
 	}
-	
-
 
 	public String getInfo() {
 		return info;
@@ -112,35 +87,35 @@ public class Career {
 		this.info = companyinfo;
 	}
 
-	public String getField() {
+	public int getField() {
 		return field;
 	}
 
-	public void setField(String field) {
+	public void setField(int field) {
 		this.field = field;
 	}
 
-	public String getLocation() {
+	public int getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(int location) {
 		this.location = location;
 	}
 
-	public String getIndustry() {
+	public int getIndustry() {
 		return industry;
 	}
 
-	public void setIndustry(String industry) {
+	public void setIndustry(int industry) {
 		this.industry = industry;
 	}
 
-	public String getEmploymenttype() {
+	public int getEmploymenttype() {
 		return employmenttype;
 	}
 
-	public void setEmploymenttype(String employmenttype) {
+	public void setEmploymenttype(int employmenttype) {
 		this.employmenttype = employmenttype;
 	}
 
@@ -191,8 +166,12 @@ public class Career {
 	public void setPriorityOrder(int priorityOrder) {
 		this.priorityOrder = priorityOrder;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Career [careerid=" + careerid
+				+ ", companyid=" + companyid
+				+ ", title=" + title + "]";
+	}
 
 }

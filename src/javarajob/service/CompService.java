@@ -14,11 +14,20 @@ public class CompService {
 
 	@Autowired(required = false)
 	public CompDao dao;
-	
-	public ArrayList<Company> listCompany(Company_Sch sch){
+
+	public ArrayList<Company> listCompany(Company_Sch sch, int page, int step) {
+		if(page>0){
+		sch.setStart((page-1)*step+1);	
+		sch.setEnd((page)*step);
+		}else{
+			System.out.println("page index error.. 1페이지로 고정");
+		sch.setStart(1);
+		sch.setEnd(step);
+		}
 		return dao.listCompany(sch);
 	}
-	public Company getCompany(int companyid){
+
+	public Company getCompany(int companyid) {
 		return dao.getCompany(companyid);
 	}
 	public int getCount(){

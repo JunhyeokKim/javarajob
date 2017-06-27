@@ -375,7 +375,7 @@ textarea {
 	text-align:left;
 }
 
-.banner-form form {
+.banner-form .sch-bar {
 	border-radius:4px;
 	background-color:#fff;
 	position:relative;
