@@ -50,7 +50,29 @@
 <link rel="apple-touch-icon" sizes="57x57"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
 <!-- icons -->
-
+<script src="${path}/com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	$("#schbtn").click(function(){
+		$("form").submit();
+	});
+	// 등록버튼 클릭시
+	$("#regbtn").click(function(){
+		$(location).attr("href","${path}/boardList.do?method=insert");
+	});
+	// 상세화면으로 가기 위한 double 클릭 처리
+	$(".data").dblclick(function(){
+		var no=$(this).attr("id");
+		$(location).attr("href","${path}/boardList.do?method=detail&no="+no);
+	});
+	$("#initbtn").click(function(){
+		$("input[name=subject]").val("");
+		$("input[name=writer]").val("");
+		$("input[name=content]").val("");
+		$("form").submit();
+	});
+	})
+</script>
 </head>
 <body>
 	<!-- header 11-->
@@ -101,34 +123,66 @@
 					<!-- profile-details -->
 					<div class="question-answer section">
 						<h2>문의 내용</h2>
+						<center>
+						<form method="post" action="${path}/boardList.do?method=list">
+						<table>
+							<tr>							 
+							<td><input type="text" class="form-control" name="subject"  placeholder="제목" value="${boardsch.subject}"/></td>
+							<td><input type="text" class="form-control" name="content"  placeholder="내용" value="${boardsch.content}"/></td>
+							<td><input type="text" class="form-control" name="writer"  placeholder="작성자" value="${boardsch.writer}"/></td>							 							
+							<td>
+								&nbsp;&nbsp;&nbsp;<input type="button" id="schbtn" class="btn" value="Search"/>
+								<input type="button" id="initbtn" class="btn" value="Reset"/>
+								<input type="button" id="regbtn" class="btn" value="Write"/>								
+							</td>
+							</tr>
+						</table>
+						</form>
+						</center>
+						
+						
 						<table align="center" class="kdb-table" width="100%">
+							<caption style="text-align:left">
+								총:${list.size()}건
+							</caption>
 							<colgroup>
-								<col width="20%">
+								<col width="5%">
+								<col width="7%">
 								<col width="50%">
-								<col width="20%">
-								<col width="10%">
-							</colgroup>
+								<col width="7%">
+								<col width="7%">
+								<col width="7%">
+								<col width="7%">
+							</colgroup>							
 							<tr>
-								<th>문의한 기업</th>
-								<th>문의 내용</th>
-								<th>등록일</th>
+								<th>번호</th>
+								<th>기업명</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>등록일</th>								
 								<th>답변 여부</th>
+								<th>조회수</th>
+							</tr>					
+							
+							<c:forEach var="board" items="${list}">
+							<tr class="data" id="${board.no}">
+								<td>${board.cnt}</td>
+								<td>${board.companyid}</td>
+								<td style="text-align:left;">${board.subject}</td>
+								<td>${board.writer}</td>
+								<td><fmt:formatDate value="${board.regdate}"/></td>
+								<td>X</td>
+								<td>${board.readcount}</td>	
 							</tr>
-							<tr>
-								<td class="no-content" colspan="4">등록하신 문의가 없습니다.</td>
-							</tr>
+							</c:forEach>
+							<c:if test="${list.size()==0}">
+							<tr><td colspan="7">등록하신 문의가 없습니다.</td></tr>
+							</c:if>
 						</table>
 
 					</div>
-					<!-- profile-details -->
-
-					<!-- 문의하기 btn -->
-					<div class="new-question">
-						<div class="buttons" align="center">
-							<a href="#" class="btn">새 질문하기</a>
-						</div>
-					</div>
-					<!-- 문의하기 btn -->
+					<!-- profile-details -->			
+									
 				</div>
 				<!-- user-pro-edit -->
 			</div>
