@@ -72,8 +72,13 @@
             			<div id="calendar" style="height:500px"></div>
             		</div>
 		</div><!-- container -->
+		<form action="${path }/calendar.do?method=init" method="post">
+		<input type="hidden" name="month" value="hi"/>
+		</form>
 		</div>
 	</section><!-- main -->
+	<div id="target">
+	</div>
 	
 	<!--/Preset Style Chooser--> 
 	<div class="style-chooser">
@@ -102,6 +107,84 @@
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
 	<script src='js/calendar.js'></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var url="${path}/calendar.do?method=call";
+		var params="month="+$("#calendar").fullCalendar('getCalendar').moment().format('MM');;
+ 		$.ajax({
+			type:"POST",
+			url:url,
+			data:params,
+			success:function(data){
+				console.log("data");
+			}
+			
+		})
+ 		
+		
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'today',
+				center : 'prev title next',
+				right : ''
+			},
+			titleFormat:'YYYY.MM',
+			editable : false,
+			locale: '',
+			eventRender: function (event, element) {
+			    element.find('.fc-title').append('<img class="item-unselected" src="images/icon/bookmark-unselected.png">');
+			},
+			events : [ {
+				title : '',
+				start : new Date(y, m, 11, 05, 30),
+				end : new Date(y, m, 15, 10, 30),
+				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
+			}, {
+				title : '삼성',
+				start : new Date(y, m, 1),
+				end : new Date(y, m, 5),
+				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
+			}, {
+				title : '한화',
+				start : new Date(y, m, 7),
+				end : new Date(y, m, 10),
+				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
+			} ],
+			timeFormat: 'hh:mm'
+		});
+		
+		$('#calendar-mini').fullCalendar({
+			header : {
+				left : '',
+				center : 'prev title next',
+				right : ''
+			},
+			titleFormat:'YYYY.MM',
+			locale : 'ko',
+		});
+		
+		$("#calendar-mini .fc-next-button").click(function() {
+			$('#calendar').fullCalendar('next');	
+		})
+		$("#calendar .fc-next-button").click(function() {
+			$('#calendar-mini').fullCalendar('next');	
+		})
+		$("#calendar-mini .fc-prev-button").click(function() {
+			$('#calendar').fullCalendar('prev');	
+		})
+		$("#calendar .fc-prev-button").click(function() {
+			$('#calendar-mini').fullCalendar('prev');	
+		})
+		
+		
+		
+	})
+	</script>
 	
   </body>
 </html>
