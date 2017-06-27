@@ -8,7 +8,7 @@
 		insert into ACCOUNT values(#{name},#{id},#{password},#{email},#{phone},#{address},#{interest},sysdate)
 	</insert>
 	<select id="listCareer" resultMap="careerResult" parameterType="careerSch">
-		select c.* from
+		select * from (select rownum rnum, c.* from
 		(select a.*, b.COMPANYNAME 
 		from career a, company b 
 		where a.COMPANYID=b.COMPANYID) c
@@ -56,8 +56,8 @@
 			<foreach collection="employmenttype" item="ckemptype" open="(" close=")" separator=",">
 	 			#{ckemptype}
 	 		</foreach>
-	 		orderby postdate asc;
 		</if>
+		) <!-- paging 처리(career단) -->
 	</select>
 	<select id="getCareer" parameterType="int" resultType="career">
 		select * from CAREER 

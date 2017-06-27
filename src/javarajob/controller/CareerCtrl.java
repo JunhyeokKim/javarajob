@@ -33,13 +33,14 @@ public class CareerCtrl {
 	public Career_Sch Career_sch(){
 		return new Career_Sch();
 	}
+	
+	final static int NUMBER_OF_ITEMS=5;
 
 	@RequestMapping(params = "method=sch")
 	public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
 			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType, @ModelAttribute("careerSch")Career_Sch careerSch,
 			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, @RequestParam(value="page", defaultValue="1") int page, Model d) {
 		int totCareerCnt = 0;
-		ArrayList<Company> dtoCompList = new ArrayList<>();
 		ArrayList<Career> totCareerList = new ArrayList<>();
 		HashMap<String, Company> companys = new HashMap<>();
 		Descending<Career> descOrderObj = new Descending<>();
@@ -63,8 +64,8 @@ public class CareerCtrl {
 		totCareerCnt = totCareerList.size();
 		for (Career career : totCareerList) {
 			// TODO: paging 처리는 controller에서 하면 될듯
-			/*if(companys.size()>2)
-				break;*/
+			if(companys.size()>NUMBER_OF_ITEMS)
+				break;
 			if (!companys.containsKey(String.valueOf(career.getCompanyid()))) {
 				Company vo = compService.getCompany(career.getCompanyid());
 				ArrayList<Career> allocCareers = new ArrayList<>();
@@ -77,9 +78,6 @@ public class CareerCtrl {
 				companys.put(String.valueOf(career.getCompanyid()), vo);
 			}
 		}
-		for (Company company : companys.values()) {
-			dtoCompList.add(company);
-		}
 
 		// TODO: orderby 구현
 		if (orderby.equals("desc")) {
@@ -89,7 +87,7 @@ public class CareerCtrl {
 		}
 		session.setAttribute("companyMap", companys);
 		d.addAttribute("totCareerCnt", totCareerCnt);
-		d.addAttribute("totCompanyCnt", dtoCompList.size());
+		d.addAttribute("totCompanyCnt", companys.size());
 		d.addAttribute("queType",queryType);
 		// d.addAttribute("careerList",careerService.listCareer(careerSch));
 		return "job-list";

@@ -20,18 +20,18 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.jsp"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
+					<a class="navbar-brand" href="${path }/index.do"><img class="img-responsive" src="images/logo.png" alt="Logo"></a>
 				</div>
 				<!-- /navbar-header -->
 								
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.jsp">Home</a></li>								
+							<li class="active"><a href="${path }/index.do">Home</a></li>								
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">채용정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="${path }/careerlist.do?method=sch">List Type</a></li>
-									<li><a href="job-calendar.jsp">Calendar Type</a></li>
+									<li><a href="${path }/calendar.do?view">Calendar Type</a></li>
 								</ul>
 							</li>							
 							<li><a href="${path}/resume.do">이력서</a></li>

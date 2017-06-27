@@ -6,6 +6,8 @@ public class Company_Sch {
 	private String companyname;
 	private int[] industry;
 	private int[]companytype;
+	private int start;
+	private int end;
 	
 	public int getCompanyid() {
 		return companyid;
@@ -31,6 +33,21 @@ public class Company_Sch {
 	public void setCompanytype(int[] companytype) {
 		this.companytype = companytype;
 	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
 
+	
+	
+	
 	
 }

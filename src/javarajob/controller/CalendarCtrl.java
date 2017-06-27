@@ -6,19 +6,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javarajob.service.CareerService;
 import javarajob.service.CompService;
 import javarajob.vo.Company_Sch;
 
 @Controller
-public class CompCtrl {
+@RequestMapping("/calendar.do")
+public class CalendarCtrl {
 
 	@Autowired(required = false)
-	private CompService s;
-
-	// http://localhost:6080/javarajob/testing.do
-	@RequestMapping("/testing.do")
-	public String list(@ModelAttribute("compSch") Company_Sch sch, Model d){
-		d.addAttribute("companyList", s.listCompany(sch));
-		return "";
+	CareerService careerService;
+	
+	@RequestMapping(params="view")
+	public String initView(){
+		return "job-calendar";
 	}
 }

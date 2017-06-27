@@ -5,20 +5,19 @@
 <mapper namespace="javarajob.repository.CompDao">
 	<resultMap type="company" id="companyResult"/>	
 	<select id="listCompany" resultMap="companyResult" parameterType="companySch">
-		select * from company
+		select * from(select rownum rnum, c.* from  
+		(select * from company
 		where 1=1
 		<if test="companyid!=null and companyid!=''">
 			and companyid = #{companyid}
 		</if>
 		<if test="companytype!=null and companytype!=''">
-			and companytype like '%' || #{companytype} || '%'
-		</if>
-		<if test="location!=null and location!=''">
-			and location like '%' || #{location} || '%'
+			and companytype in '%' || #{companytype} || '%'
 		</if>
 		<if test="industry!=null and industry!=''">
 			and industry like '%' || #{industry} || '%'
 		</if>
+		) c) where rnum between #{start} and #{end}
 	</select>
 	<select id="getCompany" resultType="company" parameterType="int">
 	select * from company
