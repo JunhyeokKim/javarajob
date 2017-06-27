@@ -439,7 +439,6 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
 			}
 		}) */
 		$(document).ready(function(){
-			$("#search").val("${careerSch.title}")
 			$("#quetype").text("${queType}")
 			$("input[name=querytype]").val($("#quetype").text());
     		

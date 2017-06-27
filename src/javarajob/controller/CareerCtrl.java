@@ -52,9 +52,11 @@ public class CareerCtrl {
 			careerSch.setCompanyname(query);
 			careerSch.setTitle(query);
 		} else if (queryType.equals("채용 공고")) {
+			careerSch.setCompanyname(null);
 			careerSch.setTitle(query);
 		} else if (queryType.equals("기업명")) {
 			careerSch.setCompanyname(query);
+			careerSch.setTitle(null);
 		}
 
 		totCareerList = careerService.listCareer(careerSch);
