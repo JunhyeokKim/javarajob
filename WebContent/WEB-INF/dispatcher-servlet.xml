@@ -27,8 +27,6 @@
 		<!-- 계정정보 -->
 		<property name="username" value="tiger"/>
 		<property name="password" value="scott"/>
-		<property name="username" value="tiger" />
-		<property name="password" value="scott" />
 	</bean>
 	<!-- Mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

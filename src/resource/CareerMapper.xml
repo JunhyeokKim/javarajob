@@ -16,6 +16,9 @@
 		<if test="careerid!=null and careerid!=''">
 			and c.careerid = #{careerid}
 		</if>
+		<if test="companyid!=null and companyid!=''">
+			and c.companyid = #{companyid}
+		</if>
 		<choose>
 			<when test="(title!=null and companyname==null)">
 				and c.title like '%' || #{title} || '%'
@@ -23,8 +26,11 @@
 			<when test="(companyname!=null and title==null)">
 				and c.companyname like '%' || #{companyname} || '%'
 			</when>
-			<otherwise>
+			<when test="(companyname!=null and title!=null)">
 				and (c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%')  
+			</when>
+			<otherwise>
+			and 1=1
 			</otherwise>
 		</choose>
 		<if test="companytype!=null">
