@@ -340,6 +340,11 @@
 							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
 	
 							
+							<c:forEach var="cnt" begin="1" end="${companysch.pageCount }">
+								<a href="javascript:go(${cnt}) ">[${cnt}]</a>
+							</c:forEach>
+							
+							
 							<!-- pagination  -->
 							<div class="text-center">
 								<ul class="pagination ">

@@ -15,15 +15,15 @@ public class CompService {
 	@Autowired(required = false)
 	public CompDao dao;
 
-	public ArrayList<Company> listCompany(Company_Sch sch, int page, int step) {
-		if(page>0){
-		sch.setStart((page-1)*step+1);	
-		sch.setEnd((page)*step);
-		}else{
-			System.out.println("page index error.. 1페이지로 고정");
-		sch.setStart(1);
-		sch.setEnd(step);
+	public ArrayList<Company> listCompany(Company_Sch sch, int size) {
+		sch.setCount(dao.getTotCnt(sch));
+		if(sch.getCurPage()==0){
+			sch.setCurPage(1);
 		}
+		// 총 페이지수
+		sch.setPageCount((int)Math.ceil(sch.getCount()/(double)size));
+		sch.setStart((sch.getCurPage()-1)*size+1);
+		sch.setEnd(sch.getCurPage()*size);
 		return dao.listCompany(sch);
 	}
 
@@ -31,6 +31,6 @@ public class CompService {
 		return dao.getCompany(companyid);
 	}
 	public int getCount(){
-		return dao.getCount();
+		return dao.getTotCnt(new Company_Sch());
 	}
 }

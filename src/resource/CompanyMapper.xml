@@ -5,7 +5,8 @@
 <mapper namespace="javarajob.repository.CompDao">
 	<resultMap type="company" id="companyResult"/>	
 	<select id="listCompany" resultMap="companyResult" parameterType="companySch">
-		select * from(select rownum rnum, c.* from  
+		select * from
+		(select rownum rnum, c.* from  
 		(select * from company
 		where 1=1
 		<if test="companyid!=null and companyid!=''">
@@ -23,7 +24,17 @@
 	select * from company
 	where companyid= #{companyid}
 	</select>
-	<select id="getCount" resultType="int">
+	<select id="getTotCnt" parameterType="companySch" resultType="int">
 		SELECT COUNT(*) FROM COMPANY
+		where 1=1
+		<if test="companyid!=null and companyid!=''">
+			and companyid = #{companyid}
+		</if>
+		<if test="companytype!=null and companytype!=''">
+			and companytype in '%' || #{companytype} || '%'
+		</if>
+		<if test="industry!=null and industry!=''">
+			and industry like '%' || #{industry} || '%'
+		</if>
 	</select>	
 </mapper>

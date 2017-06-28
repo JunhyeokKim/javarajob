@@ -11,5 +11,5 @@ import javarajob.vo.Company_Sch;
 public interface CompDao {
 	public ArrayList<Company> listCompany(Company_Sch sch);
 	public Company getCompany(int companyid);
-	public int getCount();
+	public int getTotCnt(Company_Sch sch);
 }

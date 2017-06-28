@@ -20,20 +20,16 @@ import javarajob.service.CompService;
 import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
+import javarajob.vo.Company_Sch;
 
 @Controller
 @RequestMapping("/careerlist.do")
-@SessionAttributes("careerSch")
 public class CareerCtrl {
 	@Autowired(required = false)
 	CareerService careerService;
 	@Autowired(required = false)
 	CompService compService;
 
-	@ModelAttribute("careerSch")
-	public Career_Sch Career_sch() {
-		return new Career_Sch();
-	}
 
 	final static int NUMBER_OF_ITEMS = 5;
 
@@ -42,7 +38,7 @@ public class CareerCtrl {
 			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
 			@ModelAttribute("careerSch") Career_Sch careerSch,
 			@RequestParam(value = "orderby", defaultValue = "desc") String orderby,
-			@RequestParam(value = "page", defaultValue = "1") int page, Model d) {
+			Model d) {
 		int totCareerCnt = 0;
 		ArrayList<Career> totCareerList = new ArrayList<>();
 		HashMap<String, Company> companys = new HashMap<>();
@@ -50,6 +46,7 @@ public class CareerCtrl {
 		AscendingCareer AscOrderObj = new AscendingCareer();
 		queryType = queryType.trim();
 		query = query.trim();
+		
 		System.out.println("querytype: " + queryType);
 		System.out.println("query: " + query);
 		if (queryType.equals("통합 검색")) {
@@ -65,10 +62,11 @@ public class CareerCtrl {
 
 		totCareerList = careerService.listCareer(careerSch);
 		totCareerCnt = totCareerList.size();
+		ArrayList<Company> comps= compService.listCompany(new Company_Sch(), 3);
+		for (Company company : comps) {
+			companys.putIfAbsent(String.valueOf(company.getCompanyid()), company);
+		}
 		for (Career career : totCareerList) {
-			// TODO: paging 처리는 controller에서 하면 될듯
-			if (companys.size() > NUMBER_OF_ITEMS)
-				break;
 			if (!companys.containsKey(String.valueOf(career.getCompanyid()))) {
 				Company vo = compService.getCompany(career.getCompanyid());
 				ArrayList<Career> allocCareers = new ArrayList<>();
