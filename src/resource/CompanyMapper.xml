@@ -12,6 +12,9 @@
 		<if test="companyid!=null and companyid!=''">
 			and companyid = #{companyid}
 		</if>
+		<if test="companyname!=null and companyname!=''">
+			and companyname like '%' || #{companyname} || '%'
+		</if>
 		<if test="companytype!=null and companytype!=''">
 			and companytype in '%' || #{companytype} || '%'
 		</if>

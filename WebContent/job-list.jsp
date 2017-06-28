@@ -84,6 +84,7 @@
 			<div class="banner-form job-list-form">
 			<div class="sch-bar">
 				<form action="${path }/careerlist.do?method=sch" method="post">
+				<input type="hidden" name="curPage" value="1"/>
 					<!-- category-change -->
 					<div class="dropdown category-dropdown">						
 						<a data-toggle="dropdown" href="#" class="dropdown-quetype"><span class="change-text" id="quetype">통합 검색</span> <i class="fa fa-angle-down"></i></a>
@@ -338,24 +339,24 @@
 							<div class="ad-section text-center">
 								<a href="#"><img src="images/ads/3.jpg" alt="Image" class="img-responsive"></a>
 							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
-	
-							
-							<c:forEach var="cnt" begin="1" end="${companysch.pageCount }">
-								<a href="javascript:go(${cnt}) ">[${cnt}]</a>
-							</c:forEach>
 							
 							
 							<!-- pagination  -->
 							<div class="text-center">
 								<ul class="pagination ">
-									<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-									<li><a href="#">1</a></li>
-									<li class="active"><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">...</a></li>
-									<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+								<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+								<c:forEach var="cnt" begin="1" end="${compSch.pageCount }" varStatus="sts">
+								<c:choose>
+								 <c:when test="${cnt eq compSch.curPage }">
+								 	<li class="active"><a href="javascript:go(${cnt}) ">${cnt}</a></li>
+								 </c:when>
+								 <c:otherwise>
+								 	<li><a href="javascript:go(${cnt}) ">${cnt}</a></li>
+								 </c:otherwise>
+								</c:choose>
+									
+								</c:forEach>
+								<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
 								</ul>
 							</div><!-- pagination  -->					
 						</div>
@@ -451,6 +452,11 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     		$("input[name=querytype]").val($(this).text());
     	})
     })
+    function go(curPage){
+		$("input[name=curPage]").val(curPage);
+		$("form").attr("action","${path}/careerlist.do?method=sch")
+		$("form").submit();
+	}
 	
 	</script>
   </body>

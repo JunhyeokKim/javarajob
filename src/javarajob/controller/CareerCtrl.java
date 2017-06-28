@@ -24,21 +24,25 @@ import javarajob.vo.Company_Sch;
 
 @Controller
 @RequestMapping("/careerlist.do")
+@SessionAttributes("compSch")
 public class CareerCtrl {
 	@Autowired(required = false)
 	CareerService careerService;
 	@Autowired(required = false)
 	CompService compService;
 
+	@ModelAttribute("compSch")
+	public Company_Sch Comp_Sch() {
+		return new Company_Sch();
+	}
 
 	final static int NUMBER_OF_ITEMS = 5;
 
 	@RequestMapping(params = "method=sch")
 	public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
 			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
-			@ModelAttribute("careerSch") Career_Sch careerSch,
-			@RequestParam(value = "orderby", defaultValue = "desc") String orderby,
-			Model d) {
+			@ModelAttribute("careerSch") Career_Sch careerSch, @ModelAttribute("compSch") Company_Sch compSch,
+			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
 		int totCareerCnt = 0;
 		ArrayList<Career> totCareerList = new ArrayList<>();
 		HashMap<String, Company> companys = new HashMap<>();
@@ -46,10 +50,11 @@ public class CareerCtrl {
 		AscendingCareer AscOrderObj = new AscendingCareer();
 		queryType = queryType.trim();
 		query = query.trim();
-		
+
 		System.out.println("querytype: " + queryType);
 		System.out.println("query: " + query);
 		if (queryType.equals("통합 검색")) {
+			compSch.setCompanyname(query);
 			careerSch.setCompanyname(query);
 			careerSch.setTitle(query);
 		} else if (queryType.equals("채용 공고")) {
@@ -58,28 +63,25 @@ public class CareerCtrl {
 		} else if (queryType.equals("기업명")) {
 			careerSch.setCompanyname(query);
 			careerSch.setTitle(null);
+			compSch.setCompanyname(query);
 		}
 
 		totCareerList = careerService.listCareer(careerSch);
 		totCareerCnt = totCareerList.size();
-		ArrayList<Company> comps= compService.listCompany(new Company_Sch(), 3);
+		ArrayList<Company> comps = compService.listCompany(compSch, 3);
 		for (Company company : comps) {
 			companys.putIfAbsent(String.valueOf(company.getCompanyid()), company);
 		}
 		for (Career career : totCareerList) {
-			if (!companys.containsKey(String.valueOf(career.getCompanyid()))) {
-				Company vo = compService.getCompany(career.getCompanyid());
-				ArrayList<Career> allocCareers = new ArrayList<>();
-				allocCareers.add(career);
-				vo.setCareers(allocCareers);
-				companys.put(String.valueOf(career.getCompanyid()), vo);
-			} else {
+			if (companys.containsKey(String.valueOf(career.getCompanyid()))) {
 				Company vo = companys.get(String.valueOf(career.getCompanyid()));
+				if (vo.getCareers() == null) {
+					vo.setCareers(new ArrayList<Career>());
+				}
 				vo.getCareers().add(career);
 				companys.put(String.valueOf(career.getCompanyid()), vo);
 			}
 		}
-
 		// TODO: orderby 구현
 		if (orderby.equals("desc")) {
 			Collections.sort(totCareerList, descOrderObj);
@@ -103,8 +105,7 @@ public class CareerCtrl {
 		ArrayList<Career> careers = careerService.listCareer(sch);
 		if (careers != null) {
 			company.setCareers(careers);
-		}
-		else{
+		} else {
 			System.out.println("no matching company");
 		}
 		d.addAttribute("company", company);
