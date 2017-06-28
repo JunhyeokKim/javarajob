@@ -408,9 +408,7 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
     <script src="js/main.js?ver=1"></script>
 	<script src="js/switcher.js"></script>
 	<script type="text/javascript">
-		$('#type-0').click(function(){
-			$('input[name=companytype]').trigger('click');
-		});
+		
 		$('#field-0').click(function(){
 			$('input[name=field]').trigger('click');
 		});
@@ -423,26 +421,39 @@ Copyright Anchoreer Co., Inc. All rights reserved.</p>
 		$('#emptype-0').click(function(){
 			$('input[name=employmenttype]').trigger('click');
 		});
-		var companyTypes= ["${careerSch.companytype[0]}","${careerSch.companytype[1]}","${careerSch.companytype[2]}","${careerSch.companytype[3]}",
-			"${careerSch.companytype[4]}","${careerSch.companytype[5]}","${careerSch.companytype[6]}"];
+		var companyTypes= ["${schElement.companytype[0]}","${schElement.companytype[1]}","${schElement.companytype[2]}","${schElement.companytype[3]}",
+			"${schElement.companytype[4]}","${schElement.companytype[5]}","${schElement.companytype[6]}"];
 		console.log(companyTypes)
-		var fields= ["${careerSch.field[0]}","${careerSch.field[1]}","${careerSch.field[2]}","${careerSch.field[3]}",
-			"${careerSch.field[4]}","${careerSch.field[5]}","${careerSch.field[6]}"];
+		var fields= ["${schElement.field[0]}","${schElement.field[1]}","${schElement.field[2]}","${schElement.field[3]}",
+			"${schElement.field[4]}","${schElement.field[5]}","${schElement.field[6]}"];
 		
-		/* $("input[name=companytype]").each(function(){
+		 $("input[name=companytype]").each(function(index,item){
 			for(var i=0; i<companyTypes.length; i++){
+				console.log(item)
 				if($(this).val()==companyTypes[i]){
 					console.log("같음")
-					$(this).attr("checked",true);
-				}
+					$(this).prop('checked','checked');
+					$(this).parent('label').addClass('checked');
+				} 
 			}
 		})
-		$("input[name=field]").each(function(){
-			for(var i=0; i<fields.length; i++){
-				if($(this).val()==fields[i])
-					$(this).attr("checked",true);
-			}
-		}) */
+		
+		$('#type-0').click(function(){
+            if($("#type-0").prop('checked')){
+                $('input[name=companytype]:checkbox').each(function(){
+                    $(this).parent('label').addClass('checked');
+                    $(this).prop('checked','checked');
+                })
+            } else {
+                $('input[name=companytype]:checkbox').each(function(){
+                    $(this).parent('label').removeClass('checked');
+                    $(this).removeProp('checked');
+                    console.log(this.checked);
+                })
+            }
+      });
+		
+		
 		$(document).ready(function(){
 			$("#quetype").text("${queType}")
 			$("input[name=querytype]").val($("#quetype").text());
