@@ -11,6 +11,7 @@
 		<typeAlias alias="companySch" type="javarajob.vo.Company_Sch" />
 		<typeAlias alias="career" type="javarajob.vo.Career"/>
 		<typeAlias alias="careerSch" type="javarajob.vo.Career_Sch"/>
+		<typeAlias alias="schElement" type="javarajob.vo.SchElement"/>
 		<typeAlias alias="resume" type="javarajob.vo.Resume" />		
 	</typeAliases>
 	
@@ -19,6 +20,7 @@
 		<mapper resource="resource/CompanyMapper.xml" />
 		<mapper resource="resource/CareerMapper.xml" />
 		<mapper resource="resource/ResumeMapper.xml" />		
+		<mapper resource="resource/SchMapper.xml" />		
 	</mappers>
 	
 </configuration>

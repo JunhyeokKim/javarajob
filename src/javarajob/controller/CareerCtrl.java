@@ -17,23 +17,26 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
+import javarajob.service.SchElementService;
 import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
-import javarajob.vo.Company_Sch;
+import javarajob.vo.SchElement;
 
 @Controller
 @RequestMapping("/careerlist.do")
-@SessionAttributes("compSch")
+@SessionAttributes("schElement")
 public class CareerCtrl {
 	@Autowired(required = false)
-	CareerService careerService;
+	SchElementService service;
 	@Autowired(required = false)
 	CompService compService;
+	@Autowired(required = false)
+	CareerService careerService;
 
-	@ModelAttribute("compSch")
-	public Company_Sch Comp_Sch() {
-		return new Company_Sch();
+	@ModelAttribute("schElement")
+	public SchElement schElement() {
+		return new SchElement();
 	}
 
 	final static int NUMBER_OF_ITEMS = 5;
@@ -41,11 +44,13 @@ public class CareerCtrl {
 	@RequestMapping(params = "method=sch")
 	public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
 			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
-			@ModelAttribute("careerSch") Career_Sch careerSch, @ModelAttribute("compSch") Company_Sch compSch,
+			@ModelAttribute("schElement") SchElement schElement,
 			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
 		int totCareerCnt = 0;
 		ArrayList<Career> totCareerList = new ArrayList<>();
 		HashMap<String, Company> companys = new HashMap<>();
+		ArrayList<SchElement> queryResult = null;
+
 		Descending<Career> descOrderObj = new Descending<>();
 		AscendingCareer AscOrderObj = new AscendingCareer();
 		queryType = queryType.trim();
@@ -54,34 +59,30 @@ public class CareerCtrl {
 		System.out.println("querytype: " + queryType);
 		System.out.println("query: " + query);
 		if (queryType.equals("통합 검색")) {
-			compSch.setCompanyname(query);
-			careerSch.setCompanyname(query);
-			careerSch.setTitle(query);
+			schElement.setCompanyname(query);
+			schElement.setTitle(query);
 		} else if (queryType.equals("채용 공고")) {
-			careerSch.setCompanyname(null);
-			careerSch.setTitle(query);
+			schElement.setCompanyname(null);
+			schElement.setTitle(query);
 		} else if (queryType.equals("기업명")) {
-			careerSch.setCompanyname(query);
-			careerSch.setTitle(null);
-			compSch.setCompanyname(query);
+			schElement.setCompanyname(query);
+			schElement.setTitle(null);
 		}
-
-		totCareerList = careerService.listCareer(careerSch);
-		totCareerCnt = totCareerList.size();
-		ArrayList<Company> comps = compService.listCompany(compSch, 3);
-		for (Company company : comps) {
-			companys.putIfAbsent(String.valueOf(company.getCompanyid()), company);
+		queryResult = service.schQuery(schElement,3);
+		ArrayList<Company> exp= service.getCompanys(schElement);
+		for (Company company : exp) {
+			companys.put(String.valueOf(company.getCompanyid()), company);
 		}
-		for (Career career : totCareerList) {
-			if (companys.containsKey(String.valueOf(career.getCompanyid()))) {
-				Company vo = companys.get(String.valueOf(career.getCompanyid()));
-				if (vo.getCareers() == null) {
-					vo.setCareers(new ArrayList<Career>());
+		for (SchElement element : queryResult) {
+			if (companys.containsKey(String.valueOf(element.getCompanyid()))) {
+				if (companys.get(String.valueOf(element.getCompanyid())).getCareers() == null) {
+					companys.get(String.valueOf(element.getCompanyid())).setCareers(new ArrayList<Career>());
 				}
-				vo.getCareers().add(career);
-				companys.put(String.valueOf(career.getCompanyid()), vo);
+				companys.get(String.valueOf(element.getCompanyid())).getCareers()
+						.add(careerService.getCareer(element.getCareerid()));
 			}
 		}
+
 		// TODO: orderby 구현
 		if (orderby.equals("desc")) {
 			Collections.sort(totCareerList, descOrderObj);
@@ -109,6 +110,7 @@ public class CareerCtrl {
 			System.out.println("no matching company");
 		}
 		d.addAttribute("company", company);
+
 		return "ajaxJobSearch";
 	}
 

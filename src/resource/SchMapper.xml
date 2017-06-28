@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="javarajob.repository.SchElementDao">
+	<resultMap type="schElement" id="schResult"/>	
+	<resultMap type="company" id="companyResult"/>	
+	<select id="schQuery" resultMap="schResult" parameterType="schElement">
+		select * from (select rownum rnum, c.* from
+		(select a.*, b.COMPANYNAME 
+		from career a, company b 
+		where a.COMPANYID=b.COMPANYID) c
+		where 1=1
+		<if test="careerid!=null and careerid!=''">
+			and c.careerid = #{careerid}
+		</if>
+		<if test="companyid!=null and companyid!=''">
+			and c.companyid = #{companyid}
+		</if>
+		<choose>
+			<when test="(title!=null and companyname==null)">
+				and c.title like '%' || #{title} || '%'
+			</when>
+			<when test="(companyname!=null and title==null)">
+				and c.companyname like '%' || #{companyname} || '%'
+			</when>
+			<when test="(companyname!=null and title!=null)">
+				and (c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%')  
+			</when>
+			<otherwise>
+			and 1=1
+			</otherwise>
+		</choose>
+		<if test="companytype!=null">
+			and c.companytype in
+			<foreach collection="companytype" item="ckcomptype" open="(" close=")" separator=",">
+	 			#{ckcomptype}
+	 		</foreach>
+		</if>
+		<if test="location!=null">
+			and c.location in 
+			<foreach collection="location" item="cklocation" open="(" close=")" separator=",">
+	 			#{cklocation}
+	 		</foreach>
+		</if>
+		<if test="field!=null">
+			and c.field in
+			<foreach collection="field" item="ckfield" open="(" close=")" separator=",">
+	 			#{ckfield}
+	 		</foreach>
+		</if>
+		<if test="industry!=null">
+			and c.industry in 
+			<foreach collection="industry" item="ckindustry" open="(" close=")" separator=",">
+	 			#{ckindustry}
+	 		</foreach>
+		</if>
+		<if test="employmenttype!=null">
+			and c.employmenttype in 
+			<foreach collection="employmenttype" item="ckemptype" open="(" close=")" separator=",">
+	 			#{ckemptype}
+	 		</foreach>
+		</if>
+		) <!-- paging 처리(career단) -->
+	</select>
+	<select id="getCompanys" resultMap="companyResult" parameterType="schElement">
+		select * from(
+		select rownum rnum, e.* from (select companyid, count(*) from
+		(select a.*, b.COMPANYNAME 
+		from career a, company b 
+		where a.COMPANYID=b.COMPANYID) c
+		where 1=1
+		<if test="careerid!=null and careerid!=''">
+			and c.careerid = #{careerid}
+		</if>
+		<if test="companyid!=null and companyid!=''">
+			and c.companyid = #{companyid}
+		</if>
+		<choose>
+			<when test="(title!=null and companyname==null)">
+				and c.title like '%' || #{title} || '%'
+			</when>
+			<when test="(companyname!=null and title==null)">
+				and c.companyname like '%' || #{companyname} || '%'
+			</when>
+			<when test="(companyname!=null and title!=null)">
+				and (c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%')  
+			</when>
+			<otherwise>
+			and 1=1
+			</otherwise>
+		</choose>
+		<if test="companytype!=null">
+			and c.companytype in
+			<foreach collection="companytype" item="ckcomptype" open="(" close=")" separator=",">
+	 			#{ckcomptype}
+	 		</foreach>
+		</if>
+		<if test="location!=null">
+			and c.location in 
+			<foreach collection="location" item="cklocation" open="(" close=")" separator=",">
+	 			#{cklocation}
+	 		</foreach>
+		</if>
+		<if test="field!=null">
+			and c.field in
+			<foreach collection="field" item="ckfield" open="(" close=")" separator=",">
+	 			#{ckfield}
+	 		</foreach>
+		</if>
+		<if test="industry!=null">
+			and c.industry in 
+			<foreach collection="industry" item="ckindustry" open="(" close=")" separator=",">
+	 			#{ckindustry}
+	 		</foreach>
+		</if>
+		<if test="employmenttype!=null">
+			and c.employmenttype in 
+			<foreach collection="employmenttype" item="ckemptype" open="(" close=")" separator=",">
+	 			#{ckemptype}
+	 		</foreach>
+		</if>
+		group by companyid) d, company e
+		where e.COMPANYID=d.companyid) where rnum between #{start} and #{end}
+	</select>
+	<select id="getTotCnt" parameterType="schElement" resultType="int">
+		select count(*) from(
+			select rownum rnum, e.* from (select companyid, count(*) from
+			(select a.*, b.COMPANYNAME 
+			from career a, company b 
+			where a.COMPANYID=b.COMPANYID) c
+			where 1=1
+			<if test="careerid!=null and careerid!=''">
+				and c.careerid = #{careerid}
+			</if>
+			<if test="companyid!=null and companyid!=''">
+				and c.companyid = #{companyid}
+			</if>
+			<choose>
+				<when test="(title!=null and companyname==null)">
+					and c.title like '%' || #{title} || '%'
+				</when>
+				<when test="(companyname!=null and title==null)">
+					and c.companyname like '%' || #{companyname} || '%'
+				</when>
+				<when test="(companyname!=null and title!=null)">
+					and (c.title like '%' || #{title} || '%' or c.companyname like '%' || #{companyname} || '%')  
+				</when>
+				<otherwise>
+				and 1=1
+				</otherwise>
+			</choose>
+			<if test="companytype!=null">
+				and c.companytype in
+				<foreach collection="companytype" item="ckcomptype" open="(" close=")" separator=",">
+		 			#{ckcomptype}
+		 		</foreach>
+			</if>
+			<if test="location!=null">
+				and c.location in 
+				<foreach collection="location" item="cklocation" open="(" close=")" separator=",">
+		 			#{cklocation}
+		 		</foreach>
+			</if>
+			<if test="field!=null">
+				and c.field in
+				<foreach collection="field" item="ckfield" open="(" close=")" separator=",">
+		 			#{ckfield}
+		 		</foreach>
+			</if>
+			<if test="industry!=null">
+				and c.industry in 
+				<foreach collection="industry" item="ckindustry" open="(" close=")" separator=",">
+		 			#{ckindustry}
+		 		</foreach>
+			</if>
+			<if test="employmenttype!=null">
+				and c.employmenttype in 
+				<foreach collection="employmenttype" item="ckemptype" open="(" close=")" separator=",">
+		 			#{ckemptype}
+		 		</foreach>
+			</if>
+			group by companyid) d, company e
+			where e.COMPANYID=d.companyid) 
+	</select>
+	
+		
+</mapper>

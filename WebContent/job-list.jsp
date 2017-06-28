@@ -340,14 +340,13 @@
 								<a href="#"><img src="images/ads/3.jpg" alt="Image" class="img-responsive"></a>
 							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
 							
-							
 							<!-- pagination  -->
 							<div class="text-center">
 								<ul class="pagination ">
 								<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-								<c:forEach var="cnt" begin="1" end="${compSch.pageCount }" varStatus="sts">
+								<c:forEach var="cnt" begin="1" end="${schElement.pageCount }" varStatus="sts">
 								<c:choose>
-								 <c:when test="${cnt eq compSch.curPage }">
+								 <c:when test="${cnt eq schElement.curPage }">
 								 	<li class="active"><a href="javascript:go(${cnt}) ">${cnt}</a></li>
 								 </c:when>
 								 <c:otherwise>
