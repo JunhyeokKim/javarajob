@@ -20,10 +20,23 @@
 <mapper namespace="javarajob.repository.A01_BoardDao">
 	<resultMap type="board" id="boardResult"/>
 	<insert id="insertBoard" parameterType="board">	<!-- 계층형을 위해서는 refno로 계층관계를 연결해주어야 -->
-		insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{pass},#{writer},0,sysdate,#{email},0)
+		insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{pass},#{writer},0,sysdate,#{email},#{companyid})
 	</insert>
+	<!-- 
+	<delete id="deleteBoard" parameterType="no">
+		DELETE FROM BOARD WHERE no=#{no}
+	</delete>
+	<update id="updateBoard" parameterType="board">
+		update account set subject=#{subject}, content=#{content}, pass=#{pass}, writer=#{writer}, email=#{email}, companyid=#{companyid} where no=#{no}
+	</update>
+	 -->
 	<select id="listBoard" resultMap="boardResult" parameterType="schboard"> 
-		select rownum cnt, a.* from board a
+		select 
+		rownum cnt, 
+		a.*,		 
+		(select COMPANYNAME from COMPANY b where a.COMPANYID=b.COMPANYID) companyname,
+		(select DECODE(c.no,0,'X',1,'O','O') from board c where a.no=c.refno) isread
+		from board a
 		where 1=1
 		<if test="subject!=null and subject!=''">
 			and subject like '%' || #{subject} || '%'
@@ -34,6 +47,7 @@
 		<if test="content!=null and content!=''">
 			and content like '%' || #{content} || '%'
 		</if>	<!-- 계층관계 연결 및 글 보여지는 순서 정리 -->
+		
 		start with refno=0
 		connect by prior no=refno
 		order siblings by no desc				

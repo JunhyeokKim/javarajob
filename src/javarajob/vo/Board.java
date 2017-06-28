@@ -14,6 +14,8 @@ public class Board {
 	private Date regdate;
 	private String email;
 	private int companyid;
+	private String companyname;
+	private String isread;
 	
 	public int getNo() {
 		return no;
@@ -81,5 +83,18 @@ public class Board {
 	public void setCompanyid(int companyid) {
 		this.companyid = companyid;
 	}
+	public String getCompanyname() {
+		return companyname;
+	}
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
+	}
+	public String getIsread() {
+		return isread;
+	}
+	public void setIsread(String isread) {
+		this.isread = isread;
+	}
+	
 	
 }
