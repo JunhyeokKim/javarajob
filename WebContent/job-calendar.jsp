@@ -53,6 +53,8 @@
 	
 	<section class="job-bg page job-list-page">
 		<div class="container-fluid">
+			<div id="target">
+	</div>
 			<div class="breadcrumb-section">
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
@@ -77,8 +79,7 @@
 		</form>
 		</div>
 	</section><!-- main -->
-	<div id="target">
-	</div>
+	
 	
 	<!--/Preset Style Chooser--> 
 	<div class="style-chooser">
@@ -106,58 +107,12 @@
 	<script src='js/moment.min.js'></script>
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
-	<script src='js/calendar.js'></script>
 	<script type="text/javascript">
+	var date = new Date();
+	var d = date.getDate();
+	var m = date.getMonth();
+	var y = date.getFullYear();
 	$(document).ready(function(){
-		var url="${path}/calendar.do?method=call";
-		var params="month="+$("#calendar").fullCalendar('getCalendar').moment().format('MM');;
- 		$.ajax({
-			type:"POST",
-			url:url,
-			data:params,
-			success:function(data){
-				console.log("data");
-			}
-			
-		})
- 		
-		
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-
-		$('#calendar').fullCalendar({
-			header : {
-				left : 'today',
-				center : 'prev title next',
-				right : ''
-			},
-			titleFormat:'YYYY.MM',
-			editable : false,
-			locale: '',
-			eventRender: function (event, element) {
-			    element.find('.fc-title').append('<img class="item-unselected" src="images/icon/bookmark-unselected.png">');
-			},
-			events : [ {
-				title : '',
-				start : new Date(y, m, 11, 05, 30),
-				end : new Date(y, m, 15, 10, 30),
-				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
-			}, {
-				title : '삼성',
-				start : new Date(y, m, 1),
-				end : new Date(y, m, 5),
-				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
-			}, {
-				title : '한화',
-				start : new Date(y, m, 7),
-				end : new Date(y, m, 10),
-				url : 'http://recruit.hyundai.com/hfront/Main.do?cmd=main&p_hgrcode=1'
-			} ],
-			timeFormat: 'hh:mm'
-		});
-		
 		$('#calendar-mini').fullCalendar({
 			header : {
 				left : '',
@@ -167,6 +122,22 @@
 			titleFormat:'YYYY.MM',
 			locale : 'ko',
 		});
+		
+		var url="${path}/calendar.do?method=careerList";
+		var params="date=2017-06";
+		var careers;
+		console.log(params);
+		$.ajax({
+			url:url,
+			dataType:'json',
+			type:'POST',
+			data:params,
+			success:function(data){
+				careers=data.careers;
+				console.log(careers[0]);
+				initCalendar(careers);
+			}
+		})
 		
 		$("#calendar-mini .fc-next-button").click(function() {
 			$('#calendar').fullCalendar('next');	
@@ -181,9 +152,36 @@
 			$('#calendar-mini').fullCalendar('prev');	
 		})
 		
-		
-		
 	})
+	function initCalendar(careers){
+		var events= new Array();
+		for(var i=0; i<careers.length; i++){
+			var event={
+			title:careers[i].companyname,
+			start:new Date(careers[i].postdate),
+			end:new Date(careers[i].enddate)
+			};
+			events.push(event);
+			
+		}
+		
+		
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'today',
+				center : 'prev title next',
+				right : ''
+			},
+			titleFormat:'YYYY.MM',
+			editable : true,
+			locale: '',
+			eventRender: function (event, element) {
+			    element.find('.fc-title').append('<img class="item-unselected" src="images/icon/bookmark-unselected.png">');
+			},
+			events : events,
+			timeFormat: 'hh:mm'
+		});
+	}
 	</script>
 	
   </body>
