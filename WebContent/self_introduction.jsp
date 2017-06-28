@@ -55,7 +55,17 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		$("#allSel").click(function(){
+			$("input[name=fileName]").trigger("click");
+		})
+		$("#uploadBtn").click(function(){
+			$("form").attr("action","${path}/self_intro.do?method=upload");
+			$("form").submit();
+		})
+		$("#delDocu").click(function(){
+			$("form").attr("action","${path}/self_intro.do?method=delete");
+			$("form").submit();
+		})
 	})
 </script>
 <!-- form js -->
@@ -66,61 +76,95 @@
 	<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
 
-	<section class=" job-bg page  ad-profile-page">
-		<div class="self-overlay"></div>
-		<div class="container">
-			<div class="breadcrumb-section">
-				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li><a href="${path}/index.do">Home</a></li>
-					<li>자소서관리</li>
-				</ol><!-- breadcrumb -->
-				<h2 class="title">자기소개서 List</h2>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="file_input_div">
-							<div class="sid-button">
-								<a href="#" class="btn">파일 업로드</a>
+	<section class="job-bg page  ad-profile-page">
+		<form method="post" enctype="multipart/form-data">
+			<div class="self-overlay"></div>
+			<div class="container">
+				<input type="hidden" name="userId" value="${id}" />
+				<div class="breadcrumb-section">
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="${path}/index.do">Home</a></li>
+						<li>자소서관리</li>
+					</ol><!-- breadcrumb -->
+					<h2 class="title">자기소개서 List</h2>
+					<div class="row">
+						<div class="col-mdd-3">
+							<div class="file_input_div">
+								<div class="sid_button">
+									<input type="button" class="btn" value="파일 찾기" />
+									<input type="file" class="file_input_hidden" name="selfIntro" />
+								</div>
 							</div>
-							<input type="file" class="file_input_hidden" value="파일 다운로드" />
 						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="sid-button">
-							<a href="#" class="btn">등록</a>
+						<div class="col-mdd-3">
+							<div class="sid-button">
+								<input type="button" class="btn" id="uploadBtn" value="저장하기" />
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="sid-button">
-							<a href="#" class="btn">선택 삭제</a>
+						<div class="col-mdd-3">
+							<div class="sid-button">
+								<input type="button" class="btn" id="delDocu" value="선택 삭제" />
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-1">
-						<div class="sid-button">
-							<a href="#" class="btn">파일 다운로드</a>
+						<div class="col-mdd-3">
+							<div class="sid-button">
+								<input type="button" class="btn" id="downDocu" value="다운로드" />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="resume-content">
-				<div class="kdb-table self-introduction-upload-section">
-					<table>
-						<colgroup>
-						<col width="10%">
-						<col width="20%">
-						<col width="50%">
-						<col width="20%">
-						</colgroup>
-						<tr class="preColor">
-							<th>파일 선택</th><th colspan="2">파일 이름</th><th>등록일</th>
-						</tr>
-					</table>
+			
+				<div class="resume-content">
+					<div class="kdb-table self-introduction-upload-section">
+						<table>
+							<colgroup>
+							<col width="5%">
+							<col width="10%">
+							<col width="10%">
+							<col width="55%">
+							<col width="20%">
+							</colgroup>
+							<tr class="preColor">
+								<th>
+									<input type="checkbox" id="allSel" style="width:30px;height:30px" />
+								</th>
+								<th>번호</th>
+								<th colspan="2">파일 이름</th>
+								<th>등록일</th>
+							</tr>
+							<c:forEach var="docu" items="${documents}" varStatus="sts">
+								<tr class="docuContent">
+									<td>
+										<input type="checkbox" name="fileNames" style="width:30px;height:30px" value="${docu.fileName}"/>
+									</td>
+									<td>
+										${sts.count}
+									</td>
+									<td>
+										<img src="images/ico/doc.png" width="50" height="50">
+									</td>
+									<td>
+										${docu.fileName}
+									</td>
+									<td>
+										${docu.regDate}
+									</td>
+								</tr>
+							</c:forEach>
+							<c:if test="${documents.size() == 0}">
+								<tr class="docuContent">
+									<td colspan="5">등록된 파일이 없습니다.</td>
+								</tr>
+							</c:if>
+						</table>
+					</div>
+					<!-- educational-background -->
 				</div>
-				<!-- educational-background -->
+				<!-- resume-content -->
 			</div>
-			<!-- resume-content -->
-		</div>
-		<!-- container -->
+			<!-- container -->
+		</form>
 	</section>
 	<!-- ad-profile-page -->
 
@@ -134,14 +178,10 @@
 			<a href="#" class="toggler"><i class="fa fa-cog fa-spin"></i></a>
 			<h4>Presets</h4>
 			<ul class="preset-list clearfix">
-				<li class="preset1 active" data-preset="1"><a href="#"
-					data-color="preset1"></a></li>
-				<li class="preset2" data-preset="2"><a href="#"
-					data-color="preset2"></a></li>
-				<li class="preset3" data-preset="3"><a href="#"
-					data-color="preset3"></a></li>
-				<li class="preset4" data-preset="4"><a href="#"
-					data-color="preset4"></a></li>
+				<li class="preset1 active" data-preset="1"><a href="#" data-color="preset1"></a></li>
+				<li class="preset2" data-preset="2"><a href="#" data-color="preset2"></a></li>
+				<li class="preset3" data-preset="3"><a href="#" data-color="preset3"></a></li>
+				<li class="preset4" data-preset="4"><a href="#" data-color="preset4"></a></li>
 			</ul>
 		</div>
 	</div>

@@ -45,7 +45,7 @@
 							</li>							
 							<c:if test="${not empty id}">
 							<li><a href="${path}/resume.do?userId=${id}">이력서</a></li>
-							<li><a href="${path}/self_intro.do">자소서관리</a></li> 
+							<li><a href="${path}/self_intro.do?method=view&userId=${id}">자소서관리</a></li> 
 							<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Page<span class="caret"></span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>

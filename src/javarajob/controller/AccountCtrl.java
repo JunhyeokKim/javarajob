@@ -20,6 +20,8 @@ import javarajob.vo.Account_Sch;
 public class AccountCtrl {
 	@Autowired(required=false)
 	private AccountService service;
+	
+	@Autowired(required = false)
 		
 	@RequestMapping(params="method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d){
