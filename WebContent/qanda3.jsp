@@ -53,25 +53,23 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-	$("#schbtn").click(function(){
-		$("form").submit();
+		$("#refBtn").click(function(){			
+			var no = $("input[name=no]").val();			
+			$(location).attr("href","${path}/boardList.do?method=insert&no="+no);	
+		});
+		$("#uptBtn").click(function(){
+					
+		});
+		$("#delBtn").click(function(){
+			
+		});
+		$("#listBtn").click(function(){
+			$(location).attr("href",
+					"${path}/boardList.do?method=list");
+			
+		});	
+	
 	});
-	// 등록버튼 클릭시
-	$("#regbtn").click(function(){
-		$(location).attr("href","${path}/boardList.do?method=insert");
-	});
-	// 상세화면으로 가기 위한 double 클릭 처리
-	$(".data").dblclick(function(){
-		var no=$(this).attr("id");
-		$(location).attr("href","${path}/boardList.do?method=detail&no="+no);
-	});
-	$("#initbtn").click(function(){
-		$("input[name=subject]").val("");
-		$("input[name=writer]").val("");
-		$("input[name=content]").val("");
-		$("form").submit();
-	});
-	})
 </script>
 </head>
 <body>
@@ -122,67 +120,62 @@
 				<div class="user-pro-section">
 					<!-- profile-details -->
 					<div class="question-answer section">
-						<h2>문의 내용</h2>
+						<h2>글 상세</h2>
 						<center>
-						<form method="post" action="${path}/boardList.do?method=list">
-						<table>
-							<tr>							 
-							<td><input type="text" class="form-control" name="subject"  placeholder="제목" value="${boardsch.subject}"/></td>
-							<td><input type="text" class="form-control" name="content"  placeholder="내용" value="${boardsch.content}"/></td>
-							<td><input type="text" class="form-control" name="writer"  placeholder="작성자" value="${boardsch.writer}"/></td>							 							
-							<td>
-								&nbsp;&nbsp;&nbsp;<input type="button" id="schbtn" class="btn" value="Search"/>
-								<input type="button" id="initbtn" class="btn" value="Reset"/>
-								<input type="button" id="regbtn" class="btn" value="Write"/>								
-							</td>
-							</tr>
-						</table>
-						</form>
+						<form method="post" action="${path}/boardList.do?method=insProc">
+							<input type="hidden" name="refno" size="50" value="${board.no}"/>
+							<table>
+								<tr>
+									<td width="15%" align="right">글번호</td>
+										<td><div class="form-control">${board.no}</div><input type="hidden" name="no" size="50" value="${board.no}"/></td>
+									<td width="15%" align="right">조회수</td>
+										<td><div class="form-control">${board.readcount}</div></td></tr>		
+								<tr>
+									<td align="right">기업</td>
+										<td>
+											<c:forEach var="companyList" items="${companyList}">
+													<c:choose>
+														<c:when test="${companyList.companyid == board.companyid}">
+															<div class="form-control">${companyList.companyname}</div>
+															<input type="hidden" name="companyid"	value="${companyList.companyname}"  size="50" class="form-control"/>
+														</c:when>														
+													</c:choose>														
+											</c:forEach>
+										</td>											
+									<td align="right">패드워드</td>
+										<td><input type="password" name="pass"  value="${board.pass}" size="50" class="form-control"/></td>
+								</tr>		
+								<tr colspan="4">
+									<td align="right">제목</td>
+										<td><input type="text" name="subject" value="${board.subject}" size="50" class="form-control"/></td>
+								</tr>
+								<tr>
+									<td align="right">작성자</td>
+										<td><input type="text" name="writer" size="50" value="${board.writer}" class="form-control"/></td>		
+								    <td align="right">이메일</td>
+								    	<td><input type="text" name="email" size="50" value="${board.email}" class="form-control"/></td>
+								</tr>
+										
+								<tr colspan="2">
+									<td align="right">내용</td>
+										<td><textarea name="content" cols="40" rows="10" class="form-control">${board.content}</textarea></td>
+								</tr>		
+								
+								<tr align="right"><td colspan="4"><br>
+								<input type="button" id="listBtn" value="메인글" class="btn"/>			
+								<input type="button" id="refBtn" value="답글달기" class="btn"/>
+								<input type="button" id="uptBtn"  value="수정" class="btn"/>
+								<input type="button" id="delBtn"  value="삭제" class="btn"/>
+								
+								</td></tr>			
+							</table>
+						</form>						
 						</center>
 						
 						
-						<table align="center" class="kdb-table" width="100%">
-							<caption style="text-align:left">
-								총:${list.size()}건
-							</caption>
-							<colgroup>
-								<col width="5%">
-								<col width="15%">
-								<col width="42%">
-								<col width="7%">
-								<col width="7%">
-								<col width="7%">
-								<col width="7%">
-							</colgroup>							
-							<tr>
-								<th>번호</th>
-								<th>기업명</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>								
-								<th>답변 여부</th>
-								<th>조회수</th>
-							</tr>					
-							
-							<c:forEach var="board" items="${list}">
-							<tr class="data" id="${board.no}">
-								<td>${board.cnt}</td>
-								<td>${board.companyname}</td>
-								<td style="text-align:left;">${board.subject}</td>
-								<td>${board.writer}</td>
-								<td><fmt:formatDate value="${board.regdate}"/></td>
-								<td>${board.isread}</td>
-								<td>${board.readcount}</td>	
-							</tr>
-							</c:forEach>
-							<c:if test="${list.size()==0}">
-							<tr><td colspan="7">등록하신 문의가 없습니다.</td></tr>
-							</c:if>
-						</table>
 
 					</div>
-					<!-- profile-details -->			
-									
+					<!-- profile-details -->											
 				</div>
 				<!-- user-pro-edit -->
 			</div>
