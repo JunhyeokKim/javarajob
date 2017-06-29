@@ -281,14 +281,12 @@
 					</div><!-- accordion-->
 					</form>
 					
-					
-					
 
 					<!-- recommended-ads -->
 					<div class="col-sm-8 col-md-7">				
 						<div class="section job-list-item">
 							<div class="featured-top">
-								<h4>모든 채용 정보  (${totCareerCnt }), 현재 1 페이지(1-25)</h4>
+								<h4>모든 채용 정보  (${totCareerCnt }), 현재 ${schElement.curPage } 페이지(1 - ${schElement.pageCount})</h4>
 								<div class="dropdown pull-right">
 									<div class="dropdown category-dropdown">
 										<h5>정렬 기준:</h5>						
@@ -319,9 +317,67 @@
 											<div class="position-item">
 												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
-													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>${career.location }</a></li>
-													<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>${career.employmenttype }</a></li>
-													<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>${career.salary }만원</a></li>
+													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>
+													<c:choose>
+													<c:when test="${career.location eq 1}">서울</c:when>
+													<c:when test="${career.location eq 2}">경기</c:when>
+													<c:when test="${career.location eq 3}">광주</c:when>
+													<c:when test="${career.location eq 4}">대구</c:when>
+													<c:when test="${career.location eq 5}">대전</c:when>
+													<c:when test="${career.location eq 6}">부산</c:when>
+													<c:when test="${career.location eq 7}">울산</c:when>
+													<c:when test="${career.location eq 8}">인천</c:when>
+													<c:when test="${career.location eq 9}">강원</c:when>
+													<c:when test="${career.location eq 10}">경남</c:when>
+													<c:when test="${career.location eq 11}">경북</c:when>
+													<c:when test="${career.location eq 12}">전남</c:when>
+													<c:when test="${career.location eq 13}">전북</c:when>
+													<c:when test="${career.location eq 14}">충북</c:when>
+													<c:when test="${career.location eq 15}">충남</c:when>
+													<c:when test="${career.location eq 16}">제주</c:when>
+													<c:when test="${career.location eq 17}">전국</c:when>
+													<c:when test="${career.location eq 18}">세종</c:when>
+													<c:otherwise>기타 해외</c:otherwise>
+													</c:choose>
+													</a></li>
+													<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>
+													<c:choose>
+														<c:when test="${career.employmenttype eq 1}">정규직</c:when>
+														<c:when test="${career.employmenttype eq 2}">계약직</c:when>
+														<c:when test="${career.employmenttype eq 3}">병역특례</c:when>
+														<c:when test="${career.employmenttype eq 4}">인턴직</c:when>
+														<c:when test="${career.employmenttype eq 5}">시간제/일용직</c:when>
+														<c:when test="${career.employmenttype eq 9}">프리랜서</c:when>
+													</c:choose>
+													</a></li>
+													<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>
+													<c:choose>
+														<c:when test="${career.salary eq 0}">회사내규에 따름</c:when>
+														<c:when test="${career.salary eq 1}">1,400 만원 이하</c:when>
+														<c:when test="${career.salary eq 2}">1,400~1,600만원</c:when>
+														<c:when test="${career.salary eq 3}">1,600~1,800만원</c:when>
+														<c:when test="${career.salary eq 4}">1,800~2,000만원</c:when>
+														<c:when test="${career.salary eq 5}">2,000~2,200만원</c:when>
+														<c:when test="${career.salary eq 6}">2,200~2,400만원</c:when>
+														<c:when test="${career.salary eq 7}">2,400~2,600만원</c:when>
+														<c:when test="${career.salary eq 8}">2,600~2,800만원</c:when>
+														<c:when test="${career.salary eq 9}">2,800~3,000만원</c:when>
+														<c:when test="${career.salary eq 10}">3,000~3,200만원</c:when>
+														<c:when test="${career.salary eq 11}">3,200~3,400만원</c:when>
+														<c:when test="${career.salary eq 12}">3,400~3,600만원</c:when>
+														<c:when test="${career.salary eq 13}">3,600~3,800만원</c:when>
+														<c:when test="${career.salary eq 14}">3,800~4,000만원</c:when>
+														<c:when test="${career.salary eq 15}">4,000~5,000만원</c:when>
+														<c:when test="${career.salary eq 16}">5,000~6,000만원</c:when>
+														<c:when test="${career.salary eq 17}">6,000~7,000만원</c:when>
+														<c:when test="${career.salary eq 18}">7,000~8,000만원</c:when>
+														<c:when test="${career.salary eq 19}">8,000~9,000만원</c:when>
+														<c:when test="${career.salary eq 20}">9,000~1억원</c:when>
+														<c:when test="${career.salary eq 21}">1억원 이상</c:when>
+														<c:otherwise>면접후 결정</c:otherwise>
+													</c:choose>
+													
+													</a></li>
 												</ul>
 											</div>
 											</c:forEach>
@@ -373,18 +429,7 @@
 	
 	
 	<!-- footer -->
-	<footer id="footer" class="clearfix">      
-
-        <div class="footer-bottom clearfix text-center">
-            <div class="container">
-                <p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상
-    서울시 강남구 역삼로3길 13 건암빌딩 202호 | 전화번호: 02-6264-7582
-사업자등록 : 138-87-00058 | 직업정보제공사업 : J1200020160017 | 통신판매업 : 2016-서울강남-00784
-Copyright Anchoreer Co., Inc. All rights reserved.</p>
-                <p>Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a href="http://themeregion.com/">ThemeRegion</a></p>
-            </div>
-        </div><!-- footer-bottom -->
-    </footer><!-- footer -->
+	<jsp:include page="footer.jsp"/>
 	
 	<!--/Preset Style Chooser--> 
 	<div class="style-chooser">

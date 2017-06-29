@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
     <link rel="stylesheet" href="css/slidr.css">     
-    <link rel="stylesheet" href="css/main.css">  
+    <link rel="stylesheet" href="css/main.css?ver=3">  
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
     <link rel="stylesheet" href="css/responsive.css">
     <link rel='stylesheet' href='css/fullcalendar.css' />
@@ -43,7 +43,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Template Developed By ThemeRegion -->
-  
+  <style type="text/css"> 
+  	html, body { height:100%; overflow:hidden } 
+  </style>
+
     
 	</head>
 	<body>
@@ -57,10 +60,6 @@
 	</div>
 			<div class="breadcrumb-section">
 				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li>Engineer/Architects</li>
-				</ol><!-- breadcrumb -->						
 				<h2 class="title">Calendar</h2>
 			</div>
 			<div class="container-fluid section job-list-item">	
@@ -108,24 +107,21 @@
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
 	<script type="text/javascript">
+	var today;
+	var careers;
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	$(document).ready(function(){
-		$('#calendar-mini').fullCalendar({
-			header : {
-				left : '',
-				center : 'prev title next',
-				right : ''
-			},
-			titleFormat:'YYYY.MM',
-			locale : 'ko',
-		});
-		
+		callAjax();
+	})
+	function callAjax(tgl){
+		today=$("#calendar").fullCalendar('getCalendar');
 		var url="${path}/calendar.do?method=careerList";
-		var params="date=2017-06";
-		var careers;
+		var params="date="+tgl;
+		if(tgl==undefined)
+			params="date="+moment(today).format('YY-MM');
 		console.log(params);
 		$.ajax({
 			url:url,
@@ -137,35 +133,21 @@
 				console.log(careers[0]);
 				initCalendar(careers);
 			}
-		})
 		
-		$("#calendar-mini .fc-next-button").click(function() {
-			$('#calendar').fullCalendar('next');	
 		})
-		$("#calendar .fc-next-button").click(function() {
-			$('#calendar-mini').fullCalendar('next');	
-		})
-		$("#calendar-mini .fc-prev-button").click(function() {
-			$('#calendar').fullCalendar('prev');	
-		})
-		$("#calendar .fc-prev-button").click(function() {
-			$('#calendar-mini').fullCalendar('prev');	
-		})
-		
-	})
+	}
+	
 	function initCalendar(careers){
 		var events= new Array();
 		for(var i=0; i<careers.length; i++){
 			var event={
-			title:careers[i].companyname,
+			title:careers[i].title+"@ "+careers[i].companyname,
 			start:new Date(careers[i].postdate),
 			end:new Date(careers[i].enddate)
 			};
 			events.push(event);
 			
 		}
-		
-		
 		$('#calendar').fullCalendar({
 			header : {
 				left : 'today',
@@ -179,8 +161,45 @@
 			    element.find('.fc-title').append('<img class="item-unselected" src="images/icon/bookmark-unselected.png">');
 			},
 			events : events,
-			timeFormat: 'hh:mm'
+			timeFormat: 'hh:mm',
+			viewRender:function(){
+				
+			}
 		});
+		$('#calendar-mini').fullCalendar({
+			header : {
+				left : '',
+				center : 'prev title next',
+				right : ''
+			},
+			titleFormat:'YYYY.MM',
+			locale : 'ko',
+		});
+		
+		$("#calendar-mini .fc-next-button").click(function() {
+			$('#calendar').fullCalendar('next');
+			var date = $('#calendar').fullCalendar('getDate');
+			var tgl=moment(date).format('YYYY-MM');
+			callAjax(tgl);
+		})
+		$("#calendar .fc-next-button").click(function() {
+			$('#calendar-mini').fullCalendar('next');
+			var date = $('#calendar-mini').fullCalendar('getDate');
+			var tgl=moment(date).format('YYYY-MM');
+			callAjax(tgl);
+		})
+		$("#calendar-mini .fc-prev-button").click(function() {
+			$('#calendar').fullCalendar('prev');
+			var date = $('#calendar').fullCalendar('getDate');
+			var tgl=moment(date).format('YYYY-MM');
+			callAjax(tgl);
+		})
+		$("#calendar .fc-prev-button").click(function() {
+			$('#calendar-mini').fullCalendar('prev');
+			var date = $('#calendar-mini').fullCalendar('getDate');
+			var tgl=moment(date).format('YYYY-MM');
+			callAjax(tgl);
+		})
 	}
 	</script>
 	
