@@ -37,7 +37,7 @@
 	href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- icons -->
+<!-- iconss -->
 <link rel="icon" href="images/ico/favicon.ico">
 <link rel="apple-touch-icon" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
