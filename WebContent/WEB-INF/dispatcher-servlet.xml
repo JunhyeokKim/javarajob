@@ -58,4 +58,6 @@
 	-->
 	<!-- 파일 업로드 ViewResolver 처리 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- error page -->
 </beans>

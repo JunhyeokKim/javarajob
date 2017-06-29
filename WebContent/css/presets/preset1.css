@@ -63,6 +63,10 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	border-color: #00a651;
 }
 
+.kdb-table .docuContent:HOVER {
+	background-color:rgba(0,65,8,0.5);
+}
+
 .specs .content .image .image-buttons .btn {
 	border:1px solid #00a651;
 	color:#00a651;

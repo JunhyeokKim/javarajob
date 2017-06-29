@@ -1,5 +1,9 @@
 package javarajob.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javarajob.service.FileUploadService;
 import javarajob.vo.SelfDocuMulti;
+import javarajob.vo.SelfDocument;
 
 @Controller
 @RequestMapping("/self_intro.do")
@@ -27,20 +32,26 @@ public class SelfIntroCtrl {
 		return "self_introduction";
 	}
 
-	@RequestMapping(params = "method=upload")
-	public String uploadSelfIntro(@RequestParam("selfIntro") MultipartFile docu, @RequestParam("userId") String id) {
-		s.uploadDoc(docu, id);
-		return "forward:/self_intro.do?method=view&userId="+id;
+	@RequestMapping(params = "method=upload", method = RequestMethod.POST)
+	public String uploadSelfIntro(@RequestParam("selfIntro") MultipartFile docu, @RequestParam("userId") String id, @RequestParam int count) {
+		System.out.println(count);
+		s.uploadDoc(docu, id, count);
+		return "forward:/self_intro.do?method=view&userId=" + id;
 	}
-	
-	@RequestMapping(params = "method=delete")
-	public String delSelfIntro(@ModelAttribute("docuMulti") SelfDocuMulti del){
-//		s.delSelfIntro(del);
-		System.out.println(del.getUserId());
-		for(String a:del.getFileNames()){
-			System.out.println(a);
-		}
-		return "forward:/self_intro.do";
+
+	@RequestMapping(params = "method=delete", method = RequestMethod.POST)
+	public String delSelfIntro(@ModelAttribute("docuMulti") SelfDocuMulti del) {
+		s.delSelfIntro(del);
+		return "forward:/self_intro.do?method=view&userid=" + del.getUserId();
+	}
+
+	@RequestMapping(params = "method=download", method = RequestMethod.POST)
+	public String downloadFile(@ModelAttribute("docuDown") SelfDocument down, HttpServletRequest req,
+			HttpServletResponse resp) throws IOException {
+		System.out.println("id : "+down.getUserId());
+		System.out.println("file : "+down.getFileName());
+		s.downloadFile(down, req, resp);
+		return "forward:/self_intro.do?method=view&userid=" + down.getUserId();
 	}
 
 }

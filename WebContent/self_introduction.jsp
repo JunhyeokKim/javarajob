@@ -51,21 +51,88 @@
 	href="images/ico/apple-touch-icon-57-precomposed.png">
 <!-- icons -->
 
+<!-- css -->
+<style type="text/css">
+</style>
+<!-- css -->
+
 <!-- form js -->
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#fileUp").val("");
+		// 전체 선택
 		$("#allSel").click(function(){
-			$("input[name=fileName]").trigger("click");
+			if($("#allSel").prop("checked")) {
+				$("input[name=fileNames]").prop("checked", true);
+			} else {
+				$("input[name=fileNames]").prop("checked", false);
+			}
 		})
+		// 전체 선택
+		
+		// upload
 		$("#uploadBtn").click(function(){
-			$("form").attr("action","${path}/self_intro.do?method=upload");
-			$("form").submit();
+			if($("#fileUp").val() != ""){
+				var endNum = document.getElementsByName("fileNames").length;
+				var isNewFile = true;
+				var count = 0;
+				for(var i=0; i<endNum; i++){
+					if($("#fileUp").val() == "C:\\fakepath\\"+document.getElementsByName("fileNames")[i].value){
+						isNewFile = false;
+					}
+				}
+				if(!isNewFile) {
+					if(confirm("이미 같은 이름의 파일이 존재합니다. 덮어쓰겠습니까?")){
+						isNewFile = true;
+						count++;
+					}
+				}
+				if(isNewFile){
+					$("form").attr("action","${path}/self_intro.do?method=upload&count="+count);
+					$("form").submit();
+				}
+			} else alert("등록된 파일이 없습니다.");
 		})
+		// upload
+		
+		// delete
 		$("#delDocu").click(function(){
-			$("form").attr("action","${path}/self_intro.do?method=delete");
-			$("form").submit();
+			if($("input:checkbox[name='fileNames']:checked").length != 0) {
+				$("form").attr("action","${path}/self_intro.do?method=delete");
+				$("form").submit();
+			} else alert("선택된 파일이 없습니다.");
 		})
+		// delete
+		
+		// download
+		$("#downDocu").click(function(){
+			if($("input:checkbox[name='fileNames']:checked").length == 1) {
+				var fileName = $("input:checkbox[name='fileNames']:checked").val();
+				$("form").attr("action","${path}/self_intro.do?method=download&fileName="+fileName);
+				$("form").submit();
+			} else if($("input:checkbox[name='fileNames']:checked").length != 0) {
+				alert("다운로드는 한 번에 한 파일만 가능합니다.");
+			} else alert("선택된 파일이 없습니다.");
+			
+		})
+		// download
+		
+		// file select
+		$(".fileSelect").click(function(){
+			$(":checkbox:eq(0)", this).trigger("click", "click"); 
+		})
+		// file select
+		
+		// fakeBtn
+		$("#fileUp").click(function(){
+			if($("#fileUp").val() != "") {
+				$("#fakeBtn").val("등록됨");
+				$("#fakeBtn").css("background","gray");
+				$("#fakeBtn").css("border","gray");
+			}
+		})
+		
 	})
 </script>
 <!-- form js -->
@@ -92,8 +159,8 @@
 						<div class="col-mdd-3">
 							<div class="file_input_div">
 								<div class="sid_button">
-									<input type="button" class="btn" value="파일 찾기" />
-									<input type="file" class="file_input_hidden" name="selfIntro" />
+									<input type="button" class="btn" id="fakeBtn" value="파일 찾기" />
+									<input type="file" id="fileUp" class="file_input_hidden" name="selfIntro" />
 								</div>
 							</div>
 						</div>
@@ -134,7 +201,7 @@
 								<th>등록일</th>
 							</tr>
 							<c:forEach var="docu" items="${documents}" varStatus="sts">
-								<tr class="docuContent">
+								<tr class="docuContent fileSelect">
 									<td>
 										<input type="checkbox" name="fileNames" style="width:30px;height:30px" value="${docu.fileName}"/>
 									</td>

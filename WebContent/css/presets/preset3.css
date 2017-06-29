@@ -66,6 +66,10 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	border: none;
 }
 
+.kdb-table .docuContent:HOVER {
+	background-color:rgba(0,65,130,0.5);
+}
+
 .spec-ctrl .spec-container .section-container .section-title {
 	color: #0077ff;
 }

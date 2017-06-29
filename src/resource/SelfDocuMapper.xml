@@ -10,6 +10,11 @@
 		)
 	</insert>
 	
+	<update id="docuUpload2" parameterType="docu">
+		UPDATE SELFDOCUMENT SET REGDATE = SYSDATE
+		WHERE USERID = #{userId} AND FILENAME = #{fileName}
+	</update>
+	
 	<select id="docuView" parameterType="String" resultMap="docuResult">
 		SELECT * FROM SELFDOCUMENT
 		WHERE USERID = #{k}
