@@ -1,3 +1,14 @@
+/* 드래그 금지 */
+div {
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+/* 드래그 금지 */
+
+/* table 색, 모양 등등 */
 .kdb-table table, .kdb-table td, .kdb-table th {
 	border-collapse: collapse;
 	padding: 5px;
@@ -13,31 +24,6 @@
 	line-height: 18px;
 }
 
-.filebox label {
-	display: inline-block;
-	padding: .5em .75em;
-	color: #999;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #fdfdfd;
-	cursor: pointer;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-}
-
-.filebox input[type="file"] { /* 파일 필드 숨기기 */
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-
 .kdb-table td {
 	border-right: 1px solid gray;
 	border-left: 1px solid gray;
@@ -46,9 +32,8 @@
 }
 
 .kdb-table th {
-	background-color: #bbbbbb;
 	border: 1px solid white;
-	color: black;
+	color: white;
 	padding: 10px;
 	font-weight: bold;
 	text-align: center;
@@ -58,10 +43,150 @@
 	min-height: 70px;
 }
 
-div {
-	-ms-user-select: none;
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
+.kdb-table .docuContent, .kdb-table .docuContent td {
+	background-color:rgba(255,255,255,0.2);
+	border-color: white;
+	cursor:pointer;
 }
+
+.kdb-table .docuContent{
+	font-size: x-large;
+	color:black;
+	height:1.5em;
+}
+/* table 색, 모양 등등 */
+
+/* 자소서 배경 불투명 처리... 근데 안됨 */
+.job-bg .self-overlay {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: rgba(55, 55, 55, 0.8);
+}
+/* 자소서 배경 불투명 처리... 근데 안됨 */
+
+/* input button 숨기기 */
+.file_input_div {
+	position: relative;
+	width: 100px;
+	height: 38px;
+	overflow: hidden;
+}
+
+.file_input_hidden {
+	font-size: 29px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	-ms-filter: alpha(opacity = 0);
+	cursor: pointer;
+}
+
+.file_input_div .sid_button .btn {
+	width: 100px;
+	position: absolute;
+	top: 0px;
+	color: #ffffff;
+}
+/* input button 숨기기 */
+
+/* table size */
+.col-mdd-1, .col-mdd-2, .col-mdd-3, .col-mdd-4, .col-mdd-5, .col-mdd-6,
+	.col-mdd-7, .col-mdd-8, .col-mdd-9, .col-mdd-10, .col-mdd-11, .col-mdd-12,
+	.col-mdd-13, .col-mdd-14, .col-mdd-15, .col-mdd-16, .col-mdd-17, .col-mdd-18,
+	.col-mdd-19, .col-mdd-20, .col-mdd-21, .col-mdd-22, .col-mdd-23, .col-mdd-24
+	{
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px
+}
+
+@media (min-width : 992px)
+{
+	.col-mdd-1, .col-mdd-2, .col-mdd-3, .col-mdd-4, .col-mdd-5, .col-mdd-6,
+		.col-mdd-7, .col-mdd-8, .col-mdd-9, .col-mdd-10, .col-mdd-11, .col-mdd-12,
+		.col-mdd-13, .col-mdd-14, .col-mdd-15, .col-mdd-16, .col-mdd-17, .col-mdd-18,
+		.col-mdd-19, .col-mdd-20, .col-mdd-21, .col-mdd-22, .col-mdd-23, .col-mdd-24 {
+		float: left
+	}
+	
+	.col-mdd-24 {
+		width: 100%
+	}
+	.col-mdd-23 {
+		width: 95.83333333%
+	}
+	.col-mdd-22 {
+		width: 91.66666667%
+	}
+	.col-mdd-21 {
+		width: 87.5%
+	}
+	.col-mdd-20 {
+		width: 83.33333333%
+	}
+	.col-mdd-19 {
+		width: 79.16666667%
+	}
+	.col-mdd-18 {
+		width: 75%
+	}
+	.col-mdd-17 {
+		width: 70.83333333%
+	}
+	.col-mdd-16 {
+		width: 66.66666667%
+	}
+	.col-mdd-15 {
+		width: 62.5%
+	}
+	.col-mdd-14 {
+		width: 58.33333333%
+	}
+	.col-mdd-13 {
+		width: 54.16666667%
+	}
+	.col-mdd-12 {
+		width: 50%
+	}
+	.col-mdd-11 {
+		width: 45.83333333%
+	}
+	.col-mdd-10 {
+		width: 41.66666667%
+	}
+	.col-mdd-9 {
+		width: 37.5%
+	}
+	.col-mdd-8 {
+		width: 33.33333333%
+	}
+	.col-mdd-7 {
+		width: 29.16666667%
+	}
+	.col-mdd-6 {
+		width: 25%
+	}
+	.col-mdd-5 {
+		width: 20.83333333%
+	}
+	.col-mdd-4 {
+		width: 16.66666667%
+	}
+	.col-mdd-3 {
+		width: 12.5%
+	}
+	.col-mdd-2 {
+		width: 8.33333333%
+	}
+	.col-mdd-1 {
+		width: 4.16666667%
+	}
+
+}
+/* table size */

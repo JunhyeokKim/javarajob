@@ -13,6 +13,8 @@
 		<typeAlias alias="careerSch" type="javarajob.vo.Career_Sch"/>
 		<typeAlias alias="schElement" type="javarajob.vo.SchElement"/>
 		<typeAlias alias="resume" type="javarajob.vo.Resume" />		
+		<typeAlias alias="docu" type="javarajob.vo.SelfDocument" />		
+		<typeAlias alias="documulti" type="javarajob.vo.SelfDocuMulti" />		
 	</typeAliases>
 	
 	<mappers>
@@ -21,6 +23,7 @@
 		<mapper resource="resource/CareerMapper.xml" />
 		<mapper resource="resource/ResumeMapper.xml" />		
 		<mapper resource="resource/SchMapper.xml" />		
+		<mapper resource="resource/SelfDocuMapper.xml" />		
 	</mappers>
 	
 </configuration>

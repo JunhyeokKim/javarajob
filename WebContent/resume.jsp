@@ -37,7 +37,7 @@
 	href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700'
 	rel='stylesheet' type='text/css'>
 
-<!-- icons -->
+<!-- iconss -->
 <link rel="icon" href="images/ico/favicon.ico">
 <link rel="apple-touch-icon" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
@@ -59,15 +59,15 @@
 	<!-- header -->
 	<jsp:include page="navHeader.jsp" />
 	<!-- header -->
-	<form method="post" action="${path}/resume_upt.do" enctype="multipart/form-data">
+	<form method="post" action="${path}/resume_upt.do"
+		enctype="multipart/form-data">
 		<input type="hidden" name="userId" value="${id}" />
 		<div class="main-tab ng-scope">
 			<div class="spec-ctrl ng-scope">
 				<div class="spec-container">
 					<div class="section-container spec-saver">
 						<div class="section-title">
-							이력서
-							<input type="submit" class="export-pdf" value="저장하기" />
+							이력서 <input type="submit" class="export-pdf" value="저장하기" />
 						</div>
 						<div class="section-content new ng-scope">
 							<div class="specs edit-spec ng-scope basic-information">
@@ -81,14 +81,15 @@
 											<div class="image">
 												<div class="image-area">
 													<!-- 증명사진 공간 -->
-													<img src="upload/pic/${resume.picName}" width="100%" class="ng-scope">
+													<img src="upload/pic/${resume.picName}" width="100%"
+														class="ng-scope" onerror="this.src='images/ico/loading.gif'">
 												</div>
 												<div class="image-buttons">
 													<div class="btn button-blue button-bordered ng-scope">
-														<label for="picUpload">이미지 올리기${resume.picName}</label>
-														<input type="file" id="picUpload" name="pic" />
+														<label for="picUpload">이미지 올리기</label> <input type="file"
+															id="picUpload" class="file_input_hidden" name="pic" />
 													</div>
-													 
+
 												</div>
 											</div>
 											<table class="basic-information-table">
