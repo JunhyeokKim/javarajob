@@ -53,7 +53,29 @@
 		<!-- header 11-->
 		<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
-	
+	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-fullsize" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">상세 정보</h4>
+                </div>
+                <div class="modal-body" id="ajax-modal-detail">
+            <!-- breadcrumb -->
+            <!-- job-details -->
+        </div>
+        <!-- container -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 	<section class="job-bg page job-list-page">
 		<div class="container-fluid">
 			<div id="target">
@@ -96,116 +118,15 @@
 	<!--/End:Preset Style Chooser-->
 	
     <!-- JS -->
-    
-    <script src="js/jquery.min.js"></script>
+    <script src='js/jquery.min.js'></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
     <script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
-	<script src='js/jquery.min.js'></script>
 	<script src='js/moment.min.js'></script>
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
-	<script type="text/javascript">
-	var today;
-	var careers;
-	var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
-	var events;
-	
-	$(document).ready(function(){
-		$('#calendar-mini').fullCalendar({
-			header : {
-				left : '',
-				center : 'prev title next',
-				right : ''
-			},
-			titleFormat:'YYYY.MM',
-			locale : 'ko',
-		});
-		$('#calendar').fullCalendar({
-			header : {
-				left : 'today',
-				center : 'prev title next',
-				right : ''
-			},
-			titleFormat:'YYYY.MM',
-			editable : true,
-			locale: '',
-			eventRender: function (event, element) {
-			    element.find('.fc-title').append('<img class="item-unselected" src="images/icon/bookmark-unselected.png">');
-			},
-			events : events,
-			timeFormat: 'hh:mm',
-			viewRender:function(){
-				var date = $('#calendar').fullCalendar('getDate');
-				var tgl=moment(date).format('YYYY-MM');
-				callAjax(tgl);
-			},
-			loading:function(bool){
-				if(bool){
-					alert("loading")
-				} else{
-					alert("finish")
-				}
-			}
-		});
-		function callAjax(tgl){
-			today=$("#calendar").fullCalendar('getCalendar');
-			var url="${path}/calendar.do?method=careerList";
-			var params="date="+tgl;
-			if(tgl==undefined)
-				params="date="+moment(today).format('YY-MM');
-			console.log(params);
-			$.ajax({
-				url:url,
-				dataType:'json',
-				type:'POST',
-				data:params,
-				success:function(data){
-					careers=data.careers;
-					console.log(careers[0]);
-					initCalendar(careers);
-				}
-			
-			})
-		}
-		
-		function initCalendar(careers){
-			var events= new Array();
-			for(var i=0; i<careers.length; i++){
-				var event={
-				title:careers[i].title+"@ "+careers[i].companyname,
-				start:new Date(careers[i].postdate),
-				end:new Date(careers[i].enddate)
-				};
-				events.push(event);
-			}
-			$("#calendar").fullCalendar('removeEvents');
-			$("#calendar").fullCalendar( 'addEventSource', events );
-		}
-		
-		
-		
-		$("#calendar-mini .fc-next-button").on('click', function() {
-			$('#calendar').fullCalendar('next');
-		})
-		$("#calendar .fc-next-button").on('click', function() {
-			$('#calendar-mini').fullCalendar('next');
-		})
-		$("#calendar-mini .fc-prev-button").on('click', function() {
-			$('#calendar').fullCalendar('prev');
-		})
-		$("#calendar .fc-prev-button").on('click', function() {
-			$('#calendar-mini').fullCalendar('prev');
-		})
-		
-	})
-	
-	
-	</script>
+	<script src='js/calendar.js'></script>
 	
   </body>
 </html>
