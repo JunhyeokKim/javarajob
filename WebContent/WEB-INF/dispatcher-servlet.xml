@@ -25,8 +25,8 @@
 		<!-- 접속 DB 서버 정보 port와 sid -->
 		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl" />
 		<!-- 계정정보 -->
-		<property name="username" value="tiger"/>
-		<property name="password" value="scott"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
 	</bean>
 	<!-- Mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
