@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
+import javarajob.service.FileService;
+import javarajob.service.ResumeService;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
 
@@ -22,6 +24,10 @@ public class AccountCtrl {
 	private AccountService service;
 	
 	@Autowired(required = false)
+	private FileService fService;
+	
+	@Autowired(required = false)
+	private ResumeService resService;
 		
 	@RequestMapping(params="method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d){
@@ -46,6 +52,8 @@ public class AccountCtrl {
 	@RequestMapping(params="method=delProc")
 	public String delProc(@RequestParam("id") String id){		
 		service.deleteMember(id);
+		fService.delAccoDocu(id);
+		resService.delResume(id);
 		return "redirect:/account.do?method=list";
 	}
 

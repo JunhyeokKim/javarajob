@@ -14,4 +14,7 @@ public interface SelfDocuDao {
 	public void docuUpload2(SelfDocument upt);
 
 	public void delSelfIntro(SelfDocuMulti del);
+	
+	public void delAccoDocu(String id);
+	
 }

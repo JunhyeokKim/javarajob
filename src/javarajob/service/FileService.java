@@ -25,8 +25,8 @@ public class FileService {
 	@Value("${picUp}")
 	String picUp;
 
-	public void uploadPic(MultipartFile pic, String id) {
-		String name = id + "_" + pic.getOriginalFilename();
+	public void uploadPic(MultipartFile pic, String id, String ext) {
+		String name = id + "_profile."+ext;
 		String picpath = picUp + name;
 		File picture = new File(picpath);
 		try {
@@ -40,13 +40,11 @@ public class FileService {
 		}
 	}
 
-	public void uploadDoc(MultipartFile docu, String id, int count) {
-		String name = id + "_" + docu.getOriginalFilename();
+	public void uploadDoc(MultipartFile docu, SelfDocument sd, int count) {
+		String name = sd.getUserId() + "_" + docu.getOriginalFilename();
 		String docupath = selfUp + name;
 		File document = new File(docupath);
-		SelfDocument sd = new SelfDocument();
 
-		sd.setUserId(id);
 		sd.setFileName(docu.getOriginalFilename());
 
 		if (count == 0)
@@ -78,7 +76,11 @@ public class FileService {
 		}
 		dao.delSelfIntro(del);
 	}
-
+	
+	public void delAccoDocu(String id){
+		dao.delAccoDocu(id);
+	}
+	
 	public File getFile(SelfDocument down) {
 		String docupath = selfUp + down.getUserId() + "_" + down.getFileName();
 		return new File(docupath);

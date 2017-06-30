@@ -51,11 +51,6 @@
 	href="images/ico/apple-touch-icon-57-precomposed.png">
 <!-- icons -->
 
-<!-- css -->
-<style type="text/css">
-</style>
-<!-- css -->
-
 <!-- form js -->
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -94,7 +89,8 @@
 					}
 				}
 				if(isNewFile){
-					$("form").attr("action","${path}/self_intro.do?method=upload&count="+count+"&ext="+ext);
+					$("#isExt").val(ext);
+					$("form").attr("action","${path}/self_intro.do?method=upload&count="+count);
 					$("form").submit();
 				}
 			} else alert("등록된 파일이 없습니다.");
@@ -161,6 +157,7 @@
 		
 	})
 </script>
+
 <!-- form js -->
 
 </head>
@@ -174,6 +171,7 @@
 			<div class="self-overlay"></div>
 			<div class="container">
 				<input type="hidden" name="userId" value="${id}" />
+				<input type="hidden" id="isExt" name="ext" value="" />
 				<div class="breadcrumb-section">
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
@@ -238,7 +236,7 @@
 										${sts.count}
 									</td>
 									<td>
-										<img src="images/ico/${ext}.png" width="50" height="50">
+										<img src="images/ico/${docu.ext}.png" width="50" height="50">
 									</td>
 									<td>
 										${docu.fileName}

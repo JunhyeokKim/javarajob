@@ -31,10 +31,10 @@ public class SelfIntroCtrl {
 	}
 
 	@RequestMapping(params = "method=upload", method = RequestMethod.POST)
-	public String uploadSelfIntro(@RequestParam("selfIntro") MultipartFile docu, @RequestParam("userId") String id, @RequestParam int count) {
-		System.out.println(count);
-		s.uploadDoc(docu, id, count);
-		return "forward:/self_intro.do?method=view&userId=" + id;
+	public String uploadSelfIntro(@RequestParam("selfIntro") MultipartFile docu, @ModelAttribute("selfDocu") SelfDocument sd,
+			@RequestParam("count") int count, Model d) {
+		s.uploadDoc(docu, sd, count);
+		return "forward:/self_intro.do?method=view&userId=" + sd.getUserId();
 	}
 
 	@RequestMapping(params = "method=delete", method = RequestMethod.POST)
@@ -47,7 +47,7 @@ public class SelfIntroCtrl {
 	public ModelAndView download(@ModelAttribute("docuDown") SelfDocument down) {
 		System.out.println("파일명:" + down.getFileName());
 		// return new ModelAndView("b01_board/a01_list","list",new Board());
-		
+
 		File f = s.getFile(down);
 		// View model 파일..
 		return new ModelAndView("downloadResolver", "downloadFile", f);

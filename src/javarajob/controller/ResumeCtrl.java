@@ -28,10 +28,10 @@ public class ResumeCtrl {
 	}
 	
 	@RequestMapping("/resume_upt.do")
-	public String uptResume(@RequestParam("pic") MultipartFile pic, Resume r){
+	public String uptResume(@RequestParam("pic") MultipartFile pic, Resume r, @RequestParam("picExt") String ext){
 		r.setPicName(r.getUserId()+"_"+pic.getOriginalFilename());
 		s.uptResume(r);
-		fs.uploadPic(pic,r.getUserId());
+		fs.uploadPic(pic,r.getUserId(),ext);
 		return "forward:/resume.do";
 	}
 

@@ -6,6 +6,7 @@ public class SelfDocument {
 	private String userId;
 	private String fileName;
 	private Date regDate;
+	private String ext;
 
 	public String getUserId() {
 		return userId;
@@ -29,6 +30,14 @@ public class SelfDocument {
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	public String getExt() {
+		return ext;
+	}
+
+	public void setExt(String ext) {
+		this.ext = ext;
 	}
 
 }

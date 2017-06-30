@@ -83,4 +83,9 @@
 		* FROM RESUME
 		WHERE USERID = #{userId}
 	</select>
+	
+	<delete id="oneResume" parameterType="String">
+		DELETE FROM RESUME
+		WHERE USERID = #{userId}
+	</delete>
 </mapper>
