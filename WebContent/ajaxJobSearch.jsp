@@ -161,7 +161,11 @@
 						                                <div class="social-media col-xs-12 col-sm-4">
                                                             <div class="button">
                                                                 <a href="#" class="btn btn-primary"><i
-                                                                    class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> <a
+                                                                    class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> 
+                                                                    <c:if test="">
+                                                                    
+                                                                    </c:if>
+                                                                    <a
                                                                     href="careerlist.do?method=bookmark&careerid=${career.careerid }" class="btn btn-primary bookmark"><i
                                                                     class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩</a>
                                                                     <a
