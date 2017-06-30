@@ -1970,11 +1970,14 @@ section, .job-list-item {
 }
 
 .calendar-left {
-	width: 280px;
+	width: 220px;
 	position: absolute;
-	left: 40px;
+	left: 50px;
 	z-index: 1;
 }
+.calendar-left button {
+}
+
 
 .calendar-right {
 	padding-left: 315px;

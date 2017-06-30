@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/main.css?ver=3">  
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel='stylesheet' href='css/fullcalendar.css' />
+    <link rel='stylesheet' href='css/fullcalendar.css?ver=5' />
 	
 	<!-- font -->
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
