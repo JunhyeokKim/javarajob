@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
+import javarajob.service.FavCareerService;
 import javarajob.service.SchElementService;
 import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
+import javarajob.vo.FavCareer;
 import javarajob.vo.SchElement;
 
 @Controller
@@ -31,6 +33,8 @@ public class CareerCtrl {
 	CompService compService;
 	@Autowired(required = false)
 	CareerService careerService;
+	@Autowired(required = false)
+	FavCareerService favCareerService;
 
 	@ModelAttribute("schElement")
 	public SchElement schElement() {
@@ -65,8 +69,8 @@ public class CareerCtrl {
 			schElement.setCompanyname(query);
 			schElement.setTitle(null);
 		}
-		queryResult = service.schQuery(schElement,NUMBER_OF_ITEMS);
-		ArrayList<Company> exp= service.getCompanys(schElement);
+		queryResult = service.schQuery(schElement, NUMBER_OF_ITEMS);
+		ArrayList<Company> exp = service.getCompanys(schElement);
 		for (Company company : exp) {
 			companys.put(String.valueOf(company.getCompanyid()), company);
 		}
@@ -108,6 +112,27 @@ public class CareerCtrl {
 		d.addAttribute("company", company);
 
 		return "ajaxJobSearch";
+	}
+
+	@RequestMapping(params = "method=bookmark")
+	public String addBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+		FavCareer vo = new FavCareer();
+		String curId = (String) session.getAttribute("id");
+		vo.setCareerid(careerid);
+		vo.setId(curId);
+		favCareerService.addFavCareer(vo);
+		System.out.println(curId);
+		return "redirect:careerlist.do?method=sch";
+	}
+
+	@RequestMapping(params = "method=rmBookmark")
+	public String removeBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+		FavCareer vo = new FavCareer();
+		String curId = (String) session.getAttribute("id");
+		vo.setCareerid(careerid);
+		vo.setId(curId);
+		favCareerService.removeFavCareer(careerid);
+		return "redirect:careerlist.do?method=sch";
 	}
 
 	class Descending<T> implements Comparator<T> {

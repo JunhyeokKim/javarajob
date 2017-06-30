@@ -2000,7 +2000,7 @@ section, .job-list-item {
 }
 
 .item-unselected {
-	width: 15px;
+	width: 20px !important;
 }
 
 /* Category Section */

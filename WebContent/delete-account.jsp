@@ -53,7 +53,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#passBtn").click(function(){
-			var password = ${mem.password};
+			var password = "${mem.password}";
 			var str = $("#passContentBtn").val();
 			
 			if(password==str){

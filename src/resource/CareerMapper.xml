@@ -89,7 +89,8 @@
 		industry=#{industry}, 
 		employmenttype=#{employmenttype}, 
 		title=#{title}, 
-		salary=#{salary}  
+		salary=#{salary},
+		bookmarkcnt=#{bookmarkcnt}  
 	</update>
 	
 	<select id="listCareerforindex" resultMap="careerResult">
@@ -109,5 +110,17 @@
 	<select id="getCount" resultType="int">
 		SELECT COUNT(*) FROM CAREER
 	</select>	
+	
+	<update id="addBookmark" parameterType="int">
+		update career
+		set bookmarkcnt=bookmarkcnt+1
+		where careerid = #{careerid}
+	</update>
+	<update id="removeBookmark" parameterType="int">
+		update career
+		set bookmarkcnt=bookmarkcnt-1
+		where careerid = #{careerid}
+	</update>
+	
 		
 </mapper>

@@ -16,7 +16,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css">  
+	    <link rel="stylesheet" href="css/main.css?ver=3">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
 		
@@ -298,7 +298,7 @@
 									</div><!-- category-change -->		
 								</div>							
 							</div><!-- featured-top -->	
-
+							
 							<c:forEach var="entry" varStatus="status" items="${companyMap }">
 							<div class="job-ad-item">
 								<div class="item-info">
@@ -309,8 +309,10 @@
 									</div>
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>
 									<div class="ad-info" style="width:80%">
-										<h3><span><a class="call-ajax" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a><a href="#items-${status.count}" data-toggle="collapse"> <i class="fa fa-plus" ></i></a></span></h3>
-										<h5><a class="title">${entry.value.shortinfo }</a></h5>
+										<span><a class="call-ajax" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a>
+										<c:if test=""><img class="item-unselected" src="images/icon/bookmark-unselected.png"></c:if>
+										<a href="#items-${status.count}" data-toggle="collapse"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right"></span></a></span>
+										<h4><a class="title">${entry.value.shortinfo }</a></h4>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
 										<c:forEach var="career" items="${entry.value.careers }">

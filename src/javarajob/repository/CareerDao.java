@@ -16,4 +16,7 @@ public interface CareerDao {
 	public void updateCareer(Career upt);
 	public ArrayList<Career> listCareerforindex();
 	public int getCount();
+	public void addBookmark(int careerid);
+	public void removeBookmark(int careerid);
+	
 }

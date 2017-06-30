@@ -17,6 +17,7 @@
 		<typeAlias alias="resume" type="javarajob.vo.Resume" />
 		<typeAlias alias="board" type="javarajob.vo.Board"/>
 		<typeAlias alias="schboard" type="javarajob.vo.Board_Sch"/>	
+		<typeAlias alias="favCareer" type="javarajob.vo.FavCareer"/>	
 	</typeAliases>
 	
 	<mappers>
@@ -27,6 +28,7 @@
 		<mapper resource="resource/SchMapper.xml" />		
 		<mapper resource="resource/SelfDocuMapper.xml" />		
 		<mapper resource="resource/BoardMapper.xml"/>
+		<mapper resource="resource/FavCareerMapper.xml"/>
 	</mappers>
 	
 </configuration>
