@@ -58,12 +58,14 @@
 		<property name="contentType" value="text/html;charset=UTF-8"/>	  		
   	</bean> 
 
-
 	<!--
 		view를 호출하는데, 조립기에 선언된 id가 있으면 해당 id에 맞는 viewResolver를 선택하고, 그외에는 .jsp가 
 		붙어서 jsp해당 화면을 호출한다.
 	-->
 	<!-- 파일 업로드 ViewResolver 처리 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- Download View Resolver -->
+	<bean id="downloadResolver" class="javarajob.util.DownloadView" />
 </beans>
 

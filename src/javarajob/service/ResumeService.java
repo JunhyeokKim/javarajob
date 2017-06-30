@@ -19,5 +19,9 @@ public class ResumeService {
 	public Resume oneResume(String userId) {
 		return dao.oneResume(userId);
 	}
+	
+	public void delResume(String userId) {
+		dao.delResume(userId);
+	}
 
 }

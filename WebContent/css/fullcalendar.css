@@ -845,7 +845,8 @@ a.fc-more:hover {
 /* the things within each left/right/center section */
 .fc .fc-toolbar > * > * { /* extra precedence to override button border margins */
 	float: left;
-	margin-left: .75em;
+	margin-left: .4em;
+	margin-right: .4em;
 }
 
 /* the first thing within each left/center/right section */
@@ -917,7 +918,7 @@ a.fc-more:hover {
 }
 
 .fc-basic-view .fc-body .fc-row {
-	min-height: 4em; /* ensure that all rows are at least this tall */
+	min-height: 0px; /* ensure that all rows are at least this tall */
 }
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */

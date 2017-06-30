@@ -24,12 +24,24 @@
                                 <p></p>
                                 <ul>
                                     <li><a href="#"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>지역: ${company.location }</a></li>
+                                            aria-hidden="true"></i>본사: ${company.location }</a></li>
                                     <li><a href="#"><i class="fa fa-clock-o"
                                             aria-hidden="true"></i>설립일: ${company.establishmentdate }</a></li>
-                                    <li><i class="fa fa-money" aria-hidden="true"></i>연 매출액: ${company.annualsales }</li>
+                                    <li><i class="fa fa-money" aria-hidden="true"></i>연 매출액: ${company.annualsales }억 원</li>
                                     <li><a href="#"><i class="fa fa-tags"
-                                            aria-hidden="true"></i>산업군: ${company.industry }</a></li>
+                                            aria-hidden="true"></i>산업군:  
+                                            <c:choose>
+                                            	<c:when test="${company.industry eq 1}">서비스업</c:when>
+												<c:when test="${company.industry eq 2}">생산/제조</c:when>
+												<c:when test="${company.industry eq 3}">IT/인터넷</c:when>
+												<c:when test="${company.industry eq 4}">연구개발/설계</c:when>
+												<c:when test="${company.industry eq 5}">전문/특수직</c:when>
+												<c:when test="${company.industry eq 6}">미디어</c:when>
+												<c:when test="${company.industry eq 7}">서비스</c:when>
+												<c:when test="${company.industry eq 8}">건설</c:when>
+												<c:when test="${company.industry eq 9}">유통, 무역</c:when>
+                                            </c:choose>
+                                            </a></li>
                                 </ul>
                             </div>
                             <!-- ad-meta -->
@@ -82,18 +94,83 @@
                                                             <div class="col-xs-12 col-sm-6">
                                                         <ul>
 						                                    <li><a href="#"><i class="fa fa-map-marker"
-						                                            aria-hidden="true"></i>${career.location }</a></li>
+						                                            aria-hidden="true"></i>
+						                                            <c:choose>
+						                                            	<c:when test="${career.location eq 1}">서울</c:when>
+																		<c:when test="${career.location eq 2}">경기</c:when>
+																		<c:when test="${career.location eq 3}">광주</c:when>
+																		<c:when test="${career.location eq 4}">대구</c:when>
+																		<c:when test="${career.location eq 5}">대전</c:when>
+																		<c:when test="${career.location eq 6}">부산</c:when>
+																		<c:when test="${career.location eq 7}">울산</c:when>
+																		<c:when test="${career.location eq 8}">인천</c:when>
+																		<c:when test="${career.location eq 9}">강원</c:when>
+																		<c:when test="${career.location eq 10}">경남</c:when>
+																		<c:when test="${career.location eq 11}">경북</c:when>
+																		<c:when test="${career.location eq 12}">전남</c:when>
+																		<c:when test="${career.location eq 13}">전북</c:when>
+																		<c:when test="${career.location eq 14}">충북</c:when>
+																		<c:when test="${career.location eq 15}">충남</c:when>
+																		<c:when test="${career.location eq 16}">제주</c:when>
+																		<c:when test="${career.location eq 17}">전국</c:when>
+																		<c:when test="${career.location eq 18}">세종</c:when>
+																		<c:when test="${career.location eq 19}">기타해외</c:when>
+						                                            </c:choose>
+						                                            
+						                                            </a></li>
 						                                    <li><a href="#"><i class="fa fa-clock-o"
-						                                            aria-hidden="true"></i>${career.employmenttype }</a></li>
-						                                    <li><i class="fa fa-money" aria-hidden="true"></i>${career.salary }</li>
+						                                            aria-hidden="true"></i>
+						                                            <c:choose>
+						                                            	<c:when test="${career.employmenttype eq 1}">정규직</c:when>
+																		<c:when test="${career.employmenttype eq 2}">계약직</c:when>
+																		<c:when test="${career.employmenttype eq 3}">병역특례</c:when>
+																		<c:when test="${career.employmenttype eq 4}">인턴직</c:when>
+																		<c:when test="${career.employmenttype eq 5}">시간제/일용직</c:when>
+																		<c:when test="${career.employmenttype eq 9}">프리랜서</c:when>
+						                                            </c:choose>
+						                                            </a></li>
+						                                    <li><i class="fa fa-money" aria-hidden="true"></i>
+						                                    	<c:choose>
+						                                    		<c:when test="${career.salary eq 0}">회사내규에 따름</c:when>
+																	<c:when test="${career.salary eq 1}">1,400 만원 이하</c:when>
+																	<c:when test="${career.salary eq 2}">1,400~1,600만원</c:when>
+																	<c:when test="${career.salary eq 3}">1,600~1,800만원</c:when>
+																	<c:when test="${career.salary eq 4}">1,800~2,000만원</c:when>
+																	<c:when test="${career.salary eq 5}">2,000~2,200만원</c:when>
+																	<c:when test="${career.salary eq 6}">2,200~2,400만원</c:when>
+																	<c:when test="${career.salary eq 7}">2,400~2,600만원</c:when>
+																	<c:when test="${career.salary eq 8}">2,600~2,800만원</c:when>
+																	<c:when test="${career.salary eq 9}">2,800~3,000만원</c:when>
+																	<c:when test="${career.salary eq 10}">3,000~3,200만원</c:when>
+																	<c:when test="${career.salary eq 11}">3,200~3,400만원</c:when>
+																	<c:when test="${career.salary eq 12}">3,400~3,600만원</c:when>
+																	<c:when test="${career.salary eq 13}">3,600~3,800만원</c:when>
+																	<c:when test="${career.salary eq 14}">3,800~4,000만원</c:when>
+																	<c:when test="${career.salary eq 15}">4,000~5,000만원</c:when>
+																	<c:when test="${career.salary eq 16}">5,000~6,000만원</c:when>
+																	<c:when test="${career.salary eq 17}">6,000~7,000만원</c:when>
+																	<c:when test="${career.salary eq 18}">7,000~8,000만원</c:when>
+																	<c:when test="${career.salary eq 19}">8,000~9,000만원</c:when>
+																	<c:when test="${career.salary eq 20}">9,000~1억원</c:when>
+																	<c:when test="${career.salary eq 21}">1억원 이상</c:when>
+																	<c:when test="${career.salary eq 99}">면접후 결정</c:when>
+						                                    	</c:choose>
+						                                    </li>
 						                                </ul>
 						                                </div>
 						                                <div class="social-media col-xs-12 col-sm-4">
                                                             <div class="button">
                                                                 <a href="#" class="btn btn-primary"><i
-                                                                    class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> <a
-                                                                    href="#" class="btn btn-primary bookmark"><i
+                                                                    class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> 
+                                                                    <c:if test="">
+                                                                    
+                                                                    </c:if>
+                                                                    <a
+                                                                    href="careerlist.do?method=bookmark&careerid=${career.careerid }" class="btn btn-primary bookmark"><i
                                                                     class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩</a>
+                                                                    <a
+                                                                    href="careerlist.do?method=rmBookmark&careerid=${career.careerid }" class="btn btn-primary bookmark"><i
+                                                                    class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩 취소</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -120,10 +197,32 @@
                                 <ul>
                                     <li>기업명: <a href="#">${company.companyname }</a></li>
                                     <li>웹사이트: <a href="#">${company.website }</a></li>
-                                    <li>본사: ${company.website }</li>
+                                    <li>본사: ${company.location}</li>
                                     <li>사원수: ${company.companysize }</li>
-                                    <li>기업형태: <a href="#">${company.companytype }</a></li>
-                                    <li>산업군: <a href="#">${company.industry }</a></li>
+                                    <li>기업형태: <a href="#">
+                                    <c:choose>
+                                    	<c:when test="${company.companytype eq 1}">대기업</c:when>
+										<c:when test="${company.companytype eq 2}">중소기업</c:when>
+										<c:when test="${company.companytype eq 3}">중견기업</c:when>
+										<c:when test="${company.companytype eq 4}">스타트업</c:when>
+										<c:when test="${company.companytype eq 5}">공공기관</c:when>
+										<c:when test="${company.companytype eq 6}">외국계 기업</c:when>
+										<c:otherwise>기타</c:otherwise>
+                                    </c:choose>
+                                    </a></li>
+                                    <li>산업군: <a href="#">
+                                    <c:choose>
+                                    	<c:when test="${company.industry eq 1}">서비스업</c:when>
+										<c:when test="${company.industry eq 2}">생산/제조</c:when>
+										<c:when test="${company.industry eq 3}">IT/인터넷</c:when>
+										<c:when test="${company.industry eq 4}">연구개발/설계</c:when>
+										<c:when test="${company.industry eq 5}">전문/특수직</c:when>
+										<c:when test="${company.industry eq 6}">미디어</c:when>
+										<c:when test="${company.industry eq 7}">서비스</c:when>
+										<c:when test="${company.industry eq 8}">건설</c:when>
+										<c:when test="${company.industry eq 9}">유통, 무역</c:when>
+                                    </c:choose>
+                                    </a></li>
                                     <li>매출액: <a href="#">${company.annualsales }억</a></li>
                                     <li>연락처: ${company.tel }</li>
                                 </ul>

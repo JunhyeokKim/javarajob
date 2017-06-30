@@ -1,0 +1,67 @@
+/*
+	1. DML(Data Manipulation Language)
+		1) select : data 조회
+		2) insert : 새로운 data 추가
+			ex) insert into table명 values(data1, data2, data3, ..);
+			ex2) intert into table명(컬럼명1,컬럼명2) values(data1, data2)
+		3) update : 입력되어 있는 data를 수정
+			ex) update table명 set 컬럼명1=data1, 컬럼명2=data2
+				where 변경하고자하는조건(컬럼명=data);
+		4) delete : data 삭제
+			ex) delete [없음] from table명 where 조건[column=data];
+
+	2. TCL(Transaction Control Language) : Transaction을 제어하는 명령어
+		*Transaction : database에서 처리의 한 단위를 의미. 여러개의 sql문의 하나의 논리적 작업단위를 처리를 의미
+		1) commit : data의 dml을 통해 수정, 삭제, 입력된 내용을 확정처리
+		2) rollback : data를 commit 하기 전에 수정, 삭제, 입력된 내용을 원복처리
+		3) savepoint : data를 특정시점으로 원복처리하고자 할 때, 시점을 save하는 것을 말한다.
+*/
+select * from dept;
+/*
+	table 복사하기
+	create table table명 as select * from 복사할table명;
+*/
+create table dept01 as select * from dept;
+select * from dept01;
+insert into dept01 values(50,'총무부','서울');
+select * from dept01;
+commit;														-- 확정처리, 재접속하거나 다른 사용자도 변경된 data를 볼수 있게
+-- dept01에 deptno만 60 입력, deptno와 loc만 입력
+insert into dept01(deptno) values(60);
+select * from dept01;
+insert into dept01(deptno, loc) values(70,'Busan');
+update dept01 set dname='인사', loc='대전' where deptno=60;
+-- 예제. emp01이라는 복사 table 생성. empno가 가장많은 번호보다 +1해서, ename과 job, sal를 입력하세요
+--		그외에 column은 mrg, hiredate(sysdate), deptno는 40으로 수정
+
+select * from emp;
+create table emp01 as select * from emp;
+select * from emp01;
+select max(empno)+1 from emp;
+insert into emp01(empno,ename,job,sal) values(7935,'NEWBIE','FRIEND','8000');
+update emp01 set hiredate=sysdate,
+			 deptno = 40,
+			 mgr = 7777,
+			 comm = 3000
+		where empno = 7935;
+commit;
+
+delete from dept01 where dname='SALES';
+delete from dept01 where deptno=15;
+select * from dept01;
+-- 예제. deptno가 50 이상인 data 모두 삭제, emp01 table에서 comm이 null이고 deptno가 20인 data 삭제
+delete from dept01 where deptno>=50;
+delete from emp01 where comm is null and deptno=20;
+select * from emp01;
+
+-- dept01 table에서 deptno 30 '총무' '강남' 입력, rollback 처리
+-- dept01 table에서 deptno 40 '인사' '대전' 입력, commit
+insert into dept01 values(30,'총무','강남');
+select * from dept01;
+rollback;					-- 15, 70, 뭐 이런 것들 지우고 commit 안해서 얘네도 다 살아났다!
+delete from dept01 where deptno = 15 or deptno >= 50;
+commit;
+insert into dept01 values(40,'총무','강남');
+-- db 연결을 끊는다. 어떻게 끊어 몰라..
+-- commit 하기 전에는 data 변경 원복이 된다.
+-- but, tool에 따라 auto commit이 발생하는 경우가 있다.

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javarajob.service.FileUploadService;
+import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Resume;
 
@@ -18,7 +18,7 @@ public class ResumeCtrl {
 	private ResumeService s;
 	
 	@Autowired(required = false)
-	private FileUploadService fs;
+	private FileService fs;
 
 	// http://localhost:6080/javarajob/resume.do
 	@RequestMapping("/resume.do")
@@ -28,10 +28,10 @@ public class ResumeCtrl {
 	}
 	
 	@RequestMapping("/resume_upt.do")
-	public String uptResume(@RequestParam("pic") MultipartFile pic, Resume r){
+	public String uptResume(@RequestParam("pic") MultipartFile pic, Resume r, @RequestParam("picExt") String ext){
 		r.setPicName(r.getUserId()+"_"+pic.getOriginalFilename());
 		s.uptResume(r);
-		fs.uploadPic(pic,r.getUserId());
+		fs.uploadPic(pic,r.getUserId(),ext);
 		return "forward:/resume.do";
 	}
 

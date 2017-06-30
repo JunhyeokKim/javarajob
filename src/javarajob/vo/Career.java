@@ -20,6 +20,7 @@ public class Career {
 	private int salary;
 	private Date postdate;
 	private Date enddate;
+	private int bookmarkcnt;
 	// for order
 	private int priorityOrder;
 
@@ -165,6 +166,14 @@ public class Career {
 
 	public void setPriorityOrder(int priorityOrder) {
 		this.priorityOrder = priorityOrder;
+	}
+	
+	public int getBookmarkcnt() {
+		return bookmarkcnt;
+	}
+
+	public void setBookmarkcnt(int bookmarkcnt) {
+		this.bookmarkcnt = bookmarkcnt;
 	}
 
 	@Override

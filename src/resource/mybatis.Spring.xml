@@ -12,7 +12,12 @@
 		<typeAlias alias="career" type="javarajob.vo.Career"/>
 		<typeAlias alias="careerSch" type="javarajob.vo.Career_Sch"/>
 		<typeAlias alias="schElement" type="javarajob.vo.SchElement"/>
-		<typeAlias alias="resume" type="javarajob.vo.Resume" />		
+		<typeAlias alias="docu" type="javarajob.vo.SelfDocument" />		
+		<typeAlias alias="documulti" type="javarajob.vo.SelfDocuMulti" />		
+		<typeAlias alias="resume" type="javarajob.vo.Resume" />
+		<typeAlias alias="board" type="javarajob.vo.Board"/>
+		<typeAlias alias="schboard" type="javarajob.vo.Board_Sch"/>	
+		<typeAlias alias="favCareer" type="javarajob.vo.FavCareer"/>	
 	</typeAliases>
 	
 	<mappers>
@@ -21,6 +26,9 @@
 		<mapper resource="resource/CareerMapper.xml" />
 		<mapper resource="resource/ResumeMapper.xml" />		
 		<mapper resource="resource/SchMapper.xml" />		
+		<mapper resource="resource/SelfDocuMapper.xml" />		
+		<mapper resource="resource/BoardMapper.xml"/>
+		<mapper resource="resource/FavCareerMapper.xml"/>
 	</mappers>
 	
 </configuration>

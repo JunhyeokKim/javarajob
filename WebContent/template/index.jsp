@@ -55,7 +55,7 @@
 </head>
 <body>
 	<!-- header 11-->
-	<jsp:include page="navHeader.jsp"/>
+	<jsp:include page="../navHeader.jsp"/>
 	<!-- header -->
 	<div class="banner-job">
 		<div class="banner-overlay"></div>
@@ -271,7 +271,7 @@
 	
 	
 	<!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	<!-- footer -->
 
 	<!--/Preset Style Chooser-->

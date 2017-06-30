@@ -13,19 +13,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
+import javarajob.service.FavCareerService;
 import javarajob.service.SchElementService;
 import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
+import javarajob.vo.FavCareer;
 import javarajob.vo.SchElement;
 
 @Controller
 @RequestMapping("/careerlist.do")
-@SessionAttributes("schElement")
 public class CareerCtrl {
 	@Autowired(required = false)
 	SchElementService service;
@@ -33,20 +33,21 @@ public class CareerCtrl {
 	CompService compService;
 	@Autowired(required = false)
 	CareerService careerService;
+	@Autowired(required = false)
+	FavCareerService favCareerService;
 
 	@ModelAttribute("schElement")
 	public SchElement schElement() {
 		return new SchElement();
 	}
 
-	final static int NUMBER_OF_ITEMS = 5;
+	final static int NUMBER_OF_ITEMS = 2;
 
 	@RequestMapping(params = "method=sch")
 	public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
 			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
 			@ModelAttribute("schElement") SchElement schElement,
 			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
-		int totCareerCnt = 0;
 		ArrayList<Career> totCareerList = new ArrayList<>();
 		HashMap<String, Company> companys = new HashMap<>();
 		ArrayList<SchElement> queryResult = null;
@@ -68,8 +69,8 @@ public class CareerCtrl {
 			schElement.setCompanyname(query);
 			schElement.setTitle(null);
 		}
-		queryResult = service.schQuery(schElement,3);
-		ArrayList<Company> exp= service.getCompanys(schElement);
+		queryResult = service.schQuery(schElement, NUMBER_OF_ITEMS);
+		ArrayList<Company> exp = service.getCompanys(schElement);
 		for (Company company : exp) {
 			companys.put(String.valueOf(company.getCompanyid()), company);
 		}
@@ -90,10 +91,9 @@ public class CareerCtrl {
 			Collections.sort(totCareerList, AscOrderObj);
 		}
 		d.addAttribute("companyMap", companys);
-		d.addAttribute("totCareerCnt", totCareerCnt);
+		d.addAttribute("totCareerCnt", queryResult.size());
 		d.addAttribute("totCompanyCnt", companys.size());
 		d.addAttribute("queType", queryType);
-		// d.addAttribute("careerList",careerService.listCareer(careerSch));
 		return "job-list";
 	}
 
@@ -112,6 +112,27 @@ public class CareerCtrl {
 		d.addAttribute("company", company);
 
 		return "ajaxJobSearch";
+	}
+
+	@RequestMapping(params = "method=bookmark")
+	public String addBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+		FavCareer vo = new FavCareer();
+		String curId = (String) session.getAttribute("id");
+		vo.setCareerid(careerid);
+		vo.setId(curId);
+		favCareerService.addFavCareer(vo);
+		System.out.println(curId);
+		return "redirect:careerlist.do?method=sch";
+	}
+
+	@RequestMapping(params = "method=rmBookmark")
+	public String removeBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+		FavCareer vo = new FavCareer();
+		String curId = (String) session.getAttribute("id");
+		vo.setCareerid(careerid);
+		vo.setId(curId);
+		favCareerService.removeFavCareer(careerid);
+		return "redirect:careerlist.do?method=sch";
 	}
 
 	class Descending<T> implements Comparator<T> {
