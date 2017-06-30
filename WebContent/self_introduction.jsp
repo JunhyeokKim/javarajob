@@ -51,17 +51,17 @@
 	href="images/ico/apple-touch-icon-57-precomposed.png">
 <!-- icons -->
 
-<!-- css -->
-<style type="text/css">
-</style>
-<!-- css -->
-
 <!-- form js -->
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		// ---------- 초기 값 설정 ---------- 
+		var ext ="";
 		$("#fileUp").val("");
-		// 전체 선택
+		// ---------- 초기 값 설정 ----------
+		
+		// ---------- 전체 선택 ---------- 
 		$("#allSel").click(function(){
 			if($("#allSel").prop("checked")) {
 				$("input[name=fileNames]").prop("checked", true);
@@ -69,9 +69,9 @@
 				$("input[name=fileNames]").prop("checked", false);
 			}
 		})
-		// 전체 선택
+		// ---------- 전체 선택 ----------
 		
-		// upload
+		// ---------- upload ----------
 		$("#uploadBtn").click(function(){
 			if($("#fileUp").val() != ""){
 				var endNum = document.getElementsByName("fileNames").length;
@@ -89,23 +89,24 @@
 					}
 				}
 				if(isNewFile){
+					$("#isExt").val(ext);
 					$("form").attr("action","${path}/self_intro.do?method=upload&count="+count);
 					$("form").submit();
 				}
 			} else alert("등록된 파일이 없습니다.");
 		})
-		// upload
+		// ---------- upload ----------
 		
-		// delete
+		// ---------- delete ----------
 		$("#delDocu").click(function(){
 			if($("input:checkbox[name='fileNames']:checked").length != 0) {
 				$("form").attr("action","${path}/self_intro.do?method=delete");
 				$("form").submit();
 			} else alert("선택된 파일이 없습니다.");
 		})
-		// delete
+		// ---------- delete ----------
 		
-		// download
+		// ---------- download ----------
 		$("#downDocu").click(function(){
 			if($("input:checkbox[name='fileNames']:checked").length == 1) {
 				var fileName = $("input:checkbox[name='fileNames']:checked").val();
@@ -116,25 +117,47 @@
 			} else alert("선택된 파일이 없습니다.");
 			
 		})
-		// download
+		// ---------- download ----------
 		
-		// file select
+		// ---------- file select ----------
 		$(".fileSelect").click(function(){
 			$(":checkbox:eq(0)", this).trigger("click", "click"); 
 		})
-		// file select
+		// ---------- file select ----------
 		
-		// fakeBtn
-		$("#fileUp").click(function(){
+		// ---------- fakeBtn 및 확장자 check ----------
+		$("#fileUp").change(function(){
 			if($("#fileUp").val() != "") {
+				// 파일찾기 btn 수정
 				$("#fakeBtn").val("등록됨");
 				$("#fakeBtn").css("background","gray");
 				$("#fakeBtn").css("border","gray");
+				
+				// 확장자 check
+				ext = $(this).val().split(".").pop().toLowerCase();
+				switch(ext){
+				case "ppt":
+				case "pptx":
+					ext = "ppt";
+					break;
+				case "doc":
+				case "docx":
+					ext = "doc";
+					break;
+				case "pdf":
+				case "txt":
+					break;
+				default:
+					alert("잘못된 확장자입니다.");
+					$(this).val("");
+				}
 			}
 		})
+		// ---------- fakeBtn 및 확장자 check ----------
 		
 	})
 </script>
+
 <!-- form js -->
 
 </head>
@@ -148,6 +171,7 @@
 			<div class="self-overlay"></div>
 			<div class="container">
 				<input type="hidden" name="userId" value="${id}" />
+				<input type="hidden" id="isExt" name="ext" value="" />
 				<div class="breadcrumb-section">
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
@@ -179,6 +203,9 @@
 								<input type="button" class="btn" id="downDocu" value="다운로드" />
 							</div>
 						</div>
+						<div class="col-mdd-20">
+							총 ${documents.size()}개
+						</div>
 					</div>
 				</div>
 			
@@ -209,7 +236,7 @@
 										${sts.count}
 									</td>
 									<td>
-										<img src="images/ico/doc.png" width="50" height="50">
+										<img src="images/ico/${docu.ext}.png" width="50" height="50">
 									</td>
 									<td>
 										${docu.fileName}

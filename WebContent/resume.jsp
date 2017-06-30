@@ -52,6 +52,24 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#picUpload").change(function(){
+			if($("#picUpload").val() != "") {
+				// 확장자 check
+				var ext = $(this).val().split(".").pop().toLowerCase();
+				switch(ext){
+				case "png":
+				case "jpg":
+				case "jpeg":
+				case "gif":
+				case "bmp":
+					$("#picExt").val(ext);
+					break;
+				default:
+					alert("확장자는 png, jpg, jpeg, gif, bmp만 가능합니다.");
+					$(this).val("");
+				}
+			}
+		})
 	})
 </script>
 </head>
@@ -62,6 +80,7 @@
 	<form method="post" action="${path}/resume_upt.do"
 		enctype="multipart/form-data">
 		<input type="hidden" name="userId" value="${id}" />
+		<input type="hidden" id="picExt" name="picExt" value="" />
 		<div class="main-tab ng-scope">
 			<div class="spec-ctrl ng-scope">
 				<div class="spec-container">

@@ -10,4 +10,6 @@ public interface ResumeDao {
 	public void uptResume(Resume r);
 
 	public Resume oneResume(String userId);
+
+	public void delResume(String userId);
 }
