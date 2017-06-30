@@ -16,7 +16,7 @@ import javarajob.vo.Company_Sch;
 
 @Controller
 @RequestMapping("/boardList.do")
-@SessionAttributes("boardsch")
+@SessionAttributes("boardSch")
 public class QandaCtrl {
 	@Autowired(required=false)
 	private A01_BoardService service;
@@ -24,7 +24,7 @@ public class QandaCtrl {
 	@Autowired(required = false)
 	private CompService s;
 	
-	@ModelAttribute("boardsch")
+	@ModelAttribute("boardSch")
 	public Board_Sch Board_Sch(){
 		return new Board_Sch();
 	}
@@ -32,8 +32,9 @@ public class QandaCtrl {
 	// °Ô½ÃÆÇ list
 	// http://localhost:6080/springweb/boardList.do?method=list
 	@RequestMapping(params="method=list")
-	public String start(@ModelAttribute("boardsch") Board_Sch sch, Model d){
+	public String start(@ModelAttribute("boardSch") Board_Sch sch, Model d){
 		d.addAttribute("list", service.listBoard(sch));
+		//System.out.println("dc getCount()"+sch.getCount()+"getPageSize()"+sch.getPageSize()+"getCurPage()"+sch.getCurPage()+"getStart()"+sch.getStart()+"getEnd()"+sch.getEnd());
 		return "qanda";
 	}
 	
@@ -58,5 +59,11 @@ public class QandaCtrl {
 		Company_Sch sch = null;
 		d.addAttribute("companyList", s.listCompany(sch));
 		return "qanda3";
+	}
+	
+	@RequestMapping(params="method=delete")
+	public String insert(@RequestParam(value="no", defaultValue="0") int no){
+		service.deleteBoard(no);		
+		return "redirect:/boardList.do?method=list";
 	}
 }

@@ -53,6 +53,7 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 	$("#schbtn").click(function(){
 		$("form").submit();
 	});
@@ -71,7 +72,17 @@
 		$("input[name=content]").val("");
 		$("form").submit();
 	});
+	$("select[name=pageSize]").val("${boardSch.pageSize}");
+	$("select[name=pageSize]").change(function(){
+		$("form").attr("action","${path}/boardList.do?method=list");
+		$("form").submit();
+	});
 	})
+	function go(curPage){
+		$("input[name=curPage]").val(curPage);
+		$("form").attr("action","${path}/boardList.do?method=list");
+		$("form").submit();
+	}
 </script>
 </head>
 <body>
@@ -127,9 +138,20 @@
 						<form method="post" action="${path}/boardList.do?method=list">
 						<table>
 							<tr>							 
+							<td>
+								<select name="pageSize"  class="form-control">
+									<option value="5">검색단위&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+									<option>3</option>
+									<option>5</option>
+									<option>10</option>
+									<option>20</option>
+								</select>
+								<input type="hidden" name="curPage" value="1"/>
+							</td>
 							<td><input type="text" class="form-control" name="subject"  placeholder="제목" value="${boardsch.subject}"/></td>
 							<td><input type="text" class="form-control" name="content"  placeholder="내용" value="${boardsch.content}"/></td>
-							<td><input type="text" class="form-control" name="writer"  placeholder="작성자" value="${boardsch.writer}"/></td>							 							
+							<td><input type="text" class="form-control" name="writer"  placeholder="작성자" value="${boardsch.writer}"/></td>
+														 							
 							<td>
 								&nbsp;&nbsp;&nbsp;<input type="button" id="schbtn" class="btn" value="Search"/>
 								<input type="button" id="initbtn" class="btn" value="Reset"/>
@@ -137,13 +159,18 @@
 							</td>
 							</tr>
 						</table>
+						
+															
+								
+							
+						
 						</form>
 						</center>
 						
 						
 						<table align="center" class="kdb-table" width="100%">
 							<caption style="text-align:left">
-								총:${list.size()}건
+								총:${boardSch.getCount()}건
 							</caption>
 							<colgroup>
 								<col width="5%">
@@ -179,7 +206,23 @@
 							<tr><td colspan="7">등록하신 문의가 없습니다.</td></tr>
 							</c:if>
 						</table>
-
+						
+						<center><br>
+						<!-- 하단 page block [1][2][3] -->
+						<c:forEach var="cnt" begin="1" end="${boardSch.pageCount}">
+							<a style="text-decoration: none" href="javascript:go(${cnt})">
+								<c:choose >
+									<c:when test="${cnt==boardSch.curPage}">
+										<b style="font-size:15pt;">[${cnt}]</b>
+									</c:when>
+									<c:otherwise>
+										[${cnt}]
+									</c:otherwise>
+								</c:choose>
+								</a>
+						</c:forEach>
+						</center>
+		
 					</div>
 					<!-- profile-details -->			
 									

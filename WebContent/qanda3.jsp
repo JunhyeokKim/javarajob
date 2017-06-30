@@ -61,11 +61,10 @@
 					
 		});
 		$("#delBtn").click(function(){
-			
+			$(location).attr("href","${path}/boardList.do?method=delete&no="+${board.no});
 		});
 		$("#listBtn").click(function(){
-			$(location).attr("href",
-					"${path}/boardList.do?method=list");
+			$(location).attr("href","${path}/boardList.do?method=list");
 			
 		});	
 	
