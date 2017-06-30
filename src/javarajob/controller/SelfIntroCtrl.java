@@ -1,9 +1,6 @@
 package javarajob.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import javarajob.service.FileUploadService;
+import javarajob.service.FileService;
 import javarajob.vo.SelfDocuMulti;
 import javarajob.vo.SelfDocument;
 
@@ -23,7 +21,7 @@ import javarajob.vo.SelfDocument;
 public class SelfIntroCtrl {
 
 	@Autowired(required = false)
-	private FileUploadService s;
+	private FileService s;
 
 	@RequestMapping(params = "method=view")
 	public String selfView(@RequestParam("userId") String userId, Model d) {
@@ -46,12 +44,13 @@ public class SelfIntroCtrl {
 	}
 
 	@RequestMapping(params = "method=download", method = RequestMethod.POST)
-	public String downloadFile(@ModelAttribute("docuDown") SelfDocument down, HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
-		System.out.println("id : "+down.getUserId());
-		System.out.println("file : "+down.getFileName());
-		s.downloadFile(down, req, resp);
-		return "forward:/self_intro.do?method=view&userid=" + down.getUserId();
+	public ModelAndView download(@ModelAttribute("docuDown") SelfDocument down) {
+		System.out.println("파일명:" + down.getFileName());
+		// return new ModelAndView("b01_board/a01_list","list",new Board());
+		
+		File f = s.getFile(down);
+		// View model 파일..
+		return new ModelAndView("downloadResolver", "downloadFile", f);
 	}
 
 }

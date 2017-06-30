@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javarajob.service.FileUploadService;
+import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Resume;
 
@@ -18,7 +18,7 @@ public class ResumeCtrl {
 	private ResumeService s;
 	
 	@Autowired(required = false)
-	private FileUploadService fs;
+	private FileService fs;
 
 	// http://localhost:6080/javarajob/resume.do
 	@RequestMapping("/resume.do")
