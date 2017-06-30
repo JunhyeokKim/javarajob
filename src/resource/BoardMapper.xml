@@ -31,6 +31,7 @@
 	</update>
 	 -->
 	<select id="listBoard" resultMap="boardResult" parameterType="schboard"> 
+		select * from (
 		select 
 		rownum cnt, 
 		a.*,		 
@@ -50,7 +51,8 @@
 		
 		start with refno=0
 		connect by prior no=refno
-		order siblings by no desc				
+		order siblings by no desc )
+		where cnt between #{start} and #{end} <!-- 페이징 처리 -->				
 	</select>
 	<select id="getBoard" parameterType="int" resultType="board">
 		select * from board 
@@ -61,4 +63,22 @@
    			set readcount=readcount+1
 		 where no=#{no}	
 	</update>
+	<select id="totCnt" parameterType="schboard" resultType="int">
+		select count(*)
+		from board
+		where 1=1
+		<if test="subject!=null and subject!=''">
+			and subject like '%'|| #{subject} ||'%'
+		</if>
+		<if test="writer!=null and writer!=''">
+			and writer like '%'|| #{writer} ||'%'
+		</if>
+		<if test="content!=null and content!=''">
+			and content like '%'|| #{content} ||'%'
+		</if>		
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where no=#{no}
+	</delete>
 </mapper>

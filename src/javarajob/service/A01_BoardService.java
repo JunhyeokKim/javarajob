@@ -19,6 +19,18 @@ public class A01_BoardService {
 	}
 	
 	public ArrayList<Board> listBoard(Board_Sch sch){
+		sch.setCount(dao.totCnt(sch));
+		
+		if(sch.getPageSize() == 0){
+			sch.setPageSize(5);
+		}
+		sch.setPageCount((int)Math.ceil(sch.getCount()/(double)sch.getPageSize()));
+		if(sch.getCurPage()==0){
+			sch.setCurPage(1);
+		}
+		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
+		sch.setEnd(sch.getCurPage()*sch.getPageSize());
+		
 		return dao.listBoard(sch);
 	}
 	
@@ -44,9 +56,13 @@ public class A01_BoardService {
 			reboard = dao.getBoard(no);
 			reboard.setRefno(no);
 			reboard.setSubject("RE : "+reboard.getSubject());
-			reboard.setContent("\n\n\n\n=====이전내용=====\n\n\n\n"+reboard.getContent());	
+			reboard.setContent("\n\n\n\n문의내용 : \n"+reboard.getContent());	
 		}
 		
 		return reboard;
+	}
+	
+	public void deleteBoard(int no){
+		dao.deleteBoard(no);
 	}
 }

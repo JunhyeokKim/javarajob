@@ -13,4 +13,6 @@ public interface A01_BoardDao {
 	public ArrayList<Board> listBoard(Board_Sch sch);
 	public Board getBoard(int no);
 	public void uptBoardCnt(int no);
+	public int totCnt(Board_Sch sch);
+	public void deleteBoard(int no);
 }
