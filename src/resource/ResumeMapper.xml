@@ -84,7 +84,7 @@
 		WHERE USERID = #{userId}
 	</select>
 	
-	<delete id="oneResume" parameterType="String">
+	<delete id="delResume" parameterType="String">
 		DELETE FROM RESUME
 		WHERE USERID = #{userId}
 	</delete>
