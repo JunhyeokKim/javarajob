@@ -22,13 +22,13 @@ public class FileService {
 	@Value("${selfUp}")
 	String selfUp;
 
-	@Value("${picUp}")
-	String picUp;
-
 	public void uploadPic(MultipartFile pic, String id, String ext) {
-		String name = id + "_profile."+ext;
-		String picpath = picUp + name;
+		String name = id + "_profile." + ext;
+		String picpath = selfUp + id + "/profile/" + name;
 		File picture = new File(picpath);
+		if (!picture.exists()) {
+			picture.mkdirs();
+		}
 		try {
 			pic.transferTo(picture);
 		} catch (IllegalStateException e) {
@@ -42,8 +42,11 @@ public class FileService {
 
 	public void uploadDoc(MultipartFile docu, SelfDocument sd, int count) {
 		String name = sd.getUserId() + "_" + docu.getOriginalFilename();
-		String docupath = selfUp + name;
+		String docupath = selfUp + sd.getUserId() + "/" + name;
 		File document = new File(docupath);
+		if (!document.exists()) {
+			document.mkdirs();
+		}
 
 		sd.setFileName(docu.getOriginalFilename());
 
@@ -70,19 +73,37 @@ public class FileService {
 	public void delSelfIntro(SelfDocuMulti del) {
 		String[] docupath = new String[del.getFileNames().length];
 		for (int i = 0; i < del.getFileNames().length; i++) {
-			docupath[i] = selfUp + del.getUserId() + "_" + del.getFileNames()[i];
+			docupath[i] = selfUp + del.getUserId() + "/" + del.getUserId() + "_" + del.getFileNames()[i];
 			File delFile = new File(docupath[i]);
 			delFile.delete();
 		}
 		dao.delSelfIntro(del);
 	}
-	
-	public void delAccoDocu(String id){
+
+	public void delAccoDocu(String id) {
+		String delPath = selfUp + id + "/";
+		delAllFiles(delPath);
 		dao.delAccoDocu(id);
 	}
 	
+	private void delAllFiles(String delPath) {
+		File file = new File(delPath);
+		System.out.println("delPath : "+delPath);
+		System.out.println("exist? : "+file.exists());
+		
+		File[] childFileList = file.listFiles();
+		for (File childFile : childFileList) {
+			if (childFile.isDirectory()) {
+				delAllFiles(childFile.getAbsolutePath()); // 하위 디렉토리 루프
+			} else {
+				childFile.delete(); // 하위 파일삭제
+			}
+		}
+		file.delete(); // root 삭제
+	}
+
 	public File getFile(SelfDocument down) {
-		String docupath = selfUp + down.getUserId() + "_" + down.getFileName();
+		String docupath = selfUp + down.getUserId() + "/" + down.getUserId() + "_" + down.getFileName();
 		return new File(docupath);
 	}
 

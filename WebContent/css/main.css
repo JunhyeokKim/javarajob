@@ -1645,6 +1645,8 @@ a.verified i {
 	float: left;
 	margin-top: 30px;
 	border: 1px solid #fcfcfc;
+	width: 100px;
+	height: 125px;
 }
 
 .favorites-user {

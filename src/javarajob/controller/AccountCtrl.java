@@ -14,6 +14,7 @@ import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
+import javarajob.vo.Resume;
 
 
 
@@ -48,14 +49,6 @@ public class AccountCtrl {
 		d.addAttribute("mem", service.getMember(id));
 		return "account/accountDetail";
 	}
-	
-	@RequestMapping(params="method=delProc")
-	public String delProc(@RequestParam("id") String id){		
-		service.deleteMember(id);
-		fService.delAccoDocu(id);
-		resService.delResume(id);
-		return "redirect:/account.do?method=list";
-	}
 
 	@RequestMapping(params="method=uptProc")
 	public String uptProc(Account mem){		
@@ -76,8 +69,9 @@ public class AccountCtrl {
 	}
 	
 	@RequestMapping(params="method=uptProcGuest1")
-	public String uptProcGuest1(HttpSession ses, Model d){		
+	public String uptProcGuest1(HttpSession ses, Model d){
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "profile-details";
 	}
 	
@@ -85,17 +79,21 @@ public class AccountCtrl {
 	public String uptProcGuest2(Account mem, HttpSession ses, Model d){		
 		service.updateMember(mem);
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "profile-details";
 	}
 	
 	@RequestMapping(params="method=delProcGuest1")
 	public String delProcGuest1(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "delete-account";
 	}
 	
 	@RequestMapping(params="method=delProcGuest2")
-	public String delProcGuest2(HttpSession ses){		
+	public String delProcGuest2(HttpSession ses){
+		resService.delResume(ses.getAttribute("id").toString());
+		fService.delAccoDocu(ses.getAttribute("id").toString());
 		service.deleteMember(ses.getAttribute("id").toString());
 		ses.invalidate();
 		return "redirect:/index.do";
@@ -104,18 +102,21 @@ public class AccountCtrl {
 	@RequestMapping(params="bookmark")
 	public String bookmark(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "bookmark";
 	}
 	
 	@RequestMapping(params="appliedjob")
 	public String appliedjob(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "applied-job";
 	}
 	
 	@RequestMapping(params="qanda")
 	public String qanda(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "redirect:/boardList.do?method=list";
 	}
 }

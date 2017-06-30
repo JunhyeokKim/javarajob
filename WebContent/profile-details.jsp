@@ -60,7 +60,8 @@
 			<div class="job-profile section">	
 				<div class="user-profile">
 					<div class="user-images">
-						<img src="images/user.jpg" alt="User Images" class="img-responsive">
+						<img src="upload/${resume.picName}" width="100%"
+							onerror="this.src='upload/default.jpg'" class="img-responsive">
 					</div>
 					<div class="user">
 						<h2><a href="#">${id}</a> 님 안녕하세요!</h2>

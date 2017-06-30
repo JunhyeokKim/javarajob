@@ -100,7 +100,7 @@
 											<div class="image">
 												<div class="image-area">
 													<!-- 증명사진 공간 -->
-													<img src="upload/pic/${resume.picName}" width="100%"
+													<img src="upload/${resume.picName}" width="100%"
 														class="ng-scope" onerror="this.src='images/ico/loading.gif'">
 												</div>
 												<div class="image-buttons">

@@ -53,7 +53,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#passBtn").click(function(){
-			var password = ${mem.password};
+			var password = "${mem.password}";
 			var str = $("#passContentBtn").val();
 			
 			if(password==str){
@@ -82,7 +82,8 @@
 			<div class="job-profile section">	
 				<div class="user-profile">
 					<div class="user-images">
-						<img src="images/user.jpg" alt="User Images" class="img-responsive">
+						<img src="upload/${resume.picName}" width="100%"
+							onerror="this.src='upload/default.jpg'" class="img-responsive">
 					</div>
 					<div class="user">
 						<h2><a href="#">${id}</a> 님 안녕하세요!</h2>
@@ -114,7 +115,7 @@
 					<!-- profile-details -->
 					<div class="profile-details section">
 						<h2>탈퇴하기</h2>
-						사용자 확인을 위해 비밀번호를 다시 입력해주십시오. ${mem.password}
+						사용자 확인을 위해 비밀번호를 다시 입력해주십시오.
 					</div>
 					<!-- profile-details -->
 
