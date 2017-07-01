@@ -21,6 +21,8 @@ public class Career {
 	private Date postdate;
 	private Date enddate;
 	private int bookmarkcnt;
+	// 접속 중인 session id의 해당 공고에 대한 bookmark 여부
+	private boolean Bookmarked;
 	// for order
 	private int priorityOrder;
 
@@ -175,8 +177,18 @@ public class Career {
 	public void setBookmarkcnt(int bookmarkcnt) {
 		this.bookmarkcnt = bookmarkcnt;
 	}
+	
+	
 
-	@Override
+    public boolean isBookmarked() {
+        return Bookmarked;
+    }
+
+    public void setBookmarked(boolean bookmarked) {
+        Bookmarked = bookmarked;
+    }
+
+    @Override
 	public String toString() {
 		return "Career [careerid=" + careerid
 				+ ", companyid=" + companyid

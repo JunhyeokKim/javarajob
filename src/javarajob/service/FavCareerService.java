@@ -1,6 +1,8 @@
 package javarajob.service;
 
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class FavCareerService {
 	public void removeFavCareer(int careerid){
 		dao.removeFavCareer(careerid);
 		careerDao.removeBookmark(careerid);
+	}
+	public ArrayList<FavCareer> favCareerList(String id){
+	    return dao.favCareerList(id);
 	}
 	
 }

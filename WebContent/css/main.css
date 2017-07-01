@@ -1999,7 +1999,7 @@ section, .job-list-item {
 	border-style: none;
 }
 
-.item-unselected {
+.item-bookmark {
 	width: 20px !important;
 }
 
@@ -2165,6 +2165,7 @@ section, .job-list-item {
 
 .job-ad-item .ad-info {
 	padding-left: 25px;
+	padding-top:10px;
 }
 
 .job-ad-item .ad-info span {

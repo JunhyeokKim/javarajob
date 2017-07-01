@@ -83,7 +83,15 @@
                                                 <c:forEach var="career" varStatus="status" items="${company.careers }">
                                                     <div class="position-item container">
                                                         <div class="position-title row" >
-                                                            <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a></span>
+                                                            <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a><c:if test="${!career.bookmarked}">
+                                                                    <a
+                                                                    href="careerlist.do?method=bookmark&careerid=${career.careerid }"><img class="item-bookmark" src="images/icon/bookmark-unselected.png"></a>
+                                                                    </c:if>
+                                                                    <c:if test="${career.bookmarked}">
+                                                                    <a
+                                                                    href="careerlist.do?method=rmBookmark&careerid=${career.careerid }"><img class="item-bookmark" src="images/icon/bookmark-selected.png"></a>
+                                                                    </c:if>
+                                                                    </span>
                                                             <jsp:useBean id="now" class="java.util.Date" />
                                                             <fmt:formatDate value="${career.postdate }" var="post"/>
                                                             <fmt:formatDate value="${career.enddate }" var="end"/>
@@ -162,15 +170,6 @@
                                                             <div class="button">
                                                                 <a href="#" class="btn btn-primary"><i
                                                                     class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> 
-                                                                    <c:if test="">
-                                                                    
-                                                                    </c:if>
-                                                                    <a
-                                                                    href="careerlist.do?method=bookmark&careerid=${career.careerid }" class="btn btn-primary bookmark"><i
-                                                                    class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩</a>
-                                                                    <a
-                                                                    href="careerlist.do?method=rmBookmark&careerid=${career.careerid }" class="btn btn-primary bookmark"><i
-                                                                    class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩 취소</a>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -27,135 +27,147 @@ import javarajob.vo.SchElement;
 @Controller
 @RequestMapping("/careerlist.do")
 public class CareerCtrl {
-	@Autowired(required = false)
-	SchElementService service;
-	@Autowired(required = false)
-	CompService compService;
-	@Autowired(required = false)
-	CareerService careerService;
-	@Autowired(required = false)
-	FavCareerService favCareerService;
+    @Autowired(required = false)
+    SchElementService service;
+    @Autowired(required = false)
+    CompService compService;
+    @Autowired(required = false)
+    CareerService careerService;
+    @Autowired(required = false)
+    FavCareerService favCareerService;
 
-	@ModelAttribute("schElement")
-	public SchElement schElement() {
-		return new SchElement();
-	}
+    @ModelAttribute("schElement")
+    public SchElement schElement() {
+        return new SchElement();
+    }
 
-	final static int NUMBER_OF_ITEMS = 2;
+    final static int NUMBER_OF_ITEMS = 2;
 
-	@RequestMapping(params = "method=sch")
-	public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
-			@RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
-			@ModelAttribute("schElement") SchElement schElement,
-			@RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
-		ArrayList<Career> totCareerList = new ArrayList<>();
-		HashMap<String, Company> companys = new HashMap<>();
-		ArrayList<SchElement> queryResult = null;
+    @RequestMapping(params = "method=sch")
+    public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
+            @RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
+            @ModelAttribute("schElement") SchElement schElement,
+            @RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
+        ArrayList<Career> totCareerList = new ArrayList<>();
+        HashMap<String, Company> companys = new HashMap<>();
+        ArrayList<SchElement> queryResult = null;
 
-		Descending<Career> descOrderObj = new Descending<>();
-		AscendingCareer AscOrderObj = new AscendingCareer();
-		queryType = queryType.trim();
-		query = query.trim();
+        Descending<Career> descOrderObj = new Descending<>();
+        AscendingCareer AscOrderObj = new AscendingCareer();
+        queryType = queryType.trim();
+        query = query.trim();
 
-		System.out.println("querytype: " + queryType);
-		System.out.println("query: " + query);
-		if (queryType.equals("통합 검색")) {
-			schElement.setCompanyname(query);
-			schElement.setTitle(query);
-		} else if (queryType.equals("채용 공고")) {
-			schElement.setCompanyname(null);
-			schElement.setTitle(query);
-		} else if (queryType.equals("기업명")) {
-			schElement.setCompanyname(query);
-			schElement.setTitle(null);
-		}
-		queryResult = service.schQuery(schElement, NUMBER_OF_ITEMS);
-		ArrayList<Company> exp = service.getCompanys(schElement);
-		for (Company company : exp) {
-			companys.put(String.valueOf(company.getCompanyid()), company);
-		}
-		for (SchElement element : queryResult) {
-			if (companys.containsKey(String.valueOf(element.getCompanyid()))) {
-				if (companys.get(String.valueOf(element.getCompanyid())).getCareers() == null) {
-					companys.get(String.valueOf(element.getCompanyid())).setCareers(new ArrayList<Career>());
-				}
-				companys.get(String.valueOf(element.getCompanyid())).getCareers()
-						.add(careerService.getCareer(element.getCareerid()));
-			}
-		}
+        System.out.println("querytype: " + queryType);
+        System.out.println("query: " + query);
+        if (queryType.equals("통합 검색")) {
+            schElement.setCompanyname(query);
+            schElement.setTitle(query);
+        } else if (queryType.equals("채용 공고")) {
+            schElement.setCompanyname(null);
+            schElement.setTitle(query);
+        } else if (queryType.equals("기업명")) {
+            schElement.setCompanyname(query);
+            schElement.setTitle(null);
+        }
+        queryResult = service.schQuery(schElement, NUMBER_OF_ITEMS);
+        ArrayList<Company> exp = service.getCompanys(schElement);
+        for (Company company : exp) {
+            companys.put(String.valueOf(company.getCompanyid()), company);
+        }
+        for (SchElement element : queryResult) {
+            if (companys.containsKey(String.valueOf(element.getCompanyid()))) {
+                if (companys.get(String.valueOf(element.getCompanyid())).getCareers() == null) {
+                    companys.get(String.valueOf(element.getCompanyid())).setCareers(new ArrayList<Career>());
+                }
+                companys.get(String.valueOf(element.getCompanyid())).getCareers()
+                        .add(careerService.getCareer(element.getCareerid()));
+            }
+        }
 
-		// TODO: orderby 구현
-		if (orderby.equals("desc")) {
-			Collections.sort(totCareerList, descOrderObj);
-		} else if (orderby.equals("asc")) {
-			Collections.sort(totCareerList, AscOrderObj);
-		}
-		d.addAttribute("companyMap", companys);
-		d.addAttribute("totCareerCnt", queryResult.size());
-		d.addAttribute("totCompanyCnt", companys.size());
-		d.addAttribute("queType", queryType);
-		return "job-list";
-	}
+        // TODO: orderby 구현
+        if (orderby.equals("desc")) {
+            Collections.sort(totCareerList, descOrderObj);
+        } else if (orderby.equals("asc")) {
+            Collections.sort(totCareerList, AscOrderObj);
+        }
+        d.addAttribute("companyMap", companys);
+        d.addAttribute("totCareerCnt", queryResult.size());
+        d.addAttribute("totCompanyCnt", companys.size());
 
-	@RequestMapping(params = "method=job-detail")
-	public String getCompanyInfo(@RequestParam(value = "companyid", defaultValue = "-1") int companyid,
-			HttpSession session, Model d) {
-		Company company = compService.getCompany(companyid);
-		Career_Sch sch = new Career_Sch();
-		sch.setCompanyid(companyid);
-		ArrayList<Career> careers = careerService.listCareer(sch);
-		if (careers != null) {
-			company.setCareers(careers);
-		} else {
-			System.out.println("no matching company");
-		}
-		d.addAttribute("company", company);
+        d.addAttribute("queType", queryType);
+        return "job-list";
+    }
 
-		return "ajaxJobSearch";
-	}
+    @RequestMapping(params = "method=job-detail")
+    public String getCompanyInfo(@RequestParam(value = "companyid", defaultValue = "-1") int companyid,
+            HttpSession session, Model d) {
+        Company company = compService.getCompany(companyid);
+        Career_Sch sch = new Career_Sch();
+        sch.setCompanyid(companyid);
+        ArrayList<Career> careers = careerService.listCareer(sch);
+        // 로그인 상태인 경우, 관심 공고 목록을 추가한다
+        ArrayList<FavCareer> favCareers;
+        String curId = (String) session.getAttribute("id");
+        if (curId != null) {
+            favCareers = favCareerService.favCareerList(curId);
+            for (Career career : careers) {
+                for (FavCareer favCareer : favCareers) {
+                    if (favCareer.getCareerid() == career.getCareerid()) {
+                        career.setBookmarked(true);
+                    }
+                }
+            }
+        }
+        if (careers != null) {
+            company.setCareers(careers);
+        }
 
-	@RequestMapping(params = "method=bookmark")
-	public String addBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
-		FavCareer vo = new FavCareer();
-		String curId = (String) session.getAttribute("id");
-		vo.setCareerid(careerid);
-		vo.setId(curId);
-		favCareerService.addFavCareer(vo);
-		System.out.println(curId);
-		return "redirect:careerlist.do?method=sch";
-	}
+        d.addAttribute("company", company);
+        return "ajaxJobSearch";
+    }
 
-	@RequestMapping(params = "method=rmBookmark")
-	public String removeBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
-		FavCareer vo = new FavCareer();
-		String curId = (String) session.getAttribute("id");
-		vo.setCareerid(careerid);
-		vo.setId(curId);
-		favCareerService.removeFavCareer(careerid);
-		return "redirect:careerlist.do?method=sch";
-	}
+    @RequestMapping(params = "method=bookmark")
+    public String addBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+        FavCareer vo = new FavCareer();
+        String curId = (String) session.getAttribute("id");
+        vo.setCareerid(careerid);
+        vo.setId(curId);
+        favCareerService.addFavCareer(vo);
+        System.out.println(curId);
+        return "redirect:careerlist.do?method=sch";
+    }
 
-	class Descending<T> implements Comparator<T> {
-		@Override
-		public int compare(T o1, T o2) {
-			// TODO Auto-generated method stub
-			if (o1 instanceof Career && o2 instanceof Career) {
-				return ((Career) o1).getPostdate().compareTo(((Career) o2).getPostdate());
-			} else {
-			}
+    @RequestMapping(params = "method=rmBookmark")
+    public String removeBookmark(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+        FavCareer vo = new FavCareer();
+        String curId = (String) session.getAttribute("id");
+        vo.setCareerid(careerid);
+        vo.setId(curId);
+        favCareerService.removeFavCareer(careerid);
+        return "redirect:careerlist.do?method=sch";
+    }
 
-			return 1;
-		}
+    class Descending<T> implements Comparator<T> {
+        @Override
+        public int compare(T o1, T o2) {
+            // TODO Auto-generated method stub
+            if (o1 instanceof Career && o2 instanceof Career) {
+                return ((Career) o1).getPostdate().compareTo(((Career) o2).getPostdate());
+            } else {
+            }
 
-	}
+            return 1;
+        }
 
-	class AscendingCareer implements Comparator<Career> {
-		@Override
-		public int compare(Career o1, Career o2) {
-			// TODO Auto-generated method stub
-			return o2.getPostdate().compareTo(o1.getPostdate());
-		}
+    }
 
-	}
+    class AscendingCareer implements Comparator<Career> {
+        @Override
+        public int compare(Career o1, Career o2) {
+            // TODO Auto-generated method stub
+            return o2.getPostdate().compareTo(o1.getPostdate());
+        }
+
+    }
 
 }

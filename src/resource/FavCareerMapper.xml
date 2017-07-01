@@ -3,7 +3,13 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="javarajob.repository.FavCareerDao">
-	<resultMap type="favCareer" id="favCareerList"/>	
+	<resultMap type="favCareer" id="favCareerReuslt"/>
+ <select id="favCareerList" resultMap="favCareerReuslt" parameterType="String">
+    select careerid from favcareer where 1=1
+    <if test="_parameter != null and !_parameter.equals('')">
+        and id=#{id}
+    </if>
+ </select>	
 	<insert id="addFavCareer" parameterType="favCareer">
 		insert into FAVCAREER values(#{careerid},#{id})
 	</insert>
