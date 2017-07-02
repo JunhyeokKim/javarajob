@@ -404,7 +404,7 @@
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",
-	 		url:"${path}/job-list.do?method=job-detail",
+	 		url:"${path}/careerlist.do?method=job-detail",
 	 		data:params,
 	 		success:function(args){
 	 			$("#ajax-modal-detail").html(args);

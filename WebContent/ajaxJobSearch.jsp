@@ -83,21 +83,21 @@
                                                 <c:forEach var="career" varStatus="status" items="${company.careers }">
                                                     <div class="position-item container">
                                                         <div class="position-title row" >
-                                                            <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a><c:if test="${!career.bookmarked}">
+                                                            <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a>
                                                                     <a
-                                                                    href="careerlist.do?method=bookmark&careerid=${career.careerid }"><img class="item-bookmark" src="images/icon/bookmark-unselected.png"></a>
-                                                                    </c:if>
-                                                                    <c:if test="${career.bookmarked}">
-                                                                    <a
-                                                                    href="careerlist.do?method=rmBookmark&careerid=${career.careerid }"><img class="item-bookmark" src="images/icon/bookmark-selected.png"></a>
-                                                                    </c:if>
+                                                                    class="bookmark ${career.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${career.careerid }"/>
+                                                                    <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
+                                                                    style="display: ${career.bookmarked ?'none':'block' }"/> 
+                                                                    <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
+                                                                    style="display: ${career.bookmarked ?'block':'none' }"/>
+                                                                    </a>
                                                                     </span>
                                                             <jsp:useBean id="now" class="java.util.Date" />
                                                             <fmt:formatDate value="${career.postdate }" var="post"/>
                                                             <fmt:formatDate value="${career.enddate }" var="end"/>
                                                             <fmt:parseNumber value="${now.time /(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="page"/>
                                                             <fmt:parseNumber value="${career.enddate.time /(1000*60*60*24)}" integerOnly="true" var="endDays" scope="page"/>
-                                                            <h5><strong>( D ${nowDays-endDays } )</strong> ${post} ~ ${end }</h5>
+                                                            <h5><strong>( D - ${nowDays-endDays } )</strong> ${post} ~ ${end }</h5>
                                                         </div>
                                                             <div class="col-xs-12 col-sm-6">
                                                         <ul>
@@ -244,5 +244,40 @@
             </div>
             <!-- job-details -->
         </div>
+        <script type="text/javascript">
+        function callAjax(method,careerid,selector){
+        	var img1=selector.find("img:first");
+        	var img2=selector.find("img:last");
+            $.ajax({
+                type:"POST",
+                url:"careerlist.do?"+"method="+method+"&careerid="+careerid,
+                success:function(data){
+                	if(method=="bookmark"){
+                		img1.css("display","none")
+                		img2.css("display","block");
+                		selector.addClass("selected").removeClass("unselected");
+                	}
+                	else if(method=="rmBookmark"){
+                		img1.css("display","block")
+                        img2.css("display","none");
+                		selector.addClass("unselected").removeClass("selected");
+                	}
+                	
+                }
+        })
+        }
+        $(".bookmark").click(function(){
+        	var careerid=$(this).find("input[type=hidden]").val();
+        	var method;
+        	if($(this).hasClass("selected")){
+        		method="rmBookmark";
+        	}else if($(this).hasClass("unselected")){
+        		method="bookmark";
+        	}
+        	callAjax(method,careerid,$(this));
+        })
+        
+        
+        </script>
 	</body>
 </html>
