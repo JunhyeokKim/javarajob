@@ -37,7 +37,7 @@ public class CareerCtrl {
     CareerService careerService;
     @Autowired(required = false)
     FavCareerService favCareerService;
-    @Autowired(required=false)
+    @Autowired(required = false)
     FavCompanyService favCompService;
 
     @ModelAttribute("schElement")
@@ -45,17 +45,22 @@ public class CareerCtrl {
         return new SchElement();
     }
 
-    final static int NUMBER_OF_ITEMS = 2;
+    final static int NUMBER_OF_ITEMS = 5;
 
     @RequestMapping(params = "method=sch")
-    public String listCareers(@RequestParam(value = "query", defaultValue = "") String query,
+    public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
             @RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
             @ModelAttribute("schElement") SchElement schElement,
             @RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
         ArrayList<Career> totCareerList = new ArrayList<>();
         HashMap<String, Company> companys = new HashMap<>();
         ArrayList<SchElement> queryResult = null;
-
+        ArrayList<FavCompany> favCompList = new ArrayList<>();
+        String curId = (String) session.getAttribute("id");
+        
+        if (curId != null && !curId.equals("")) {
+            favCompList=favCompService.favCompanyList(curId);
+        }
         Descending<Career> descOrderObj = new Descending<>();
         AscendingCareer AscOrderObj = new AscendingCareer();
         queryType = queryType.trim();
@@ -77,6 +82,12 @@ public class CareerCtrl {
         ArrayList<Company> exp = service.getCompanys(schElement);
         for (Company company : exp) {
             companys.put(String.valueOf(company.getCompanyid()), company);
+            for (FavCompany favCompany : favCompList) {
+                if(favCompany.getCompanyid()==company.getCompanyid()){
+                    company.setBookmarked(true);
+                }
+            }
+
         }
         for (SchElement element : queryResult) {
             if (companys.containsKey(String.valueOf(element.getCompanyid()))) {
@@ -112,7 +123,7 @@ public class CareerCtrl {
         // 로그인 상태인 경우, 관심 공고 목록을 추가한다
         ArrayList<FavCareer> favCareers;
         String curId = (String) session.getAttribute("id");
-        //favCareer
+        // favCareer
         if (curId != null) {
             favCareers = favCareerService.favCareerList(curId);
             for (Career career : careers) {
@@ -126,14 +137,14 @@ public class CareerCtrl {
         // favCompany
         ArrayList<FavCompany> favCompanys;
         if (curId != null) {
-            favCompanys= favCompService.favCompanyList(curId);
+            favCompanys = favCompService.favCompanyList(curId);
             for (FavCompany favCompany : favCompanys) {
-                if(favCompany.getCompanyid()==company.getCompanyid()){
+                if (favCompany.getCompanyid() == company.getCompanyid()) {
                     company.setBookmarked(true);
                 }
             }
         }
-        
+
         if (careers != null) {
             company.setCareers(careers);
         }
@@ -142,7 +153,7 @@ public class CareerCtrl {
         return "ajaxJobSearch";
     }
 
-    @RequestMapping(params = {"target=career","method=bookmark"})
+    @RequestMapping(params = { "target=career", "method=bookmark" })
     public String addCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
         String curId = (String) session.getAttribute("id");
@@ -153,7 +164,7 @@ public class CareerCtrl {
         return "redirect:careerlist.do?method=sch";
     }
 
-    @RequestMapping(params = {"target=career","method=rmBookmark"})
+    @RequestMapping(params = { "target=career", "method=rmBookmark" })
     public String removeCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
         String curId = (String) session.getAttribute("id");
@@ -162,10 +173,10 @@ public class CareerCtrl {
         favCareerService.removeFavCareer(careerid);
         return "redirect:careerlist.do?method=sch";
     }
-    
-    @RequestMapping(params = {"target=company","method=bookmark"})
+
+    @RequestMapping(params = { "target=company", "method=bookmark" })
     public String addCompBookmark(@RequestParam(value = "index") int companyid, HttpSession session) {
-        FavCompany vo= new FavCompany();
+        FavCompany vo = new FavCompany();
         String curId = (String) session.getAttribute("id");
         vo.setCompanyid(companyid);
         vo.setId(curId);
@@ -173,8 +184,8 @@ public class CareerCtrl {
         System.out.println(curId);
         return "redirect:careerlist.do?method=sch";
     }
-    
-    @RequestMapping(params = {"target=company","method=rmBookmark"})
+
+    @RequestMapping(params = { "target=company", "method=rmBookmark" })
     public String removeCompBookmark(@RequestParam(value = "index") int companyid, HttpSession session) {
         FavCompany vo = new FavCompany();
         String curId = (String) session.getAttribute("id");

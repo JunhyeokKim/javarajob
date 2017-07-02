@@ -16,7 +16,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css?ver=2">  
+	    <link rel="stylesheet" href="css/main.css?ver=3">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
 		
@@ -310,7 +310,12 @@
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>
 									<div class="ad-info" style="width:80%">
 										<span><a class="call-ajax" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a>
-										<c:if test=""><img class="item-unselected" src="images/icon/bookmark-unselected.png"></c:if>
+										<a class="bookmark company ${entry.value.companyid } ${entry.value.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${entry.value.companyid}"/>
+                                                                    <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
+                                                                    style="display: ${entry.value.bookmarked ?'none':'block' }"/> 
+                                                                    <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
+                                                                    style="display: ${entry.value.bookmarked ?'block':'none' }"/>
+                                                                    </a>
 										<a href="#items-${status.count}" data-toggle="collapse"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right"></span></a></span>
 										<h4><a class="title">${entry.value.shortinfo }</a></h4>
 										<div class="ad-meta">
@@ -499,7 +504,9 @@
                 })
             }
       });
-		
+		 $("#modal-detail").on('hidden.bs.modal',function(){
+			 location.reload();
+         });
 		
 		$(document).ready(function(){
 			$("#quetype").text("${queType}")
@@ -507,6 +514,7 @@
     		
 			$(".dropdown-quetype").click(function(){
     		$("input[name=querytype]").val($(this).text());
+    		
     	})
     })
     function go(curPage){
@@ -515,6 +523,45 @@
 		$("form").submit();
 	}
 	
+		function callAjax(method,target,index,selector){
+            var img1=selector.find("img:first");
+            var img2=selector.find("img:last");
+            $.ajax({
+                type:"POST",
+                url:"careerlist.do?"+"target="+target+"&method="+method+"&index="+index,
+                success:function(data){
+                    if(method=="bookmark"){
+                        img1.css("display","none")
+                        img2.css("display","block");
+                        selector.addClass("selected").removeClass("unselected");
+                    }
+                    else if(method=="rmBookmark"){
+                        img1.css("display","block")
+                        img2.css("display","none");
+                        selector.addClass("unselected").removeClass("selected");
+                    }
+                    
+                }
+        })
+        }
+        $(".bookmark").click(function(){
+            var index=$(this).find("input[type=hidden]").val();
+            var method;
+            var target;
+            if($(this).hasClass("selected")){
+                method="rmBookmark";
+            }else if($(this).hasClass("unselected")){
+                method="bookmark";
+            }
+            if($(this).hasClass("career")){
+                target="career";
+            } else if($(this).hasClass("company")){
+                target="company";
+            }
+            callAjax(method,target,index,$(this));
+        })
+        
+        
 		
 	</script>
   </body>

@@ -662,6 +662,10 @@ a.verified i {
 	line-height: 17px;
 }
 
+.call-ajax {
+	float:left;
+}
+
 .tab-manu {
 	overflow: hidden;
 	border-bottom: 1px solid #f2f2f2
