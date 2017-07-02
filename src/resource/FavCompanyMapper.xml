@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="javarajob.repository.FavCompanyDao">
+    <resultMap type="favCompany" id="favCompanyReuslt"/>
+ <select id="favCompanyList" resultMap="favCompanyReuslt" parameterType="String">
+    select companyid from favcompany where 1=1
+    <if test="_parameter != null and !_parameter.equals('')">
+        and id=#{id}
+    </if>
+ </select>  
+    <insert id="addFavCompany" parameterType="favCompany">
+        insert into favcompany values(#{companyid},#{id})
+    </insert>
+    <delete id="removeFavCompany" parameterType="int" timeout="20">
+        delete favcompany where companyid= #{companyid}
+    </delete>
+</mapper>

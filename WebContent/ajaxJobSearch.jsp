@@ -19,7 +19,14 @@
 
                         <div class="ad-info">
                         <c:set var="companyInfo" value="${company }" scope="request"/>
-                            <span><span><a href="#" class="title">${company.companyname }</a></span></span>
+                            <span><a href="#" class="title">${company.companyname }</a>
+                            <a class="bookmark company ${company.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${company.companyid}"/>
+                                                                    <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
+                                                                    style="display: ${company.bookmarked ?'none':'block' }"/> 
+                                                                    <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
+                                                                    style="display: ${company.bookmarked ?'block':'none' }"/>
+                                                                    </a></span>
+                            
                             <div class="ad-meta">
                                 <p></p>
                                 <ul>
@@ -84,8 +91,7 @@
                                                     <div class="position-item container">
                                                         <div class="position-title row" >
                                                             <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a>
-                                                                    <a
-                                                                    class="bookmark ${career.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${career.careerid }"/>
+                                                                    <a class="bookmark career ${career.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${career.careerid }"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
                                                                     style="display: ${career.bookmarked ?'none':'block' }"/> 
                                                                     <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
@@ -245,12 +251,12 @@
             <!-- job-details -->
         </div>
         <script type="text/javascript">
-        function callAjax(method,careerid,selector){
+        function callAjax(method,target,index,selector){
         	var img1=selector.find("img:first");
         	var img2=selector.find("img:last");
             $.ajax({
                 type:"POST",
-                url:"careerlist.do?"+"method="+method+"&careerid="+careerid,
+                url:"careerlist.do?"+"target="+target+"&method="+method+"&index="+index,
                 success:function(data){
                 	if(method=="bookmark"){
                 		img1.css("display","none")
@@ -267,14 +273,20 @@
         })
         }
         $(".bookmark").click(function(){
-        	var careerid=$(this).find("input[type=hidden]").val();
+        	var index=$(this).find("input[type=hidden]").val();
         	var method;
+        	var target;
         	if($(this).hasClass("selected")){
         		method="rmBookmark";
         	}else if($(this).hasClass("unselected")){
         		method="bookmark";
         	}
-        	callAjax(method,careerid,$(this));
+        	if($(this).hasClass("career")){
+        		target="career";
+        	} else if($(this).hasClass("company")){
+        		target="company";
+        	}
+        	callAjax(method,target,index,$(this));
         })
         
         

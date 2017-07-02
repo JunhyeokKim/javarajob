@@ -39,5 +39,15 @@
 		<if test="industry!=null and industry!=''">
 			and industry like '%' || #{industry} || '%'
 		</if>
-	</select>	
+	</select>
+ <update id="addBookmark" parameterType="int">
+        update company
+        set bookmarkcnt=bookmarkcnt+1
+        where companyid = #{companyid}
+    </update>
+    <update id="removeBookmark" parameterType="int">
+        update company
+        set bookmarkcnt=bookmarkcnt-1
+        where companyid = #{companyid}
+    </update>	
 </mapper>

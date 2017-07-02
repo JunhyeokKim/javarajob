@@ -12,4 +12,6 @@ public interface CompDao {
 	public ArrayList<Company> listCompany(Company_Sch sch);
 	public Company getCompany(int companyid);
 	public int getTotCnt(Company_Sch sch);
+	public void addBookmark(int companyid);
+    public void removeBookmark(int companyid);
 }
