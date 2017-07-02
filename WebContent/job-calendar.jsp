@@ -126,7 +126,7 @@
 	<script src='js/moment.min.js'></script>
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
-	<script src='js/calendar.js'></script>
+	<script src='js/calendar.js?ver=1'></script>
 	
   </body>
 </html>
