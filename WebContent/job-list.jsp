@@ -2,6 +2,7 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html>
@@ -122,7 +123,7 @@
 									<div id="accordion-one" class="panel-collapse collapse in">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<label for="type-0"><input type="checkbox" class="filter" id="type-0" value="0" > 전체(129)</label>
+										<label for="type-0"><input type="checkbox" id="type-0" value="0" > 전체(129)</label>
 										<label for="type-1"><input type="checkbox" class="filter" name="companytype" id="type-1" value="1"> 대기업(22)</label>
 										<label for="type-2"><input type="checkbox" class="filter" name="companytype" id="type-2" value="2"> 중소기업(11)</label>
 										<label for="type-3"><input type="checkbox" class="filter" name="companytype" id="type-3" value="3"> 중견기업(5)</label>
@@ -154,7 +155,7 @@
 									<div id="accordion-two" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="field-0"><input type="checkbox" class="filter" id="field-0" value="0"> 전체</label>
+											<label for="field-0"><input type="checkbox"  id="field-0" value="0"> 전체</label>
 											<label for="field-1"><input type="checkbox" class="filter" name="field" id="field-1" value="1">서버 개발자</label>
 											<label for="field-2"><input type="checkbox" class="filter" name="field" id="field-2" value="2">웹 개발자</label>
 											<label for="field-3"><input type="checkbox" class="filter" name="field" id="field-3" value="3">프론트엔드 개발자</label>
@@ -196,7 +197,7 @@
 									<div id="accordion-three" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<label for="location-17"><input type="checkbox" class="filter" id="location-17" value="17" >전국</label>
+										<label for="location-17"><input type="checkbox"  id="location-17" value="17" >전국</label>
 										<label for="location-1"><input type="checkbox" class="filter" name="location" id="location-1" value="1" >서울</label>
 										<label for="location-2"><input type="checkbox" class="filter" name="location" id="location-2" value="2" >경기</label>
 										<label for="location-3"><input type="checkbox" class="filter" name="location" id="location-3" value="3" >광주</label>
@@ -239,7 +240,7 @@
 									<div id="accordion-four" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="industry-0"><input type="checkbox" class="filter" id="industry-0" value="0"> 전체</label>
+											<label for="industry-0"><input type="checkbox"  id="industry-0" value="0"> 전체</label>
 											<label for="industry-1"><input type="checkbox" class="filter" name="industry" id="industry-1" value="1">서비스업</label>
 											<label for="industry-2"><input type="checkbox" class="filter" name="industry" id="industry-2" value="2">생산/제조</label>
 											<label for="industry-3"><input type="checkbox" class="filter" name="industry" id="industry-3" value="3">IT/인터넷</label>
@@ -265,7 +266,7 @@
 									<div id="accordion-five" class="panel-collapse collapse">
 										<!-- panel-body -->
 										<div class="panel-body">
-											<label for="emptype-0"><input type="checkbox" class="filter" id="emptype-0">전체</label>
+											<label for="emptype-0"><input type="checkbox"  id="emptype-0">전체</label>
 											<label for="emptype-1"><input type="checkbox" class="filter" name="employmenttype" id="emptype-1" value="1">정규직</label>
 											<label for="emptype-2"><input type="checkbox" class="filter" name="employmenttype" id="emptype-2" value="2">계약직</label>
 											<label for="emptype-3"><input type="checkbox" class="filter" name="employmenttype" id="emptype-3" value="3">병역특례</label>
@@ -459,109 +460,71 @@
     <script src="js/price-range.js"></script>   
     <script src="js/main.js?ver=1"></script>
 	<script src="js/switcher.js"></script>
+	<script src="js/job-list.js"></script>
 	<script type="text/javascript">
+	$(document).ready(function(){
+        $("#quetype").text("${queType}")
+        $("input[name=querytype]").val($("#quetype").text());
+        
+        $(".dropdown-quetype").click(function(){
+        $("input[name=querytype]").val($(this).text());
+        
+    })
+	});
+		var checkOptionArrays={
+			companytype:["${schElement.companytype[0]}","${schElement.companytype[1]}","${schElement.companytype[2]}","${schElement.companytype[3]}",
+	            "${schElement.companytype[4]}","${schElement.companytype[5]}","${schElement.companytype[6]}"],
+	            field:["${schElement.field[0]}","${schElement.field[1]}","${schElement.field[2]}","${schElement.field[3]}",
+	                "${schElement.field[4]}","${schElement.field[5]}","${schElement.field[6]}"],
+	                location:["${schElement.location[0]}",
+	                	"${schElement.location[1]}",
+	                	"${schElement.location[2]}",
+	                	"${schElement.location[3]}",
+	                	"${schElement.location[4]}",
+	                	"${schElement.location[5]}",
+	                	"${schElement.location[6]}",
+	                	"${schElement.location[7]}",
+	                	"${schElement.location[8]}",
+	                	"${schElement.location[9]}",
+	                	"${schElement.location[10]}",
+	                	"${schElement.location[11]}",
+	                	"${schElement.location[12]}",
+	                	"${schElement.location[13]}",
+	                	"${schElement.location[14]}",
+	                	"${schElement.location[15]}",
+	                	"${schElement.location[16]}",
+	                	"${schElement.location[17]}",
+	                	"${schElement.location[18]}"
+	                	],
+	                industry:["${schElement.industry[0]}",
+	                	"${schElement.industry[1]}",
+	                	"${schElement.industry[2]}",
+	                	"${schElement.industry[3]}",
+	                	"${schElement.industry[4]}",
+	                	"${schElement.industry[5]}",
+	                	"${schElement.industry[6]}",
+	                	"${schElement.industry[7]}",
+	                	"${schElement.industry[8]}"
+	                	],
+	                employmenttype:["${schElement.employmenttype[0]}",
+	                	"${schElement.employmenttype[1]}",
+	                	"${schElement.employmenttype[2]}",
+	                	"${schElement.employmenttype[3]}",
+	                	"${schElement.employmenttype[4]}",
+	                	"${schElement.employmenttype[5]}"
+	                	]
+		};
 		
-		$('#field-0').click(function(){
-			$('input[name=field]').trigger('click');
-		});
-		$('#location-17').click(function(){
-			$('input[name=location]').trigger('click');
-		});
-		$('#industry-0').click(function(){
-			$('input[name=industry]').trigger('click');
-		});
-		$('#emptype-0').click(function(){
-			$('input[name=employmenttype]').trigger('click');
-		});
-		var companyTypes= ["${schElement.companytype[0]}","${schElement.companytype[1]}","${schElement.companytype[2]}","${schElement.companytype[3]}",
-			"${schElement.companytype[4]}","${schElement.companytype[5]}","${schElement.companytype[6]}"];
-		console.log(companyTypes)
-		var fields= ["${schElement.field[0]}","${schElement.field[1]}","${schElement.field[2]}","${schElement.field[3]}",
-			"${schElement.field[4]}","${schElement.field[5]}","${schElement.field[6]}"];
-		
-		 $("input[name=companytype]").each(function(index,item){
-			for(var i=0; i<companyTypes.length; i++){
-				console.log(item)
-				if($(this).val()==companyTypes[i]){
-					console.log("같음")
+		 $(".filter").each(function(index,item){
+			 var name=$(this).attr('name');
+			 var arrays=checkOptionArrays[name];
+			for(var i=0; i<arrays.length; i++){
+				if($(this).val()==arrays[i]){
 					$(this).prop('checked','checked');
 					$(this).parent('label').addClass('checked');
 				} 
 			}
 		})
-		
-		$('#type-0').click(function(){
-            if($("#type-0").prop('checked')){
-                $('input[name=companytype]:checkbox').each(function(){
-                    $(this).parent('label').addClass('checked');
-                    $(this).prop('checked','checked');
-                })
-            } else {
-                $('input[name=companytype]:checkbox').each(function(){
-                    $(this).parent('label').removeClass('checked');
-                    $(this).removeProp('checked');
-                    console.log(this.checked);
-                })
-            }
-      });
-		 $("#modal-detail").on('hidden.bs.modal',function(){
-			 location.reload();
-         });
-		
-		$(document).ready(function(){
-			$("#quetype").text("${queType}")
-			$("input[name=querytype]").val($("#quetype").text());
-    		
-			$(".dropdown-quetype").click(function(){
-    		$("input[name=querytype]").val($(this).text());
-    		
-    	})
-    })
-    function go(curPage){
-		$("input[name=curPage]").val(curPage);
-		$("form").attr("action","${path}/careerlist.do?method=sch")
-		$("form").submit();
-	}
-	
-		function callAjax(method,target,index,selector){
-            var img1=selector.find("img:first");
-            var img2=selector.find("img:last");
-            $.ajax({
-                type:"POST",
-                url:"careerlist.do?"+"target="+target+"&method="+method+"&index="+index,
-                success:function(data){
-                    if(method=="bookmark"){
-                        img1.css("display","none")
-                        img2.css("display","block");
-                        selector.addClass("selected").removeClass("unselected");
-                    }
-                    else if(method=="rmBookmark"){
-                        img1.css("display","block")
-                        img2.css("display","none");
-                        selector.addClass("unselected").removeClass("selected");
-                    }
-                    
-                }
-        })
-        }
-        $(".bookmark").click(function(){
-            var index=$(this).find("input[type=hidden]").val();
-            var method;
-            var target;
-            if($(this).hasClass("selected")){
-                method="rmBookmark";
-            }else if($(this).hasClass("unselected")){
-                method="bookmark";
-            }
-            if($(this).hasClass("career")){
-                target="career";
-            } else if($(this).hasClass("company")){
-                target="company";
-            }
-            callAjax(method,target,index,$(this));
-        })
-        
-        
 		
 	</script>
   </body>
