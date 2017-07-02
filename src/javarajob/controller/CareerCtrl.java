@@ -110,6 +110,7 @@ public class CareerCtrl {
         d.addAttribute("totCompanyCnt", companys.size());
 
         d.addAttribute("queType", queryType);
+        d.addAttribute("query",query);
         return "job-list";
     }
 

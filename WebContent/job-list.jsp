@@ -463,7 +463,8 @@
 	<script src="js/job-list.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-        $("#quetype").text("${queType}")
+        $("#quetype").text("${queType}");
+        $("#search").val("${query}");
         $("input[name=querytype]").val($("#quetype").text());
         
         $(".dropdown-quetype").click(function(){
