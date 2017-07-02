@@ -305,7 +305,7 @@
 								<div class="item-info">
 									<div class="item-image-box">
 										<div class="item-image">
-											<a href="job-details.html"><img src="images/job/1.png" alt="Image" class="img-responsive"></a>
+											<a href="job-details.html"><img src="${entry.value.imageurl }" alt="logo-company" class="img-responsive logo-company"></a>
 										</div><!-- item-image -->
 									</div>
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>

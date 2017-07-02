@@ -7,6 +7,7 @@ public class Company {
 
     private int companyid;
     private String companyname;
+    private String imageurl;
     private String info;
     private String tel;
     private String location;
@@ -35,6 +36,14 @@ public class Company {
 
     public void setCompanyname(String companyname) {
         this.companyname = companyname;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageURL) {
+        this.imageurl = imageURL;
     }
 
     public String getInfo() {

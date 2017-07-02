@@ -2140,6 +2140,10 @@ section, .job-list-item {
 .job-ad-item img {
 	width: inherit;
 }
+.company-logo {
+	width:95px;
+	heigh:85px;
+}
 
 .job-ad-item {
 	padding: 15px;
