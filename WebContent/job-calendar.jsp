@@ -126,29 +126,27 @@
 	<script src='js/moment.min.js'></script>
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
-	<script src='js/calendar.js?ver=1'></script>
+	<script src='js/calendar.js?ver=2'></script>
 	<script type="text/javascript">
-	function callAjax(method,target,index,selector){
-    	var img1=selector.find("img:first");
-    	var img2=selector.find("img:last");
-        $.ajax({
-            type:"POST",
-            url:"careerlist.do?"+"target="+target+"&method="+method+"&index="+index,
-            success:function(data){
-            	if(method=="bookmark"){
-            		img1.css("display","none")
-            		img2.css("display","block");
-            		selector.addClass("selected").removeClass("unselected");
-            	}
-            	else if(method=="rmBookmark"){
-            		img1.css("display","block")
-                    img2.css("display","none");
-            		selector.addClass("unselected").removeClass("selected");
-            	}
-            	
-            }
+	$(".bookmark").on('click',function(){
+		console.log("ㅘ이")
+    	var index=$(this).find("input[type=hidden]").val();
+    	var method;
+    	var target;
+    	if($(this).hasClass("selected")){
+    		method="rmBookmark";
+    	}else if($(this).hasClass("unselected")){
+    		method="bookmark";
+    	}
+    	if($(this).hasClass("career")){
+    		target="career";
+    	} else if($(this).hasClass("company")){
+    		target="company";
+    	}
+    	
     })
-    }
+	
+	
 	$('#calendar').fullCalendar({
 		header : {
 			left : 'today',
@@ -198,6 +196,7 @@
 	        });
 	    },
 	    eventClick:function(calEvent,jsEvent,view){
+	    	console.log(view)
         	var params="companyid="+calEvent.companyid;
         	$.ajax({
     	 		type:"POST",
@@ -212,9 +211,6 @@
         aspectRatio:1.8,
         displayEventTime:false
 	});
-	$(".bookmark").on("click",function(){
-		console.log("하이요");
-	})
 	</script>	
   </body>
 </html>
