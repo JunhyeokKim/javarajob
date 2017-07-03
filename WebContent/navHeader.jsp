@@ -61,8 +61,11 @@
 					checkk = true;
 					console.log(checkk);
 				}
-				
 				return checkk;
+			}
+			
+			function isNewbie(){
+				
 			}
 			
 	  	</script>
@@ -179,6 +182,7 @@
 															<!-- 회원가입 -->
 															
 															<form method="post" id="registration" action="${path}/account.do?method=insProc">
+																<input type="hidden" name="isNewbieCheck" id="isNewbieCheck" value="false" />
 																<div class="form-group">
 																	<input type="text" class="form-control" placeholder="이름(한글 2 ~ 8 자)" name="name" />
 																</div>

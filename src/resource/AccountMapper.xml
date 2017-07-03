@@ -55,5 +55,8 @@
 	</update>
 	<select id="getCount" resultType="int">
 		SELECT COUNT(*) FROM ACCOUNT
-	</select>	
+	</select>
+	<select id="isNewbie" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM ACCOUNT WHERE ID = #{id}
+	</select>
 </mapper>
