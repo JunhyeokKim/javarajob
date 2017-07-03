@@ -59,7 +59,8 @@
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
-					<li><a href="index.jsp">MY PAGE</a></li>
+					<li><a href="index.jsp">HOME</a></li>
+					<li>MY PAGE</li>
 					<li>회원정보 수정</li>
 				</ol>						
 				<h2 class="title">My Profile</h2>

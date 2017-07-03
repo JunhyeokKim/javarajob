@@ -7,14 +7,67 @@
 <!doctype html>
 <html>
 	<head>
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#signOut").click(function(){
-				$(location).attr("href","${path}/account.do?method=signOut");
-			})
-		});
-  	</script>
+	<!-- JS -->
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	  	<script type="text/javascript">
+			$(document).ready(function(){
+				$("#signOut").click(function(){
+					$(location).attr("href","${path}/account.do?method=signOut");
+				})
+				
+				$("#regBtn").click(function(){
+					var validateCheck = validate();
+					if(validateCheck) $("#registration").submit();
+				})
+			});
+			
+			// 정규표현식
+			var reg_name= /^[가-힣]{2,20}$/;											// 이름. 한글만
+			var reg_id= /^[a-z0-9]{3,20}$/;											// 영,숫자 3~20
+			var reg_pw= /^(?=.*[a-zA-z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{6,20}$/;	// 8~20자 한,영,특,숫
+			var reg_phone= /^(01[016789]{1}-?([0-9]{3,4})-?([0-9]){4})$/;			// 핸드폰 번호
+			
+			function validate() {
+				var name = $('input[name=name]').val();								// 이름
+				var uid = $("#userIddd").val();										// id
+				var password = $("#pass").val();									// password
+				var phone = $("input[name=phone]").val();							// 핸드폰
+				
+				var checkk = false;													// return 값
+				
+				console.log("이름 : "+name);
+				console.log("id : "+uid);
+				console.log("pw : "+password);
+				console.log("phone : "+phone);
+	
+				if(reg_name.test(name)==false){
+					alert("잘못된 이름 형식입니다.");
+					$(this).val("");
+					$(this).focus();
+				}else if(reg_id.test(uid)==false){
+					alert("잘못된 ID 형식입니다.");
+					$(this).val("");
+					$(this).focus();
+				}else if(reg_pw.test(password)==false){
+					alert("잘못된 비밀번호 형식입니다.\n특수문자는 !,@,#,$,%,^,&,*,+,=,-만 가능합니다.");
+					$(this).val("");
+					$(this).focus();
+				}else if(reg_phone.test(phone)==false){
+					alert("잘못된 휴대전화 번호 형식입니다.");
+					$(this).val("");
+					$(this).focus();
+				} else {
+					checkk = true;
+					console.log(checkk);
+				}
+				
+				return checkk;
+			}
+			
+	  	</script>
+	<!-- JS -->
+  	
 	</head>
 	<body>
 	<header id="header" class="clearfix">
@@ -125,24 +178,24 @@
 														<div role="tabpanel" class="tab-pane active" id="find-job">
 															<!-- 회원가입 -->
 															
-															<form method="post" action="${path}/account.do?method=insProc">
+															<form method="post" id="registration" action="${path}/account.do?method=insProc">
 																<div class="form-group">
-																	<input type="text" class="form-control" placeholder="Name" name="name">
+																	<input type="text" class="form-control" placeholder="이름(한글 2 ~ 8 자)" name="name" />
 																</div>
 																<div class="form-group">
-																	<input type="text" class="form-control" placeholder="ID" name="id">
+																	<input type="text" class="form-control" placeholder="ID(영문, 숫자 3 ~ 20 자)" name="id" id="userIddd" />
 																</div>
 																<div class="form-group">
-																	<input type="password" class="form-control" placeholder="Password" name="password">
+																	<input type="password" class="form-control" placeholder="비밀번호(영문 대소문자, 숫자, 특수문자 8 ~ 20 자)" name="password" id="pass" />
 																</div>														
 																<div class="form-group">
 																	<input type="email" class="form-control" placeholder="E-mail" name="email">
 																</div>
 																<div class="form-group">
-																	<input type="text" class="form-control" placeholder="Mobile Number" name="phone">
+																	<input type="text" class="form-control" placeholder="휴대전화 번호" name="phone">
 																</div>
 																<div class="form-group">
-																	<input type="text" class="form-control" placeholder="Address" name="address">
+																	<input type="text" class="form-control" placeholder="주소 ex) 서울시 강남구" name="address">
 																</div>
 																<!-- select -->																
 																<select class="form-control" name="interest">
@@ -161,7 +214,7 @@
 																	<label class="pull-left checked" for="signing"><input type="checkbox" name="signing" id="signing"> 정보제공 동의여부, 미동의시 가입불가 </label>
 																</div><!-- checkbox -->	
 																<div align="right">
-																<button type="submit" class="btn">Registration</button>
+																<button type="button" id="regBtn" class="btn">회원 가입</button>
 																</div>	
 															</form>
 														</div>
