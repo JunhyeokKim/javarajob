@@ -21,7 +21,10 @@
 		<if test="industry!=null and industry!=''">
 			and industry like '%' || #{industry} || '%'
 		</if>
-		) c) where rnum between #{start} and #{end}
+		) c) where 1=1
+		<if test="start!=null and start!='' and end!=null and end!=''">
+		 and rnum between #{start} and #{end}
+		</if>
 	</select>
 	<select id="getCompany" resultType="company" parameterType="int">
 	select * from company

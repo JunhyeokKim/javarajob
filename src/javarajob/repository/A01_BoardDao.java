@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
+import javarajob.vo.Account;
 import javarajob.vo.Board;
 import javarajob.vo.Board_Sch;
 
@@ -15,4 +16,5 @@ public interface A01_BoardDao {
 	public void uptBoardCnt(int no);
 	public int totCnt(Board_Sch sch);
 	public void deleteBoard(int no);
+	public void updateBoard(Board ins);
 }

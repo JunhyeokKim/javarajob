@@ -62,8 +62,14 @@ public class QandaCtrl {
 	}
 	
 	@RequestMapping(params="method=delete")
-	public String insert(@RequestParam(value="no", defaultValue="0") int no){
+	public String delete(@RequestParam(value="no", defaultValue="0") int no){
 		service.deleteBoard(no);		
+		return "redirect:/boardList.do?method=list";
+	}
+	
+	@RequestMapping(params="method=update")
+	public String update(Board ins){		
+		service.updateBoard(ins);
 		return "redirect:/boardList.do?method=list";
 	}
 }

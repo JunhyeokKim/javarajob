@@ -65,4 +65,8 @@ public class A01_BoardService {
 	public void deleteBoard(int no){
 		dao.deleteBoard(no);
 	}
+	
+	public void updateBoard(Board ins){
+		dao.updateBoard(ins);
+	}
 }
