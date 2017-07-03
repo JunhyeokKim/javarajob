@@ -24,7 +24,7 @@
 	</insert>
 	<insert id="insertResume">
 		INSERT INTO RESUME(USERID, NAME, CTEL, EMAIL, ADDRESS, PICNAME)
-		VALUES(#{id}, #{name}, #{phone}, #{email}, #{address}, 'default.png')
+		VALUES(#{id}, #{name}, #{phone}, #{email}, #{address}, 'default.jpg')
 	</insert>
 	<select id="listMember" resultMap="memResult">
 		select * from ACCOUNT
@@ -55,5 +55,8 @@
 	</update>
 	<select id="getCount" resultType="int">
 		SELECT COUNT(*) FROM ACCOUNT
-	</select>	
+	</select>
+	<select id="isNewbie" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM ACCOUNT WHERE ID = #{id}
+	</select>
 </mapper>

@@ -42,6 +42,8 @@
 <link rel="apple-touch-icon" sizes="57x57"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
 <!-- icons -->
+
+<!-- CSS -->
 <style>
 #temp01 {
 	padding-left: 10%;
@@ -52,9 +54,11 @@
 	display: inline;
 }
 </style>
+<!-- CSS -->
+
 </head>
 <body>
-	<!-- header 11-->
+	<!-- header -->
 	<jsp:include page="navHeader.jsp"/>
 	
 	<!-- ajax -->

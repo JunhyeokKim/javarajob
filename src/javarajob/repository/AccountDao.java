@@ -20,4 +20,5 @@ public interface AccountDao {
 	public void deleteMember(String id);
 	public void updateMember(Account mem);
 	public int getCount();
+	public int isNewbie(String id);
 }

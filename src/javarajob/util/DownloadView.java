@@ -26,14 +26,6 @@ public class DownloadView extends AbstractView{
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		/* Controller
-		 * 	  model ==> View단(핵심데이터로 화면에 중간에 data나타냄)
-		 * 	  해당 내용의 View를 호출(dispatcher에 정의된)
-
-		 * dispatcher
-		 *    view(파일다운로드)단에 뿌려줌
-		 * */
 		File file = (File)model.get("downloadFile");
 		
 		// stream 서버(톰갯웹서버)에 있는 자원 client(브라우저-익스플로러, 크롬)에 전달하기위해..response
