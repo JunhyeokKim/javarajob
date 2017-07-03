@@ -27,4 +27,8 @@ public class FavCompanyService {
         dao.removeFavCompany(companyid);
         compDao.removeBookmark(companyid);
     }
+    public FavCompany getFavCompany(FavCompany vo){
+    	return dao.getFavCompany(vo);
+    }
 }
+

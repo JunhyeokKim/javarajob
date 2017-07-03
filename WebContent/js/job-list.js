@@ -99,7 +99,7 @@ $(document).ready(function(){
 		
     function go(curPage){
 		$("input[name=curPage]").val(curPage);
-		$("form").attr("action","${path}/careerlist.do?method=sch")
+		$("form").attr("action","careerlist.do?method=sch")
 		$("form").submit();
 	}
 	

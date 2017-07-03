@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
     <link rel="stylesheet" href="css/slidr.css">     
-    <link rel="stylesheet" href="css/main.css?ver=3">  
+    <link rel="stylesheet" href="css/main.css">  
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
     <link rel="stylesheet" href="css/responsive.css">
     <link rel='stylesheet' href='css/fullcalendar.css?ver=5' />
@@ -96,7 +96,7 @@
             		</div>
 		</div><!-- container -->
 		<form action="${path }/calendar.do?method=init" method="post">
-		<input type="hidden" name="month" value="hi"/>
+		<input type="hidden" name="month" value="hi" />
 		</form>
 		</div>
 	</section><!-- main -->
@@ -127,6 +127,94 @@
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js'></script>
 	<script src='js/calendar.js?ver=1'></script>
-	
+	<script type="text/javascript">
+	function callAjax(method,target,index,selector){
+    	var img1=selector.find("img:first");
+    	var img2=selector.find("img:last");
+        $.ajax({
+            type:"POST",
+            url:"careerlist.do?"+"target="+target+"&method="+method+"&index="+index,
+            success:function(data){
+            	if(method=="bookmark"){
+            		img1.css("display","none")
+            		img2.css("display","block");
+            		selector.addClass("selected").removeClass("unselected");
+            	}
+            	else if(method=="rmBookmark"){
+            		img1.css("display","block")
+                    img2.css("display","none");
+            		selector.addClass("unselected").removeClass("selected");
+            	}
+            	
+            }
+    })
+    }
+	$('#calendar').fullCalendar({
+		header : {
+			left : 'today',
+			center : 'prev title next',
+			right : ''
+		},
+		titleFormat:'YYYY.MM',
+		editable : false,
+		locale: 'ko',
+		eventRender: function (event, element) {
+			var tags="<a class='bookmark career "+(event.bookmarked? "'selected'" : "'unselected'")+
+			" style='float:right;'><img class='item-bookmark unselected' src='images/icon/bookmark-unselected.png' "+
+			"style='display:"+(event.bookmarked ? "none" : "block")+"'/>"+
+			"<img class='item-bookmark selected' src='images/icon/bookmark-selected.png' "+
+			"style='display:"+(event.bookmarked ? "block" : "none")+"'/>"+
+			"</a>";
+			console.log(tags)
+		    element.find('.fc-title').append(tags);
+		},
+	    events: function(start, end, timezone, callback) {
+	        $.ajax({
+	            url: 'calendar.do?method=companylist',
+	            dataType: 'json',
+	            data: "date="+moment($("#calendar").fullCalendar('getDate')).format('YYYY-MM'),
+	            success: function(doc) {
+	                var events = [];
+	                console.log(doc.companys)
+	                var companys= doc.companys;
+	                $.each(companys,function() {
+	                    events.push({
+	                        title: "시작: "+$(this).attr('companyname'),
+	                        start: $(this).attr('firstpostdate'), // will be parsed
+	                        end: $(this).attr('firstpostdate'),
+	                        companyid:$(this).attr('companyid'),
+	                        bookmarked:$(this).attr('bookmarked')
+	                    });
+	                    events.push({
+	                        title: "끝: "+$(this).attr('companyname'),
+	                        start: $(this).attr('lastenddate'), // will be parsed
+	                        end: $(this).attr('lastenddate'),
+	                        companyid:$(this).attr('companyid'),
+	                        bookmarked:$(this).attr('bookmarked')
+	                    });
+	                });
+	                callback(events);
+	            }
+	        });
+	    },
+	    eventClick:function(calEvent,jsEvent,view){
+        	var params="companyid="+calEvent.companyid;
+        	$.ajax({
+    	 		type:"POST",
+    	 		url:"careerlist.do?method=job-detail",
+    	 		data:params,
+    	 		success:function(args){
+    	 			$("#ajax-modal-detail").html(args);
+    	 			$("#modal-detail").modal("show");
+    	 			}
+    	 		}) 
+        },
+        aspectRatio:1.8,
+        displayEventTime:false
+	});
+	$(".bookmark").on("click",function(){
+		console.log("하이요");
+	})
+	</script>	
   </body>
 </html>

@@ -305,7 +305,7 @@
 								<div class="item-info">
 									<div class="item-image-box">
 										<div class="item-image">
-											<a href="job-details.html"><img src="${entry.value.imageurl }" onerror="this.src='images/job/1.png'" alt="logo-company" class="img-responsive logo-company"></a>
+											<a href="job-details.html"><img src="${entry.value.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company"></a>
 										</div><!-- item-image -->
 									</div>
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>
@@ -460,7 +460,7 @@
     <script src="js/price-range.js"></script>   
     <script src="js/main.js?ver=1"></script>
 	<script src="js/switcher.js"></script>
-	<script src="js/job-list.js"></script>
+	<script src="js/job-list.js?ver=1"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
         $("#quetype").text("${queType}");

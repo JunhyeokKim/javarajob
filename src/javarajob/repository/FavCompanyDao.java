@@ -11,4 +11,5 @@ public interface FavCompanyDao {
     public ArrayList<FavCompany> favCompanyList(String id);
     public void addFavCompany(FavCompany vo);
     public void removeFavCompany(int companyid);
+    public FavCompany getFavCompany(FavCompany vo);
 }

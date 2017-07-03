@@ -21,6 +21,9 @@ public class Company {
     private ArrayList<Career> careers;
     // 계정 별 bookmark 여부
     private boolean bookmarked;
+    // 회사의 공고 중 가장 첫번쨰와 마지막 공고 날짜
+    private Date firstpostdate;
+    private Date lastenddate;
 
     public int getCompanyid() {
         return companyid;
@@ -141,8 +144,25 @@ public class Company {
     public void setBookmarked(boolean bookmarked) {
         this.bookmarked = bookmarked;
     }
+    
+    
+    public Date getFirstpostdate() {
+		return firstpostdate;
+	}
 
-    @Override
+	public void setFirstpostdate(Date firstpostdate) {
+		this.firstpostdate = firstpostdate;
+	}
+
+	public Date getLastenddate() {
+		return lastenddate;
+	}
+
+	public void setLastenddate(Date lastenddate) {
+		this.lastenddate = lastenddate;
+	}
+
+	@Override
     public String toString() {
         return "Company [companyid=" + companyid + ", companyname=" + companyname + ", info=" + info + ", tel=" + tel
                 + ", location=" + location + ", establishmentdate=" + establishmentdate + ", annualsales=" + annualsales

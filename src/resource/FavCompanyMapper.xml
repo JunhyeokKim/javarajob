@@ -16,4 +16,14 @@
     <delete id="removeFavCompany" parameterType="int" timeout="20">
         delete favcompany where companyid= #{companyid}
     </delete>
+    <select id="getFavCompany" parameterType="favCompany" resultType="favCompany">
+        select * from favcompany
+        where 1=1
+        <if test="id!=null and id!=''">
+          and id = #{id}
+        </if >
+        <if test="companyid!=null and companyid!=''">
+          and companyid = #{companyid}
+        </if>
+    </select>
 </mapper>

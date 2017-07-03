@@ -1,6 +1,6 @@
 package javarajob.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Career {
 	private int careerid;

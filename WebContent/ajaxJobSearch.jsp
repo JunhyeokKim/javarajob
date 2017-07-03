@@ -12,7 +12,7 @@
                     <div class="item-info">
                         <div class="item-image-box">
                             <div class="item-image">
-                                <img src="images/job/4.png" alt="Image" class="img-responsive">
+                                <img src="${company.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
                             </div>
                             <!-- item-image -->
                         </div>
