@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
+import javarajob.service.CareerService;
+import javarajob.service.CompService;
 import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Account;
@@ -29,6 +31,9 @@ public class AccountCtrl {
 	
 	@Autowired(required = false)
 	private ResumeService resService;
+	
+	@Autowired(required=false)
+	CareerService careerService;	
 		
 	@RequestMapping(params="method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d){
@@ -72,6 +77,7 @@ public class AccountCtrl {
 	public String uptProcGuest1(HttpSession ses, Model d){
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		return "profile-details";
 	}
 	
@@ -87,6 +93,7 @@ public class AccountCtrl {
 	public String delProcGuest1(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		return "delete-account";
 	}
 	
@@ -101,8 +108,11 @@ public class AccountCtrl {
 	
 	@RequestMapping(params="bookmark")
 	public String bookmark(HttpSession ses, Model d){		
+		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));		
+		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
 		return "bookmark";
 	}
 	
@@ -110,6 +120,7 @@ public class AccountCtrl {
 	public String appliedjob(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		return "applied-job";
 	}
 	
@@ -117,6 +128,7 @@ public class AccountCtrl {
 	public String qanda(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		return "redirect:/boardList.do?method=list";
 	}
 }

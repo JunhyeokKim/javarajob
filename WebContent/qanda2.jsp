@@ -94,7 +94,7 @@
 							<a href="applied-job.html">29<small>Apply Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="bookmark.html">18<small>Favorites</small></a>
+							<a href="#">${careerFavCount}<small>Favorites</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->

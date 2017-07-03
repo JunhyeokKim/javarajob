@@ -106,7 +106,7 @@
 								<ul class="dropdown-menu">									
 									<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
 									<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>									
-									<li><a href="${path}/account.do?bookmark">관심기업</a></li>
+									<li><a href="${path}/account.do?bookmark">관심직무</a></li>
 									<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
 									<li><a href="${path}/account.do?qanda">Q&A</a></li>									
 								</ul>

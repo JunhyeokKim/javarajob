@@ -97,7 +97,7 @@
 							<a href="applied-job.html">29<small>Apply Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="bookmark.html">18<small>Favorites</small></a>
+							<a href="#">${careerFavCount}<small>Favorites</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->
@@ -105,7 +105,7 @@
 				<ul class="user-menu">					
 					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
 					<li class="active"><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="${path}/account.do?bookmark">관심기업</a></li>
+					<li><a href="${path}/account.do?bookmark">관심직무</a></li>
 					<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
 					<li><a href="${path}/account.do?qanda">Q&A</a></li>
 				</ul>

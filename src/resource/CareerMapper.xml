@@ -128,5 +128,18 @@
 		where careerid = #{careerid}
 	</update>
 	
+	<select id="listCareerforBookmark" resultMap="careerResult" parameterType="String">
+		SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, 
+			A.EMPLOYMENTTYPE, A.COMPANYID,B.COMPANYNAME, 
+			A.TITLE, A.SALARY, A.TASK, A.REQUIREMENTS, 
+			A.PREFERENCE, A.WORKINGCONDITION, 
+			A.POSTDATE, A.ENDDATE, ROWNUM 
+			FROM CAREER A, COMPANY B, FAVCAREER C 
+			WHERE A.COMPANYID=B.COMPANYID and A.CAREERID=C.CAREERID and C.ID=#{ID} 
+			ORDER BY POSTDATE DESC	
+	</select>
+	<select id="getFavCount" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM FAVCAREER WHERE ID=#{ID}
+	</select>
 		
 </mapper>

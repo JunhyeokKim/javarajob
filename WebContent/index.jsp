@@ -147,53 +147,36 @@
 	<div class="page">
 		<br>
 		
-		<div class="row" id="temp01"><!-- row -->			
+		<div class="row" id="temp01"><!-- row -->
+					
 			<div class="col-sm-2"><!-- col-sm-2 -->
 				<div class="panel-group" id="accordion">
-					<!-- panel group -->
 					<div class="panel panel-default panel-faq">
-						<!-- panel -->
-						<div class="panel-heading">
-							<!-- panel-heading -->
-							<div class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion"
-									href="#accordion-one">
-									<h4>
-										기업 형태<span class="pull-right"><i class="fa fa-minus"></i></span>
-									</h4>
-								</a>
-							</div>
+					<!-- panel-heading -->
+					<div class="panel-heading">
+						<div  class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#accordion-four">
+						<h4> 산업군<span class="pull-right"><i class="fa fa-plus"></i></span></h4>
+						</a>
 						</div>
-						<!-- panel-heading -->
-						<div id="accordion-one" class="panel-collapse collapse in">
-							<!-- accordion -->
-							<div class="panel-body">
-								<ul>
-									<li><a href="#">전체<span>(129)</span></a></li>
-									<li><a href="#">대기업<span>(8342)</span></a></li>
-									<li><a href="#">중소기업<span>(782)</span></a></li>
-									<li><a href="#">중견기업<span>(5247)</span></a></li>
-									<li><a href="#">외국계<span>(634)</span></a></li>
-									<li><a href="#">스타트업<span>(453)</span></a></li>
-								</ul>
-								<div class="see-more">
-									<button type="button" class="show-more one">
-										<i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기
-									</button>
-									<ul class="more-category one">
-										<li><a href="#">국내 공공기관<span>(289)</span></a></li>
-										<li><a href="#">병원<span>(289)</span></a></li>
-										<li><a href="#">기타<span>(3829)</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- panel-body -->
-						</div>
-						<!-- accordion -->
+					</div><!-- panel-heading -->
+
+					<div id="accordion-four" class="panel-collapse collapse in">
+						<!-- panel-body -->
+						<div class="panel-body">
+							<label for="industry-0"><input type="checkbox"  id="industry-0" value="0"> 전체</label>
+							<label for="industry-1"><input type="checkbox" class="filter" name="industry" id="industry-1" value="1">서비스업</label>
+							<label for="industry-2"><input type="checkbox" class="filter" name="industry" id="industry-2" value="2">생산/제조</label>
+							<label for="industry-3"><input type="checkbox" class="filter" name="industry" id="industry-3" value="3">IT/인터넷</label>
+							<label for="industry-4"><input type="checkbox" class="filter" name="industry" id="industry-4" value="4">연구개발/설계</label>
+							<label for="industry-5"><input type="checkbox" class="filter" name="industry" id="industry-5" value="5">전문/특수직</label>
+							<label for="industry-6"><input type="checkbox" class="filter" name="industry" id="industry-6" value="6">미디어</label>
+							<label for="industry-7"><input type="checkbox" class="filter" name="industry" id="industry-7" value="7">서비스</label>
+							<label for="industry-8"><input type="checkbox" class="filter" name="industry" id="industry-8" value="8">건설</label>
+						</div><!-- panel-body -->
 					</div>
-					<!-- panel -->
-				</div>
-				<!-- panel group-->
+					</div><!-- panel -->
+			</div><!-- panel group-->
 			</div><!-- col-sm-2 -->
 	
 			<div class="col-sm-10"><!-- col-sm-10 -->
@@ -354,9 +337,7 @@
 										</div>
 									</div><!-- 회사내용 -->									
 									<div class="close-icon"><!-- 오른쪽 상단 공간 -->										
-										<div class="button">
-											<a href="#" class="btn btn-primary bookmark"><i
-												class="fa fa-bookmark-o" aria-hidden="true"></i></a>
+										<div class="button">											
 										</div>
 									</div><!-- 오른쪽 상단 공간 -->									
 								</div><!-- item-info -->								
@@ -371,6 +352,7 @@
 				</div>
 				<!-- career list 전체 -->
 			</div><!-- col-sm-10 -->
+			
 		</div><!-- row -->
 	</div><!-- page -->
 	

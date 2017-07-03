@@ -18,5 +18,6 @@ public interface CareerDao {
 	public int getCount();
 	public void addBookmark(int careerid);
 	public void removeBookmark(int careerid);
-	
+	public ArrayList<Career> listCareerforBookmark(String id);
+	public int getFavCount(String id);
 }
