@@ -53,11 +53,12 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#listBtn").click(function(){
-			$(location).attr("href",
-			"${path}/boardList.do?method=list");
-			
+		$("#listBtn").click(function(){			
+			$(location).attr("href","${path}/boardList.do?method=list");			
 		});
+		$("#regbtn").click(function(){			
+			$("form").submit();
+		});	
 		
 		
 	});
@@ -119,10 +120,6 @@
 								<tr>
 									<td align="right">해당기업</td>
 									<td>
-																				
-											
-										
-										
 										<c:choose>
 											<c:when test="${board.companyid==0}">
 												<select class="form-control" name="companyid">
@@ -152,25 +149,45 @@
 								</tr>		
 								<tr>
 									<td align="right">패드워드</td>
-									<td><input type="password" value="${board.pass}" name="pass" size="50"  class="form-control"/></td>
+									<td>									
+									<c:choose>
+										<c:when test="${board.refno != 0}">
+											<input type="password" name="pass" size="50"  class="form-control"/>
+										</c:when>
+										<c:otherwise>
+											<input type="password" value="${board.pass}" name="pass" size="50"  class="form-control"/>											
+										</c:otherwise>
+									</c:choose>
+									</td>
 								</tr>										
 								<tr>
 									<td align="right">작성자</td>
 									<td>
+									<input type="text" name="writer" value="${id}"  size="50" hidden/>
 									<c:choose>
-										<c:when test="${empty board.writer}">
-											<input type="text" name="writer" value="${board.writer}"  size="50"  class="form-control"/>	
+										<c:when test="${board.refno != 0}">
+											<a class="form-control" style="color:black">인사담당자</a>
 										</c:when>
 										<c:otherwise>
-											<input type="text" name="writer" value="인사담당자"  size="50"  class="form-control"/>
+											<a class="form-control" style="color:black">${id}</a>											
 										</c:otherwise>
-									</c:choose>
+									</c:choose>									
 									
 									</td>
 								</tr>		
 								<tr>
 									<td align="right">이메일</td>
-									<td><input type="text" name="email"	value="${board.email}" size="50" class="form-control"/></td>
+									<td>
+									
+									<c:choose>
+										<c:when test="${board.refno != 0}">
+											<input type="text" name="email" size="50" class="form-control"/>
+										</c:when>
+										<c:otherwise>
+											<input type="text" name="email"	value="${board.email}" size="50" class="form-control"/>											
+										</c:otherwise>
+									</c:choose>
+									</td>
 								</tr>		
 								<tr>
 									<td align="right">내용</td>
@@ -179,7 +196,7 @@
 								<tr align="right">
 									<td colspan="2"><br>
 										<input type="button" id="listBtn" class="btn" value="메인글"/>
-										<input type="submit" id="regbtn" class="btn" value="Write"/>
+										<input type="button" id="regbtn" class="btn" value="Write"/>
 									</td>
 								</tr>			
 							</table>

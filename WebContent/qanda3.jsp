@@ -58,10 +58,25 @@
 			$(location).attr("href","${path}/boardList.do?method=insert&no="+no);	
 		});
 		$("#uptBtn").click(function(){
-					
+			var pass = $("input[name=pass]").val();
+			var inputPass = $("input[name=passChk]").val();
+			if(pass==inputPass){
+				$("form").attr("action","${path}/boardList.do?method=update");
+				$("form").submit();
+			}
+			else{
+				alert("비밀번호가 일치하지 않습니다.");
+			}			
 		});
-		$("#delBtn").click(function(){
-			$(location).attr("href","${path}/boardList.do?method=delete&no="+${board.no});
+		$("#delBtn").click(function(){			
+			var pass = $("input[name=pass]").val();
+			var inputPass = $("input[name=passChk]").val();
+			if(pass==inputPass){
+				$(location).attr("href","${path}/boardList.do?method=delete&no="+${board.no});
+			}
+			else{
+				alert("비밀번호가 일치하지 않습니다.");
+			}
 		});
 		$("#listBtn").click(function(){
 			$(location).attr("href","${path}/boardList.do?method=list");
@@ -121,7 +136,7 @@
 					<div class="question-answer section">
 						<h2>글 상세</h2>
 						<center>
-						<form method="post" action="${path}/boardList.do?method=insProc">
+						<form method="post">
 							<input type="hidden" name="refno" size="50" value="${board.no}"/>
 							<table>
 								<tr>
@@ -135,14 +150,16 @@
 											<c:forEach var="companyList" items="${companyList}">
 													<c:choose>
 														<c:when test="${companyList.companyid == board.companyid}">
-															<div class="form-control">${companyList.companyname}</div>
-															<input type="hidden" name="companyid"	value="${companyList.companyname}"  size="50" class="form-control"/>
+															<div class="form-control">${companyList.companyname}</div>															
 														</c:when>														
 													</c:choose>														
 											</c:forEach>
 										</td>											
 									<td align="right">패드워드</td>
-										<td><input type="password" name="pass"  value="${board.pass}" size="50" class="form-control"/></td>
+										<td>										
+										<input type="password" name="pass"  value="${board.pass}" size="50" hidden/>
+										<input type="password" name="passChk" size="50" class="form-control"/>
+										</td>
 								</tr>		
 								<tr colspan="4">
 									<td align="right">제목</td>
@@ -150,7 +167,17 @@
 								</tr>
 								<tr>
 									<td align="right">작성자</td>
-										<td><input type="text" name="writer" size="50" value="${board.writer}" class="form-control"/></td>		
+										<td>
+										<input type="text" name="writer" value="${id}"  size="50" hidden/>
+										<c:choose>
+											<c:when test="${board.refno != 0}">
+												<a class="form-control" style="color:black">인사담당자</a>
+											</c:when>
+											<c:otherwise>
+												<a class="form-control" style="color:black">${id}</a>											
+											</c:otherwise>
+										</c:choose>
+										</td>		
 								    <td align="right">이메일</td>
 								    	<td><input type="text" name="email" size="50" value="${board.email}" class="form-control"/></td>
 								</tr>

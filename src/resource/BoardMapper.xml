@@ -81,4 +81,7 @@
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where no=#{no}
 	</delete>
+	<update id="updateBoard" parameterType="board">
+		update board set pass=#{pass}, subject=#{subject}, writer=#{writer}, email=#{email}, content=#{content} where no=#{no}
+	</update>
 </mapper>

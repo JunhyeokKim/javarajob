@@ -26,6 +26,9 @@ public class CompService {
 		sch.setEnd(sch.getCurPage()*size);
 		return dao.listCompany(sch);
 	}
+	public ArrayList<Company> listCompany(Company_Sch sch) {
+		return dao.listCompany(sch);
+	}
 
 	public Company getCompany(int companyid) {
 		return dao.getCompany(companyid);
