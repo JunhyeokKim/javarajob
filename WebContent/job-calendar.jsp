@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
     <link rel="stylesheet" href="css/slidr.css">     
-    <link rel="stylesheet" href="css/main.css?ver=3">  
-	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
+    <link rel="stylesheet" href="css/main.css?ver=1">  
+	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	    
     <link rel="stylesheet" href="css/responsive.css">
     <link rel='stylesheet' href='css/fullcalendar.css?ver=5' />
 	
@@ -125,12 +125,13 @@
 	<script src="js/switcher.js"></script>
 	<script src='js/moment.min.js'></script>
 	<script src='js/locale/ko.js'></script>
-	<script src='js/fullcalendar.js?ver=4'></script>
+	<script src='js/fullcalendar.js?ver=2'></script>
 	<script src='js/calendar.js?ver=2'></script>
 	<script type="text/javascript">
-	
-	$("#modal-detail").on("hide.bs.modal",function(e){
+	$(".fc-content").unbind("click");
+	$("#modal-detail").on("hidden.bs.modal",function(e){
 		$("#ajax-modal-detail").html("");
+		location.reload();
 	})
 	
 	function callAjax(method,target,index,selector){
@@ -172,8 +173,7 @@
 			"<img class='item-bookmark selected' src='images/icon/bookmark-selected.png' "+
 			"style='display:"+(event.bookmarked ? "block" : "none")+"'/>"+
 			"</a>";
-			console.log(element.parent())
-		    element.find('.fc-title').append(tags);
+		    element.find('.fc-content').append(tags);
 		},
 	    events: function(start, end, timezone, callback) {
 	        $.ajax({
@@ -182,7 +182,6 @@
 	            data: "date="+moment($("#calendar").fullCalendar('getDate')).format('YYYY-MM'),
 	            success: function(doc) {
 	                var events = [];
-	                console.log(doc.companys)
 	                var companys= doc.companys;
 	                $.each(companys,function() {
 	                    events.push({
@@ -205,30 +204,31 @@
 	        });
 	    },
 	    eventClick:function(calEvent,jsEvent,view){
-	    	alert("아빠")
-	    	console.log(view)
-        	var params="companyid="+calEvent.companyid;
-        	$.ajax({
-    	 		type:"POST",
-    	 		url:"careerlist.do?method=job-detail",
-    	 		data:params,
-    	 		success:function(args){
-    	 			var body = '<div id="body-mock">' + args.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
-    	 			var $body = $(body);
-    	 			console.log($body)
-    	 			$("#ajax-modal-detail").html(args);
-    	 			$("#modal-detail").modal("show");
-    	 			}
-    	 		}) 
+	    	var $element=$(jsEvent.target);
+	    	if($element.hasClass("item-bookmark")){
+	    		// bookmark 클릭 시, ajax 호출을 하지 않는다
+	    	}
+	    	else{
+	    		var params="companyid="+calEvent.companyid;
+	            $.ajax({
+	                type:"POST",
+	                url:"careerlist.do?method=job-detail",
+	                data:params,
+	                success:function(args){
+	                    var body = '<div id="body-mock">' + args.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
+	                    var $body = $(body);
+	                    console.log($body)
+	                    $("#ajax-modal-detail").html(args);
+	                    $("#modal-detail").modal("show");
+	                    }
+	                }) 
+	    	}
+        	
         },
         aspectRatio:1.8,
         displayEventTime:false
 	});
 	$("#calendar").on("click",".bookmark",function(event){
-		alert("북마크")
-		event.preventDefault(); 
-        event.stopPropagation(); 
-		console.log(event)
 		var index=$(this).find("input[type=hidden]").val();
     	var method;
     	var target;
@@ -242,9 +242,8 @@
     	} else if($(this).hasClass("company")){
     		target="company";
     	}
-    	console.log(target);
-    	
     	callAjax(method,target,index,$(this));
+    	event.stopPropagation();
 	})
 	</script>	
   </body>
