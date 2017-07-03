@@ -250,7 +250,8 @@
             </div>
             <!-- job-details -->
         </div>
-        <script type="text/javascript">
+	</body>
+	<script type="text/javascript">
         function callAjax(method,target,index,selector){
         	var img1=selector.find("img:first");
         	var img2=selector.find("img:last");
@@ -291,5 +292,4 @@
         
         
         </script>
-	</body>
 </html>
