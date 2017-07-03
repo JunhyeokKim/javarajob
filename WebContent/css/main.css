@@ -705,9 +705,9 @@ a.verified i {
 
 /* Cta */
 .cta {
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.664);
 	display: inline-block;
-	color: #a0a0a0;
+	color: #000000;
 	line-height: 17px;
 	padding: 41px 0 29px;
 	margin-top: 9px;
@@ -2070,7 +2070,7 @@ section, .job-list-item {
  	Banner Job
 ========================================================================== */
 .banner-job {
-	background-image: url(../images/bg/374.jpg);
+	background-image: url(../images/bg/successfailure.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #fff;
@@ -2088,6 +2088,7 @@ section, .job-list-item {
 	z-index: -1;
 	background-color: rgba(55, 55, 55, 0.3);
 }
+
 
 .banner-job h1 {
 	font-size: 51px;

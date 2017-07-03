@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/table_kdb.css">
 
 <!-- font -->
 <link
@@ -84,7 +85,7 @@
 				<div class="user-profile">
 					<div class="user-images">
 						<img src="upload/${resume.picName}" width="100%"
-							onerror="this.src='upload/default.jpg'" class="img-responsive">
+							onerror="this.src='upload/default.png'" class="img-responsive">
 					</div>
 					<div class="user">
 						<h2><a href="#">${id}</a> 님 안녕하세요!</h2>

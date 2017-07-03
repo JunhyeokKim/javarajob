@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/table_kdb.css">
 
 <!-- font -->
 <link

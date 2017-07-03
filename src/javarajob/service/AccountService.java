@@ -51,4 +51,8 @@ public class AccountService {
 	public int getCount(){
 		return dao.getCount();
 	}
+	
+	public int isNewbie(Account ac){
+		return dao.isNewbie(ac);
+	}
 }

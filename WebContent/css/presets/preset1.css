@@ -39,7 +39,7 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	.company-info li a:hover, .job-short-info li a:hover, .workshop-traning .btn.btn-primary:hover,
 	.see-more button:hover, .buttons a.btn:hover, .user-account .nav-tabs>li.active>a,
 	.resume-content .icons, .profile-info address a:hover, .job-profile .user-menu li.active a,
-	.job-profile .user-menu li a:hover, .job-profile .user h2 a,
+	.job-profile .user-menu li a:hover, .job-profile .user h2 a, .btn44,
 	.job-profile .favorites-user a, .job-profile .favorites-user small:hover
 	{
 	color: #00a651;
@@ -56,7 +56,7 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	background-color: #00a651;
 }
 
-.form-control:focus, .navbar-default .navbar-toggle, .banner-form button.form-control,
+.form-control:focus, .navbar-default .navbar-toggle, .banner-form button.form-control, .btn44,
 	.home-banner .contact-form .form-control, .col-to-action .form-control, .sid_button .btn,
 	.export-pdf, .buttons a.btn, .sid-button .btn, .post-resume form .buttons a.btn:hover
 	{

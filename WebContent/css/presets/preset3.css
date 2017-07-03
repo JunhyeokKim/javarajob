@@ -1,4 +1,4 @@
-a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
+a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus, .btn44,
 	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a:focus,
 	.navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a,
 	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
@@ -54,7 +54,7 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	background-color: #0054a6;
 }
 
-.form-control:focus, .navbar-default .navbar-toggle, .banner-form button.form-control,
+.form-control:focus, .navbar-default .navbar-toggle, .banner-form button.form-control, .btn44,
 	.home-banner .contact-form .form-control, .col-to-action .form-control, .sid_button .btn,
 	.sid-button .btn, .export-pdf, .buttons a.btn, .post-resume form .buttons a.btn:hover
 	{
