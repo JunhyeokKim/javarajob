@@ -72,7 +72,7 @@
 			var pass = $("input[name=pass]").val();
 			var inputPass = $("input[name=passChk]").val();
 			if(pass==inputPass){
-				$(location).attr("href","${path}/boardList.do?method=delete&no="+${board.no});
+				$(location).attr("href","${path}/boardList.do?method=delete&no=${board.no}");
 			}
 			else{
 				alert("비밀번호가 일치하지 않습니다.");
@@ -90,7 +90,8 @@
 	<!-- header 11-->
 	<jsp:include page="navHeader.jsp"/>
 
-	<section class="clearfix job-bg  ad-profile-page">
+	<section class="clearfix job-bg-mypage ad-profile-page">
+		<div class="mypage-overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -103,7 +104,8 @@
 			<div class="job-profile section">	
 				<div class="user-profile">
 					<div class="user-images">
-						<img src="images/user.jpg" alt="User Images" class="img-responsive">
+						<img src="upload/${resume.picName}" width="100%"
+							onerror="this.src='upload/default.png'" class="img-responsive">
 					</div>
 					<div class="user">
 						<h2><a href="#">${id}</a> 님 안녕하세요!</h2>
@@ -116,7 +118,7 @@
 							<a href="applied-job.html">29<small>Apply Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="bookmark.html">18<small>Favorites</small></a>
+							<a href="#">${careerFavCount}<small>Favorites</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->
@@ -135,38 +137,43 @@
 					<!-- profile-details -->
 					<div class="question-answer section">
 						<h2>글 상세</h2>
-						<center>
 						<form method="post">
 							<input type="hidden" name="refno" size="50" value="${board.no}"/>
-							<table>
+							<table class="kdb-table">
+								<colgroup>
+									<col width="15%">
+									<col width="35%">
+									<col width="15%">
+									<col width="35%">
+								</colgroup>
 								<tr>
-									<td width="15%" align="right">글번호</td>
-										<td><div class="form-control">${board.no}</div><input type="hidden" name="no" size="50" value="${board.no}"/></td>
-									<td width="15%" align="right">조회수</td>
-										<td><div class="form-control">${board.readcount}</div></td></tr>		
+									<th class="preColor kdbheader">글번호</th>
+										<td><h4>${board.no}</h4><input type="hidden" name="no" size="50" value="${board.no}"/></td>
+									<th class="preColor kdbheader">조회수</th>
+										<td><h4>${board.readcount}</h4></td></tr>		
 								<tr>
-									<td align="right">기업</td>
+									<th class="preColor kdbheader">기업</th>
 										<td>
 											<c:forEach var="companyList" items="${companyList}">
-													<c:choose>
-														<c:when test="${companyList.companyid == board.companyid}">
-															<div class="form-control">${companyList.companyname}</div>															
-														</c:when>														
-													</c:choose>														
+												<c:choose>
+													<c:when test="${companyList.companyid == board.companyid}">
+														<h4>${companyList.companyname}</h4>															
+													</c:when>														
+												</c:choose>														
 											</c:forEach>
 										</td>											
-									<td align="right">패드워드</td>
+									<th class="preColor kdbheader-pw">PASSWORD</th>
 										<td>										
 										<input type="password" name="pass"  value="${board.pass}" size="50" hidden/>
 										<input type="password" name="passChk" size="50" class="form-control"/>
 										</td>
 								</tr>		
 								<tr colspan="4">
-									<td align="right">제목</td>
-										<td><input type="text" name="subject" value="${board.subject}" size="50" class="form-control"/></td>
+									<th class="preColor kdbheader">제목</th>
+										<td colspan="3"><input type="text" name="subject" value="${board.subject}" size="50" class="form-control"/></td>
 								</tr>
 								<tr>
-									<td align="right">작성자</td>
+									<th class="preColor kdbheader">작성자</th>
 										<td>
 										<input type="text" name="writer" value="${id}"  size="50" hidden/>
 										<c:choose>
@@ -178,28 +185,25 @@
 											</c:otherwise>
 										</c:choose>
 										</td>		
-								    <td align="right">이메일</td>
+								    <th class="preColor kdbheader">이메일</th>
 								    	<td><input type="text" name="email" size="50" value="${board.email}" class="form-control"/></td>
 								</tr>
 										
-								<tr colspan="2">
-									<td align="right">내용</td>
-										<td><textarea name="content" cols="40" rows="10" class="form-control">${board.content}</textarea></td>
+								<tr>
+									<th class="preColor kdbheader">내용</th>
+										<td colspan="3"><textarea name="content" cols="40" rows="10" class="form-control">${board.content}</textarea></td>
 								</tr>		
 								
-								<tr align="right"><td colspan="4"><br>
-								<input type="button" id="listBtn" value="메인글" class="btn"/>			
-								<input type="button" id="refBtn" value="답글달기" class="btn"/>
-								<input type="button" id="uptBtn"  value="수정" class="btn"/>
-								<input type="button" id="delBtn"  value="삭제" class="btn"/>
-								
-								</td></tr>			
+								<tr align="right">
+									<th colspan="4">
+										<input type="button" id="listBtn" value="메인글" class="btn btn-hover-preset"/>			
+										<input type="button" id="refBtn" value="답글달기" class="btn btn-hover-preset"/>
+										<input type="button" id="uptBtn"  value="수정" class="btn btn-hover-preset"/>
+										<input type="button" id="delBtn"  value="삭제" class="btn btn-hover-preset"/>
+									</th>
+								</tr>
 							</table>
 						</form>						
-						</center>
-						
-						
-
 					</div>
 					<!-- profile-details -->											
 				</div>

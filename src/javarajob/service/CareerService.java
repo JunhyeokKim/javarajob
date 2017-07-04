@@ -41,5 +41,13 @@ public class CareerService {
 	public int getCount(){
 		return dao.getCount();
 	}
+	
+	public ArrayList<Career> listCareerforBookmark(String id){
+		return dao.listCareerforBookmark(id);
+	}
+	
+	public int getFavCount(String id){
+		return dao.getFavCount(id);
+	}
 
 }

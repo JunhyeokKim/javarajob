@@ -12,6 +12,7 @@ div {
 .kdb-table table, .kdb-table td, .kdb-table th {
 	border-collapse: collapse;
 	padding: 5px;
+	cursor: default;
 }
 
 .kdb-table table {
@@ -25,6 +26,7 @@ div {
 }
 
 .kdb-table td {
+	border-top: 1px solid gray;
 	border-right: 1px solid gray;
 	border-left: 1px solid gray;
 	border-bottom: 1px solid gray;
@@ -37,6 +39,25 @@ div {
 	padding: 10px;
 	font-weight: bold;
 	text-align: center;
+}
+
+.kdb-table .kdbheader {
+	color: white;
+	font-weight: bold;
+	font-size: 1.4em;
+	letter-spacing: 1.1em;
+	text-align: right;
+}
+
+.kdb-table .kdbheader-pw {
+	color: white;
+	font-weight: bold;
+	font-size: 1.4em;
+	text-align: right;
+}
+
+.kdb-table input {
+	font-size: 1.3em;
 }
 
 .kdb-table .no-content {
@@ -54,18 +75,17 @@ div {
 	color:black;
 	height:1.5em;
 }
+
+.kdb-table .data:hover {
+	color:white;
+}
 /* table 색, 모양 등등 */
 
-/* 자소서 배경 불투명 처리... 근데 안됨 */
-.job-bg .self-overlay {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-	background-color: rgba(55, 55, 55, 0.8);
+/* 버튼 호버 처리 */
+.btn-hover-preset:hover {
+	color: white;
 }
-/* 자소서 배경 불투명 처리... 근데 안됨 */
+/* 버튼 호버 처리 */
 
 /* input button 숨기기 */
 .file_input_div {
