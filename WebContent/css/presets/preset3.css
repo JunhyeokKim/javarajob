@@ -70,6 +70,13 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus, .bt
 	background-color:rgba(0,65,130,0.5);
 }
 
+.kdb-table .border-preset {
+ 	border-top:0.5px solid #0054a6;
+ 	border-bottom:0.5px solid #0054a6;
+ 	border-left:none;
+ 	border-right:none;
+}
+
 .spec-ctrl .spec-container .section-container .section-title {
 	color: #0077ff;
 }

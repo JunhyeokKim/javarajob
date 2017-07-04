@@ -72,6 +72,13 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus,
 	color:#00a651;
 }
 
+.kdb-table .border-preset {
+ 	border-top:0.5px solid #00a651;
+ 	border-bottom:0.5px solid #00a651;
+ 	border-left:none;
+ 	border-right:none;
+}
+
 .featured-image a i:after {
 	border-right: 40px solid #00a651;
 }
