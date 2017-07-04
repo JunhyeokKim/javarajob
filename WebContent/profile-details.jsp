@@ -30,6 +30,11 @@
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/table_kdb.css">
+    <style type="text/css">
+    	.form-control{
+    		color: black;
+    	}
+    </style>
 	
 	<!-- font -->
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
@@ -100,17 +105,17 @@
 						<form method="post" action="${path}/account.do?method=uptProcGuest2">
 							<div class="form-group">
 								<label>이름</label>
-								<a class="form-control"><h5>${mem.name}</h5></a>
+								<input type="text" class="form-control" value="${mem.name}" name="password"/>
 							</div>
 							
 							<div class="form-group">
 								<label>ID</label>
-								<a class="form-control"><h5>${mem.id}</h5></a><input type="hidden" value="${mem.id}" name="id"/>
+								<input type="text" class="form-control" value="${mem.id}" name="password" disabled="disabled"/>
 							</div>
 
 							<div class="form-group">
 								<label>새 비밀번호</label>
-								<input type="text" class="form-control" value="${mem.password}" name="password"/>	
+								<input type="text" class="form-control" value="${mem.password}" name="password"/>
 							</div>							
 							
 							<div class="form-group">
@@ -135,17 +140,14 @@
 							
 							<div class="form-group">
 								<label>가입일자</label>
-								<a class="form-control"><h5>${mem.regdate}</h5></a>
+								<input type="text" class="form-control" value="${mem.regdate}" name="interest" disabled="disabled"/>
 							</div>	
-							<center><input type="submit" class="btn temp04" value="저장" style="color:white;"/></center>
+							<div align="center">
+								<input type="submit" class="btn btn-hover-preset" value="저장"/>
+							</div>
 							</form>	
 							<div class="preferences-settings section">
 								<div class="buttons" align="center">									
-									
-									<!-- 
-									<a href="#" class="btn">저장</a>
-									<a href="#" class="btn cancle">취소</a>
-									 -->
 								</div>												
 							</div><!-- preferences-settings -->
 									

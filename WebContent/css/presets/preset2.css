@@ -71,6 +71,13 @@ a, .nav li a:hover, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus, .bt
 	background-color:rgba(150,80,0,0.5);
 }
 
+.kdb-table .border-preset {
+ 	border-top:0.5px solid #f26522;
+ 	border-bottom:0.5px solid #f26522;
+ 	border-left:none;
+ 	border-right:none;
+}
+
 .spec-ctrl .spec-container .section-container .section-title {
 	color: #f26522;
 }

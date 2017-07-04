@@ -1294,19 +1294,19 @@ a.verified i {
 }
 
 .job-postdetails .form-control::-webkit-input-placeholder {
-	color: #cfcfcf;
+	color: #565656;
 }
 
 .job-postdetails .form-control::-moz-placeholder {
-	color: #cfcfcf;
+	color: #565656;
 }
 
 .job-postdetails .form-control:-ms-input-placeholder {
-	color: #cfcfcf;
+	color: #565656;
 }
 
 .job-postdetails .form-control:-moz-placeholder {
-	color: #cfcfcf;
+	color: #565656;
 }
 
 .upload-section {
@@ -1760,8 +1760,7 @@ a.verified i {
 }
 
 .user-pro-section .form-control {
-	float: right;
-	width: 75%;
+	width: 100%;
 }
 
 .user-pro-section .preferences-settings label, .user-pro-section .preferences-settings .form-control
@@ -2952,19 +2951,19 @@ section, .job-list-item {
 }
 
 .form-control::-webkit-input-placeholder {
-	color: #a0a0a0;
+	color: #565656;
 }
 
 .form-control:-moz-placeholder { /* Firefox 18- */
-	color: #a0a0a0;
+	color: #565656;
 }
 
 .form-control::-moz-placeholder { /* Firefox 19+ */
-	color: #a0a0a0;
+	color: #565656;
 }
 
 .form-control:-ms-input-placeholder {
-	color: #a0a0a0;
+	color: #565656;
 }
 
 /* Post Resume */

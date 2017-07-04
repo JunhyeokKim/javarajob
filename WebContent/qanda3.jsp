@@ -148,12 +148,12 @@
 								</colgroup>
 								<tr>
 									<th class="preColor kdbheader">글번호</th>
-										<td><h4>${board.no}</h4><input type="hidden" name="no" size="50" value="${board.no}"/></td>
+										<td class="border-preset"><h4>${board.no}</h4><input type="hidden" name="no" size="50" value="${board.no}"/></td>
 									<th class="preColor kdbheader">조회수</th>
-										<td><h4>${board.readcount}</h4></td></tr>		
+										<td class="border-preset"><h4>${board.readcount}</h4></td></tr>		
 								<tr>
 									<th class="preColor kdbheader">기업</th>
-										<td>
+										<td class="border-preset">
 											<c:forEach var="companyList" items="${companyList}">
 												<c:choose>
 													<c:when test="${companyList.companyid == board.companyid}">
@@ -163,35 +163,37 @@
 											</c:forEach>
 										</td>											
 									<th class="preColor kdbheader-pw">PASSWORD</th>
-										<td>										
+										<td class="border-preset">										
 										<input type="password" name="pass"  value="${board.pass}" size="50" hidden/>
 										<input type="password" name="passChk" size="50" class="form-control"/>
 										</td>
 								</tr>		
-								<tr colspan="4">
+								<tr>
 									<th class="preColor kdbheader">제목</th>
-										<td colspan="3"><input type="text" name="subject" value="${board.subject}" size="50" class="form-control"/></td>
+										<td colspan="3" class="border-preset"><input type="text" name="subject" value="${board.subject}" size="50" class="form-control"/></td>
 								</tr>
 								<tr>
 									<th class="preColor kdbheader">작성자</th>
-										<td>
+										<td class="border-preset">
 										<input type="text" name="writer" value="${id}"  size="50" hidden/>
 										<c:choose>
 											<c:when test="${board.refno != 0}">
-												<a class="form-control" style="color:black">인사담당자</a>
+												<h4>인사담당자</h4>
 											</c:when>
 											<c:otherwise>
-												<a class="form-control" style="color:black">${id}</a>											
+												<h4>${id}</h4>											
 											</c:otherwise>
 										</c:choose>
 										</td>		
 								    <th class="preColor kdbheader">이메일</th>
-								    	<td><input type="text" name="email" size="50" value="${board.email}" class="form-control"/></td>
+								    	<td class="border-preset"><input type="text" name="email" size="50" value="${board.email}" class="form-control"/></td>
 								</tr>
 										
 								<tr>
 									<th class="preColor kdbheader">내용</th>
-										<td colspan="3"><textarea name="content" cols="40" rows="10" class="form-control">${board.content}</textarea></td>
+										<td colspan="3" class="border-preset">
+											<textarea name="content" cols="40" rows="10" class="form-control">${board.content}</textarea>
+										</td>
 								</tr>		
 								
 								<tr align="right">
