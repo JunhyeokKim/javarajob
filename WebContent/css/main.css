@@ -338,6 +338,13 @@ textarea {
 	padding-bottom: 2px;
 }
 
+.img-jlogo {
+	position: relative;
+	width:auto;
+	height:25px;
+	top:7px;
+}
+
 /* ==========================================================================
  	banner-form
  ========================================================================== */
@@ -662,9 +669,9 @@ a.verified i {
 	line-height: 17px;
 }
 
-.call-ajax {
+/* .call-ajax {
 	float:left;
-}
+} */
 
 .tab-manu {
 	overflow: hidden;
@@ -2070,7 +2077,7 @@ section, .job-list-item {
  	Banner Job
 ========================================================================== */
 .banner-job {
-	background-image: url(../images/bg/successfailure.jpg);
+	background-image: url(../images/bg/6143205367_17c05f65e1_o.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #fff;
@@ -2086,7 +2093,7 @@ section, .job-list-item {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(55, 55, 55, 0.3);
+	background-color: rgba(65, 65, 65, 0.4);
 }
 
 
@@ -2335,6 +2342,31 @@ section, .job-list-item {
 	background-image: url(../images/bg/636.jpg);
 	background-repeat: no-repeat;
 	background-size: contain;
+	z-index: 1;
+}
+
+.job-bg-self {
+	background-image: url(../images/bg/636.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 1;
+}
+
+.job-bg-mypage {
+	background-image: url(../images/bg/handhand.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 1;
+}
+
+.mypage-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: rgba(65, 65, 65, 0.3);
 }
 
 .banner-form-full.job-list-form {

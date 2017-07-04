@@ -10,6 +10,7 @@ public class Career {
 	private String workingcondition;
 	private int companytype;
 	private String companyname;
+	private String imageurl;
 	private String info;
 	private int field;
 	private int location;
@@ -25,6 +26,14 @@ public class Career {
 	private boolean Bookmarked;
 	// for order
 	private int priorityOrder;
+
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
 
 	public int getCareerid() {
 		return careerid;
@@ -169,7 +178,7 @@ public class Career {
 	public void setPriorityOrder(int priorityOrder) {
 		this.priorityOrder = priorityOrder;
 	}
-	
+
 	public int getBookmarkcnt() {
 		return bookmarkcnt;
 	}
@@ -177,22 +186,18 @@ public class Career {
 	public void setBookmarkcnt(int bookmarkcnt) {
 		this.bookmarkcnt = bookmarkcnt;
 	}
-	
-	
 
-    public boolean isBookmarked() {
-        return Bookmarked;
-    }
+	public boolean isBookmarked() {
+		return Bookmarked;
+	}
 
-    public void setBookmarked(boolean bookmarked) {
-        Bookmarked = bookmarked;
-    }
+	public void setBookmarked(boolean bookmarked) {
+		Bookmarked = bookmarked;
+	}
 
-    @Override
+	@Override
 	public String toString() {
-		return "Career [careerid=" + careerid
-				+ ", companyid=" + companyid
-				+ ", title=" + title + "]";
+		return "Career [careerid=" + careerid + ", companyid=" + companyid + ", title=" + title + "]";
 	}
 
 }

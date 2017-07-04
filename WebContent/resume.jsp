@@ -106,7 +106,7 @@
 												<div class="image-buttons">
 													<div class="btn button-blue button-bordered ng-scope">
 														<label for="picUpload">이미지 올리기</label> <input type="file"
-															id="picUpload" class="file_input_hidden" name="pic" />
+															id="picUpload" class="file_input_hidden" name="pic" value="${resume.picName}" />
 													</div>
 
 												</div>

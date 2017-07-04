@@ -144,7 +144,7 @@ public class AccountCtrl {
 	public String qanda(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
-		return "redirect:/boardList.do?method=list";
+		return "redirect:/boardList.do?method=list&id="+ses.getAttribute("id").toString();
 	}
 
 }

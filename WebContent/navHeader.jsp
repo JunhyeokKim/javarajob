@@ -112,7 +112,7 @@
 							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="${path}/index.do"><img
-						class="img-responsive" src="images/logo.png" alt="Logo"></a>
+						class="img-jlogo" src="images/logo.png" alt="Logo" height="20" ></a>
 				</div>
 				<!-- /navbar-header -->
 

@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
 <link rel="stylesheet" href="css/resume.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=1">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
@@ -166,7 +166,7 @@
 	<jsp:include page="navHeader.jsp"/>
 	<!-- header -->
 
-	<section class="job-bg page  ad-profile-page">
+	<section class="job-bg-self page  ad-profile-page">
 		<form method="post" enctype="multipart/form-data">
 			<div class="self-overlay"></div>
 			<div class="container">

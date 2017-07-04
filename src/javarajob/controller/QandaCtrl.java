@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javarajob.service.A01_BoardService;
 import javarajob.service.CompService;
+import javarajob.service.ResumeService;
 import javarajob.vo.Board;
 import javarajob.vo.Board_Sch;
 import javarajob.vo.Company_Sch;
@@ -23,6 +24,9 @@ public class QandaCtrl {
 	
 	@Autowired(required = false)
 	private CompService s;
+
+	@Autowired(required = false)
+	private ResumeService rs;
 	
 	@ModelAttribute("boardSch")
 	public Board_Sch Board_Sch(){
@@ -32,8 +36,10 @@ public class QandaCtrl {
 	// °Ô½ÃÆÇ list
 	// http://localhost:6080/springweb/boardList.do?method=list
 	@RequestMapping(params="method=list")
-	public String start(@ModelAttribute("boardSch") Board_Sch sch, Model d){
+	public String start(@ModelAttribute("boardSch") Board_Sch sch, @RequestParam("id") String id, Model d){
 		d.addAttribute("list", service.listBoard(sch));
+		System.out.println("writer? : "+sch.getWriter());
+		d.addAttribute("resume", rs.oneResume(id));
 		//System.out.println("dc getCount()"+sch.getCount()+"getPageSize()"+sch.getPageSize()+"getCurPage()"+sch.getCurPage()+"getStart()"+sch.getStart()+"getEnd()"+sch.getEnd());
 		return "qanda";
 	}

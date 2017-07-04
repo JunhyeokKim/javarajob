@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=2">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
@@ -33,7 +33,7 @@
 	rel='stylesheet' type='text/css'>
 
 <!-- icons -->
-<link rel="icon" href="images/ico/favicon.ico">
+<link rel="icon" href="images/ico/favicon2.ico">
 <link rel="apple-touch-icon" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon" sizes="114x114"
@@ -223,13 +223,13 @@
 								<div class="item-info">
 									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
-											<a href="job-details.html"><img src="images/job/3.png"
-												alt="Image" class="img-responsive"></a>
+											<a href="job-details.html">
+												<img src="${career.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
+											</a>
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
-											@ <a>${career.companyname}</a></span>
+										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
 												<li>
@@ -365,7 +365,7 @@
 						</c:forEach><!-- 회사 리스트 -->
 						
 						<div class="ad-section text-center">
-							<a href="#"><img src="images/ads/3.jpg" alt="Image"
+							<a href="#"><img src="images/bg/start.png" alt="Image" width="729px"
 								class="img-responsive"></a>
 						</div>						
 					</div>
