@@ -90,16 +90,17 @@ public class FileService {
 		File file = new File(delPath);
 		System.out.println("delPath : "+delPath);
 		System.out.println("exist? : "+file.exists());
-		
-		File[] childFileList = file.listFiles();
-		for (File childFile : childFileList) {
-			if (childFile.isDirectory()) {
-				delAllFiles(childFile.getAbsolutePath()); // 하위 디렉토리 루프
-			} else {
-				childFile.delete(); // 하위 파일삭제
+		if(file.exists()){
+			File[] childFileList = file.listFiles();
+			for (File childFile : childFileList) {
+				if (childFile.isDirectory()) {
+					delAllFiles(childFile.getAbsolutePath()); // 하위 디렉토리 루프
+				} else {
+					childFile.delete(); // 하위 파일삭제
+				}
 			}
+			file.delete(); // root 삭제
 		}
-		file.delete(); // root 삭제
 	}
 
 	public File getFile(SelfDocument down) {
