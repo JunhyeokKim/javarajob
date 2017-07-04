@@ -74,7 +74,7 @@
 	});
 	$("select[name=pageSize]").val("${boardSch.pageSize}");
 	$("select[name=pageSize]").change(function(){
-		$("form").attr("action","${path}/boardList.do?method=list");
+		$("form").attr("action","${path}/account.do?qanda");
 		$("form").submit();
 	});
 	$("#mybtn").click(function(){		
@@ -84,7 +84,7 @@
 	})
 	function go(curPage){
 		$("input[name=curPage]").val(curPage);
-		$("form").attr("action","${path}/boardList.do?method=list");
+		$("form").attr("action","${path}/account.do?qanda");
 		$("form").submit();
 	}
 	
@@ -142,95 +142,82 @@
 					<!-- profile-details -->
 					<div class="question-answer section">
 						<h2>문의 내용</h2>
+						<form method="post" action="${path}/account.do?qanda">
+							<table>
+								<tr>
+									<td>
+									</td>
+								</tr>
+								<tr>							 
+									<td><input type="text" class="form-control" name="subject"  placeholder="제목" value="${boardsch.subject}"/></td>
+									<td><input type="text" class="form-control" name="content"  placeholder="내용" value="${boardsch.content}"/></td>
+									<td><input type="text" class="form-control" name="writer"  placeholder="작성자" value="${boardsch.writer}"/></td>
+									<td>
+										&nbsp;&nbsp;&nbsp;<input type="button" id="schbtn" class="btn" value="Search"/>
+										<input type="button" id="mybtn" class="btn" value="내글보기"/>
+										<input type="button" id="initbtn" class="btn" value="Reset"/>
+										<input type="button" id="regbtn" class="btn" value="Write"/>								
+									</td>
+								</tr>
+							</table>
+							<table align="center" class="kdb-table" width="100%">
+								<caption style="text-align:left">
+									총:${boardSch.getCount()}건,&nbsp;
+									검색단위:
+									<select name="pageSize">								
+										<option>3</option>
+										<option>5</option>
+										<option>10</option>
+										<option>20</option>
+									</select>
+									<input type="hidden" name="curPage" value="1"/>
+								</caption>
+								<colgroup>
+									<col width="5%">
+									<col width="15%">
+									<col width="42%">
+									<col width="7%">
+									<col width="7%">
+									<col width="7%">
+									<col width="7%">
+								</colgroup>							
+								<tr class="preColor">
+									<th>번호</th>
+									<th>기업명</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>등록일</th>								
+									<th>답변 여부</th>
+									<th>조회수</th>
+								</tr>					
+								
+								<c:forEach var="board" items="${list}">
+								<tr class="data" id="${board.no}">
+									<td>${board.cnt}</td>
+									<td>${board.companyname}</td>
+									<td style="text-align:left;">${board.subject}</td>
+									<td>
+										<c:choose>
+											<c:when test="${board.refno != 0}">
+												인사담당자
+											</c:when>
+											<c:otherwise>
+												${board.writer}
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td><fmt:formatDate value="${board.regdate}"/></td>
+									<td>${board.isread}</td>
+									<td>${board.readcount}</td>	
+								</tr>
+								</c:forEach>
+								<c:if test="${list.size()==0}">
+								<tr><td colspan="7">등록하신 문의가 없습니다.</td></tr>
+								</c:if>
+							</table>
+						</form>
+						<br>
 						<center>
-						<form method="post" action="${path}/boardList.do?method=list">
-						<table>
-							<tr>
-							<td>
-								
-							</td>
-							</tr>
-							<tr>							 
-							
-							<td><input type="text" class="form-control" name="subject"  placeholder="제목" value="${boardsch.subject}"/></td>
-							<td><input type="text" class="form-control" name="content"  placeholder="내용" value="${boardsch.content}"/></td>
-							<td><input type="text" class="form-control" name="writer"  placeholder="작성자" value="${boardsch.writer}"/></td>
-														 							
-							<td>
-								&nbsp;&nbsp;&nbsp;<input type="button" id="schbtn" class="btn" value="Search"/>
-								<input type="button" id="mybtn" class="btn" value="내글보기"/>
-								<input type="button" id="initbtn" class="btn" value="Reset"/>
-								<input type="button" id="regbtn" class="btn" value="Write"/>								
-							</td>
-							</tr>
-						</table>
-						
-															
-								
-							
-						
-						
-						</center>
-						
-						
-						<table align="center" class="kdb-table" width="100%">
-							<caption style="text-align:left">
-								총:${boardSch.getCount()}건,&nbsp;
-								검색단위:
-								<select name="pageSize">								
-									<option>3</option>
-									<option>5</option>
-									<option>10</option>
-									<option>20</option>
-								</select>
-								<input type="hidden" name="curPage" value="1"/>
-								</form>
-							</caption>
-							<colgroup>
-								<col width="5%">
-								<col width="15%">
-								<col width="42%">
-								<col width="7%">
-								<col width="7%">
-								<col width="7%">
-								<col width="7%">
-							</colgroup>							
-							<tr class="preColor">
-								<th>번호</th>
-								<th>기업명</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>								
-								<th>답변 여부</th>
-								<th>조회수</th>
-							</tr>					
-							
-							<c:forEach var="board" items="${list}">
-							<tr class="data" id="${board.no}">
-								<td>${board.cnt}</td>
-								<td>${board.companyname}</td>
-								<td style="text-align:left;">${board.subject}</td>
-								<td>
-									<c:choose>
-										<c:when test="${board.refno != 0}">
-											인사담당자
-										</c:when>
-										<c:otherwise>
-											${board.writer}
-										</c:otherwise>
-									</c:choose>
-								</td>
-								<td><fmt:formatDate value="${board.regdate}"/></td>
-								<td>${board.isread}</td>
-								<td>${board.readcount}</td>	
-							</tr>
-							</c:forEach>
-							<c:if test="${list.size()==0}">
-							<tr><td colspan="7">등록하신 문의가 없습니다.</td></tr>
-							</c:if>
-						</table>
-						
-						<center><br>
 						<!-- 하단 page block [1][2][3] -->
 						<c:forEach var="cnt" begin="1" end="${boardSch.pageCount}">
 							<a style="text-decoration: none" href="javascript:go(${cnt})">
