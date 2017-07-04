@@ -13,11 +13,11 @@
 	   	<meta name="description" content="">
 		<title>Jobs | Job Portal / Job Board HTML Template</title>
 		 <!-- CSS -->
-	    <link rel="stylesheet" href="css/bootstrap.min.css" >
+	    <link rel="stylesheet" href="css/bootstrap.min.css?ver=3" >
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css?ver=0">  
+	    <link rel="stylesheet" href="css/main.css?ver=2">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 		<link rel="stylesheet" href="css/table_kdb.css">
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
@@ -464,6 +464,9 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/job-list.js?ver=1"></script>
 	<script type="text/javascript">
+	
+	
+	
 	$(function () {
 	    $('.unselected[data-toggle="popover"]').popover()
 	})

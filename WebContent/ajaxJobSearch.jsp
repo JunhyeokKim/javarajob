@@ -56,12 +56,10 @@
                         <!-- ad-info -->
                     </div>
                     <!-- item-info -->
-                    <div class="social-media">
+                    <div class="social-media" style="float:left">
                         <div class="button">
                             <a href="http://${company.website}" class="btn btn-primary"><i
-                                class="fa fa-briefcase" aria-hidden="true"></i>홈페이지</a> <a
-                                href="#" class="btn btn-primary bookmark"><i
-                                class="fa fa-bookmark-o" aria-hidden="true"></i>스크랩</a>
+                                class="fa fa-briefcase" aria-hidden="true"></i>홈페이지</a>
                         </div>
                         <ul class="share-social">
                             <li><a href="#"><i class="fa fa-facebook-official"
@@ -98,6 +96,12 @@
                                                                     style="display: ${career.bookmarked ?'block':'none' }"/>
                                                                     </a>
                                                                     </span>
+                                                                    <div class="social-media">
+                                                            <div class="button">
+                                                                <a href="http://${company.website }" class="btn btn-primary"><i
+                                                                    class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> 
+                                                            </div>
+                                                        </div>
                                                             <jsp:useBean id="now" class="java.util.Date" />
                                                             <fmt:formatDate value="${career.postdate }" var="post"/>
                                                             <fmt:formatDate value="${career.enddate }" var="end"/>
@@ -172,20 +176,25 @@
 						                                    </li>
 						                                </ul>
 						                                </div>
-						                                <div class="social-media col-xs-12 col-sm-4">
-                                                            <div class="button">
-                                                                <a href="#" class="btn btn-primary"><i
-                                                                    class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> 
-                                                            </div>
-                                                        </div>
+						                                
                                                     </div>
                                                      <div id="item-body${status.count }" class="collapse position-detail description-detail">
                                                      
                                                             <h3>주요 업무</h3>
-                                                            <p>${career.task }</p>
+                                                            <p><c:forTokens items="${career.requirements }" delims="-" var="str">
+                                                            	-${str }
+                                                            	<br>
+                                                            	</c:forTokens>
+                                                            	</p>
                                                             <h3>자격 요건</h3>
-                                                            <p>${career.requirements }</p>
+                                                            <p>
+                                                            	<c:forTokens items="${career.requirements }" delims="-" var="str">
+                                                            	-${str }
+                                                            	<br>
+                                                            	</c:forTokens>
+                                                            </p>
                                                         </div>
+                                                        <br><br>
                                                         </c:forEach>
                                                 </div>
                                                 <!-- ad-meta -->

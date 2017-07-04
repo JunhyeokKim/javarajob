@@ -669,9 +669,9 @@ a.verified i {
 	line-height: 17px;
 }
 
-/* .call-ajax {
+ .call-ajax {
 	float:left;
-} */
+} 
 
 .tab-manu {
 	overflow: hidden;
@@ -2397,7 +2397,8 @@ section, .job-list-item {
 
 .social-media {
 	overflow: hidden;
-	margin-left: 120px;
+	float:right;
+	display:inline-block;
 }
 
 .social-media .button {

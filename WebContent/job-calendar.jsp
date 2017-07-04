@@ -14,11 +14,11 @@
 
     <title>Jobs | Job Portal / Job Board HTML Template</title>
      <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/bootstrap.min.css?ver=4" >
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
     <link rel="stylesheet" href="css/slidr.css">     
-    <link rel="stylesheet" href="css/main.css?ver=1">  
+    <link rel="stylesheet" href="css/main.css?ver=4">  
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	    
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/table_kdb.css">

@@ -412,9 +412,9 @@
 				  separator : ',', 
 				  decimal : '.', 
 				};
-				var account = new CountUp("accountcount", 0, ${accountCount}, 0, 2.5, options);
-				var career = new CountUp("careercount", 0, ${careerCount}, 0, 2.5, options);
-				var company = new CountUp("companycount", 0, ${companyCount}, 0, 2.5, options);
+				var account = new CountUp("accountcount", 0, ${accountCount}, 0, 10, options);
+				var career = new CountUp("careercount", 0, ${careerCount}, 0, 10, options);
+				var company = new CountUp("companycount", 0, ${companyCount}, 0, 10, options);
 				account.start();
 				career.start();
 				company.start();
