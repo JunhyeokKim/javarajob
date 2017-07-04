@@ -49,5 +49,12 @@ public class CareerService {
 	public int getFavCount(String id){
 		return dao.getFavCount(id);
 	}
+	
+	public ArrayList<Career> listCareerforindexSelect(int industry) {
+		return dao.listCareerforindexSelect(industry);
+	}
 
+	public ArrayList<Career> listCareerforindexOrderByBookmark(){
+		return dao.listCareerforindexOrderByBookmark();
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
@@ -28,34 +29,35 @@ public class IndexCtrl {
 	FavCareerService favCareerService;
 
 	@RequestMapping("/index.do")
-	public String listCareerforindex(Model d, HttpSession session) {
-		ArrayList<Career> topCareers=careerService.listCareerforindex();
-		ArrayList<FavCareer> favCareers;
-		String curId = (String) session.getAttribute("id");
-		// favCareer
-		if (curId != null) {
-			favCareers = favCareerService.favCareerList(curId);
-			for (Career career : topCareers) {
-				for (FavCareer favCareer : favCareers) {
-					if (favCareer.getCareerid() == career.getCareerid()) {
-						career.setBookmarked(true);
-					}
-				}
+		
+	public String listCareerforindex(HttpSession session,@RequestParam(value="mode", defaultValue="0") int mode, Model d){	
+ArrayList<Career> topCareers=careerService.listCareerforindex();
+ArrayList<FavCareer> favCareers;
+String curId = (String) session.getAttribute("id");
+// favCareer
+if (curId != null) {
+	favCareers = favCareerService.favCareerList(curId);
+	for (Career career : topCareers) {
+		for (FavCareer favCareer : favCareers) {
+			if (favCareer.getCareerid() == career.getCareerid()) {
+				career.setBookmarked(true);
 			}
 		}
+	}
+}
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
 		d.addAttribute("careerList", topCareers);
+		if(mode==2) d.addAttribute("careerList", careerService.listCareerforindexOrderByBookmark());
 		return "index";
 	}
-	
-	@RequestMapping("/indexTemp.do")
-	public String listCareerforindexTemp(Model d){	
+	@RequestMapping("/indexSelect.do")
+	public String listCareerforindexSelect(@RequestParam(value="industry", defaultValue="0") int industry, Model d){		
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
-		d.addAttribute("careerList", careerService.listCareerforindex());		
-		return "indexTemp";
+		d.addAttribute("careerList", careerService.listCareerforindexSelect(industry));		
+		return "index";
 	}
 }
