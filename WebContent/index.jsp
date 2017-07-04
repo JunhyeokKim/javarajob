@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
-<link rel="stylesheet" href="css/main.css?v=2">
+<link rel="stylesheet" href="css/main.css?v=3">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
@@ -210,11 +210,19 @@
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>@ <a>${career.companyname}</a></span>
+										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" />@ ${career.companyname}</a>
+										<a data-toggle="popover" class="bookmark career ${career.bookmarked ?'selected':'unselected' }" style="display: inline-block;">
+										<input type="hidden" value="${career.careerid }"/>
+                                                                    <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
+                                                                    style="display: ${career.bookmarked ?'none':'block' }"/> 
+                                                                    <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
+                                                                    style="display: ${career.bookmarked ?'block':'none' }"/>
+                                                                    </a>
+										</span>
 										<div class="ad-meta">
 											<ul>
 												<li>
-													<a href="#"><i class="fa fa-map-marker"	aria-hidden="true"></i>
+													<a><i class="fa fa-map-marker"	aria-hidden="true"></i>
 													<c:choose>
 														<c:when test="${career.location==1}">서울</c:when>
 														<c:when test="${career.location==2}">경기</c:when>
@@ -239,7 +247,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-check" aria-hidden="true"></i>													
+													<a><i class="fa fa-check" aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.companytype==1}">대기업</c:when>
 														<c:when test="${career.companytype==2}">중소기업</c:when>
@@ -252,7 +260,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-industry" aria-hidden="true"></i>													
+													<a><i class="fa fa-industry" aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.industry==1}">서비스업</c:when>
 														<c:when test="${career.industry==2}">생산/제조</c:when>
@@ -266,7 +274,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>													
+													<a><i class="fa fa-clock-o" aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.employmenttype==1}">정규직</c:when>
 														<c:when test="${career.employmenttype==2}">계약직</c:when>
@@ -278,7 +286,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-pencil"	aria-hidden="true"></i>													
+													<a><i class="fa fa-pencil"	aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.field==1}">서버 개발자</c:when>
 														<c:when test="${career.field==2}">웹 개발자</c:when>
@@ -300,7 +308,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-money" aria-hidden="true"></i>
+													<a><i class="fa fa-money" aria-hidden="true"></i>
 													<c:choose>
 														<c:when test="${career.salary==0}">회사내규에 따름</c:when>
 														<c:when test="${career.salary==1}">1,400 만원 이하</c:when>
@@ -329,17 +337,15 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+													<a><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 													<fmt:formatDate value="${career.postdate}"	pattern="yy-MM-dd" />~<fmt:formatDate value="${career.enddate}" pattern="yy-MM-dd" /></a>
 												</li>
 											</ul>
 										</div>
 									</div><!-- 회사내용 -->									
 									<div class="close-icon"><!-- 오른쪽 상단 공간 -->										
-										<div class="button">											
-										</div>
 									</div><!-- 오른쪽 상단 공간 -->									
-								</div><!-- item-info -->								
+								</div><!-- item-info -->	
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
 						
@@ -386,6 +392,64 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
+	var popOverSettings = {
+		    placement: 'right',
+		    container: 'body',
+		    selector: '[data-toggle="popover"]',
+		    content: function () {
+		        return "북마크가 추가되었습니다.";
+		    }
+		}
+		$('body').popover(popOverSettings);
+		$('.bookmark').on('shown.bs.popover', function () {
+    	var popObj=$(this);
+    	setTimeout(function(){
+    		popObj.popover('hide');	
+    		},2000)
+    		})
+	
+        function callAjax(method,target,index,selector){
+        	var img1=selector.find("img:first");
+        	var img2=selector.find("img:last");
+            $.ajax({
+                type:"POST",
+                url:"careerlist.do?"+"target="+target+"&method="+method+"&index="+index,
+                success:function(data){
+                	if(method=="bookmark"){
+                		img1.css("display","none")
+                		img2.css("display","block");
+                		selector.addClass("selected").removeClass("unselected");
+                	}
+                	else if(method=="rmBookmark"){
+                		img1.css("display","block")
+                        img2.css("display","none");
+                		selector.addClass("unselected").removeClass("selected");
+                	}
+                	
+                }
+        })
+        }
+        $(".bookmark").click(function(){
+        	var index=$(this).find("input[type=hidden]").val();
+        	var method;
+        	var target;
+        	if($(this).hasClass("selected")){
+        		method="rmBookmark";
+        	}else if($(this).hasClass("unselected")){
+        		method="bookmark";
+        	}
+        	if($(this).hasClass("career")){
+        		target="career";
+        	} else if($(this).hasClass("company")){
+        		target="company";
+        	}
+        	console.log(method)
+        	console.log(target)
+        	console.log(index)
+        	callAjax(method,target,index,$(this));
+        })
+        
+	
 	$(document).ready(function(){
 		var options = {
 				  useEasing : true, 

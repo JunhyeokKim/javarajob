@@ -92,10 +92,10 @@ a:active, a:focus, button:focus, .btn:focus, input:focus, textarea:focus,
 }
 
 .title {
-	line-height: 34px;
 	color: #ffffff;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: 700;
+	cursor: pointer;
 }
 
 .parallax-section {
@@ -2341,9 +2341,12 @@ section, .job-list-item {
 
 /* Job List Page */
 .job-bg {
-	background-image: url(../images/bg/636.jpg);
+	background-image: url(../images/bg/job-list7.jpg);
 	background-repeat: no-repeat;
-	background-size: contain;
+	width:100%;
+	height:636px;
+	background-size: cover;
+		
 	z-index: 1;
 }
 

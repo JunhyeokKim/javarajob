@@ -17,7 +17,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css?ver=2">  
+	    <link rel="stylesheet" href="css/main.css?ver=4">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 		<link rel="stylesheet" href="css/table_kdb.css">
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
@@ -72,6 +72,7 @@
     </div>
 	
 	<section class="job-bg page job-list-page container">
+	<div class="mypage-overlay"></div>
 		<div class="list-view">
 	
 			<div class="breadcrumb-section">
@@ -311,7 +312,7 @@
 									</div>
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>
 									<div class="ad-info" style="width:80%">
-										<span><a class="call-ajax" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a>
+										<span><a class="call-ajax title" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a>
 										<a tabindex="0" role="button" data-toggle="popover" data-placement="right" data-trigger="focus" data-content="북마크가 추가되었습니다." data-container="body" class="bookmark company ${entry.value.companyid } ${entry.value.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${entry.value.companyid}"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
                                                                     style="display: ${entry.value.bookmarked ?'none':'inline' }"/> 
@@ -403,7 +404,7 @@
 							</div>
 
 							<div class="ad-section text-center">
-								<a href="#"><img src="images/ads/3.jpg" alt="Image" class="img-responsive"></a>
+								<div id="ad2" align="center" style="width:795px; height:127px;">		<a href="http://www.ebslang.co.kr/event/eventFullScreen.ebs?event_id=3848&utm_source=mobon_da&utm_medium=display&utm_term=&utm_campaign=tomokdal&utm_content=%ED%86%A0%EB%AA%A9%EB%8B%AC_10%EC%9D%BC_0622_%EB%B0%B0%EB%84%88&EKAMS=yahoo.852.4123.1415.1497838043512.25541947&trackingDays=30" target="_blank">			<img id="drad_img" src="http://img.mobon.net/ad/imgfile/74ec92d1c59e2b43067a7cfa9ec2c3c78.jpg" width="100%" height="127">		</a>	</div>
 							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
 							
 							<!-- pagination  -->
@@ -429,7 +430,7 @@
 
 					<div class="col-md-2 hidden-xs hidden-sm">
 						<div class="advertisement text-center">
-							<a href="#"><img src="images/ads/1.jpg" alt="" class="img-responsive"></a>
+							<a href="http://cat.jp.as.criteo.com/delivery/ck.php?cppv=1&cpp=4%2FxiBnx1M0t2MHZtV2xvUVJyVHFYUFk4SkJpMTFpZm05OVlQYi85K3BBaEhPZGxjUStNWklDTHJoQlN1SUlvMHhMdGQ4dDRFNkxXZC9iMDNwb2xyakNkNHVuVmc3cTIrcHR0Tkg0b3QycFFwNmk2N1RqdDJVVUhhbXZhTzFidkFFdEVjY0RuR0F3dEZCVWVwRGQ4MXNVU1ZPajlmZzR1aDI0bW01VFNKckFkZFJpM2picXlCWHFQYkcwOFVhck16MXFUaFVlRWNVSmYrNG9MMTc2SEhRUmpXdm5tYWtQVGFuUzZkLzgyUEFjY3hnVnNaanlnM0t2UWFMWFFjcVIyRUtjekg0Mk1DcVRpVnA3c1k4cmFiT2JUZzhEL0lxbXg5ZDEzMUZzYVJ0d2JKTjlJRlZWZmNpcUs1QlI3cFUrWkprYTNCN3w%3D&maxdest=http%3A%2F%2Fwww.wishket.com%2F%3Freferer_type%3DCriteo"><img style="border:none;max-width:120px;max-height:600px;" src="http://static.criteo.net/images/staticbanners/wishketkr/161212053256_wishketkr_kr_120600.png"></a>
 						</div>
 					</div>
 				</div>
