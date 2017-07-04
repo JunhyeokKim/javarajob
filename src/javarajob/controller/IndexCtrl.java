@@ -26,4 +26,13 @@ public class IndexCtrl {
 		d.addAttribute("careerList", careerService.listCareerforindex());		
 		return "index";
 	}
+	
+	@RequestMapping("/indexTemp.do")
+	public String listCareerforindexTemp(Model d){	
+		d.addAttribute("careerCount", careerService.getCount());
+		d.addAttribute("companyCount", companyService.getCount());
+		d.addAttribute("accountCount", accountService.getCount());
+		d.addAttribute("careerList", careerService.listCareerforindex());		
+		return "indexTemp";
+	}
 }

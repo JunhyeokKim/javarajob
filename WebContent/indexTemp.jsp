@@ -19,10 +19,9 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
-<link rel="stylesheet" href="css/main.css?v=2">
+<link rel="stylesheet" href="css/main.css">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/table_kdb.css">
 
 <!-- font -->
 <link
@@ -101,7 +100,7 @@
 								<img src="images/icon/31.png" alt="Icon" class="img-responsive">
 							</div>
 							<!-- cta-icon -->
-							<h3 id="careercount"></h3>
+							<h3>${careerCount}</h3>
 							<h4>Live Jobs</h4>
 							<p>JAVARAJOB은 어느 사이트보다 많은 일자리를 제공합니다</p>
 						</div>
@@ -115,7 +114,7 @@
 								<img src="images/icon/32.png" alt="Icon" class="img-responsive">
 							</div>
 							<!-- cta-icon -->
-							<h3 id="companycount"></h3>
+							<h3>${companyCount}</h3>
 							<h4>Total Company</h4>
 							<p>JAVARAJOB은 방대하고 다양한 기업정보를 제공합니다</p>
 						</div>
@@ -128,7 +127,7 @@
 								<img src="images/icon/33.png" alt="Icon" class="img-responsive">
 							</div>
 							<!-- cta-icon -->
-							<h3 id="accountcount"></h3>
+							<h3>${accountCount}</h3>
 							<h4>Total Candidate</h4>
 							<p>JAVARAJOB은 가장 많은 회원을 보유하고 있습니다</p>
 						</div>
@@ -147,7 +146,9 @@
 	
 	<div class="page">
 		<br>
-		<div class="row" id="temp01"><!-- row -->			
+		
+		<div class="row" id="temp01"><!-- row -->
+					
 			<div class="col-sm-2"><!-- col-sm-2 -->
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default panel-faq">
@@ -197,6 +198,10 @@
 								<!-- category-change -->
 							</div>
 						</div><!-- featured-top -->
+						
+						
+						
+						<!-- Start DC -->
 												
 						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->						
 							<div class="job-ad-item">
@@ -204,13 +209,13 @@
 								<div class="item-info">
 									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
-											<a href="job-details.html">
-												<img src="${career.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
-											</a>
+											<a href="job-details.html"><img src="images/job/3.png"
+												alt="Image" class="img-responsive"></a>
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>@ <a>${career.companyname}</a></span>
+										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
+											@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
 												<li>
@@ -343,8 +348,13 @@
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
 						
+						<!-- End -->
+						
+						
+						
+						
 						<div class="ad-section text-center">
-							<a href="#"><img src="images/bg/start.png" alt="Image" width="729px"
+							<a href="#"><img src="images/ads/3.jpg" alt="Image"
 								class="img-responsive"></a>
 						</div>						
 					</div>
@@ -384,25 +394,8 @@
 	<script src="js/price-range.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
-	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function(){
-		var options = {
-				  useEasing : true, 
-				  useGrouping : true, 
-				  separator : ',', 
-				  decimal : '.', 
-				};
-				var account = new CountUp("accountcount", 0, ${accountCount}, 0, 10, options);
-				var career = new CountUp("careercount", 0, ${careerCount}, 0, 10, options);
-				var company = new CountUp("companycount", 0, ${companyCount}, 0, 10, options);
-				account.start();
-				career.start();
-				company.start();
-	})
-			
-
-	 $(".call-ajax00").click(function(){		 
+	 $(".call-ajax").click(function(){		 
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",

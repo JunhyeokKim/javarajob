@@ -55,6 +55,30 @@
 <body>
 	<!-- header 11-->
 	<jsp:include page="navHeader.jsp"/>
+	
+	<!-- ajax -->
+	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-fullsize" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">상세 정보</h4>
+                </div>
+                <div class="modal-body" id="ajax-modal-detail">
+            <!-- breadcrumb -->
+            <!-- job-details -->
+        </div>
+        <!-- container -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- ajax -->
 
 	<section class="clearfix job-bg-mypage  ad-profile-page">
 	<div class="mypage-overlay"></div>
@@ -85,7 +109,7 @@
 							<a href="applied-job.html">29<small>Apply Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="bookmark.html">18<small>Favorites</small></a>
+							<a href="#">${careerFavCount}<small>Favorites</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->
@@ -93,7 +117,7 @@
 				<ul class="user-menu">					
 					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
 					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li class="active"><a href="${path}/account.do?bookmark">관심기업</a></li>
+					<li class="active"><a href="${path}/account.do?bookmark">관심직무</a></li>
 					<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
 					<li><a href="${path}/account.do?qanda">Q&A</a></li>
 				</ul>
@@ -101,291 +125,181 @@
 
 			<div class="section trending-ads latest-jobs-ads">
 				<h4>Bookmark</h4>
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/3.png"
-									alt="Image" class="img-responsive"></a>
+				
+				<div><!-- career list 전체 -->
+					<div class="section job-list-item">
+						<div class="featured-top">
+							<h4></h4>
+							<div class="dropdown pull-right">
+								<div class="dropdown category-dropdown">
+									<h5>정렬 기준:</h5>
+									<a data-toggle="dropdown" href="#"><span
+										class="change-text">최근 등록 순</span><i
+										class="fa fa-caret-square-o-down"></i></a>
+									<ul class="dropdown-menu category-change">
+										<li><a href="#">최근 등록 순 </a></li>
+										<li><a href="#">인기 순</a></li>
+									</ul>
+								</div>
+								<!-- category-change -->
 							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">CTO</a> @ <a
-								href="#">Volja Events &amp; Entertainment</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div><!-- item-info -->
-				</div><!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/1.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Project
-									Manager</a> @ <a href="#">Dominos Pizza</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
+						</div><!-- featured-top -->
+												
+						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->						
+							<div class="job-ad-item">
+								<!-- 한 줄 단위 전체 -->
+								<div class="item-info">
+									<div class="item-image-box"><!-- 이미지 -->
+										<div class="item-image">
+											<a href="job-details.html"><img src="images/job/3.png"
+												alt="Image" class="img-responsive"></a>
+										</div><!-- item-image -->		
+									</div><!-- 이미지 -->
+									<div class="ad-info"><!-- 회사내용 -->
+										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
+											@ <a>${career.companyname}</a></span>
+										<div class="ad-meta">
+											<ul>
+												<li>
+													<a href="#"><i class="fa fa-map-marker"	aria-hidden="true"></i>
+													<c:choose>
+														<c:when test="${career.location==1}">서울</c:when>
+														<c:when test="${career.location==2}">경기</c:when>
+														<c:when test="${career.location==3}">광주</c:when>
+														<c:when test="${career.location==4}">대구</c:when>
+														<c:when test="${career.location==5}">대전</c:when>
+														<c:when test="${career.location==6}">부산</c:when>
+														<c:when test="${career.location==7}">울산</c:when>
+														<c:when test="${career.location==8}">인천</c:when>
+														<c:when test="${career.location==9}">강원</c:when>
+														<c:when test="${career.location==10}">경남</c:when>
+														<c:when test="${career.location==11}">경북</c:when>
+														<c:when test="${career.location==12}">전남</c:when>
+														<c:when test="${career.location==13}">전북</c:when>
+														<c:when test="${career.location==14}">충북</c:when>
+														<c:when test="${career.location==15}">충남</c:when>
+														<c:when test="${career.location==16}">제주</c:when>
+														<c:when test="${career.location==17}">전국</c:when>
+														<c:when test="${career.location==18}">세종</c:when>
+														<c:when test="${career.location==19}">기타해외</c:when>
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-check" aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.companytype==1}">대기업</c:when>
+														<c:when test="${career.companytype==2}">중소기업</c:when>
+														<c:when test="${career.companytype==3}">중견기업</c:when>
+														<c:when test="${career.companytype==4}">스타트업</c:when>
+														<c:when test="${career.companytype==5}">공공기관</c:when>
+														<c:when test="${career.companytype==6}">외국계 기업</c:when>
+														<c:when test="${career.companytype==7}">기타</c:when>
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-industry" aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.industry==1}">서비스업</c:when>
+														<c:when test="${career.industry==2}">생산/제조</c:when>
+														<c:when test="${career.industry==3}">IT/인터넷</c:when>
+														<c:when test="${career.industry==4}">연구개발/설계</c:when>
+														<c:when test="${career.industry==5}">전문/특수직</c:when>
+														<c:when test="${career.industry==6}">미디어</c:when>
+														<c:when test="${career.industry==7}">서비스</c:when>
+														<c:when test="${career.industry==8}">건설</c:when>														
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.employmenttype==1}">정규직</c:when>
+														<c:when test="${career.employmenttype==2}">계약직</c:when>
+														<c:when test="${career.employmenttype==3}">병역특례</c:when>
+														<c:when test="${career.employmenttype==4}">인턴직</c:when>
+														<c:when test="${career.employmenttype==5}">시간제/일용직</c:when>
+														<c:when test="${career.employmenttype==9}">프리랜서</c:when>																												
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-pencil"	aria-hidden="true"></i>													
+													<c:choose>
+														<c:when test="${career.field==1}">서버 개발자</c:when>
+														<c:when test="${career.field==2}">웹 개발자</c:when>
+														<c:when test="${career.field==3}">프론트엔드 개발자</c:when>
+														<c:when test="${career.field==4}">데이터 엔지니어</c:when>
+														<c:when test="${career.field==5}">안드로이드 개발자</c:when>
+														<c:when test="${career.field==6}">자바 개발자</c:when>
+														<c:when test="${career.field==7}">IOS 개발자</c:when>
+														<c:when test="${career.field==8}">파이썬 개발자</c:when>
+														<c:when test="${career.field==9}">C, C++ 개발자</c:when>
+														<c:when test="${career.field==10}">Node.js 개발자</c:when>
+														<c:when test="${career.field==11}">시스템, 네트워크 관리자</c:when>
+														<c:when test="${career.field==12}">웹퍼블리셔</c:when>
+														<c:when test="${career.field==13}">그래픽 엔지니어</c:when>
+														<c:when test="${career.field==14}">보안 엔지니어</c:when>
+														<c:when test="${career.field==15}">프로덕트 매니저</c:when>
+														<c:when test="${career.field==16}">QA, 테스트 엔지니어</c:when>																												
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-money" aria-hidden="true"></i>
+													<c:choose>
+														<c:when test="${career.salary==0}">회사내규에 따름</c:when>
+														<c:when test="${career.salary==1}">1,400 만원 이하</c:when>
+														<c:when test="${career.salary==2}">1,400~1,600만원</c:when>
+														<c:when test="${career.salary==3}">1,600~1,800만원</c:when>
+														<c:when test="${career.salary==4}">1,800~2,000만원</c:when>
+														<c:when test="${career.salary==5}">2,000~2,200만원</c:when>
+														<c:when test="${career.salary==6}">2,200~2,400만원</c:when>
+														<c:when test="${career.salary==7}">2,400~2,600만원</c:when>
+														<c:when test="${career.salary==8}">2,600~2,800만원</c:when>
+														<c:when test="${career.salary==9}">2,800~3,000만원</c:when>
+														<c:when test="${career.salary==10}">3,000~3,200만원</c:when>
+														<c:when test="${career.salary==11}">3,200~3,400만원</c:when>
+														<c:when test="${career.salary==12}">3,400~3,600만원</c:when>
+														<c:when test="${career.salary==13}">3,600~3,800만원</c:when>
+														<c:when test="${career.salary==14}">3,800~4,000만원</c:when>
+														<c:when test="${career.salary==15}">4,000~5,000만원</c:when>
+														<c:when test="${career.salary==16}">5,000~6,000만원</c:when>
+														<c:when test="${career.salary==17}">6,000~7,000만원</c:when>
+														<c:when test="${career.salary==18}">7,000~8,000만원</c:when>
+														<c:when test="${career.salary==19}">8,000~9,000만원</c:when>
+														<c:when test="${career.salary==20}">9,000~1억원</c:when>
+														<c:when test="${career.salary==21}">1억원 이상</c:when>
+														<c:when test="${career.salary==99}">면접후 결정</c:when>
+													</c:choose>
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+													<fmt:formatDate value="${career.postdate}"	pattern="yy-MM-dd" />~<fmt:formatDate value="${career.enddate}" pattern="yy-MM-dd" /></a>
+												</li>
+											</ul>
+										</div>
+									</div><!-- 회사내용 -->									
+									<div class="close-icon"><!-- 오른쪽 상단 공간 -->										
+										<div class="button">											
+										</div>
+									</div><!-- 오른쪽 상단 공간 -->									
+								</div><!-- item-info -->								
+							</div><!-- 한 줄 단위 전체 -->							
+						</c:forEach><!-- 회사 리스트 -->
+						
+						<div class="ad-section text-center">
+							<a href="#"><img src="images/ads/3.jpg" alt="Image"
+								class="img-responsive"></a>
+						</div>						
 					</div>
-					<!-- item-info -->
 				</div>
-				<!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/2.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Graphics
-									Designer</a> @ <a href="#">AOK Security</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/4.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Human
-									Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/3.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">CTO</a> @ <a
-								href="#">Volja Events &amp; Entertainment</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/1.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Project
-									Manager</a> @ <a href="#">Dominos Pizza</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/2.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Graphics
-									Designer</a> @ <a href="#">AOK Security</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
-
-				<div class="job-ad-item">
-					<div class="item-info">
-						<div class="item-image-box">
-							<div class="item-image">
-								<a href="job-details.html"><img src="images/job/4.png"
-									alt="Image" class="img-responsive"></a>
-							</div>
-							<!-- item-image -->
-						</div>
-
-						<div class="ad-info">
-							<span><a href="job-details.html" class="title">Human
-									Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-							<div class="ad-meta">
-								<ul>
-									<li><a href="#"><i class="fa fa-map-marker"
-											aria-hidden="true"></i>San Francisco, CA, US </a></li>
-									<li><a href="#"><i class="fa fa-clock-o"
-											aria-hidden="true"></i>Full Time</a></li>
-									<li><a href="#"><i class="fa fa-money"
-											aria-hidden="true"></i>$25,000 - $35,000</a></li>
-									<li><a href="#"><i class="fa fa-tags"
-											aria-hidden="true"></i>HR/Org. Development</a></li>
-								</ul>
-							</div>
-							<!-- ad-meta -->
-						</div>
-						<!-- ad-info -->
-						<div class="close-icon">
-							<i class="fa fa-window-close" aria-hidden="true"></i>
-						</div>
-					</div>
-					<!-- item-info -->
-				</div>
-				<!-- ad-item -->
+				<!-- career list 전체 -->
+				
+				
+				
 			</div>
 			<!-- latest-jobs-ads -->
 		</div>
@@ -436,5 +350,19 @@
 	<script src="js/price-range.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
+	<script type="text/javascript">
+	 $(".call-ajax").click(function(){		 
+	 		var params="companyid="+$(this).find('input[type=hidden]').val();
+	 		$.ajax({
+	 		type:"POST",
+	 		url:"${path}/careerlist.do?method=job-detail",
+	 		data:params,
+	 		success:function(args){
+	 			$("#ajax-modal-detail").html(args);
+	 			$("#modal-detail").modal("show");
+	 			}
+	 		})
+	 })
+    </script>
 </body>
 </html>
