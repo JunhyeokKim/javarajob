@@ -21,7 +21,6 @@ import javarajob.service.FavCompanyService;
 import javarajob.vo.Career;
 import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
-import javarajob.vo.FavCareer;
 import javarajob.vo.FavCompany;
 
 @Controller

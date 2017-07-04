@@ -20,7 +20,7 @@
                         <div class="ad-info">
                         <c:set var="companyInfo" value="${company }" scope="request"/>
                             <span><a href="#" class="title">${company.companyname }</a>
-                            <a class="bookmark company ${company.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${company.companyid}"/>
+                            <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="북마크가 추가되었습니다." class="bookmark company ${company.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${company.companyid}"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
                                                                     style="display: ${company.bookmarked ?'none':'block' }"/> 
                                                                     <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
@@ -91,7 +91,7 @@
                                                     <div class="position-item container">
                                                         <div class="position-title row" >
                                                             <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a>
-                                                                    <a class="bookmark career ${career.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${career.careerid }"/>
+                                                                    <a data-toggle="popover" class="bookmark career ${career.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${career.careerid }"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
                                                                     style="display: ${career.bookmarked ?'none':'block' }"/> 
                                                                     <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
@@ -250,7 +250,24 @@
             </div>
             <!-- job-details -->
         </div>
-        <script type="text/javascript">
+	</body>
+	<script type="text/javascript">
+	var popOverSettings = {
+		    placement: 'right',
+		    container: 'body',
+		    selector: '[data-toggle="popover"]',
+		    content: function () {
+		        return "북마크가 추가되었습니다.";
+		    }
+		}
+		$('body').popover(popOverSettings);
+		$('.bookmark').on('shown.bs.popover', function () {
+    	var popObj=$(this);
+    	setTimeout(function(){
+    		popObj.popover('hide');	
+    		},2000)
+    		})
+	
         function callAjax(method,target,index,selector){
         	var img1=selector.find("img:first");
         	var img2=selector.find("img:last");
@@ -291,5 +308,4 @@
         
         
         </script>
-	</body>
 </html>
