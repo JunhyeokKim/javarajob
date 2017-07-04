@@ -11,7 +11,11 @@
     </if>
  </select>	
 	<insert id="addFavCareer" parameterType="favCareer">
-		insert into FAVCAREER values(#{careerid},#{id})
+    <if test="careerid !=null and careerid !='' and id !=null and id!=''">
+		insert into FAVCAREER values(
+        #{careerid},
+        #{id})
+        </if>
 	</insert>
 	<delete id="removeFavCareer" parameterType="int" timeout="20">
 		delete favcareer where careerid = #{careerid}

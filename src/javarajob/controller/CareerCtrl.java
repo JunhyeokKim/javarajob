@@ -158,10 +158,14 @@ public class CareerCtrl {
     public String addCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
         String curId = (String) session.getAttribute("id");
+        if(curId!=null && !curId.equals("")){
         vo.setCareerid(careerid);
         vo.setId(curId);
         favCareerService.addFavCareer(vo);
         System.out.println(curId);
+        }else{
+        	System.out.println("로그아웃 상태입니다.");
+        }
         return "redirect:careerlist.do?method=sch";
     }
 
