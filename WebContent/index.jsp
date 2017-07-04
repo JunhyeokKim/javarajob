@@ -155,7 +155,7 @@
 					<div class="panel-heading">
 						<div  class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion" href="#accordion-four">
-						<h4> 산업군<span class="pull-right"><i class="fa fa-plus"></i></span></h4>
+						<h4> 산업군<span class="pull-right"><i class="fa fa-minus"></i></span></h4>
 						</a>
 						</div>
 					</div><!-- panel-heading -->
@@ -184,14 +184,13 @@
 						<div class="featured-top">
 							<h4></h4>
 							<div class="dropdown pull-right">
-								<div class="dropdown category-dropdown">
-									<h5>정렬 기준:</h5>
+								<div class="dropdown category-dropdown">									
 									<a data-toggle="dropdown" href="#"><span
-										class="change-text">최근 등록 순</span><i
+										class="change-text">정렬 기준</span><i
 										class="fa fa-caret-square-o-down"></i></a>
 									<ul class="dropdown-menu category-change">
-										<li><a href="#">최근 등록 순 </a></li>
-										<li><a href="#">인기 순</a></li>
+										<li><a href="#" id="orderByPostdate">최근 등록 순 </a></li>
+										<li><a href="#" id="orderByBookmark">인기 순</a></li>
 									</ul>
 								</div>
 								<!-- category-change -->
@@ -386,7 +385,44 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
+	
 	$(document).ready(function(){
+		$("#industry-0").click(function(){			
+			$(location).attr("href","${path}/index.do");		
+		});		
+		$("#industry-1").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=1");		
+		});
+		$("#industry-2").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=2");		
+		});
+		$("#industry-3").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=3");		
+		});
+		$("#industry-4").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=4");		
+		});
+		$("#industry-5").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=5");		
+		});
+		$("#industry-6").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=6");		
+		});
+		$("#industry-7").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=7");		
+		});
+		$("#industry-8").click(function(){			
+			$(location).attr("href","${path}/indexSelect.do?industry=8");		
+		});
+		
+		$("#orderByPostdate").click(function(){			
+			$(location).attr("href","${path}/index.do");		
+		});
+		$("#orderByBookmark").click(function(){			
+			$(location).attr("href","${path}/index.do?mode=2");		
+		});
+		
+		
 		var options = {
 				  useEasing : true, 
 				  useGrouping : true, 

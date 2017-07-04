@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
@@ -19,20 +20,20 @@ public class IndexCtrl {
 	CompService companyService;
 	
 	@RequestMapping("/index.do")
-	public String listCareerforindex(Model d){	
+	public String listCareerforindex(@RequestParam(value="mode", defaultValue="0") int mode, Model d){	
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
-		d.addAttribute("careerList", careerService.listCareerforindex());		
+		if(mode==2) d.addAttribute("careerList", careerService.listCareerforindexOrderByBookmark());
+		else d.addAttribute("careerList", careerService.listCareerforindex()); 
 		return "index";
 	}
-	
-	@RequestMapping("/indexTemp.do")
-	public String listCareerforindexTemp(Model d){	
+	@RequestMapping("/indexSelect.do")
+	public String listCareerforindexSelect(@RequestParam(value="industry", defaultValue="0") int industry, Model d){		
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
-		d.addAttribute("careerList", careerService.listCareerforindex());		
-		return "indexTemp";
+		d.addAttribute("careerList", careerService.listCareerforindexSelect(industry));		
+		return "index";
 	}
 }
