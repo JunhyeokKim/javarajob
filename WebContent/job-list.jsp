@@ -123,17 +123,17 @@
 									<div id="accordion-one" class="panel-collapse collapse in">
 										<!-- panel-body -->
 										<div class="panel-body">
-										<label for="type-0"><input type="checkbox" id="type-0" value="0" > 전체(129)</label>
-										<label for="type-1"><input type="checkbox" class="filter" name="companytype" id="type-1" value="1"> 대기업(22)</label>
-										<label for="type-2"><input type="checkbox" class="filter" name="companytype" id="type-2" value="2"> 중소기업(11)</label>
-										<label for="type-3"><input type="checkbox" class="filter" name="companytype" id="type-3" value="3"> 중견기업(5)</label>
-										<label for="type-4"><input type="checkbox" class="filter" name="companytype" id="type-4" value="4"> 스타트업(40)</label>
+										<label for="type-0"><input type="checkbox" id="type-0" value="0" > 전체</label>
+										<label for="type-1"><input type="checkbox" class="filter" name="companytype" id="type-1" value="1"> 대기업</label>
+										<label for="type-2"><input type="checkbox" class="filter" name="companytype" id="type-2" value="2"> 중소기업</label>
+										<label for="type-3"><input type="checkbox" class="filter" name="companytype" id="type-3" value="3"> 중견기업</label>
+										<label for="type-4"><input type="checkbox" class="filter" name="companytype" id="type-4" value="4"> 스타트업</label>
 											<div class="see-more">
 												<button type="button" class="show-more one"><i class="fa fa-plus-square-o" aria-hidden="true"></i>더보기</button>
 												<ul class="more-category one">
-													<li><label for="type-5"><input type="checkbox" class="filter" name="companytype" id="type-5" value="5"> 공공기관(40)</label></li>
-													<li><label for="type-6"><input type="checkbox" class="filter"  name="companytype" id="type-6" value="6"> 외국계 기업(40)</label></li>
-													<li><label for="type-7"><input type="checkbox" class="filter" name="companytype" id="type-7" value="7"> 기타(40)</label></li>
+													<li><label for="type-5"><input type="checkbox" class="filter" name="companytype" id="type-5" value="5"> 공공기관</label></li>
+													<li><label for="type-6"><input type="checkbox" class="filter"  name="companytype" id="type-6" value="6"> 외국계 기업</label></li>
+													<li><label for="type-7"><input type="checkbox" class="filter" name="companytype" id="type-7" value="7"> 기타</label></li>
 												</ul>
 											</div>
 
@@ -311,13 +311,14 @@
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>
 									<div class="ad-info" style="width:80%">
 										<span><a class="call-ajax" id="call-ajax-${entry.value.companyid }">${entry.value.companyname }<input type="hidden" value="${entry.value.companyid }"/></a>
-										<a class="bookmark company ${entry.value.companyid } ${entry.value.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${entry.value.companyid}"/>
+										<a tabindex="0" role="button" data-toggle="popover" data-placement="right" data-trigger="focus" data-content="북마크가 추가되었습니다." data-container="body" class="bookmark company ${entry.value.companyid } ${entry.value.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${entry.value.companyid}"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
-                                                                    style="display: ${entry.value.bookmarked ?'none':'block' }"/> 
+                                                                    style="display: ${entry.value.bookmarked ?'none':'inline' }"/> 
                                                                     <img class="item-bookmark selected" src="images/icon/bookmark-selected.png"
-                                                                    style="display: ${entry.value.bookmarked ?'block':'none' }"/>
+                                                                    style="display: ${entry.value.bookmarked ?'inline':'none' }"/>
                                                                     </a>
-										<a href="#items-${status.count}" data-toggle="collapse"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right"></span></a></span>
+										</span>
+										<a href="#items-${status.count}" data-toggle="collapse"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right"></span></a>
 										<h4><a class="title">${entry.value.shortinfo }</a></h4>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
@@ -462,6 +463,16 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/job-list.js?ver=1"></script>
 	<script type="text/javascript">
+	$(function () {
+	    $('.unselected[data-toggle="popover"]').popover()
+	})
+	$('.bookmark').on('shown.bs.popover', function () {
+	    	var popObj=$(this);
+	    	setTimeout(function(){
+	    		popObj.popover('hide');	
+	    		},2000)
+	    		})
+	
 	$(document).ready(function(){
         $("#quetype").text("${queType}");
         $("#search").val("${query}");

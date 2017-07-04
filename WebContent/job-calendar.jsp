@@ -128,12 +128,29 @@
 	<script src='js/fullcalendar.js?ver=2'></script>
 	<script src='js/calendar.js?ver=2'></script>
 	<script type="text/javascript">
-	$(".fc-content").unbind("click");
+	// popover 동적 element setting
+	var popOverSettings = {
+		    placement: 'right',
+		    container: 'body',
+		    selector: '.unselected[data-toggle="popover"]',
+		    content: function () {
+		        return "북마크가 추가되었습니다.";
+		    }
+		}
+		$("#calendar").popover(popOverSettings);
+		$("#calendar").on('shown.bs.popover','[data-toggle="popover"]', function () {
+    	var popObj=$(this);
+    	setTimeout(function(){
+    		popObj.popover('hide');	
+    		},2000)
+    		})
+    // ajax modal window 종료 시 callback
 	$("#modal-detail").on("hidden.bs.modal",function(e){
 		$("#ajax-modal-detail").html("");
 		location.reload();
 	})
 	
+	// bookmark 추가, 제거를 위한 ajax call 함수
 	function callAjax(method,target,index,selector){
         	var img1=selector.find("img:first");
         	var img2=selector.find("img:last");
@@ -167,7 +184,7 @@
 		editable : false,
 		locale: 'ko',
 		eventRender: function (event, element) {
-			var tags="<a class='bookmark company "+(event.bookmarked? "selected" : "unselected")+
+			var tags="<a data-toggle='popover' class='bookmark company "+(event.bookmarked? "selected" : "unselected")+
 			"' style='float:right;'><input type='hidden' value='"+event.companyid+"'/><img class='item-bookmark unselected' src='images/icon/bookmark-unselected.png' "+
 			"style='display:"+(event.bookmarked ? "none" : "block")+"'/>"+
 			"<img class='item-bookmark selected' src='images/icon/bookmark-selected.png' "+
