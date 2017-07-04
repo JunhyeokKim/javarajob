@@ -103,7 +103,7 @@
 		SELECT * FROM 
 		(
 			SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, 
-			A.EMPLOYMENTTYPE, A.COMPANYID,B.COMPANYNAME, B.IMAGEURL,
+			A.EMPLOYMENTTYPE, A.COMPANYID,B.COMPANYNAME, 
 			A.TITLE, A.SALARY, A.TASK, A.REQUIREMENTS, 
 			A.PREFERENCE, A.WORKINGCONDITION, 
 			A.POSTDATE, A.ENDDATE, ROWNUM 
@@ -127,6 +127,7 @@
 		set bookmarkcnt=bookmarkcnt-1
 		where careerid = #{careerid}
 	</update>
+	
 	<select id="listCareerforBookmark" resultMap="careerResult" parameterType="String">
 		SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, 
 			A.EMPLOYMENTTYPE, A.COMPANYID,B.COMPANYNAME, 
@@ -140,4 +141,5 @@
 	<select id="getFavCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM FAVCAREER WHERE ID=#{ID}
 	</select>
+		
 </mapper>

@@ -68,7 +68,8 @@
 	<!-- header 11-->
 	<jsp:include page="navHeader.jsp"/>
 
-	<section class="clearfix job-bg  ad-profile-page">
+	<section class="clearfix job-bg-mypage ad-profile-page">
+		<div class="mypage-overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -81,7 +82,8 @@
 			<div class="job-profile section">	
 				<div class="user-profile">
 					<div class="user-images">
-						<img src="images/user.jpg" alt="User Images" class="img-responsive">
+						<img src="upload/${resume.picName}" width="100%"
+							onerror="this.src='upload/default.png'" class="img-responsive">
 					</div>
 					<div class="user">
 						<h2><a href="#">${id}</a> 님 안녕하세요!</h2>
@@ -94,7 +96,7 @@
 							<a href="applied-job.html">29<small>Apply Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="bookmark.html">18<small>Favorites</small></a>
+							<a href="#">${careerFavCount}<small>Favorites</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->
@@ -113,12 +115,12 @@
 					<!-- profile-details -->
 					<div class="question-answer section">
 						<h2>글 쓰기</h2>
-						<center>
 						<form method="post" action="${path}/boardList.do?method=insProc">
 							<input type="hidden" name="refno" value="${board.refno}"/>		
-							<table>
+							<div class="kdb-table">
+							<table align="center">
 								<tr>
-									<td align="right">해당기업</td>
+									<th class="preColor kdbheader">해당 기업</th>
 									<td>
 										<c:choose>
 											<c:when test="${board.companyid==0}">
@@ -144,15 +146,15 @@
 								</tr>
 								
 								<tr>
-									<td width="30%" align="right">제목</td>
+									<th width="20%" class="preColor kdbheader">제목</th>
 									<td><input type="text" name="subject" value="${board.subject}" size="50"  class="form-control"/></td>
 								</tr>		
 								<tr>
-									<td align="right">패드워드</td>
+									<th align="right" class="preColor kdbheader-pw">PASSWORD</th>
 									<td>									
 									<c:choose>
 										<c:when test="${board.refno != 0}">
-											<input type="password" name="pass" size="50"  class="form-control"/>
+											<input type="password" name="pass" size="50" class="form-control"/>
 										</c:when>
 										<c:otherwise>
 											<input type="password" value="${board.pass}" name="pass" size="50"  class="form-control"/>											
@@ -161,7 +163,7 @@
 									</td>
 								</tr>										
 								<tr>
-									<td align="right">작성자</td>
+									<th class="preColor kdbheader">작성자</th>
 									<td>
 									<input type="text" name="writer" value="${id}"  size="50" hidden/>
 									<c:choose>
@@ -176,12 +178,12 @@
 									</td>
 								</tr>		
 								<tr>
-									<td align="right">이메일</td>
+									<th class="preColor kdbheader">이메일</th>
 									<td>
 									
 									<c:choose>
 										<c:when test="${board.refno != 0}">
-											<input type="text" name="email" size="50" class="form-control"/>
+											<input type="text" name="email" size="50" class="form-control" value="${resume.email}" />
 										</c:when>
 										<c:otherwise>
 											<input type="text" name="email"	value="${board.email}" size="50" class="form-control"/>											
@@ -190,21 +192,18 @@
 									</td>
 								</tr>		
 								<tr>
-									<td align="right">내용</td>
+									<th class="preColor kdbheader">내용</th>
 									<td><textarea name="content" cols="40" rows="10" class="form-control">${board.content}</textarea></td>
 								</tr>						
 								<tr align="right">
-									<td colspan="2"><br>
+									<th colspan="2"><br>
 										<input type="button" id="listBtn" class="btn" value="메인글"/>
 										<input type="button" id="regbtn" class="btn" value="Write"/>
-									</td>
+									</th>
 								</tr>			
 							</table>
+							</div>
 						</form>						
-						</center>
-						
-						
-
 					</div>
 					<!-- profile-details -->											
 				</div>

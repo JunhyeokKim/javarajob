@@ -33,7 +33,7 @@
 	rel='stylesheet' type='text/css'>
 
 <!-- icons -->
-<link rel="icon" href="images/ico/favicon2.ico">
+<link rel="icon" href="images/ico/favicon.ico">
 <link rel="apple-touch-icon" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon" sizes="114x114"
@@ -228,7 +228,7 @@
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>@ <a>${career.companyname}</a></span>
+										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
 												<li>
@@ -421,7 +421,7 @@
 	})
 			
 
-	 $(".call-ajax").click(function(){		 
+	 $(".call-ajax00").click(function(){		 
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",
