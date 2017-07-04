@@ -436,11 +436,12 @@
 				</div>
 			</div>
 		</div><!-- container -->
+		<!-- footer -->
+    <jsp:include page="footer.jsp"/>
 	</section><!-- main -->
 	
 	
-	<!-- footer -->
-	<jsp:include page="footer.jsp"/>
+	
 	
 	<!--/Preset Style Chooser--> 
 	<div class="style-chooser">

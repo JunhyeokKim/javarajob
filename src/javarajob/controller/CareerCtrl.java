@@ -29,6 +29,7 @@ import javarajob.vo.SchElement;
 @Controller
 @RequestMapping("/careerlist.do")
 public class CareerCtrl {
+
     @Autowired(required = false)
     SchElementService service;
     @Autowired(required = false)
@@ -50,24 +51,15 @@ public class CareerCtrl {
     @RequestMapping(params = "method=sch")
     public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
             @RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
-            @ModelAttribute("schElement") SchElement schElement,
-            @RequestParam(value = "orderby", defaultValue = "desc") String orderby, Model d) {
-        ArrayList<Career> totCareerList = new ArrayList<>();
+            @ModelAttribute("schElement") SchElement schElement, Model d) {
         HashMap<String, Company> companys = new HashMap<>();
         ArrayList<SchElement> queryResult = null;
         ArrayList<FavCompany> favCompList = new ArrayList<>();
         String curId = (String) session.getAttribute("id");
-        
-        if (curId != null && !curId.equals("")) {
-            favCompList=favCompService.favCompanyList(curId);
-        }
-        Descending<Career> descOrderObj = new Descending<>();
-        AscendingCareer AscOrderObj = new AscendingCareer();
+
+        // 검색 종류에 따라 query 설정을 다르게 함
         queryType = queryType.trim();
         query = query.trim();
-
-        System.out.println("querytype: " + queryType);
-        System.out.println("query: " + query);
         if (queryType.equals("통합 검색")) {
             schElement.setCompanyname(query);
             schElement.setTitle(query);
@@ -78,17 +70,26 @@ public class CareerCtrl {
             schElement.setCompanyname(query);
             schElement.setTitle(null);
         }
+        // 접속중인 id의 관심 기업 리스트를 받아옴
+        if (curId != null && !curId.equals("")) {
+            favCompList = favCompService.favCompanyList(curId);
+        }
+        // NUMBER_OF_ITEMS 단위의 갯수만큼 데이터를 service를 통해 읽어옴
         queryResult = service.schQuery(schElement, NUMBER_OF_ITEMS);
-        ArrayList<Company> exp = service.getCompanys(schElement);
-        for (Company company : exp) {
+        // 질의 결과 검색된 company 명단
+        ArrayList<Company> relatedCompanys = service.getCompanys(schElement);
+        // 각 company vo 객체에 대한 전처리
+        for (Company company : relatedCompanys) {
             companys.put(String.valueOf(company.getCompanyid()), company);
             for (FavCompany favCompany : favCompList) {
-                if(favCompany.getCompanyid()==company.getCompanyid()){
+                if (favCompany.getCompanyid() == company.getCompanyid()) {
                     company.setBookmarked(true);
                 }
             }
 
         }
+        // 전체 검색 결과에 대하여 companys map 객체에 companyid가 동일한 company 객체가 있는 경우,
+        // company의 careers 객체(ArrayList)에 career를 추가
         for (SchElement element : queryResult) {
             if (companys.containsKey(String.valueOf(element.getCompanyid()))) {
                 if (companys.get(String.valueOf(element.getCompanyid())).getCareers() == null) {
@@ -99,21 +100,15 @@ public class CareerCtrl {
             }
         }
 
-        // TODO: orderby 구현
-        if (orderby.equals("desc")) {
-            Collections.sort(totCareerList, descOrderObj);
-        } else if (orderby.equals("asc")) {
-            Collections.sort(totCareerList, AscOrderObj);
-        }
         d.addAttribute("companyMap", companys);
         d.addAttribute("totCareerCnt", queryResult.size());
         d.addAttribute("totCompanyCnt", companys.size());
-
         d.addAttribute("queType", queryType);
-        d.addAttribute("query",query);
+        d.addAttribute("query", query);
         return "job-list";
     }
 
+    // ajax 비동기 통신 요청 처리(상세 기업의 채용정보)
     @RequestMapping(params = "method=job-detail")
     public String getCompanyInfo(@RequestParam(value = "companyid", defaultValue = "-1") int companyid,
             HttpSession session, Model d) {
@@ -154,21 +149,23 @@ public class CareerCtrl {
         return "ajaxJobSearch";
     }
 
+    // ajax 비동기 통신을 통한 bookmark 요청 처리( 채용 공고에 대한 북마크 추가 처리)
     @RequestMapping(params = { "target=career", "method=bookmark" })
     public String addCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
         String curId = (String) session.getAttribute("id");
-        if(curId!=null && !curId.equals("")){
-        vo.setCareerid(careerid);
-        vo.setId(curId);
-        favCareerService.addFavCareer(vo);
-        System.out.println(curId);
-        }else{
-        	System.out.println("로그아웃 상태입니다.");
+        if (curId != null && !curId.equals("")) {
+            vo.setCareerid(careerid);
+            vo.setId(curId);
+            favCareerService.addFavCareer(vo);
+            System.out.println(curId);
+        } else {
+            System.out.println("로그아웃 상태입니다.");
         }
         return "redirect:careerlist.do?method=sch";
     }
 
+    // ajax 비동기 통신을 통한 bookmark 요청 처리( 채용 공고에 대한 북마크 제거 처리)
     @RequestMapping(params = { "target=career", "method=rmBookmark" })
     public String removeCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
@@ -179,6 +176,7 @@ public class CareerCtrl {
         return "redirect:careerlist.do?method=sch";
     }
 
+    // ajax 비동기 통신을 통한 bookmark 요청 처리( 기업에 대한 북마크 추가 처리)
     @RequestMapping(params = { "target=company", "method=bookmark" })
     public String addCompBookmark(@RequestParam(value = "index") int companyid, HttpSession session) {
         FavCompany vo = new FavCompany();
@@ -190,37 +188,15 @@ public class CareerCtrl {
         return "redirect:careerlist.do?method=sch";
     }
 
+    // ajax 비동기 통신을 통한 bookmark 요청 처리( 기업에 대한 북마크 제거 처리)
     @RequestMapping(params = { "target=company", "method=rmBookmark" })
     public String removeCompBookmark(@RequestParam(value = "index") int companyid, HttpSession session) {
         FavCompany vo = new FavCompany();
         String curId = (String) session.getAttribute("id");
         vo.setCompanyid(companyid);
         vo.setId(curId);
-        favCompService.removeFavCompany(companyid);
         return "redirect:careerlist.do?method=sch";
     }
 
-    class Descending<T> implements Comparator<T> {
-        @Override
-        public int compare(T o1, T o2) {
-            // TODO Auto-generated method stub
-            if (o1 instanceof Career && o2 instanceof Career) {
-                return ((Career) o1).getPostdate().compareTo(((Career) o2).getPostdate());
-            } else {
-            }
-
-            return 1;
-        }
-
-    }
-
-    class AscendingCareer implements Comparator<Career> {
-        @Override
-        public int compare(Career o1, Career o2) {
-            // TODO Auto-generated method stub
-            return o2.getPostdate().compareTo(o1.getPostdate());
-        }
-
-    }
 
 }
