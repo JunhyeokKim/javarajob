@@ -4,6 +4,10 @@ public class FavCompany {
 	private int companyid;
 	private String id;
 	private String imageurl;
+	private String shortinfo;
+	private String companyname;
+	private String location;
+	private int annualsales;
 
 	public int getCompanyid() {
 		return companyid;
@@ -27,6 +31,38 @@ public class FavCompany {
 
 	public void setImageurl(String imageurl) {
 		this.imageurl = imageurl;
+	}
+
+	public String getShortinfo() {
+		return shortinfo;
+	}
+
+	public void setShortinfo(String shortinfo) {
+		this.shortinfo = shortinfo;
+	}
+
+	public String getCompanyname() {
+		return companyname;
+	}
+
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public int getAnnualsales() {
+		return annualsales;
+	}
+
+	public void setAnnualsales(int annualsales) {
+		this.annualsales = annualsales;
 	}
 
 }

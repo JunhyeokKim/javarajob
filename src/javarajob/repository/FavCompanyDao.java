@@ -10,6 +10,6 @@ import javarajob.vo.FavCompany;
 public interface FavCompanyDao {
     public ArrayList<FavCompany> favCompanyList(String id);
     public void addFavCompany(FavCompany vo);
-    public void removeFavCompany(int companyid);
+    public void removeFavCompany(FavCompany vo);
     public FavCompany getFavCompany(FavCompany vo);
 }
