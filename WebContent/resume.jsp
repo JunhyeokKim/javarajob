@@ -16,7 +16,7 @@
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
 
-<title>| 이력서 |</title>
+<title>JAVARAJOB | 이력서 작성</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/resume.css">

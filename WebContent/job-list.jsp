@@ -11,7 +11,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="author" content="Theme Region">
 	   	<meta name="description" content="">
-		<title>Jobs | Job Portal / Job Board HTML Template</title>
+		<title>JAVARAJOB | 채용정보 | LIST</title>
 		 <!-- CSS -->
 	    <link rel="stylesheet" href="css/bootstrap.min.css?ver=3" >
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -77,10 +77,10 @@
 			<div class="breadcrumb-section">
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li>IT</li>
+					<li><a href="${path}/index.do">HOME</a></li>
+					<li>채용정보</li>
 				</ol><!-- breadcrumb -->						
-				<h2 class="title">소프트웨어 개발자</h2>
+				<h2 class="title">채용정보 List</h2>
 			</div>
 
 			<div class="banner-form job-list-form">
@@ -306,7 +306,10 @@
 								<div class="item-info">
 									<div class="item-image-box">
 										<div class="item-image">
-											<a href="job-details.html"><img src="${entry.value.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company"></a>
+											<a class="call-ajax" >
+												<img src="${entry.value.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
+												<input type="hidden" value="${entry.value.companyid }"/>
+											</a>
 										</div><!-- item-image -->
 									</div>
 									<input type="hidden" name="companyid" value="${entry.value.companyid }"/>

@@ -12,7 +12,7 @@
     <meta name="author" content="Theme Region">
    	<meta name="description" content="">
 
-    <title>Jobs | Job Portal / Job Board HTML Template</title>
+    <title>JAVARAJOB | 채용정보 | CALENDAR</title>
      <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css?ver=4" >
     <link rel="stylesheet" href="css/font-awesome.min.css">
