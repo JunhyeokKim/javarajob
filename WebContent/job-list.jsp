@@ -299,10 +299,11 @@
 										</ul>								
 									</div><!-- category-change -->		
 								</div>							
-							</div><!-- featured-top -->	
-							
+							</div><!-- featured-top -->
 							<c:forEach var="entry" varStatus="status" items="${companyMap }">
-							<div class="job-ad-item">
+							<c:choose>
+							<c:when test="${totCareerCnt !=0 }">
+								<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
 										<div class="item-image">
@@ -401,13 +402,15 @@
 								<div class="col-xs-offset-2">
 								</div>
 							</div>
-							</c:forEach><!-- job-ad-item -->
-							<div id="result" style="width:200px; heigh:200px">
+							</c:when>
+							<c:otherwise>
+							<div>
+							
 							</div>
+							</c:otherwise>
+							</c:choose>
+							</c:forEach><!-- job-ad-item -->
 
-							<div class="ad-section text-center">
-								<div id="ad2" align="center" style="width:795px; height:127px;">		<a href="http://www.ebslang.co.kr/event/eventFullScreen.ebs?event_id=3848&utm_source=mobon_da&utm_medium=display&utm_term=&utm_campaign=tomokdal&utm_content=%ED%86%A0%EB%AA%A9%EB%8B%AC_10%EC%9D%BC_0622_%EB%B0%B0%EB%84%88&EKAMS=yahoo.852.4123.1415.1497838043512.25541947&trackingDays=30" target="_blank">			<img id="drad_img" src="http://img.mobon.net/ad/imgfile/74ec92d1c59e2b43067a7cfa9ec2c3c78.jpg" width="100%" height="127">		</a>	</div>
-							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
 							
 							<!-- pagination  -->
 							<div class="text-center">

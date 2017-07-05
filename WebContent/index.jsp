@@ -395,6 +395,10 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
+	$("#modal-detail").on("hidden.bs.modal",function(e){
+		$("#ajax-modal-detail").html("");
+		location.reload();
+	})
 	var popOverSettings = {
 		    placement: 'right',
 		    container: 'body',
