@@ -86,7 +86,7 @@
                                             <div class="ad-info">
                                                 <div class="ad-meta">
                                                 <c:forEach var="career" varStatus="status" items="${company.careers }">
-                                                    <div class="position-item container">
+                                                    <div class="position-item container-fluid">
                                                         <div class="position-title row" >
                                                             <span><a href="#item-body${status.count }" data-toggle="collapse">${career.title }</a>
                                                                     <a data-toggle="popover" class="bookmark career ${career.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${career.careerid }"/>
@@ -97,7 +97,7 @@
                                                                     </a>
                                                                     </span>
                                                                     <div class="social-media">
-                                                            <div class="button">
+                                                            <div class="button" style="float:right;">
                                                                 <a href="http://${company.website }" class="btn btn-primary"><i
                                                                     class="fa fa-briefcase" aria-hidden="true"></i>홈페이지 지원</a> 
                                                             </div>

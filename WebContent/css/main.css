@@ -2342,9 +2342,7 @@ section, .job-list-item {
 .job-bg {
 	background-image: url(../images/bg/job-list7.jpg);
 	background-repeat: no-repeat;
-	width:100%;
-	height:636px;
-	background-size: cover;
+	background-size: contain;
 		
 	z-index: 1;
 }
@@ -2391,7 +2389,7 @@ section, .job-list-item {
 
 .job-details .ad-info {
 	margin-bottom: 25px;
-	width: 80%;
+	width: 100%;
 }
 
 .job-details .ad-info span, .job-details .ad-info span a {
