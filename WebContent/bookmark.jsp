@@ -131,14 +131,13 @@
 						<div class="featured-top">
 							<h4></h4>
 							<div class="dropdown pull-right">
-								<div class="dropdown category-dropdown">
-									<h5>정렬 기준:</h5>
+								<div class="dropdown category-dropdown">									
 									<a data-toggle="dropdown" href="#"><span
-										class="change-text">최근 등록 순</span><i
+										class="change-text">정렬 기준</span><i
 										class="fa fa-caret-square-o-down"></i></a>
 									<ul class="dropdown-menu category-change">
-										<li><a href="#">최근 등록 순 </a></li>
-										<li><a href="#">인기 순</a></li>
+										<li><a href="#" id="orderByPostdate">최근 등록 순 </a></li>
+										<li><a href="#" id="orderByBookmark">인기 순</a></li>
 									</ul>
 								</div>
 								<!-- category-change -->
@@ -151,8 +150,9 @@
 								<div class="item-info">
 									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
-											<a href="job-details.html"><img src="images/job/3.png"
-												alt="Image" class="img-responsive"></a>
+											<a href="job-details.html">
+												<img src="${career.imageurl}" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
+											</a>
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
@@ -351,17 +351,26 @@
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script type="text/javascript">
-	 $(".call-ajax").click(function(){		 
-	 		var params="companyid="+$(this).find('input[type=hidden]').val();
-	 		$.ajax({
-	 		type:"POST",
-	 		url:"${path}/careerlist.do?method=job-detail",
-	 		data:params,
-	 		success:function(args){
-	 			$("#ajax-modal-detail").html(args);
-	 			$("#modal-detail").modal("show");
-	 			}
-	 		})
+	$(document).ready(function(){
+		$("#orderByPostdate").click(function(){			
+			$(location).attr("href","${path}/account.do?bookmark");		
+		});
+		$("#orderByBookmark").click(function(){			
+			$(location).attr("href","${path}/account.do?bookmarkOrderByBookmark");		
+		});
+	})
+	
+	$(".call-ajax").click(function(){		 
+	 	var params="companyid="+$(this).find('input[type=hidden]').val();
+	 	$.ajax({
+	 	type:"POST",
+	 	url:"${path}/careerlist.do?method=job-detail",
+	 	data:params,
+	 	success:function(args){
+	 		$("#ajax-modal-detail").html(args);
+	 		$("#modal-detail").modal("show");
+	 		}
+	 	})
 	 })
     </script>
 </body>

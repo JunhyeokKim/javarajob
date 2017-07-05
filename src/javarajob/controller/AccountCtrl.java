@@ -133,13 +133,22 @@ public class AccountCtrl {
 	}
 	
 	@RequestMapping(params="bookmark")
-
 	public String bookmark(HttpSession ses, Model d){		
 		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));		
 		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
+		return "bookmark";
+	}
+	
+	@RequestMapping(params="bookmarkOrderByBookmark")
+	public String bookmarkOrderByBookmark(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));		
+		d.addAttribute("careerList", careerService.listCareerforBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
+		
 		return "bookmark";
 	}
 
