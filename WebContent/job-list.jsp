@@ -34,20 +34,11 @@
 	    <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-touch-icon-57-precomposed.png">
 	    <!-- icons -->
 	
-	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9]>
-	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	    <![endif]-->
-	    <!-- Template Developed By ThemeRegion -->
 		
 		
 	</head>
 	<body>
-		<!-- header 11-->
 		<jsp:include page="navHeader.jsp"/>
-	<!-- header -->
 	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-fullsize" role="document">
@@ -60,10 +51,7 @@
                     <h4 class="modal-title">상세 정보</h4>
                 </div>
                 <div class="modal-body" id="ajax-modal-detail">
-            <!-- breadcrumb -->
-            <!-- job-details -->
         </div>
-        <!-- container -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                 </div>
@@ -109,7 +97,6 @@
 						<div class="accordion">
 							<!-- panel-group -->
 							<div class="panel-group" id="accordion">
-							 	
 								<!-- panel -->
 								<div class="panel panel-default panel-faq">
 									<!-- panel-heading -->
@@ -404,12 +391,10 @@
 							</div>
 							</c:when>
 							<c:otherwise>
-							<div>
 							
-							</div>
 							</c:otherwise>
 							</c:choose>
-							</c:forEach><!-- job-ad-item -->
+							</c:forEach>
 
 							
 							<!-- pagination  -->
@@ -431,7 +416,8 @@
 								</ul>
 							</div><!-- pagination  -->					
 						</div>
-					</div><!-- recommended-ads -->
+					</div>
+					<!-- recommended-ads -->
 
 					<div class="col-md-2 hidden-xs hidden-sm">
 						<div class="advertisement text-center">
@@ -467,27 +453,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
-    <script src="js/main.js?ver=1"></script>
+    <script src="js/main.js?ver=2"></script>
 	<script src="js/switcher.js"></script>
 	<script src="js/job-list.js?ver=1"></script>
 	<script type="text/javascript">
-	var popOverSettings = {
-		    placement: 'right',
-		    container: 'body',
-		    selector: '.unselected[data-toggle="popover"]',
-		    content: function () {
-		        return "북마크가 추가되었습니다.";
-		    }
-		}
-		$('body').popover(popOverSettings);
-	
-	$('.bookmark').on('shown.bs.popover', function () {
-	    	var popObj=$(this);
-	    	setTimeout(function(){
-	    		popObj.popover('hide');	
-	    		},2000)
-	    		})
-	
 	$(document).ready(function(){
         $("#quetype").text("${queType}");
         $("#search").val("${query}");
@@ -497,7 +466,7 @@
         $("input[name=querytype]").val($(this).text());
         
     })
-	});
+    });
 		var checkOptionArrays={
 			companytype:["${schElement.companytype[0]}","${schElement.companytype[1]}","${schElement.companytype[2]}","${schElement.companytype[3]}",
 	            "${schElement.companytype[4]}","${schElement.companytype[5]}","${schElement.companytype[6]}"],
@@ -542,35 +511,7 @@
 	                	]
 		};
 		
-		 $(".filter").each(function(index,item){
-			 var name=$(this).attr('name');
-			 var arrays=checkOptionArrays[name];
-			for(var i=0; i<arrays.length; i++){
-				if($(this).val()==arrays[i]){
-					$(this).prop('checked','checked');
-					$(this).parent('label').addClass('checked');
-				} 
-			}
-		})
-		
-		$('.panel').on('hide.bs.collapse', function (e) {
-			var icon=$("#"+e.target.id).parent().find(".panel-title i");
-			if(icon.hasClass("fa-plus")){
-				icon.removeClass("fa-plus").addClass("fa-minus");
-			}else if(icon.hasClass("fa-minus")){
-				icon.removeClass("fa-minus").addClass("fa-plus");
-			}
-		})
-			
-		$('.panel').on('show.bs.collapse', function (e) {
-			var icon=$("#"+e.target.id).parent().find(".panel-title i");
-			if(icon.hasClass("fa-plus")){
-				icon.removeClass("fa-plus").addClass("fa-minus");
-			}else if(icon.hasClass("fa-minus")){
-				icon.removeClass("fa-minus").addClass("fa-plus");
-			}
-		})
-		
+		 
 	</script>
   </body>
 </html>

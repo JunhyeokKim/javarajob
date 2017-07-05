@@ -99,7 +99,7 @@
 		bookmarkcnt=#{bookmarkcnt}  
 	</update>
 	
-	<select id="listCareerforindex" resultMap="careerResult">
+	<select id="listCareerForIndex" resultMap="careerResult">
 		SELECT * FROM 
 		(
 			SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, 
@@ -113,7 +113,7 @@
 		) WHERE ROWNUM BETWEEN 1 AND 5		
 	</select>
 	
-	<select id="listCareerforindexSelect" resultMap="careerResult" parameterType="int">
+	<select id="listCareerForIndexSelect" resultMap="careerResult" parameterType="int">
 		SELECT * FROM 
 		(
 			SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, 
@@ -128,7 +128,7 @@
 		) WHERE ROWNUM BETWEEN 1 AND 5		
 	</select>
 	
-	<select id="listCareerforindexOrderByBookmark" resultMap="careerResult">
+	<select id="listCareerForIndexOrderByBookmark" resultMap="careerResult">
 		SELECT * FROM 
 		(
 			SELECT A.CAREERID, A.COMPANYTYPE, A.FIELD, A.LOCATION, A.INDUSTRY, 

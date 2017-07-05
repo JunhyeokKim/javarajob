@@ -51,7 +51,7 @@ public class IndexCtrl {
 		d.addAttribute("accountCount", accountService.getCount());
 		d.addAttribute("careerList", topCareers);
 		if (mode == 2)
-			d.addAttribute("careerList", careerService.listCareerforindexOrderByBookmark());
+			d.addAttribute("careerList", careerService.listCareerForIndexOrderByBookmark());
 		d.addAttribute("mode",mode);
 		return "index";
 	}
@@ -62,7 +62,7 @@ public class IndexCtrl {
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
-		d.addAttribute("careerList", careerService.listCareerforindexSelect(industry));
+		d.addAttribute("careerList", careerService.listCareerForIndexSelect(industry));
 		return "index";
 	}
 }

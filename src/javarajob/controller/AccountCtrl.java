@@ -153,7 +153,7 @@ public class AccountCtrl {
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
+		d.addAttribute("careerList", careerService.listCareerForBookmark(ses.getAttribute("id").toString()));
 		return "bookmark";
 	}
 	
@@ -163,7 +163,7 @@ public class AccountCtrl {
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("careerList", careerService.listCareerforBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
+		d.addAttribute("careerList", careerService.listCareerForBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
 		
 		return "bookmark";
 	}

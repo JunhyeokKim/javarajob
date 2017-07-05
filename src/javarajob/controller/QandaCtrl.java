@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import javarajob.service.A01_BoardService;
+import javarajob.service.BoardService;
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
 import javarajob.service.ResumeService;
@@ -23,7 +23,7 @@ import javarajob.vo.Company_Sch;
 @SessionAttributes("boardSch")
 public class QandaCtrl {
 	@Autowired(required=false)
-	private A01_BoardService service;
+	private BoardService service;
 	
 	@Autowired(required = false)
 	private CompService s;
