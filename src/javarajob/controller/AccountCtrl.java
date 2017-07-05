@@ -84,6 +84,7 @@ public class AccountCtrl {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		return "profile-details";
 	}
 
@@ -100,6 +101,7 @@ public class AccountCtrl {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		return "delete-account";
 	}
 
@@ -140,6 +142,7 @@ public class AccountCtrl {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
 		return "bookmark";
 	}
@@ -148,7 +151,8 @@ public class AccountCtrl {
 	public String bookmarkOrderByBookmark(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));		
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("careerList", careerService.listCareerforBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
 		
 		return "bookmark";
@@ -159,6 +163,7 @@ public class AccountCtrl {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("companyList", favs.favCompanyList(ses.getAttribute("id").toString()));
 		return "applied-job";
 	}
@@ -168,6 +173,7 @@ public class AccountCtrl {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		return "redirect:/boardList.do?method=list";
 	}
 

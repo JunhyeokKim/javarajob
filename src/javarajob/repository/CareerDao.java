@@ -33,6 +33,8 @@ public interface CareerDao {
 
 	public int getFavCount(String id);
 	
+	public int getFavCountCompany(String id);
+	
 	public ArrayList<Career> listCareerforindexSelect(int industry);
 	
 	public ArrayList<Career> listCareerforindexOrderByBookmark();

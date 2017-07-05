@@ -3,7 +3,6 @@ package javarajob.vo;
 public class FavCompany {
 	private int companyid;
 	private String id;
-	private String imageurl;
 
 	public int getCompanyid() {
 		return companyid;
@@ -21,12 +20,5 @@ public class FavCompany {
 		this.id = id;
 	}
 
-	public String getImageurl() {
-		return imageurl;
-	}
-
-	public void setImageurl(String imageurl) {
-		this.imageurl = imageurl;
-	}
 
 }
