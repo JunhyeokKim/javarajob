@@ -289,6 +289,9 @@
 								</div><!-- item-info -->								
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
+						<c:if test="${careerList.size() == 0}" >
+							<h1>저장된 관심 직무가 없습니다.</h1>
+						</c:if>
 						<div class="ad-section text-center">
 							<a href="#"><img src="images/ads/3.jpg" alt="Image"
 								class="img-responsive"></a>
