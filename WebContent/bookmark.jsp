@@ -282,10 +282,13 @@
 											</ul>
 										</div>
 									</div><!-- 회사내용 -->									
-									<div class="close-icon"><!-- 오른쪽 상단 공간 -->										
-										<div class="button">											
-										</div>
-									</div><!-- 오른쪽 상단 공간 -->									
+									<div class="close-icon">
+									<a class="delete-bookmark">
+										<i class="fa fa-window-close" aria-hidden="true"></i>
+										<input type="hidden" id="careerid" value="${career.companyid}" />
+										<input type="hidden" id="title" value="${career.title}" />
+									</a>
+								</div>
 								</div><!-- item-info -->								
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
@@ -371,6 +374,14 @@
 	 		}
 	 	})
 	 })
+	 
+	 $(".delete-bookmark").click(function(){
+			var title = $(this).find('input[id=title]').val();
+			var careerid= $(this).find('input[id=careerid]').val();
+			if(confirm(title+"를(을) 기업을 관심 공고에서 지우시겠습니까?")) {
+				$(location).attr("href","${path}/account.do?deleteFavCareer&careerid="+careerid);
+			}
+		})
     </script>
 </body>
 </html>

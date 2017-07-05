@@ -11,7 +11,7 @@ import javarajob.vo.FavCareer;
 public interface FavCareerDao {
     public ArrayList<FavCareer> favCareerList(String id);
 	public void addFavCareer(FavCareer vo);
-	public void removeFavCareer(int careerid);
+	public void removeFavCareer(FavCareer vo);
 	public FavCareer getFavCareer(FavCareer vo);
 	
 }

@@ -176,7 +176,7 @@ public class CareerCtrl {
         String curId = (String) session.getAttribute("id");
         vo.setCareerid(careerid);
         vo.setId(curId);
-        favCareerService.removeFavCareer(careerid);
+        favCareerService.removeFavCareer(vo);
         return "redirect:careerlist.do?method=sch";
     }
 

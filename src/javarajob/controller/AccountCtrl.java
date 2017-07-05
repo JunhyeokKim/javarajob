@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
+import javarajob.service.FavCareerService;
 import javarajob.service.FavCompanyService;
 import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
+import javarajob.vo.FavCareer;
 import javarajob.vo.FavCompany;
 
 @Controller
@@ -44,6 +46,8 @@ public class AccountCtrl {
 	
 	@Autowired(required = false)
 	private FavCompanyService favCompService;
+	@Autowired(required = false)
+	private FavCareerService favCareerService;
 
 	@RequestMapping(params = "method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d) {
@@ -184,6 +188,16 @@ public class AccountCtrl {
         favCompService.removeFavCompany(vo);
         return "redirect:account.do?appliedjob";
     }
+	// bookmark ªË¡¶
+	@RequestMapping(params = "deleteFavCareer")
+	public String removeFavCareer(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+		FavCareer vo = new FavCareer();
+		String curId = (String) session.getAttribute("id");
+		vo.setCareerid(careerid);
+		vo.setId(curId);
+		favCareerService.removeFavCareer(vo);
+		return "redirect:account.do?bookmark";
+	}
 
 	@RequestMapping(params = "qanda")
 	public String qanda(HttpSession ses, Model d) {

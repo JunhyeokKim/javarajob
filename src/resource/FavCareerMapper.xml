@@ -17,8 +17,15 @@
         #{id})
         </if>
 	</insert>
-	<delete id="removeFavCareer" parameterType="int" timeout="20">
-		delete favcareer where careerid = #{careerid}
+	<delete id="removeFavCareer" parameterType="favCareer" timeout="20">
+		delete favcareer where 1=1
+        <if test="careerid!=null">
+            and careerid = #{careerid}
+        </if> 
+        <if test="id!=null and id!=''">
+            and id = #{id}
+        </if>
+        
 	</delete>
 	<select id="getFavCareer" parameterType="favCareer" resultType="favCareer">
 		select * from favcareer
