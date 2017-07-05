@@ -2357,7 +2357,9 @@ section, .job-list-item {
 .job-bg-mypage {
 	background-image: url(../images/bg/handhand.png);
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: cover;
+	min-height:700px;
+	max-height:700px;
 	z-index: 1;
 }
 

@@ -124,12 +124,11 @@
 			</div><!-- ad-profile -->
 
 			<div class="section trending-ads latest-jobs-ads">
-				<h2>관심 직무</h2>
-				
 				<div><!-- career list 전체 -->
+				<h2 style="color: black;">관심 직무</h2>
 					<div class="section job-list-item">
+						
 						<div class="featured-top">
-							<h4></h4>
 							<div class="dropdown pull-right">
 								<div class="dropdown category-dropdown">
 									<h5>정렬 기준:</h5>
@@ -291,7 +290,6 @@
 								</div><!-- item-info -->								
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
-						
 						<div class="ad-section text-center">
 							<a href="#"><img src="images/ads/3.jpg" alt="Image"
 								class="img-responsive"></a>
