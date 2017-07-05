@@ -2353,20 +2353,9 @@ section, .job-list-item {
 	background-image: url(../images/bg/handhand1.png);
 	background-repeat: no-repeat;
 	background-size: contain;
-		
 	z-index: 1;
-	
 }
 
-.mypage-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 6144px;
-	height: 2097px;
-	z-index: -1;
-	background-color: rgba(65, 65, 65, 0.3);
-}
 .bookmark {
 	cursor: pointer;
 }
