@@ -513,7 +513,7 @@
 	})
 			
 
-	 $(".call-ajax00").click(function(){		 
+	$(".call-ajax00").click(function(){		 
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",

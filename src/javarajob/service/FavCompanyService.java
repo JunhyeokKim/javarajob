@@ -23,9 +23,9 @@ public class FavCompanyService {
         dao.addFavCompany(vo);
         compDao.addBookmark(vo.getCompanyid());
     }
-    public void removeFavCompany(int companyid){
-        dao.removeFavCompany(companyid);
-        compDao.removeBookmark(companyid);
+    public void removeFavCompany(FavCompany vo){
+        dao.removeFavCompany(vo);
+        compDao.removeBookmark(vo.getCompanyid());
     }
     public FavCompany getFavCompany(FavCompany vo){
     	return dao.getFavCompany(vo);

@@ -1,8 +1,6 @@
 package javarajob.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -201,7 +199,7 @@ public class CareerCtrl {
         String curId = (String) session.getAttribute("id");
         vo.setCompanyid(companyid);
         vo.setId(curId);
-        favCompService.removeFavCompany(companyid);
+        favCompService.removeFavCompany(vo);
         return "redirect:careerlist.do?method=sch";
     }
 

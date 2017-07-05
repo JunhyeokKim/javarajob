@@ -301,7 +301,8 @@
 								</div>
 							</div><!-- featured-top -->
 							<c:forEach var="entry" varStatus="status" items="${companyMap }">
-							<c:if test="${0 ne totCareerCnt}">
+							<c:choose>
+							<c:when test="${totCareerCnt !=0 }">
 								<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
@@ -401,10 +402,13 @@
 								<div class="col-xs-offset-2">
 								</div>
 							</div>
-							</c:if>
-							<c:if test="${ totCareerCnt eq 0}">
-							<h1>diiiiiiiiiiiiiiii</h1>
-							</c:if>
+							</c:when>
+							<c:otherwise>
+							<div>
+							
+							</div>
+							</c:otherwise>
+							</c:choose>
 							</c:forEach><!-- job-ad-item -->
 
 							

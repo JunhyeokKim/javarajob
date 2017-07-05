@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
+import javarajob.service.CompService;
 import javarajob.service.FavCompanyService;
 import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
+import javarajob.vo.FavCompany;
 
 @Controller
 @RequestMapping("/account.do")
@@ -38,7 +40,10 @@ public class AccountCtrl {
 	CareerService careerService;
 	
 	@Autowired(required = false)
-	private FavCompanyService favs;
+	private CompService comps;
+	
+	@Autowired(required = false)
+	private FavCompanyService favCompService;
 
 	@RequestMapping(params = "method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d) {
@@ -165,9 +170,20 @@ public class AccountCtrl {
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("companyList", favs.favCompanyList(ses.getAttribute("id").toString()));
+		d.addAttribute("companyList", comps.getFavCompanyList(ses.getAttribute("id").toString()));
 		return "applied-job";
 	}
+	
+	// bookmark ªË¡¶
+	@RequestMapping(params = "deleteFavComp")
+    public String removeCompBookmark(@RequestParam(value = "companyid") int companyid, HttpSession session) {
+        FavCompany vo = new FavCompany();
+        String curId = (String) session.getAttribute("id");
+        vo.setCompanyid(companyid);
+        vo.setId(curId);
+        favCompService.removeFavCompany(vo);
+        return "redirect:account.do?appliedjob";
+    }
 
 	@RequestMapping(params = "qanda")
 	public String qanda(HttpSession ses, Model d) {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="javarajob.repository.CompDao">
-	<resultMap type="company" id="companyResult"/>	
-	<select id="listCompany" resultMap="companyResult" parameterType="companySch">
+	<resultMap type="company" id="companyResult" />
+	<resultMap type="favCompany" id="favCompResult" />
+	<select id="listCompany" resultMap="companyResult"
+		parameterType="companySch">
 		select * from
-		(select rownum rnum, c.* from  
+		(select rownum rnum, c.* from
 		(select * from company
 		where 1=1
 		<if test="companyid!=null and companyid!=''">
@@ -23,12 +23,12 @@
 		</if>
 		) c) where 1=1
 		<if test="start!=null and start!='' and end!=null and end!=''">
-		 and rnum between #{start} and #{end}
+			and rnum between #{start} and #{end}
 		</if>
 	</select>
 	<select id="getCompany" resultType="company" parameterType="int">
-	select * from company
-	where companyid= #{companyid}
+		select * from company
+		where companyid= #{companyid}
 	</select>
 	<select id="getTotCnt" parameterType="companySch" resultType="int">
 		SELECT COUNT(*) FROM COMPANY
@@ -43,14 +43,23 @@
 			and industry like '%' || #{industry} || '%'
 		</if>
 	</select>
- <update id="addBookmark" parameterType="int">
-        update company
-        set bookmarkcnt=bookmarkcnt+1
-        where companyid = #{companyid}
-    </update>
-    <update id="removeBookmark" parameterType="int">
-        update company
-        set bookmarkcnt=bookmarkcnt-1
-        where companyid = #{companyid}
-    </update>	
+	<update id="addBookmark" parameterType="int">
+		update company
+		set bookmarkcnt=bookmarkcnt+1
+		where companyid = #{companyid}
+	</update>
+	<update id="removeBookmark" parameterType="int">
+		update company
+		set bookmarkcnt=bookmarkcnt-1
+		where companyid = #{companyid}
+	</update>
+	
+	<select id="getFavCompanyList" resultMap="favCompResult" parameterType="String">
+		SELECT A.*, B.IMAGEURL, B.SHORTINFO, B.COMPANYNAME, B.LOCATION, B.ANNUALSALES
+		FROM FAVCOMPANY A, COMPANY B
+		WHERE A.COMPANYID = B.COMPANYID
+		<if test="_parameter!=null and !_parameter.equals('')">
+			AND A.ID = #{id}
+		</if>
+	</select>
 </mapper>
