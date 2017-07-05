@@ -546,6 +546,24 @@
 			}
 		})
 		
+		$('.panel').on('hide.bs.collapse', function (e) {
+			var icon=$("#"+e.target.id).parent().find(".panel-title i");
+			if(icon.hasClass("fa-plus")){
+				icon.removeClass("fa-plus").addClass("fa-minus");
+			}else if(icon.hasClass("fa-minus")){
+				icon.removeClass("fa-minus").addClass("fa-plus");
+			}
+		})
+			
+		$('.panel').on('show.bs.collapse', function (e) {
+			var icon=$("#"+e.target.id).parent().find(".panel-title i");
+			if(icon.hasClass("fa-plus")){
+				icon.removeClass("fa-plus").addClass("fa-minus");
+			}else if(icon.hasClass("fa-minus")){
+				icon.removeClass("fa-minus").addClass("fa-plus");
+			}
+		})
+		
 	</script>
   </body>
 </html>
