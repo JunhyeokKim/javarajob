@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/icofont.css"> 
     <link rel="stylesheet" href="css/slidr.css">     
-    <link rel="stylesheet" href="css/main.css?ver=4">  
+    <link rel="stylesheet" href="css/main.css?ver=6">  
 	<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	    
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/table_kdb.css">
-    <link rel='stylesheet' href='css/fullcalendar.css?ver=5' />
+    <link rel='stylesheet' href='css/fullcalendar.css?ver=8' />
 	
 	<!-- font -->
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>

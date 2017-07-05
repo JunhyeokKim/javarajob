@@ -9,6 +9,7 @@ public class SchElement {
 	private int curPage; // 클릭한 현재 page번호
 	private int start; // 해당 페이지의 시작번호
 	private int end;
+	private int orderby; 
 	
 	// career
 	private int careerid;
@@ -53,6 +54,13 @@ public class SchElement {
 	}
 	public void setEnd(int end) {
 		this.end = end;
+	}
+	
+	public int getOrderby() {
+		return orderby;
+	}
+	public void setOrderby(int orderby) {
+		this.orderby = orderby;
 	}
 	public int getCareerid() {
 		return careerid;

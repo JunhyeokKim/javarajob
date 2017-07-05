@@ -25,13 +25,6 @@ public class FavCompany {
 		this.id = id;
 	}
 
-	public String getImageurl() {
-		return imageurl;
-	}
-
-	public void setImageurl(String imageurl) {
-		this.imageurl = imageurl;
-	}
 
 	public String getShortinfo() {
 		return shortinfo;
@@ -64,5 +57,14 @@ public class FavCompany {
 	public void setAnnualsales(int annualsales) {
 		this.annualsales = annualsales;
 	}
+
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+	
 
 }

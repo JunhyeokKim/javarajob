@@ -122,6 +122,9 @@
 		</if>
 		group by companyid) d, company e
 		where e.COMPANYID=d.companyid) where rnum between #{start} and #{end}
+        <if test="orderby== 1">
+        order by bookmarkcnt desc
+        </if>
 	</select>
 	<select id="getTotCnt" parameterType="schElement" resultType="int">
 		select count(*) from(

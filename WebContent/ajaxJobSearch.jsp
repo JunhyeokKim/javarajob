@@ -19,7 +19,7 @@
 
                         <div class="ad-info">
                         <c:set var="companyInfo" value="${company }" scope="request"/>
-                            <span><a href="#" class="title">${company.companyname }</a>
+                            <span><a class="title">${company.companyname }</a>
                             <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="북마크가 추가되었습니다." class="bookmark company ${company.bookmarked ?'selected':'unselected' }"><input type="hidden" value="${company.companyid}"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
                                                                     style="display: ${company.bookmarked ?'none':'block' }"/> 
@@ -30,12 +30,12 @@
                             <div class="ad-meta">
                                 <p></p>
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-map-marker"
+                                    <li><a ><i class="fa fa-map-marker"
                                             aria-hidden="true"></i>본사: ${company.location }</a></li>
-                                    <li><a href="#"><i class="fa fa-clock-o"
+                                    <li><a ><i class="fa fa-clock-o"
                                             aria-hidden="true"></i>설립일: ${company.establishmentdate }</a></li>
                                     <li><i class="fa fa-money" aria-hidden="true"></i>연 매출액: ${company.annualsales }억 원</li>
-                                    <li><a href="#"><i class="fa fa-tags"
+                                    <li><a ><i class="fa fa-tags"
                                             aria-hidden="true"></i>산업군:  
                                             <c:choose>
                                             	<c:when test="${company.industry eq 1}">서비스업</c:when>
@@ -264,8 +264,9 @@
 	var popOverSettings = {
 		    placement: 'right',
 		    container: 'body',
-		    selector: '[data-toggle="popover"]',
-		    content: function () {
+		    selector: '.unselected',
+		    content: function (e) {
+		    	console.log(e);
 		        return "북마크가 추가되었습니다.";
 		    }
 		}

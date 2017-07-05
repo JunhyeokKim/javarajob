@@ -182,4 +182,8 @@
 	<select id="getFavCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM FAVCAREER WHERE ID=#{ID}
 	</select>
+	
+	<select id="getFavCountCompany" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM FAVCOMPANY WHERE ID=#{ID}
+	</select>
 </mapper>

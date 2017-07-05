@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
-<link rel="stylesheet" href="css/main.css?v=3">
+<link rel="stylesheet" href="css/main.css?v=4">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
@@ -182,7 +182,12 @@
 				<div><!-- career list 전체 -->
 					<div class="section job-list-item">
 						<div class="featured-top">
-							<h4></h4>
+						<c:if test="${mode ne 2 }">
+								<h2><strong>최신 채용 공고 &nbsp;</strong> <small>방금 등록된 채용 공고입니다</small></h2>
+						</c:if>
+						<c:if test="${mode eq 2 }">
+							<h2><strong>인기 채용 공고 &nbsp;</strong> <small>많은 사람들이 인기 채용 공고입니다</small></h2>
+						</c:if>
 							<div class="dropdown pull-right">
 								<div class="dropdown category-dropdown">									
 									<a data-toggle="dropdown" href="#"><span
@@ -196,7 +201,6 @@
 								<!-- category-change -->
 							</div>
 						</div><!-- featured-top -->
-												
 						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->						
 							<div class="job-ad-item">
 								<!-- 한 줄 단위 전체 -->
@@ -395,10 +399,14 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
+	$("#modal-detail").on("hidden.bs.modal",function(e){
+		$("#ajax-modal-detail").html("");
+		location.reload();
+	})
 	var popOverSettings = {
 		    placement: 'right',
 		    container: 'body',
-		    selector: '[data-toggle="popover"]',
+		    selector: '.unselected[data-toggle="popover"]',
 		    content: function () {
 		        return "북마크가 추가되었습니다.";
 		    }

@@ -53,8 +53,10 @@
 	<!-- header 11-->
 	<jsp:include page="navHeader.jsp"/>
 	
-	<section class="clearfix job-bg-mypage ad-profile-page">
-	<div class="mypage-overlay"></div>
+	
+	<section class="job-bg-mypage page job-list-page container">	
+		<div class="list-view">
+		
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -79,10 +81,10 @@
 
 					<div class="favorites-user">
 						<div class="my-ads">
-							<a href="applied-job.html">29<small>Apply Job</small></a>
+							<a href="#">${careerFavCount}<small>Favorite Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="#">${careerFavCount}<small>Favorites</small></a>
+							<a href="#">${careerFavCountCompany}<small>Favorite Corp.</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->
@@ -105,12 +107,12 @@
 						<form method="post" action="${path}/account.do?method=uptProcGuest2">
 							<div class="form-group">
 								<label>이름</label>
-								<input type="text" class="form-control" value="${mem.name}" name="password"/>
+								<input type="text" class="form-control" value="${mem.name}" name="name"/>
 							</div>
 							
 							<div class="form-group">
 								<label>ID</label>
-								<input type="text" class="form-control" value="${mem.id}" name="password" disabled="disabled"/>
+								<input type="text" class="form-control" value="${mem.id}" disabled="disabled"/>
 							</div>
 
 							<div class="form-group">
@@ -140,7 +142,7 @@
 							
 							<div class="form-group">
 								<label>가입일자</label>
-								<input type="text" class="form-control" value="${mem.regdate}" name="interest" disabled="disabled"/>
+								<input type="text" class="form-control" value="${mem.regdate}" disabled="disabled"/>
 							</div>	
 							<div align="center">
 								<input type="submit" class="btn btn-hover-preset" value="저장"/>
@@ -160,7 +162,9 @@
 				</div><!-- user-pro-edit -->
 			</div>				
 		</div><!-- container -->
+	</div>
 	</section><!-- ad-profile-page -->
+	
 	
 	<!-- footer -->
 	<footer id="footer" class="clearfix">

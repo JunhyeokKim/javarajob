@@ -70,8 +70,8 @@
 	<!-- header 11-->
 	<jsp:include page="navHeader.jsp"/>
 
-	<section class="clearfix job-bg-mypage  ad-profile-page">
-		<div class="mypage-overlay"></div>
+	<section class="job-bg-mypage page job-list-page container">
+		<div class="list-view">
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -96,10 +96,10 @@
 
 					<div class="favorites-user">
 						<div class="my-ads">
-							<a href="applied-job.html">29<small>Apply Job</small></a>
+							<a href="#">${careerFavCount}<small>Favorite Job</small></a>
 						</div>
 						<div class="favorites">
-							<a href="#">${careerFavCount}<small>Favorites</small></a>
+							<a href="#">${careerFavCountCompany}<small>Favorite Corp.</small></a>
 						</div>
 					</div>								
 				</div><!-- user-profile -->
@@ -127,7 +127,7 @@
 						<!-- form -->
 						<div class="form-group">
 							<label>비밀 번호 확인</label> 
-							<input type="text" class="form-control" id="passContentBtn"/>
+							<input type="password" class="form-control" id="passContentBtn"/>
 						</div>
 					</div>
 					<!-- change-password -->
@@ -145,6 +145,7 @@
 			</div>
 		</div>
 		<!-- container -->
+		</div>
 	</section>
 	<!-- ad-profile-page -->
 
