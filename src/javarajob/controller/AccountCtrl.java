@@ -178,6 +178,16 @@ public class AccountCtrl {
 		return "applied-job";
 	}
 	
+	@RequestMapping(params = "bookmarkOrderByPopular")
+	public String bookmarkOrderByPopular(HttpSession ses, Model d) {
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("companyList", comps.getFavCompanyListOrderByPopular(ses.getAttribute("id").toString()));
+		return "applied-job";
+	}
+	
 	// bookmark ªË¡¶
 	@RequestMapping(params = "deleteFavComp")
     public String removeCompBookmark(@RequestParam(value = "companyid") int companyid, HttpSession session) {

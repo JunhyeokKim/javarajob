@@ -80,7 +80,6 @@
     </div><!-- ajax -->
 
 	<section class="clearfix job-bg-mypage  ad-profile-page">
-		<div class="mypage-overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -138,8 +137,8 @@
 								<a data-toggle="dropdown" href="#"><span class="change-text">최근
 										등록 순</span><i class="fa fa-caret-square-o-down"></i></a>
 								<ul class="dropdown-menu category-change">
-									<li><a href="#">최근 등록 순 </a></li>
-									<li><a href="#">인기 순</a></li>
+									<li><a href="#" id="orderByPostdate">최근 등록 순 </a></li>
+									<li><a href="#" id="orderByPopular">인기 순</a></li>
 								</ul>
 							</div>
 							<!-- category-change -->
@@ -216,12 +215,13 @@
 			</div>
 		</div>
 		<!-- container -->
-	</section>
+	
 	<!-- ad-profile-page -->
 
 	<!-- footer -->
 	<jsp:include page="footer.jsp"/>
 	<!-- footer -->
+	</section>
 	<!--/Preset Style Chooser-->
 	<div class="style-chooser">
 		<div class="style-chooser-inner">
@@ -248,6 +248,15 @@
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#orderByPostdate").click(function(){			
+				$(location).attr("href","${path}/account.do?appliedjob");		
+			});
+			$("#orderByBookmark").click(function(){			
+				$(location).attr("href","${path}/account.do?bookmarkOrderByPopular");		
+			});
+		})
+	
 		$(".call-ajax00").click(function(){		 
 	 		var params="companyid="+$(this).find('input[class=hidden]').val();
 	 		$.ajax({
