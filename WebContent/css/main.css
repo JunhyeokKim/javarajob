@@ -2349,33 +2349,33 @@ section, .job-list-item {
 	z-index: 1;
 }
 
-.job-bg-self {
-	background-image: url(../images/bg/636.jpg);
+.job-bg-mypage {
+	background-image: url(../images/bg/handhand1.png);
 	background-repeat: no-repeat;
 	background-size: contain;
+		
 	z-index: 1;
-}
-
-.job-bg-mypage {
-	background-image: url(../images/bg/handhand.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	min-height:700px;
-	max-height:700px;
-	z-index: 1;
+	
 }
 
 .mypage-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: 6144px;
+	height: 2097px;
 	z-index: -1;
 	background-color: rgba(65, 65, 65, 0.3);
 }
 .bookmark {
 	cursor: pointer;
+}
+
+.job-bg-self {
+	background-image: url(../images/bg/636.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 1;
 }
 
 .banner-form-full.job-list-form {

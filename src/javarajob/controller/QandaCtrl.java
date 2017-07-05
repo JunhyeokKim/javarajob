@@ -45,6 +45,7 @@ public class QandaCtrl {
 	public String start(@ModelAttribute("boardSch") Board_Sch sch, Model d, HttpSession ses){
 		d.addAttribute("list", service.listBoard(sch));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		//System.out.println("dc getCount()"+sch.getCount()+"getPageSize()"+sch.getPageSize()+"getCurPage()"+sch.getCurPage()+"getStart()"+sch.getStart()+"getEnd()"+sch.getEnd());
 		return "qanda";
@@ -54,6 +55,7 @@ public class QandaCtrl {
 	public String insert(@RequestParam(value="no", defaultValue="0") int no, Model d, HttpSession ses){
 		d.addAttribute("board", service.getReBoard(no));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		Company_Sch sch = null;
 		d.addAttribute("companyList", s.listCompany(sch));		
@@ -65,6 +67,7 @@ public class QandaCtrl {
 	public String insertProc(Board ins, HttpSession ses, Model d){
 		service.insertBoard(ins);
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		return "redirect:/boardList.do?method=list";
 	}
@@ -75,6 +78,7 @@ public class QandaCtrl {
 		Company_Sch sch = null;
 		d.addAttribute("companyList", s.listCompany(sch));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		return "qanda3";
 	}
@@ -83,6 +87,7 @@ public class QandaCtrl {
 	public String delete(@RequestParam(value="no", defaultValue="0") int no, HttpSession ses, Model d){
 		service.deleteBoard(no);
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		return "redirect:/boardList.do?method=list";
 	}
@@ -91,6 +96,7 @@ public class QandaCtrl {
 	public String update(Board ins, HttpSession ses, Model d){		
 		service.updateBoard(ins);
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		return "redirect:/boardList.do?method=list";
 	}
