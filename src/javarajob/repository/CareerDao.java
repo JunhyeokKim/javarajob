@@ -28,6 +28,8 @@ public interface CareerDao {
 	public void removeBookmark(int careerid);
 
 	public ArrayList<Career> listCareerforBookmark(String id);
+	
+	public ArrayList<Career> listCareerforBookmarkOrderByBookmark(String id);
 
 	public int getFavCount(String id);
 	

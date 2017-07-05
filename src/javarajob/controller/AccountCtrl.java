@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
-import javarajob.service.CompService;
+import javarajob.service.FavCompanyService;
 import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Account;
@@ -34,11 +34,14 @@ public class AccountCtrl {
 	@Autowired(required = false)
 	private ResumeService resService;
 
-	@Autowired(required=false)
-	CareerService careerService;	
-		
-	@RequestMapping(params="method=list")
-	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d){
+	@Autowired(required = false)
+	CareerService careerService;
+	
+	@Autowired(required = false)
+	private FavCompanyService favs;
+
+	@RequestMapping(params = "method=list")
+	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d) {
 		d.addAttribute("list", service.listMember(sch));
 		return "account/accountList";
 	}
@@ -109,7 +112,7 @@ public class AccountCtrl {
 		return "redirect:/index.do";
 	}
 
-	@RequestMapping(params="method=isNewbie")
+	@RequestMapping(params = "method=isNewbie")
 	public void isNewbie(HttpServletRequest req, HttpServletResponse res, ModelMap model) throws Exception {
 		PrintWriter out = res.getWriter();
 		System.out.println("1´Ü°è");
@@ -127,32 +130,41 @@ public class AccountCtrl {
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.print("1");
-			System.out.println("??"+e);
+			System.out.println("??" + e);
 		}
 		
 	}
 	
 	@RequestMapping(params="bookmark")
-
 	public String bookmark(HttpSession ses, Model d){		
-		
-		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));		
-		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
-		return "bookmark";
-	}
-
-	@RequestMapping(params="appliedjob")
-	public String appliedjob(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
+		return "bookmark";
+	}
+	
+	@RequestMapping(params="bookmarkOrderByBookmark")
+	public String bookmarkOrderByBookmark(HttpSession ses, Model d){		
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));		
+		d.addAttribute("careerList", careerService.listCareerforBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
+		
+		return "bookmark";
+	}
+
+	@RequestMapping(params = "appliedjob")
+	public String appliedjob(HttpSession ses, Model d) {
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("companyList", favs.favCompanyList(ses.getAttribute("id").toString()));
 		return "applied-job";
 	}
 
-	@RequestMapping(params="qanda")
-	public String qanda(HttpSession ses, Model d){		
+	@RequestMapping(params = "qanda")
+	public String qanda(HttpSession ses, Model d) {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
