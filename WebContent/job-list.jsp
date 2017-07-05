@@ -17,7 +17,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css?ver=5">  
+	    <link rel="stylesheet" href="css/main.css?ver=3">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 		<link rel="stylesheet" href="css/table_kdb.css">
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
@@ -294,15 +294,14 @@
 										<h5>정렬 기준:</h5>						
 										<a data-toggle="dropdown" href="#"><span class="change-text">최근 등록 순</span><i class="fa fa-caret-square-o-down"></i></a>
 										<ul class="dropdown-menu category-change">
-											<li><a href="#">최근 등록 순 </a></li>
-											<li><a href="#">인기 순</a></li>
+											<li><a onclick="$('form').submit()">최근 등록 순 </a></li>
+											<li><a onclick="$('form').submit()">인기 순</a></li>
 										</ul>								
 									</div><!-- category-change -->		
-								</div>							
+								</div>
 							</div><!-- featured-top -->
 							<c:forEach var="entry" varStatus="status" items="${companyMap }">
-							<c:choose>
-							<c:when test="${totCareerCnt !=0 }">
+							<c:if test="${0 ne totCareerCnt}">
 								<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
@@ -324,12 +323,12 @@
                                                                     </a>
 										</span>
 										<a href="#items-${status.count}" data-toggle="collapse"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right"></span></a>
-										<h4><a class="title">${entry.value.shortinfo }</a></h4>
+										<h4>${entry.value.shortinfo }</h4>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
 										<c:forEach var="career" items="${entry.value.careers }">
 											<div class="position-item">
-												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
+												<span><a class="title" onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
 													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>
 													<c:choose>
@@ -402,13 +401,10 @@
 								<div class="col-xs-offset-2">
 								</div>
 							</div>
-							</c:when>
-							<c:otherwise>
-							<div>
-							
-							</div>
-							</c:otherwise>
-							</c:choose>
+							</c:if>
+							<c:if test="${ totCareerCnt eq 0}">
+							<h1>diiiiiiiiiiiiiiii</h1>
+							</c:if>
 							</c:forEach><!-- job-ad-item -->
 
 							
@@ -471,12 +467,16 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/job-list.js?ver=1"></script>
 	<script type="text/javascript">
+	var popOverSettings = {
+		    placement: 'right',
+		    container: 'body',
+		    selector: '.unselected[data-toggle="popover"]',
+		    content: function () {
+		        return "북마크가 추가되었습니다.";
+		    }
+		}
+		$('body').popover(popOverSettings);
 	
-	
-	
-	$(function () {
-	    $('.unselected[data-toggle="popover"]').popover()
-	})
 	$('.bookmark').on('shown.bs.popover', function () {
 	    	var popObj=$(this);
 	    	setTimeout(function(){

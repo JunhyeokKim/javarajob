@@ -89,6 +89,7 @@ public class AccountCtrl {
 
 	@RequestMapping(params = "method=uptProcGuest2")
 	public String uptProcGuest2(Account mem, HttpSession ses, Model d) {
+		mem.setId((String)ses.getAttribute("id"));
 		service.updateMember(mem);
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));

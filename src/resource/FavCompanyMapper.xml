@@ -11,7 +11,7 @@
 	</select>
 
 	<insert id="addFavCompany" parameterType="favCompany">
-		INSERT INTO FAVCOMPANY VALUES ( #{companyid}, #{id}, #{imageurl} )
+		INSERT INTO FAVCOMPANY VALUES ( #{companyid}, #{id})
 	</insert>
 
 	<delete id="removeFavCompany" parameterType="int" timeout="20">

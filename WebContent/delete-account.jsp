@@ -127,7 +127,7 @@
 						<!-- form -->
 						<div class="form-group">
 							<label>비밀 번호 확인</label> 
-							<input type="text" class="form-control" id="passContentBtn"/>
+							<input type="password" class="form-control" id="passContentBtn"/>
 						</div>
 					</div>
 					<!-- change-password -->

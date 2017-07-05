@@ -51,7 +51,26 @@
 		DELETE FROM ACCOUNT WHERE ID=#{id}
 	</delete>
 	<update id="updateMember" parameterType="mem">
-		update account set password=#{password}, email=#{email}, phone=#{phone}, address=#{address}, interest=#{interest} where id=#{id}
+		update account
+        <set>
+            interest=#{interest}, 
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone=#{phone},
+            </if>
+            <if test="address!=null and address!=''">
+                address=#{address},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email}
+            </if>
+        </set>
+         where id=#{id}
 	</update>
 	<select id="getCount" resultType="int">
 		SELECT COUNT(*) FROM ACCOUNT

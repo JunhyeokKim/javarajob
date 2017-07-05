@@ -105,12 +105,12 @@
 						<form method="post" action="${path}/account.do?method=uptProcGuest2">
 							<div class="form-group">
 								<label>이름</label>
-								<input type="text" class="form-control" value="${mem.name}" name="password"/>
+								<input type="text" class="form-control" value="${mem.name}" name="name"/>
 							</div>
 							
 							<div class="form-group">
 								<label>ID</label>
-								<input type="text" class="form-control" value="${mem.id}" name="password" disabled="disabled"/>
+								<input type="text" class="form-control" value="${mem.id}" disabled="disabled"/>
 							</div>
 
 							<div class="form-group">
@@ -140,7 +140,7 @@
 							
 							<div class="form-group">
 								<label>가입일자</label>
-								<input type="text" class="form-control" value="${mem.regdate}" name="interest" disabled="disabled"/>
+								<input type="text" class="form-control" value="${mem.regdate}" disabled="disabled"/>
 							</div>	
 							<div align="center">
 								<input type="submit" class="btn btn-hover-preset" value="저장"/>

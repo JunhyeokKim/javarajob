@@ -51,6 +51,7 @@ public class CareerCtrl {
     @RequestMapping(params = "method=sch")
     public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
             @RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
+            @RequestParam(value = "orderby", defaultValue = "desc") String orderBy,
             @ModelAttribute("schElement") SchElement schElement, Model d) {
         HashMap<String, Company> companys = new HashMap<>();
         ArrayList<SchElement> queryResult = null;
@@ -69,6 +70,11 @@ public class CareerCtrl {
         } else if (queryType.equals("기업명")) {
             schElement.setCompanyname(query);
             schElement.setTitle(null);
+        }
+        if(orderBy.equals("rescent")){
+        	schElement.setOrderby(0);
+        }else if(orderBy.equals("bookmark")){
+        	schElement.setOrderby(1);
         }
         // 접속중인 id의 관심 기업 리스트를 받아옴
         if (curId != null && !curId.equals("")) {
@@ -195,6 +201,7 @@ public class CareerCtrl {
         String curId = (String) session.getAttribute("id");
         vo.setCompanyid(companyid);
         vo.setId(curId);
+        favCompService.removeFavCompany(companyid);
         return "redirect:careerlist.do?method=sch";
     }
 
