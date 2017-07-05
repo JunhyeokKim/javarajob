@@ -12,7 +12,7 @@
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
 
-<title>채용공고 | JAVARAJOB!!</title>
+<title>JAVARAJOB | 일자리를 찾는 가장 쉬운 방법</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -203,13 +203,14 @@
 								<div class="item-info">
 									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
-											<a href="job-details.html">
+											<a class="call-ajax00">
 												<img src="${career.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
+												<input type="hidden" value="${career.companyid}" name="companyid" />
 											</a>
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" />@ ${career.companyname}</a>
+										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a> /<a> @${career.companyname}</a>
 										<a data-toggle="popover" class="bookmark career ${career.bookmarked ?'selected':'unselected' }" style="display: inline-block;">
 										<input type="hidden" value="${career.careerid }"/>
                                                                     <img class="item-bookmark unselected" src="images/icon/bookmark-unselected.png"
@@ -348,6 +349,9 @@
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
 						
+						<c:if test="${careerList.size() == 0 }">
+							<h1 align="center">검색 결과가 없습니다. ㅠㅠ</h1>
+						</c:if>
 						<div class="ad-section text-center">
 							<a href="#"><img src="images/bg/start.png" alt="Image" width="729px"
 								class="img-responsive"></a>

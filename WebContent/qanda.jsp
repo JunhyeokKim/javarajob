@@ -18,7 +18,7 @@
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
 
-<title>MY PAGE | 문의하기</title>
+<title>JAVARAJOB | MY PAGE | 문의하기</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -106,9 +106,9 @@
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
-					<li><a href="index.jsp">HOME</a></li>
+					<li><a href="${path}/index.do">HOME</a></li>
 					<li>MY PAGE</li>
-					<li>회원정보 수정</li>
+					<li>문의하기</li>
 				</ol>
 				<h2 class="title">My Profile</h2>
 			</div>
@@ -145,8 +145,8 @@
 					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보
 							수정</a></li>
 					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="${path}/account.do?bookmark">관심직무</a></li>
-					<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
+					<li><a href="${path}/account.do?bookmark">관심 직무</a></li>
+					<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
 					<li class="active"><a href="${path}/account.do?qanda">Q&A</a></li>
 				</ul>
 			</div>

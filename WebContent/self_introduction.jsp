@@ -16,7 +16,7 @@
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
 
-<title>자기 소개서</title>
+<title>JAVARAJOB | MY PAGE | 자기소개서 관리</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -175,7 +175,7 @@
 				<div class="breadcrumb-section">
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
-						<li><a href="${path}/index.do">Home</a></li>
+						<li><a href="${path}/index.do">HOME</a></li>
 						<li>자소서관리</li>
 					</ol><!-- breadcrumb -->
 					<h2 class="title">자기소개서 List</h2>

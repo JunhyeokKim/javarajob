@@ -19,7 +19,7 @@
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
 
-<title>Jobs | Job Portal / Job Board HTML Template</title>
+<title>JAVARAJOB | MY PAGE | 관심 직무</title>
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -85,9 +85,9 @@
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
-					<li><a href="index.jsp">HOME</a></li>
+					<li><a href="${path}/index.do">HOME</a></li>
 					<li>MY PAGE</li>
-					<li>회원정보 수정</li>
+					<li>관심 직무</li>
 				</ol>						
 				<h2 class="title">My Profile</h2>
 			</div><!-- breadcrumb-section -->
@@ -117,14 +117,14 @@
 				<ul class="user-menu">					
 					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
 					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li class="active"><a href="${path}/account.do?bookmark">관심직무</a></li>
-					<li><a href="${path}/account.do?appliedjob">지원한 기업</a></li>
+					<li class="active"><a href="${path}/account.do?bookmark">관심 직무</a></li>
+					<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
 					<li><a href="${path}/account.do?qanda">Q&A</a></li>
 				</ul>
 			</div><!-- ad-profile -->
 
 			<div class="section trending-ads latest-jobs-ads">
-				<h4>Bookmark</h4>
+				<h2>관심 직무</h2>
 				
 				<div><!-- career list 전체 -->
 					<div class="section job-list-item">
@@ -151,12 +151,14 @@
 								<div class="item-info">
 									<div class="item-image-box"><!-- 이미지 -->
 										<div class="item-image">
-											<a href="job-details.html"><img src="images/job/3.png"
-												alt="Image" class="img-responsive"></a>
+											<a class="call-ajax00">
+												<img src="${career.imageurl }" onerror="this.src='images/job/company-default.png'" alt="logo-company" class="img-responsive logo-company">
+												<input type="hidden" value="${career.companyid}" name="companyid" />
+											</a>
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
+										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
 											@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
@@ -351,7 +353,7 @@
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script type="text/javascript">
-	 $(".call-ajax").click(function(){		 
+	 $(".call-ajax00").click(function(){		 
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",
