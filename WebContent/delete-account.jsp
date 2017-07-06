@@ -145,13 +145,13 @@
 			</div>
 		</div>
 		<!-- container -->
-		</div>
+	</div>
+		
+	<!-- footer -->
+	<jsp:include page="footer.jsp" />
+	<!-- footer -->
 	</section>
 	<!-- ad-profile-page -->
-
-	<!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
-	<!-- footer -->
 
 	<!--/Preset Style Chooser-->
 	<div class="style-chooser">

@@ -39,7 +39,7 @@ public class AccountCtrl {
 	private ResumeService resService;
 
 	@Autowired(required = false)
-	CareerService careerService;
+	private CareerService careerService;
 	
 	@Autowired(required = false)
 	private CompService comps;
@@ -120,6 +120,8 @@ public class AccountCtrl {
 		resService.delResume(ses.getAttribute("id").toString());
 		fService.delAccoDocu(ses.getAttribute("id").toString());
 		service.deleteMember(ses.getAttribute("id").toString());
+		favCompService.removeFavCompanyAccount(ses.getAttribute("id").toString());
+		favCareerService.removeFavCareerAccount(ses.getAttribute("id").toString());
 		ses.invalidate();
 		return "redirect:/index.do";
 	}

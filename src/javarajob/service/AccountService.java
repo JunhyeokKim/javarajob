@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javarajob.repository.AccountDao;
+import javarajob.repository.FavCompanyDao;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
 
@@ -15,6 +16,9 @@ import javarajob.vo.Account_Sch;
 public class AccountService {
 	@Autowired(required=false)
 	private AccountDao dao;
+	
+	@Autowired(required=false)
+	private FavCompanyDao favCompany;
 	
 	public void insertMember(Account mem){
 		dao.insertMember(mem);
@@ -55,4 +59,5 @@ public class AccountService {
 	public int isNewbie(Account ac){
 		return dao.isNewbie(ac);
 	}
+	
 }

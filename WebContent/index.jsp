@@ -357,7 +357,7 @@
 							<h1 align="center">검색 결과가 없습니다. ㅠㅠ</h1>
 						</c:if>
 						<div class="ad-section text-center">
-							<a href="#"><img src="images/bg/start.png" alt="Image" width="729px"
+							<a href="#"><img src="images/bg/ddabong.png" alt="Image" width="729px"
 								class="img-responsive"></a>
 						</div>						
 					</div>
@@ -369,7 +369,7 @@
 	</div><!-- page -->
 	
 	<!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp" />
 	<!-- footer -->
 
 	<!--/Preset Style Chooser-->

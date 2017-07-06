@@ -259,13 +259,14 @@
 			</div>
 			<!-- container -->
 		</form>
-	</section>
+	
 	<!-- ad-profile-page -->
 
 	<!-- footer -->
 	<jsp:include page="footer.jsp"/>
 	<!-- /footer -->
-
+	</section>
+	
 	<!--/Preset Style Chooser-->
 	<div class="style-chooser">
 		<div class="style-chooser-inner">

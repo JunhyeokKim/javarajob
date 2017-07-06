@@ -176,15 +176,15 @@
 												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
 													<li>
-														<a href="#">
+														<a class="cursorCtrl">
 															<i class="fa fa-map-marker" aria-hidden="true"></i>
 															본사 위치 : ${company.location}
 														</a>
 													</li>
 													<li>
-														<a href="#">
+														<a class="cursorCtrl">
 															<i class="fa fa-money" aria-hidden="true"></i>
-															매출 : ${company.annualsales} 원
+															매출 : 약 ${company.annualsales} 억 원
 														</a>
 													</li>
 												</ul>
@@ -207,7 +207,7 @@
 					</c:forEach>
 					<c:if test="${companyList.size() == 0 }">
 						<div class="job-ad-item">
-							<h1>현재 북마크한 기업이 없습니다.</h1>
+							<h1 align="center">현재 북마크한 기업이 없습니다.</h1>
 						</div>
 					</c:if>
 				</div>
@@ -215,27 +215,23 @@
 			</div>
 		</div>
 		<!-- container -->
-	
-	<!-- ad-profile-page -->
 
 	<!-- footer -->
 	<jsp:include page="footer.jsp"/>
 	<!-- footer -->
 	</section>
+	<!-- ad-profile-page -->
+	
 	<!--/Preset Style Chooser-->
 	<div class="style-chooser">
 		<div class="style-chooser-inner">
 			<a href="#" class="toggler"><i class="fa fa-cog fa-spin"></i></a>
 			<h4>Presets</h4>
 			<ul class="preset-list clearfix">
-				<li class="preset1 active" data-preset="1"><a href="#"
-					data-color="preset1"></a></li>
-				<li class="preset2" data-preset="2"><a href="#"
-					data-color="preset2"></a></li>
-				<li class="preset3" data-preset="3"><a href="#"
-					data-color="preset3"></a></li>
-				<li class="preset4" data-preset="4"><a href="#"
-					data-color="preset4"></a></li>
+				<li class="preset1 active" data-preset="1"><a href="#" data-color="preset1"></a></li>
+				<li class="preset2" data-preset="2"><a href="#" data-color="preset2"></a></li>
+				<li class="preset3" data-preset="3"><a href="#" data-color="preset3"></a></li>
+				<li class="preset4" data-preset="4"><a href="#" data-color="preset4"></a></li>
 			</ul>
 		</div>
 	</div>

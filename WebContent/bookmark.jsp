@@ -292,6 +292,9 @@
 								</div><!-- item-info -->								
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
+						<c:if test="${careerList.size() == 0}" >
+							<h1 align="center">저장된 관심 직무가 없습니다.</h1>
+						</c:if>
 						<div class="ad-section text-center">
 							<a href="#"><img src="images/ads/3.jpg" alt="Image"
 								class="img-responsive"></a>
@@ -306,26 +309,13 @@
 			<!-- latest-jobs-ads -->
 		</div></div>
 		<!-- container -->
-	</section>
+	
 	<!-- ad-profile-page -->
 
 	<!-- footer -->
-	<footer id="footer" class="clearfix">
-
-		<div class="footer-bottom clearfix text-center">
-			<div class="container">
-				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상 서울시 강남구 역삼로3길 13 건암빌딩 202호
-					| 전화번호: 02-6264-7582 사업자등록 : 138-87-00058 | 직업정보제공사업 :
-					J1200020160017 | 통신판매업 : 2016-서울강남-00784 Copyright Anchoreer Co.,
-					Inc. All rights reserved.</p>
-				<p>
-					Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a
-						href="http://themeregion.com/">ThemeRegion</a>
-				</p>
-			</div>
-		</div>
-		<!-- footer-bottom -->
-	</footer><!-- footer -->
+	<jsp:include page="footer.jsp"/>
+	<!-- footer -->
+	</section>
 
 	<!--/Preset Style Chooser-->
 	<div class="style-chooser">
