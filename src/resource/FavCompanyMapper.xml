@@ -35,4 +35,7 @@
 			AND COMPANYID = #{companyid}
 		</if>
 	</select>
+	<delete id="removeFavCompanyAccount" parameterType="String" timeout="20">
+		delete FAVCOMPANY where id = #{id}
+	</delete>
 </mapper>

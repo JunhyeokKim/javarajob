@@ -25,6 +25,10 @@ public class FavCareerService {
 		dao.removeFavCareer(careerid);
 		careerDao.removeBookmark(careerid);
 	}
+	
+	public void removeFavCareerAccount(String id) {
+		dao.removeFavCareerAccount(id);
+	}
 
 	public ArrayList<FavCareer> favCareerList(String id) {
 		return dao.favCareerList(id);

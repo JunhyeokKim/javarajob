@@ -12,6 +12,7 @@ public interface FavCareerDao {
     public ArrayList<FavCareer> favCareerList(String id);
 	public void addFavCareer(FavCareer vo);
 	public void removeFavCareer(int careerid);
+	public void removeFavCareerAccount(String id);
 	public FavCareer getFavCareer(FavCareer vo);
 	
 }

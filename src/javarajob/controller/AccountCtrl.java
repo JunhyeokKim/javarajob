@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
+import javarajob.service.FavCareerService;
 import javarajob.service.FavCompanyService;
 import javarajob.service.FileService;
 import javarajob.service.ResumeService;
@@ -37,13 +38,16 @@ public class AccountCtrl {
 	private ResumeService resService;
 
 	@Autowired(required = false)
-	CareerService careerService;
+	private CareerService careerService;
 	
 	@Autowired(required = false)
 	private CompService comps;
 	
 	@Autowired(required = false)
 	private FavCompanyService favCompService;
+	
+	@Autowired(required = false)
+	private FavCareerService favCareerService;
 
 	@RequestMapping(params = "method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d) {
@@ -116,6 +120,8 @@ public class AccountCtrl {
 		resService.delResume(ses.getAttribute("id").toString());
 		fService.delAccoDocu(ses.getAttribute("id").toString());
 		service.deleteMember(ses.getAttribute("id").toString());
+		favCompService.removeFavCompanyAccount(ses.getAttribute("id").toString());
+		favCareerService.removeFavCareerAccount(ses.getAttribute("id").toString());
 		ses.invalidate();
 		return "redirect:/index.do";
 	}
