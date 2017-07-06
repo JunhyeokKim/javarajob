@@ -6,6 +6,10 @@ div {
 	-webkit-user-select: none;
 	user-select: none;
 }
+
+.cursorCtrl{
+	cursor:default;
+}
 /* 드래그 금지 */
 
 /* table 색, 모양 등등 */

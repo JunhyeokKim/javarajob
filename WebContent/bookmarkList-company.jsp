@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="css/main.css?v=2">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/table_kdb.css">
+<link rel="stylesheet" href="css/table_kdb.css?ver=1">
 
 <!-- font -->
 <link
@@ -81,7 +81,6 @@
     </div><!-- ajax -->
 
 	<section class="clearfix job-bg-mypage  ad-profile-page">
-		<div class="mypage-overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -171,13 +170,13 @@
 												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
 													<li>
-														<a href="#">
+														<a class="cursorCtrl">
 															<i class="fa fa-map-marker" aria-hidden="true"></i>
 															본사 위치 : ${company.location}
 														</a>
 													</li>
 													<li>
-														<a href="#">
+														<a class="cursorCtrl">
 															<i class="fa fa-money" aria-hidden="true"></i>
 															매출 : ${company.annualsales} 원
 														</a>
