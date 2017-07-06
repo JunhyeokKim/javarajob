@@ -37,4 +37,7 @@
 		  and careerid = #{careerid}
 		</if>
 	</select>
+	<delete id="removeFavCareerAccount" parameterType="String" timeout="20">
+		delete favcareer where id = #{id}
+	</delete>
 </mapper>

@@ -41,4 +41,8 @@ public class CompService {
 	public ArrayList<FavCompany> getFavCompanyList(String id){
 		return dao.getFavCompanyList(id);
 	}
+	
+	public ArrayList<FavCompany> getFavCompanyListOrderByPopular(String id){
+		return dao.getFavCompanyListOrderByPopular(id);
+	}
 }

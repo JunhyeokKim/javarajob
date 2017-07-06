@@ -2342,7 +2342,7 @@ section, .job-list-item {
 
 /* Job List Page */
 .job-bg {
-	background-image: url(../images/bg/job-list7.jpg);
+	background-image: url(../images/bg/job-list1.jpg);
 	background-repeat: no-repeat;
 	background-size: contain;
 		
@@ -2353,9 +2353,7 @@ section, .job-list-item {
 	background-image: url(../images/bg/handhand1.png);
 	background-repeat: no-repeat;
 	background-size: contain;
-		
 	z-index: 1;
-	
 }
 
 .bookmark {

@@ -39,7 +39,7 @@ public class AccountCtrl {
 	private ResumeService resService;
 
 	@Autowired(required = false)
-	CareerService careerService;
+	private CareerService careerService;
 	
 	@Autowired(required = false)
 	private CompService comps;
@@ -120,6 +120,8 @@ public class AccountCtrl {
 		resService.delResume(ses.getAttribute("id").toString());
 		fService.delAccoDocu(ses.getAttribute("id").toString());
 		service.deleteMember(ses.getAttribute("id").toString());
+		favCompService.removeFavCompanyAccount(ses.getAttribute("id").toString());
+		favCareerService.removeFavCareerAccount(ses.getAttribute("id").toString());
 		ses.invalidate();
 		return "redirect:/index.do";
 	}
@@ -176,6 +178,16 @@ public class AccountCtrl {
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("companyList", comps.getFavCompanyList(ses.getAttribute("id").toString()));
 		return "bookmarkList-company";
+	}
+	
+	@RequestMapping(params = "bookmarkOrderByPopular")
+	public String bookmarkOrderByPopular(HttpSession ses, Model d) {
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("companyList", comps.getFavCompanyListOrderByPopular(ses.getAttribute("id").toString()));
+		return "applied-job";
 	}
 	
 	// bookmark ªË¡¶

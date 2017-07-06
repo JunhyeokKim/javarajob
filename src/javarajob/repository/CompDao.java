@@ -16,4 +16,5 @@ public interface CompDao {
 	public void addBookmark(int companyid);
     public void removeBookmark(int companyid);
     public ArrayList<FavCompany> getFavCompanyList(String id);
+    public ArrayList<FavCompany> getFavCompanyListOrderByPopular(String id);
 }
