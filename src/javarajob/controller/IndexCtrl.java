@@ -25,39 +25,44 @@ public class IndexCtrl {
 	AccountService accountService;
 	@Autowired(required = false)
 	CompService companyService;
-	@Autowired(required=false)
+	@Autowired(required = false)
 	FavCareerService favCareerService;
 
 	@RequestMapping("/index.do")
-		
-	public String listCareerforindex(HttpSession session,@RequestParam(value="mode", defaultValue="0") int mode, Model d){	
-ArrayList<Career> topCareers=careerService.listCareerforindex();
-ArrayList<FavCareer> favCareers;
-String curId = (String) session.getAttribute("id");
-// favCareer
-if (curId != null) {
-	favCareers = favCareerService.favCareerList(curId);
-	for (Career career : topCareers) {
-		for (FavCareer favCareer : favCareers) {
-			if (favCareer.getCareerid() == career.getCareerid()) {
-				career.setBookmarked(true);
+
+	public String listCareerforindex(HttpSession session, @RequestParam(value = "mode", defaultValue = "0") int mode,
+			Model d) {
+		ArrayList<Career> topCareers = careerService.listCareerforindex();
+		ArrayList<FavCareer> favCareers;
+		String curId = (String) session.getAttribute("id");
+		// favCareer
+		if (curId != null) {
+			favCareers = favCareerService.favCareerList(curId);
+			for (Career career : topCareers) {
+				for (FavCareer favCareer : favCareers) {
+					if (favCareer.getCareerid() == career.getCareerid()) {
+						career.setBookmarked(true);
+					}
+				}
 			}
 		}
-	}
-}
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
 		d.addAttribute("careerList", topCareers);
-		if(mode==2) d.addAttribute("careerList", careerService.listCareerforindexOrderByBookmark());
+		if (mode == 2)
+			d.addAttribute("careerList", careerService.listCareerForIndexOrderByBookmark());
+		d.addAttribute("mode",mode);
 		return "index";
 	}
+
 	@RequestMapping("/indexSelect.do")
-	public String listCareerforindexSelect(@RequestParam(value="industry", defaultValue="0") int industry, Model d){		
+	public String listCareerforindexSelect(@RequestParam(value = "industry", defaultValue = "0") int industry,
+			Model d) {
 		d.addAttribute("careerCount", careerService.getCount());
 		d.addAttribute("companyCount", companyService.getCount());
 		d.addAttribute("accountCount", accountService.getCount());
-		d.addAttribute("careerList", careerService.listCareerforindexSelect(industry));		
+		d.addAttribute("careerList", careerService.listCareerForIndexSelect(industry));
 		return "index";
 	}
 }

@@ -21,9 +21,13 @@ public class FavCareerService {
 		careerDao.addBookmark(vo.getCareerid());
 	}
 
-	public void removeFavCareer(int careerid) {
-		dao.removeFavCareer(careerid);
-		careerDao.removeBookmark(careerid);
+	public void removeFavCareer(FavCareer vo ) {
+		dao.removeFavCareer(vo);
+		careerDao.removeBookmark(vo.getCareerid());
+	}
+	
+	public void removeFavCareerAccount(String id) {
+		dao.removeFavCareerAccount(id);
 	}
 
 	public ArrayList<FavCareer> favCareerList(String id) {

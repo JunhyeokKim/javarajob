@@ -17,7 +17,7 @@
 	    <link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/icofont.css"> 
 	    <link rel="stylesheet" href="css/slidr.css">     
-	    <link rel="stylesheet" href="css/main.css?ver=5">  
+	    <link rel="stylesheet" href="css/main.css?ver=3">  
 		<link id="preset" rel="stylesheet" href="css/presets/preset1.css">	
 		<link rel="stylesheet" href="css/table_kdb.css">
 	    <link rel="stylesheet" href="css/responsive.css?version=1">
@@ -34,20 +34,11 @@
 	    <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-touch-icon-57-precomposed.png">
 	    <!-- icons -->
 	
-	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9]>
-	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	    <![endif]-->
-	    <!-- Template Developed By ThemeRegion -->
 		
 		
 	</head>
 	<body>
-		<!-- header 11-->
 		<jsp:include page="navHeader.jsp"/>
-	<!-- header -->
 	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-fullsize" role="document">
@@ -60,10 +51,7 @@
                     <h4 class="modal-title">상세 정보</h4>
                 </div>
                 <div class="modal-body" id="ajax-modal-detail">
-            <!-- breadcrumb -->
-            <!-- job-details -->
         </div>
-        <!-- container -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                 </div>
@@ -109,7 +97,6 @@
 						<div class="accordion">
 							<!-- panel-group -->
 							<div class="panel-group" id="accordion">
-							 	
 								<!-- panel -->
 								<div class="panel panel-default panel-faq">
 									<!-- panel-heading -->
@@ -294,15 +281,16 @@
 										<h5>정렬 기준:</h5>						
 										<a data-toggle="dropdown" href="#"><span class="change-text">최근 등록 순</span><i class="fa fa-caret-square-o-down"></i></a>
 										<ul class="dropdown-menu category-change">
-											<li><a href="#">최근 등록 순 </a></li>
-											<li><a href="#">인기 순</a></li>
+											<li><a onclick="$('form').submit()">최근 등록 순 </a></li>
+											<li><a onclick="$('form').submit()">인기 순</a></li>
 										</ul>								
 									</div><!-- category-change -->		
-								</div>							
-							</div><!-- featured-top -->	
-							
+								</div>
+							</div><!-- featured-top -->
 							<c:forEach var="entry" varStatus="status" items="${companyMap }">
-							<div class="job-ad-item">
+							<c:choose>
+							<c:when test="${totCareerCnt !=0 }">
+								<div class="job-ad-item">
 								<div class="item-info">
 									<div class="item-image-box">
 										<div class="item-image">
@@ -323,12 +311,12 @@
                                                                     </a>
 										</span>
 										<a href="#items-${status.count}" data-toggle="collapse"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right"></span></a>
-										<h4><a class="title">${entry.value.shortinfo }</a></h4>
+										<h4>${entry.value.shortinfo }</h4>
 										<div class="ad-meta">
 										<div class="collapse in" id="items-${status.count }">
 										<c:forEach var="career" items="${entry.value.careers }">
 											<div class="position-item">
-												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
+												<span><a class="title" onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
 													<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>
 													<c:choose>
@@ -401,13 +389,13 @@
 								<div class="col-xs-offset-2">
 								</div>
 							</div>
-							</c:forEach><!-- job-ad-item -->
-							<div id="result" style="width:200px; heigh:200px">
-							</div>
+							</c:when>
+							<c:otherwise>
+							
+							</c:otherwise>
+							</c:choose>
+							</c:forEach>
 
-							<div class="ad-section text-center">
-								<div id="ad2" align="center" style="width:795px; height:127px;">		<a href="http://www.ebslang.co.kr/event/eventFullScreen.ebs?event_id=3848&utm_source=mobon_da&utm_medium=display&utm_term=&utm_campaign=tomokdal&utm_content=%ED%86%A0%EB%AA%A9%EB%8B%AC_10%EC%9D%BC_0622_%EB%B0%B0%EB%84%88&EKAMS=yahoo.852.4123.1415.1497838043512.25541947&trackingDays=30" target="_blank">			<img id="drad_img" src="http://img.mobon.net/ad/imgfile/74ec92d1c59e2b43067a7cfa9ec2c3c78.jpg" width="100%" height="127">		</a>	</div>
-							</div><!-- ad-section --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item --><!-- job-ad-item -->							
 							
 							<!-- pagination  -->
 							<div class="text-center">
@@ -428,7 +416,8 @@
 								</ul>
 							</div><!-- pagination  -->					
 						</div>
-					</div><!-- recommended-ads -->
+					</div>
+					<!-- recommended-ads -->
 
 					<div class="col-md-2 hidden-xs hidden-sm">
 						<div class="advertisement text-center">
@@ -464,23 +453,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/price-range.js"></script>   
-    <script src="js/main.js?ver=1"></script>
+    <script src="js/main.js?ver=2"></script>
 	<script src="js/switcher.js"></script>
 	<script src="js/job-list.js?ver=1"></script>
 	<script type="text/javascript">
-	
-	
-	
-	$(function () {
-	    $('.unselected[data-toggle="popover"]').popover()
-	})
-	$('.bookmark').on('shown.bs.popover', function () {
-	    	var popObj=$(this);
-	    	setTimeout(function(){
-	    		popObj.popover('hide');	
-	    		},2000)
-	    		})
-	
 	$(document).ready(function(){
         $("#quetype").text("${queType}");
         $("#search").val("${query}");
@@ -490,7 +466,7 @@
         $("input[name=querytype]").val($(this).text());
         
     })
-	});
+    });
 		var checkOptionArrays={
 			companytype:["${schElement.companytype[0]}","${schElement.companytype[1]}","${schElement.companytype[2]}","${schElement.companytype[3]}",
 	            "${schElement.companytype[4]}","${schElement.companytype[5]}","${schElement.companytype[6]}"],
@@ -535,17 +511,7 @@
 	                	]
 		};
 		
-		 $(".filter").each(function(index,item){
-			 var name=$(this).attr('name');
-			 var arrays=checkOptionArrays[name];
-			for(var i=0; i<arrays.length; i++){
-				if($(this).val()==arrays[i]){
-					$(this).prop('checked','checked');
-					$(this).parent('label').addClass('checked');
-				} 
-			}
-		})
-		
+		 
 	</script>
   </body>
 </html>

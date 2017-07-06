@@ -566,6 +566,9 @@ temporary rendered events).
 	position: relative;
 	z-index: 2;
 }
+.fc-title{
+	cursor: pointer !important;
+}
 
 /* resizer (cursor AND touch devices) */
 

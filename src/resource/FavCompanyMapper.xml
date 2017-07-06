@@ -11,11 +11,18 @@
 	</select>
 
 	<insert id="addFavCompany" parameterType="favCompany">
-		INSERT INTO FAVCOMPANY VALUES ( #{companyid}, #{id} )
+		INSERT INTO FAVCOMPANY VALUES ( #{companyid}, #{id})
 	</insert>
 
-	<delete id="removeFavCompany" parameterType="int" timeout="20">
-		DELETE FAVCOMPANY WHERE COMPANYID = #{companyid}
+	<delete id="removeFavCompany" parameterType="favCompany" timeout="20">
+		DELETE FROM FAVCOMPANY 
+		WHERE 1=1
+		<if test="companyid!=null"> 
+			AND COMPANYID = #{companyid}
+		</if>
+		<if test="id!=null and id!=''"> 
+			AND ID = #{id}
+		</if>
 	</delete>
 
 	<select id="getFavCompany" parameterType="favCompany" resultType="favCompany">
@@ -28,4 +35,7 @@
 			AND COMPANYID = #{companyid}
 		</if>
 	</select>
+	<delete id="removeFavCompanyAccount" parameterType="String" timeout="20">
+		delete FAVCOMPANY where id = #{id}
+	</delete>
 </mapper>

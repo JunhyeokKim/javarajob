@@ -1,8 +1,6 @@
 package javarajob.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -28,7 +26,7 @@ import javarajob.vo.SchElement;
 
 @Controller
 @RequestMapping("/careerlist.do")
-public class CareerCtrl {
+public class JobListCtrl {
 
     @Autowired(required = false)
     SchElementService service;
@@ -51,6 +49,7 @@ public class CareerCtrl {
     @RequestMapping(params = "method=sch")
     public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
             @RequestParam(value = "querytype", defaultValue = "통합 검색") String queryType,
+            @RequestParam(value = "orderby", defaultValue = "desc") String orderBy,
             @ModelAttribute("schElement") SchElement schElement, Model d) {
         HashMap<String, Company> companys = new HashMap<>();
         ArrayList<SchElement> queryResult = null;
@@ -69,6 +68,11 @@ public class CareerCtrl {
         } else if (queryType.equals("기업명")) {
             schElement.setCompanyname(query);
             schElement.setTitle(null);
+        }
+        if(orderBy.equals("rescent")){
+        	schElement.setOrderby(0);
+        }else if(orderBy.equals("bookmark")){
+        	schElement.setOrderby(1);
         }
         // 접속중인 id의 관심 기업 리스트를 받아옴
         if (curId != null && !curId.equals("")) {
@@ -146,7 +150,7 @@ public class CareerCtrl {
         }
 
         d.addAttribute("company", company);
-        return "ajaxJobSearch";
+        return "job-detail-ajax";
     }
 
     // ajax 비동기 통신을 통한 bookmark 요청 처리( 채용 공고에 대한 북마크 추가 처리)
@@ -172,7 +176,7 @@ public class CareerCtrl {
         String curId = (String) session.getAttribute("id");
         vo.setCareerid(careerid);
         vo.setId(curId);
-        favCareerService.removeFavCareer(careerid);
+        favCareerService.removeFavCareer(vo);
         return "redirect:careerlist.do?method=sch";
     }
 
@@ -195,6 +199,7 @@ public class CareerCtrl {
         String curId = (String) session.getAttribute("id");
         vo.setCompanyid(companyid);
         vo.setId(curId);
+        favCompService.removeFavCompany(vo);
         return "redirect:careerlist.do?method=sch";
     }
 

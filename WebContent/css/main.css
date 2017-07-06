@@ -268,6 +268,7 @@ textarea {
 
 .sign-in {
 	display: inline;
+	cursor: pointer;
 }
 
 .sign-in li {
@@ -991,6 +992,7 @@ a.verified i {
 	color: #000000;
 	font-weight: 400;
 	margin-bottom: 6px;
+	cursor: pointer;
 }
 
 #accordion .panel-body label input[type="checkbox"] {
@@ -2183,7 +2185,7 @@ section, .job-list-item {
 }
 
 .job-ad-item .ad-info {
-	padding-left: 25px;
+	padding-left: 20px;
 	padding-top:10px;
 }
 
@@ -2340,7 +2342,7 @@ section, .job-list-item {
 
 /* Job List Page */
 .job-bg {
-	background-image: url(../images/bg/job-list7.jpg);
+	background-image: url(../images/bg/job-list1.jpg);
 	background-repeat: no-repeat;
 	background-size: contain;
 		
@@ -2352,17 +2354,10 @@ section, .job-list-item {
 	background-repeat: no-repeat;
 	background-size: contain;
 	z-index: 1;
-	
 }
 
-.mypage-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 6144px;
-	height: 2097px;
-	z-index: -1;
-	background-color: rgba(65, 65, 65, 0.3);
+.bookmark {
+	cursor: pointer;
 }
 
 .job-bg-self {
@@ -2390,7 +2385,7 @@ section, .job-list-item {
 
 .job-details .ad-info {
 	margin-bottom: 25px;
-	width: 100%;
+	width: 85%;
 }
 
 .job-details .ad-info span, .job-details .ad-info span a {
@@ -2563,7 +2558,6 @@ section, .job-list-item {
 }
 
 .ad-meta .position-item span a {
-	font-style: oblique;
 	font-size: 15px;
 	color: #000;
 }

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html>
@@ -99,6 +100,17 @@
 
 </head>
 <body>
+<c:set var="url" value="${pageContext.request.requestURL}"/>
+<c:set var="targetURL1" value="index.jsp"/>
+<c:set var="targetURL2" value="job-list.jsp"/>
+<c:set var="targetURL3" value="job-calendar.jsp"/>
+<c:set var="targetURL4" value="resume.jsp"/>
+<c:set var="targetURL5" value="self_introduction.jsp"/>
+<c:set var="targetURL6" value="profile-details.jsp"/>
+<c:set var="targetURL7" value="delete-account.jsp"/>
+<c:set var="targetURL8" value="bookmarkList-career.jsp"/>
+<c:set var="targetURL9" value="bookmarkList-company.jsp"/>
+<c:set var="targetURL10" value="qanda.jsp"/>
 	<header id="header" class="clearfix">
 		<!-- navbar -->
 		<nav class="navbar navbar-default">
@@ -119,31 +131,34 @@
 				<div class="navbar-left">
 					<div class="collapse navbar-collapse" id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="${path}/index.do">Home</a></li>
-							<li class="dropdown"><a href="javascript:void(0);"
+							<li class="<c:if test='${fn:contains(url,targetURL1) }'>active </c:if>"><a href="${path}/index.do">Home</a></li>
+							<li class="dropdown <c:if test='${fn:contains(url,targetURL2) or fn:contains(url,targetURL3)}'>active </c:if>"><a href="javascript:void(0);"
 								class="dropdown-toggle" data-toggle="dropdown">채용정보<span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="${path }/careerlist.do?method=sch">List
+									<li class="<c:if test='${fn:contains(url,targetURL2) }'>active </c:if>"><a href="${path }/careerlist.do?method=sch">List
 											Type</a></li>
-									<li><a href="${path }/calendar.do?method=init">Calendar
+									<li class="<c:if test='${fn:contains(url,targetURL3) }'>active </c:if>"><a href="${path }/calendar.do?method=init">Calendar
 											Type</a></li>
 								</ul></li>
 							<c:if test="${not empty id}">
-								<li><a href="${path}/resume.do?userId=${id}">이력서</a></li>
-								<li><a
+								<li class="<c:if test='${fn:contains(url,targetURL4) }'>active </c:if>"><a href="${path}/resume.do?userId=${id}">이력서</a></li>
+								<li class="<c:if test='${fn:contains(url,targetURL5) }'>active </c:if>"><a
 									href="${path}/self_intro.do?method=view&userId=${id}">자소서관리</a></li>
-								<li class="dropdown"><a href="javascript:void(0);"
+								<li class="dropdown 
+								<c:if test='${fn:contains(url,targetURL6) or fn:contains(url,targetURL7) or fn:contains(url,targetURL8) or fn:contains(url,targetURL9) or fn:contains(url,targetURL10)}'>active </c:if>">
+								<a href="javascript:void(0);"
 									class="dropdown-toggle" data-toggle="dropdown">My Page<span
 										class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="${path}/account.do?method=uptProcGuest1">회원정보
+										<li class="<c:if test='${fn:contains(url,targetURL6) }'>active </c:if>"><a href="${path}/account.do?method=uptProcGuest1">회원정보
 												수정</a></li>
-										<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-										<li><a href="${path}/account.do?bookmark">관심 직무</a></li>
-										<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
-										<li><a href="${path}/account.do?qanda">Q&A</a></li>
-									</ul></li>
+										<li class="<c:if test='${fn:contains(url,targetURL7) }'>active </c:if>"><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
+										<li class="<c:if test='${fn:contains(url,targetURL8) }'>active </c:if>"><a href="${path}/account.do?bookmark-career">관심 직무</a></li>
+										<li class="<c:if test='${fn:contains(url,targetURL9) }'>active </c:if>"><a href="${path}/account.do?bookmark-company">관심 기업</a></li>
+										<li class="<c:if test='${fn:contains(url,targetURL10) }'>active </c:if>"><a href="${path}/account.do?qanda">Q&A</a></li>
+									</ul>
+									</li>
 							</c:if>
 						</ul>
 					</div>

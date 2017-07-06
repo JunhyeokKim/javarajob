@@ -12,8 +12,6 @@ public class Account {
 	String interest;
 	Date regdate;
 	
-	
-	
 	public String getName() {
 		return name;
 	}

@@ -4,6 +4,7 @@
 <%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%
 	Date time = new Date();
@@ -113,14 +114,9 @@
 						</div>
 					</div>								
 				</div><!-- user-profile -->
-						
-				<ul class="user-menu">					
-					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
-					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li class="active"><a href="${path}/account.do?bookmark">관심 직무</a></li>
-					<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
-					<li><a href="${path}/account.do?qanda">Q&A</a></li>
-				</ul>
+				<div class="sublink">
+					<jsp:include page="sublink.jsp"/>
+				</div>
 			</div><!-- ad-profile -->
 
 			<div class="section trending-ads latest-jobs-ads">
@@ -156,7 +152,8 @@
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
+										<span><a class="title call-ajax00">${career.title }
+										<input type="hidden" value="${career.companyid}" name="companyid" /></a>
 											@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
@@ -225,28 +222,6 @@
 													</a>
 												</li>
 												<li>
-													<a href="#"><i class="fa fa-pencil"	aria-hidden="true"></i>													
-													<c:choose>
-														<c:when test="${career.field==1}">서버 개발자</c:when>
-														<c:when test="${career.field==2}">웹 개발자</c:when>
-														<c:when test="${career.field==3}">프론트엔드 개발자</c:when>
-														<c:when test="${career.field==4}">데이터 엔지니어</c:when>
-														<c:when test="${career.field==5}">안드로이드 개발자</c:when>
-														<c:when test="${career.field==6}">자바 개발자</c:when>
-														<c:when test="${career.field==7}">IOS 개발자</c:when>
-														<c:when test="${career.field==8}">파이썬 개발자</c:when>
-														<c:when test="${career.field==9}">C, C++ 개발자</c:when>
-														<c:when test="${career.field==10}">Node.js 개발자</c:when>
-														<c:when test="${career.field==11}">시스템, 네트워크 관리자</c:when>
-														<c:when test="${career.field==12}">웹퍼블리셔</c:when>
-														<c:when test="${career.field==13}">그래픽 엔지니어</c:when>
-														<c:when test="${career.field==14}">보안 엔지니어</c:when>
-														<c:when test="${career.field==15}">프로덕트 매니저</c:when>
-														<c:when test="${career.field==16}">QA, 테스트 엔지니어</c:when>																												
-													</c:choose>
-													</a>
-												</li>
-												<li>
 													<a href="#"><i class="fa fa-money" aria-hidden="true"></i>
 													<c:choose>
 														<c:when test="${career.salary==0}">회사내규에 따름</c:when>
@@ -282,17 +257,16 @@
 											</ul>
 										</div>
 									</div><!-- 회사내용 -->									
-									<div class="close-icon"><!-- 오른쪽 상단 공간 -->										
-										<div class="button">											
-										</div>
-									</div><!-- 오른쪽 상단 공간 -->									
+									<div class="close-icon">
+									<a class="delete-bookmark">
+										<i class="fa fa-window-close" aria-hidden="true"></i>
+										<input type="hidden" id="careerid" value="${career.companyid}" />
+										<input type="hidden" id="title" value="${career.title}" />
+									</a>
+								</div>
 								</div><!-- item-info -->								
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
-						<div class="ad-section text-center">
-							<a href="#"><img src="images/ads/3.jpg" alt="Image"
-								class="img-responsive"></a>
-						</div>						
 					</div>
 				</div>
 				<!-- career list 전체 -->
@@ -371,6 +345,14 @@
 	 		}
 	 	})
 	 })
+	 
+	 $(".delete-bookmark").click(function(){
+			var title = $(this).find('input[id=title]').val();
+			var careerid= $(this).find('input[id=careerid]').val();
+			if(confirm(title+"를(을) 기업을 관심 공고에서 지우시겠습니까?")) {
+				$(location).attr("href","${path}/account.do?deleteFavCareer&careerid="+careerid);
+			}
+		})
     </script>
 </body>
 </html>

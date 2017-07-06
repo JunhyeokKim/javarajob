@@ -9,7 +9,7 @@ import javarajob.vo.Board;
 import javarajob.vo.Board_Sch;
 
 @Repository
-public interface A01_BoardDao {
+public interface BoardDao {
 	public void insertBoard(Board ins);
 	public ArrayList<Board> listBoard(Board_Sch sch);
 	public Board getBoard(int no);

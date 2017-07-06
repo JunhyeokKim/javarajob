@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javarajob.service.AccountService;
 import javarajob.service.CareerService;
+import javarajob.service.CompService;
+import javarajob.service.FavCareerService;
 import javarajob.service.FavCompanyService;
 import javarajob.service.FileService;
 import javarajob.service.ResumeService;
 import javarajob.vo.Account;
 import javarajob.vo.Account_Sch;
+import javarajob.vo.FavCareer;
+import javarajob.vo.FavCompany;
 
 @Controller
 @RequestMapping("/account.do")
@@ -35,10 +39,15 @@ public class AccountCtrl {
 	private ResumeService resService;
 
 	@Autowired(required = false)
-	CareerService careerService;
+	private CareerService careerService;
 	
 	@Autowired(required = false)
-	private FavCompanyService favs;
+	private CompService comps;
+	
+	@Autowired(required = false)
+	private FavCompanyService favCompService;
+	@Autowired(required = false)
+	private FavCareerService favCareerService;
 
 	@RequestMapping(params = "method=list")
 	public String start(@ModelAttribute("memsch") Account_Sch sch, Model d) {
@@ -90,6 +99,7 @@ public class AccountCtrl {
 
 	@RequestMapping(params = "method=uptProcGuest2")
 	public String uptProcGuest2(Account mem, HttpSession ses, Model d) {
+		mem.setId((String)ses.getAttribute("id"));
 		service.updateMember(mem);
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
@@ -110,6 +120,8 @@ public class AccountCtrl {
 		resService.delResume(ses.getAttribute("id").toString());
 		fService.delAccoDocu(ses.getAttribute("id").toString());
 		service.deleteMember(ses.getAttribute("id").toString());
+		favCompService.removeFavCompanyAccount(ses.getAttribute("id").toString());
+		favCareerService.removeFavCareerAccount(ses.getAttribute("id").toString());
 		ses.invalidate();
 		return "redirect:/index.do";
 	}
@@ -137,14 +149,14 @@ public class AccountCtrl {
 		
 	}
 	
-	@RequestMapping(params="bookmark")
+	@RequestMapping(params="bookmark-career")
 	public String bookmark(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("careerList", careerService.listCareerforBookmark(ses.getAttribute("id").toString()));
-		return "bookmark";
+		d.addAttribute("careerList", careerService.listCareerForBookmark(ses.getAttribute("id").toString()));
+		return "bookmarkList-career";
 	}
 	
 	@RequestMapping(params="bookmarkOrderByBookmark")
@@ -153,19 +165,50 @@ public class AccountCtrl {
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("careerList", careerService.listCareerforBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
+		d.addAttribute("careerList", careerService.listCareerForBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
 		
-		return "bookmark";
+		return "bookmarkList-career";
 	}
 
-	@RequestMapping(params = "appliedjob")
+	@RequestMapping(params = "bookmark-company")
 	public String appliedjob(HttpSession ses, Model d) {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("companyList", favs.favCompanyList(ses.getAttribute("id").toString()));
+		d.addAttribute("companyList", comps.getFavCompanyList(ses.getAttribute("id").toString()));
+		return "bookmarkList-company";
+	}
+	
+	@RequestMapping(params = "bookmarkOrderByPopular")
+	public String bookmarkOrderByPopular(HttpSession ses, Model d) {
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("companyList", comps.getFavCompanyListOrderByPopular(ses.getAttribute("id").toString()));
 		return "applied-job";
+	}
+	
+	// bookmark 삭제
+	@RequestMapping(params = "deleteFavComp")
+    public String removeCompBookmark(@RequestParam(value = "companyid") int companyid, HttpSession session) {
+        FavCompany vo = new FavCompany();
+        String curId = (String) session.getAttribute("id");
+        vo.setCompanyid(companyid);
+        vo.setId(curId);
+        favCompService.removeFavCompany(vo);
+        return "redirect:account.do?bookmark-company";
+    }
+	// bookmark 삭제
+	@RequestMapping(params = "deleteFavCareer")
+	public String removeFavCareer(@RequestParam(value = "careerid") int careerid, HttpSession session) {
+		FavCareer vo = new FavCareer();
+		String curId = (String) session.getAttribute("id");
+		vo.setCareerid(careerid);
+		vo.setId(curId);
+		favCareerService.removeFavCareer(vo);
+		return "redirect:account.do?bookmark-career";
 	}
 
 	@RequestMapping(params = "qanda")

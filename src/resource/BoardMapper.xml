@@ -17,7 +17,7 @@
 		type : 리스트단위, mybatis.Spring.xml에서 정의한 DTO Alias 이용
 		id : 정의된 리스트객체의 alias
 -->
-<mapper namespace="javarajob.repository.A01_BoardDao">
+<mapper namespace="javarajob.repository.BoardDao">
 	<resultMap type="board" id="boardResult"/>
 	<insert id="insertBoard" parameterType="board">	<!-- 계층형을 위해서는 refno로 계층관계를 연결해주어야 -->
 		insert into board values(board_seq.nextval,#{refno},#{subject},#{content},#{pass},#{writer},0,sysdate,#{email},#{companyid})

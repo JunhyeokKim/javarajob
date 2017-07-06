@@ -88,14 +88,9 @@
 						</div>
 					</div>								
 				</div><!-- user-profile -->
-						
-				<ul class="user-menu">					
-					<li class="active"><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
-					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="${path}/account.do?bookmark">관심 직무</a></li>
-					<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
-					<li><a href="${path}/account.do?qanda">Q&A</a></li>
-				</ul>
+				<div class="sublink">
+					<jsp:include page="sublink.jsp"/>
+				</div>
 			</div><!-- ad-profile -->	
 
 			<div class="profile job-profile">
@@ -107,12 +102,12 @@
 						<form method="post" action="${path}/account.do?method=uptProcGuest2">
 							<div class="form-group">
 								<label>이름</label>
-								<input type="text" class="form-control" value="${mem.name}" name="password"/>
+								<input type="text" class="form-control" value="${mem.name}" name="name"/>
 							</div>
 							
 							<div class="form-group">
 								<label>ID</label>
-								<input type="text" class="form-control" value="${mem.id}" name="password" disabled="disabled"/>
+								<input type="text" class="form-control" value="${mem.id}" disabled="disabled"/>
 							</div>
 
 							<div class="form-group">
@@ -142,7 +137,7 @@
 							
 							<div class="form-group">
 								<label>가입일자</label>
-								<input type="text" class="form-control" value="${mem.regdate}" name="interest" disabled="disabled"/>
+								<input type="text" class="form-control" value="${mem.regdate}" disabled="disabled"/>
 							</div>	
 							<div align="center">
 								<input type="submit" class="btn btn-hover-preset" value="저장"/>
@@ -163,26 +158,12 @@
 			</div>				
 		</div><!-- container -->
 	</div>
-	</section><!-- ad-profile-page -->
-	
 	
 	<!-- footer -->
-	<footer id="footer" class="clearfix">
-
-		<div class="footer-bottom clearfix text-center">
-			<div class="container">
-				<p>(주)앵커리어(대표: 박수상) | 개인정보보호관리자: 박수상 서울시 강남구 역삼로3길 13 건암빌딩 202호
-					| 전화번호: 02-6264-7582 사업자등록 : 138-87-00058 | 직업정보제공사업 :
-					J1200020160017 | 통신판매업 : 2016-서울강남-00784 Copyright Anchoreer Co.,
-					Inc. All rights reserved.</p>
-				<p>
-					Copyright &copy; <a href="#">Jobs</a> 2017. Developed by <a
-						href="http://themeregion.com/">ThemeRegion</a>
-				</p>
-			</div>
-		</div>
-		<!-- footer-bottom -->
-	</footer><!-- footer -->
+	<jsp:include page="footer.jsp" />
+	<!-- footer -->
+	
+	</section><!-- ad-profile-page -->
 	
 	<!--/Preset Style Chooser--> 
 	<div class="style-chooser">

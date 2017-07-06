@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/icofont.css">
 <link rel="stylesheet" href="css/slidr.css">
-<link rel="stylesheet" href="css/main.css?v=3">
+<link rel="stylesheet" href="css/main.css?v=4">
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
@@ -164,14 +164,14 @@
 						<!-- panel-body -->
 						<div class="panel-body">
 							<label for="industry-0"><input type="checkbox"  id="industry-0" value="0"> 전체</label>
-							<label for="industry-1"><input type="checkbox" class="filter" name="industry" id="industry-1" value="1">서비스업</label>
-							<label for="industry-2"><input type="checkbox" class="filter" name="industry" id="industry-2" value="2">생산/제조</label>
-							<label for="industry-3"><input type="checkbox" class="filter" name="industry" id="industry-3" value="3">IT/인터넷</label>
-							<label for="industry-4"><input type="checkbox" class="filter" name="industry" id="industry-4" value="4">연구개발/설계</label>
-							<label for="industry-5"><input type="checkbox" class="filter" name="industry" id="industry-5" value="5">전문/특수직</label>
-							<label for="industry-6"><input type="checkbox" class="filter" name="industry" id="industry-6" value="6">미디어</label>
-							<label for="industry-7"><input type="checkbox" class="filter" name="industry" id="industry-7" value="7">서비스</label>
-							<label for="industry-8"><input type="checkbox" class="filter" name="industry" id="industry-8" value="8">건설</label>
+							<label for="industry-1"><input type="checkbox"  name="industry" id="industry-1" value="1">서비스업</label>
+							<label for="industry-2"><input type="checkbox" name="industry" id="industry-2" value="2">생산/제조</label>
+							<label for="industry-3"><input type="checkbox" name="industry" id="industry-3" value="3">IT/인터넷</label>
+							<label for="industry-4"><input type="checkbox" name="industry" id="industry-4" value="4">연구개발/설계</label>
+							<label for="industry-5"><input type="checkbox" name="industry" id="industry-5" value="5">전문/특수직</label>
+							<label for="industry-6"><input type="checkbox" name="industry" id="industry-6" value="6">미디어</label>
+							<label for="industry-7"><input type="checkbox" name="industry" id="industry-7" value="7">서비스</label>
+							<label for="industry-8"><input type="checkbox" name="industry" id="industry-8" value="8">건설</label>
 						</div><!-- panel-body -->
 					</div>
 					</div><!-- panel -->
@@ -182,7 +182,12 @@
 				<div><!-- career list 전체 -->
 					<div class="section job-list-item">
 						<div class="featured-top">
-							<h4></h4>
+						<c:if test="${mode ne 2 }">
+								<h2><strong>최신 채용 공고 &nbsp;</strong> <small>방금 등록된 채용 공고입니다</small></h2>
+						</c:if>
+						<c:if test="${mode eq 2 }">
+							<h2><strong>인기 채용 공고 &nbsp;</strong> <small>많은 사람들이 지원한 인기 채용 공고입니다</small></h2>
+						</c:if>
 							<div class="dropdown pull-right">
 								<div class="dropdown category-dropdown">									
 									<a data-toggle="dropdown" href="#"><span
@@ -196,7 +201,6 @@
 								<!-- category-change -->
 							</div>
 						</div><!-- featured-top -->
-												
 						<c:forEach var="career" varStatus="status" items="${careerList}"><!-- 회사 리스트 -->						
 							<div class="job-ad-item">
 								<!-- 한 줄 단위 전체 -->
@@ -353,7 +357,7 @@
 							<h1 align="center">검색 결과가 없습니다. ㅠㅠ</h1>
 						</c:if>
 						<div class="ad-section text-center">
-							<a href="#"><img src="images/bg/start.png" alt="Image" width="729px"
+							<a href="#"><img src="images/bg/ddabong.png" alt="Image" width="729px"
 								class="img-responsive"></a>
 						</div>						
 					</div>
@@ -365,7 +369,7 @@
 	</div><!-- page -->
 	
 	<!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp" />
 	<!-- footer -->
 
 	<!--/Preset Style Chooser-->
@@ -395,10 +399,14 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
+	$("#modal-detail").on("hidden.bs.modal",function(e){
+		$("#ajax-modal-detail").html("");
+		location.reload();
+	})
 	var popOverSettings = {
 		    placement: 'right',
 		    container: 'body',
-		    selector: '[data-toggle="popover"]',
+		    selector: '.unselected[data-toggle="popover"]',
 		    content: function () {
 		        return "북마크가 추가되었습니다.";
 		    }
@@ -505,7 +513,7 @@
 	})
 			
 
-	 $(".call-ajax00").click(function(){		 
+	$(".call-ajax00").click(function(){		 
 	 		var params="companyid="+$(this).find('input[type=hidden]').val();
 	 		$.ajax({
 	 		type:"POST",

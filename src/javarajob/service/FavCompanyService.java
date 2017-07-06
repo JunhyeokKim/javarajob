@@ -11,24 +11,30 @@ import javarajob.vo.FavCompany;
 
 @Service
 public class FavCompanyService {
-    @Autowired(required = false)
-    FavCompanyDao dao;
-    @Autowired(required=false)
-    CompDao compDao;
-    
-    public ArrayList<FavCompany> favCompanyList(String id){
-        return dao.favCompanyList(id);
-    }
-    public void addFavCompany(FavCompany vo){
-        dao.addFavCompany(vo);
-        compDao.addBookmark(vo.getCompanyid());
-    }
-    public void removeFavCompany(int companyid){
-        dao.removeFavCompany(companyid);
-        compDao.removeBookmark(companyid);
-    }
-    public FavCompany getFavCompany(FavCompany vo){
-    	return dao.getFavCompany(vo);
-    }
-}
+	@Autowired(required = false)
+	FavCompanyDao dao;
+	@Autowired(required = false)
+	CompDao compDao;
 
+	public ArrayList<FavCompany> favCompanyList(String id) {
+		return dao.favCompanyList(id);
+	}
+
+	public void addFavCompany(FavCompany vo) {
+		dao.addFavCompany(vo);
+		compDao.addBookmark(vo.getCompanyid());
+	}
+
+	public void removeFavCompany(FavCompany vo) {
+		dao.removeFavCompany(vo);
+		compDao.removeBookmark(vo.getCompanyid());
+	}
+	
+	public void removeFavCompanyAccount(String id) {
+		dao.removeFavCompanyAccount(id);
+	}
+
+	public FavCompany getFavCompany(FavCompany vo) {
+		return dao.getFavCompany(vo);
+	}
+}

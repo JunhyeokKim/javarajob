@@ -7,9 +7,9 @@ import javarajob.vo.Resume;
 @Repository
 public interface ResumeDao {
 
-	public void uptResume(Resume r);
+    public void uptResume(Resume r);
 
-	public Resume oneResume(String userId);
+    public Resume oneResume(String userId);
 
-	public void delResume(String userId);
+    public void delResume(String userId);
 }
