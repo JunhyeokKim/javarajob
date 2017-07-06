@@ -164,14 +164,14 @@
 						<!-- panel-body -->
 						<div class="panel-body">
 							<label for="industry-0"><input type="checkbox"  id="industry-0" value="0"> 전체</label>
-							<label for="industry-1"><input type="checkbox" class="filter" name="industry" id="industry-1" value="1">서비스업</label>
-							<label for="industry-2"><input type="checkbox" class="filter" name="industry" id="industry-2" value="2">생산/제조</label>
-							<label for="industry-3"><input type="checkbox" class="filter" name="industry" id="industry-3" value="3">IT/인터넷</label>
-							<label for="industry-4"><input type="checkbox" class="filter" name="industry" id="industry-4" value="4">연구개발/설계</label>
-							<label for="industry-5"><input type="checkbox" class="filter" name="industry" id="industry-5" value="5">전문/특수직</label>
-							<label for="industry-6"><input type="checkbox" class="filter" name="industry" id="industry-6" value="6">미디어</label>
-							<label for="industry-7"><input type="checkbox" class="filter" name="industry" id="industry-7" value="7">서비스</label>
-							<label for="industry-8"><input type="checkbox" class="filter" name="industry" id="industry-8" value="8">건설</label>
+							<label for="industry-1"><input type="checkbox"  name="industry" id="industry-1" value="1">서비스업</label>
+							<label for="industry-2"><input type="checkbox" name="industry" id="industry-2" value="2">생산/제조</label>
+							<label for="industry-3"><input type="checkbox" name="industry" id="industry-3" value="3">IT/인터넷</label>
+							<label for="industry-4"><input type="checkbox" name="industry" id="industry-4" value="4">연구개발/설계</label>
+							<label for="industry-5"><input type="checkbox" name="industry" id="industry-5" value="5">전문/특수직</label>
+							<label for="industry-6"><input type="checkbox" name="industry" id="industry-6" value="6">미디어</label>
+							<label for="industry-7"><input type="checkbox" name="industry" id="industry-7" value="7">서비스</label>
+							<label for="industry-8"><input type="checkbox" name="industry" id="industry-8" value="8">건설</label>
 						</div><!-- panel-body -->
 					</div>
 					</div><!-- panel -->
@@ -186,7 +186,7 @@
 								<h2><strong>최신 채용 공고 &nbsp;</strong> <small>방금 등록된 채용 공고입니다</small></h2>
 						</c:if>
 						<c:if test="${mode eq 2 }">
-							<h2><strong>인기 채용 공고 &nbsp;</strong> <small>많은 사람들이 인기 채용 공고입니다</small></h2>
+							<h2><strong>인기 채용 공고 &nbsp;</strong> <small>많은 사람들이 지원한 인기 채용 공고입니다</small></h2>
 						</c:if>
 							<div class="dropdown pull-right">
 								<div class="dropdown category-dropdown">									

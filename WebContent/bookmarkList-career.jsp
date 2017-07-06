@@ -4,6 +4,7 @@
 <%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%
 	Date time = new Date();
@@ -113,14 +114,9 @@
 						</div>
 					</div>								
 				</div><!-- user-profile -->
-						
-				<ul class="user-menu">					
-					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
-					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li class="active"><a href="${path}/account.do?bookmark">관심 직무</a></li>
-					<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
-					<li><a href="${path}/account.do?qanda">Q&A</a></li>
-				</ul>
+				<div class="sublink">
+					<jsp:include page="sublink.jsp"/>
+				</div>
 			</div><!-- ad-profile -->
 
 			<div class="section trending-ads latest-jobs-ads">
@@ -156,7 +152,8 @@
 										</div><!-- item-image -->		
 									</div><!-- 이미지 -->
 									<div class="ad-info"><!-- 회사내용 -->
-										<span><a class="title call-ajax00">${career.title}<input type="hidden" value="${career.companyid}" name="companyid" /></a>
+										<span><a class="title call-ajax00">${career.title }
+										<input type="hidden" value="${career.companyid}" name="companyid" /></a>
 											@ <a>${career.companyname}</a></span>
 										<div class="ad-meta">
 											<ul>
@@ -221,28 +218,6 @@
 														<c:when test="${career.employmenttype==4}">인턴직</c:when>
 														<c:when test="${career.employmenttype==5}">시간제/일용직</c:when>
 														<c:when test="${career.employmenttype==9}">프리랜서</c:when>																												
-													</c:choose>
-													</a>
-												</li>
-												<li>
-													<a href="#"><i class="fa fa-pencil"	aria-hidden="true"></i>													
-													<c:choose>
-														<c:when test="${career.field==1}">서버 개발자</c:when>
-														<c:when test="${career.field==2}">웹 개발자</c:when>
-														<c:when test="${career.field==3}">프론트엔드 개발자</c:when>
-														<c:when test="${career.field==4}">데이터 엔지니어</c:when>
-														<c:when test="${career.field==5}">안드로이드 개발자</c:when>
-														<c:when test="${career.field==6}">자바 개발자</c:when>
-														<c:when test="${career.field==7}">IOS 개발자</c:when>
-														<c:when test="${career.field==8}">파이썬 개발자</c:when>
-														<c:when test="${career.field==9}">C, C++ 개발자</c:when>
-														<c:when test="${career.field==10}">Node.js 개발자</c:when>
-														<c:when test="${career.field==11}">시스템, 네트워크 관리자</c:when>
-														<c:when test="${career.field==12}">웹퍼블리셔</c:when>
-														<c:when test="${career.field==13}">그래픽 엔지니어</c:when>
-														<c:when test="${career.field==14}">보안 엔지니어</c:when>
-														<c:when test="${career.field==15}">프로덕트 매니저</c:when>
-														<c:when test="${career.field==16}">QA, 테스트 엔지니어</c:when>																												
 													</c:choose>
 													</a>
 												</li>

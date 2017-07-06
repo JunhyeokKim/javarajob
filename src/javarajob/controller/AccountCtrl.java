@@ -147,14 +147,14 @@ public class AccountCtrl {
 		
 	}
 	
-	@RequestMapping(params="bookmark")
+	@RequestMapping(params="bookmark-career")
 	public String bookmark(HttpSession ses, Model d){		
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("careerList", careerService.listCareerForBookmark(ses.getAttribute("id").toString()));
-		return "bookmark";
+		return "bookmarkList-career";
 	}
 	
 	@RequestMapping(params="bookmarkOrderByBookmark")
@@ -165,17 +165,17 @@ public class AccountCtrl {
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("careerList", careerService.listCareerForBookmarkOrderByBookmark(ses.getAttribute("id").toString()));
 		
-		return "bookmark";
+		return "bookmarkList-career";
 	}
 
-	@RequestMapping(params = "appliedjob")
+	@RequestMapping(params = "bookmark-company")
 	public String appliedjob(HttpSession ses, Model d) {
 		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
 		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
 		d.addAttribute("companyList", comps.getFavCompanyList(ses.getAttribute("id").toString()));
-		return "applied-job";
+		return "bookmarkList-company";
 	}
 	
 	// bookmark 삭제
@@ -186,7 +186,7 @@ public class AccountCtrl {
         vo.setCompanyid(companyid);
         vo.setId(curId);
         favCompService.removeFavCompany(vo);
-        return "redirect:account.do?appliedjob";
+        return "redirect:account.do?bookmarkList-company";
     }
 	// bookmark 삭제
 	@RequestMapping(params = "deleteFavCareer")
@@ -196,7 +196,7 @@ public class AccountCtrl {
 		vo.setCareerid(careerid);
 		vo.setId(curId);
 		favCareerService.removeFavCareer(vo);
-		return "redirect:account.do?bookmark";
+		return "redirect:account.do?bookmarkList-career";
 	}
 
 	@RequestMapping(params = "qanda")
