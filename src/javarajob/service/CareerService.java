@@ -35,18 +35,18 @@ public class CareerService {
 	}
 	
 	public ArrayList<Career> listCareerforindex() {
-		return dao.listCareerforindex();
+		return dao.listCareerForIndex();
 	}
 	
 	public int getCount(){
 		return dao.getCount();
 	}
 	
-	public ArrayList<Career> listCareerforBookmark(String id){
+	public ArrayList<Career> listCareerForBookmark(String id){
 		return dao.listCareerforBookmark(id);
 	}
 	
-	public ArrayList<Career> listCareerforBookmarkOrderByBookmark(String id){
+	public ArrayList<Career> listCareerForBookmarkOrderByBookmark(String id){
 		return dao.listCareerforBookmarkOrderByBookmark(id);
 	}
 	
@@ -58,11 +58,11 @@ public class CareerService {
 		return dao.getFavCountCompany(id);
 	}
 	
-	public ArrayList<Career> listCareerforindexSelect(int industry) {
-		return dao.listCareerforindexSelect(industry);
+	public ArrayList<Career> listCareerForIndexSelect(int industry) {
+		return dao.listCareerForIndexSelect(industry);
 	}
 
-	public ArrayList<Career> listCareerforindexOrderByBookmark(){
-		return dao.listCareerforindexOrderByBookmark();
+	public ArrayList<Career> listCareerForIndexOrderByBookmark(){
+		return dao.listCareerForIndexOrderByBookmark();
 	}
 }

@@ -3,6 +3,7 @@
 <%@ page import="java.util.Date, java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%
 	Date time = new Date();
@@ -80,6 +81,7 @@
     </div><!-- ajax -->
 
 	<section class="clearfix job-bg-mypage  ad-profile-page">
+		<div class="mypage-overlay"></div>
 		<div class="container">
 			<div class="breadcrumb-section">
 				<ol class="breadcrumb">
@@ -114,16 +116,9 @@
 					</div>
 				</div>
 				<!-- user-profile -->
-
-				<ul class="user-menu">
-					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보
-							수정</a></li>
-					<li><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="${path}/account.do?bookmark">관심 직무</a></li>
-					<li class="active"><a href="${path}/account.do?appliedjob">관심
-							기업</a></li>
-					<li><a href="${path}/account.do?qanda">Q&A</a></li>
-				</ul>
+				<div class="sublink">
+					<jsp:include page="sublink.jsp"/>
+				</div>
 			</div>
 			<!-- ad-profile -->
 
@@ -137,8 +132,8 @@
 								<a data-toggle="dropdown" href="#"><span class="change-text">최근
 										등록 순</span><i class="fa fa-caret-square-o-down"></i></a>
 								<ul class="dropdown-menu category-change">
-									<li><a href="#" id="orderByPostdate">최근 등록 순 </a></li>
-									<li><a href="#" id="orderByPopular">인기 순</a></li>
+									<li><a href="#">최근 등록 순 </a></li>
+									<li><a href="#">인기 순</a></li>
 								</ul>
 							</div>
 							<!-- category-change -->
@@ -176,15 +171,15 @@
 												<span><a onclick='$("#call-ajax-${entry.value.companyid}").trigger("click")'>${career.title }</a></span>
 												<ul>
 													<li>
-														<a class="cursorCtrl">
+														<a href="#">
 															<i class="fa fa-map-marker" aria-hidden="true"></i>
 															본사 위치 : ${company.location}
 														</a>
 													</li>
 													<li>
-														<a class="cursorCtrl">
+														<a href="#">
 															<i class="fa fa-money" aria-hidden="true"></i>
-															매출 : 약 ${company.annualsales} 억 원
+															매출 : ${company.annualsales} 원
 														</a>
 													</li>
 												</ul>
@@ -207,7 +202,7 @@
 					</c:forEach>
 					<c:if test="${companyList.size() == 0 }">
 						<div class="job-ad-item">
-							<h1 align="center">현재 북마크한 기업이 없습니다.</h1>
+							<h1>현재 북마크한 기업이 없습니다.</h1>
 						</div>
 					</c:if>
 				</div>
@@ -215,23 +210,26 @@
 			</div>
 		</div>
 		<!-- container -->
+	</section>
+	<!-- ad-profile-page -->
 
 	<!-- footer -->
 	<jsp:include page="footer.jsp"/>
 	<!-- footer -->
-	</section>
-	<!-- ad-profile-page -->
-	
 	<!--/Preset Style Chooser-->
 	<div class="style-chooser">
 		<div class="style-chooser-inner">
 			<a href="#" class="toggler"><i class="fa fa-cog fa-spin"></i></a>
 			<h4>Presets</h4>
 			<ul class="preset-list clearfix">
-				<li class="preset1 active" data-preset="1"><a href="#" data-color="preset1"></a></li>
-				<li class="preset2" data-preset="2"><a href="#" data-color="preset2"></a></li>
-				<li class="preset3" data-preset="3"><a href="#" data-color="preset3"></a></li>
-				<li class="preset4" data-preset="4"><a href="#" data-color="preset4"></a></li>
+				<li class="preset1 active" data-preset="1"><a href="#"
+					data-color="preset1"></a></li>
+				<li class="preset2" data-preset="2"><a href="#"
+					data-color="preset2"></a></li>
+				<li class="preset3" data-preset="3"><a href="#"
+					data-color="preset3"></a></li>
+				<li class="preset4" data-preset="4"><a href="#"
+					data-color="preset4"></a></li>
 			</ul>
 		</div>
 	</div>
@@ -244,15 +242,6 @@
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#orderByPostdate").click(function(){			
-				$(location).attr("href","${path}/account.do?appliedjob");		
-			});
-			$("#orderByBookmark").click(function(){			
-				$(location).attr("href","${path}/account.do?bookmarkOrderByPopular");		
-			});
-		})
-	
 		$(".call-ajax00").click(function(){		 
 	 		var params="companyid="+$(this).find('input[class=hidden]').val();
 	 		$.ajax({

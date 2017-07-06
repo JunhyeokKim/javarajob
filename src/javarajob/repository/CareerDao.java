@@ -19,7 +19,7 @@ public interface CareerDao {
 
 	public void updateCareer(Career upt);
 
-	public ArrayList<Career> listCareerforindex();
+	public ArrayList<Career> listCareerForIndex();
 
 	public int getCount();
 
@@ -35,7 +35,7 @@ public interface CareerDao {
 	
 	public int getFavCountCompany(String id);
 	
-	public ArrayList<Career> listCareerforindexSelect(int industry);
+	public ArrayList<Career> listCareerForIndexSelect(int industry);
 	
-	public ArrayList<Career> listCareerforindexOrderByBookmark();
+	public ArrayList<Career> listCareerForIndexOrderByBookmark();
 }

@@ -104,13 +104,9 @@
 					</div>								
 				</div><!-- user-profile -->
 						
-				<ul class="user-menu">					
-					<li><a href="${path}/account.do?method=uptProcGuest1">회원정보 수정</a></li>
-					<li class="active"><a href="${path}/account.do?method=delProcGuest1">탈퇴</a></li>
-					<li><a href="${path}/account.do?bookmark">관심 직무</a></li>
-					<li><a href="${path}/account.do?appliedjob">관심 기업</a></li>
-					<li><a href="${path}/account.do?qanda">Q&A</a></li>
-				</ul>
+				<div class="sublink">
+					<jsp:include page="sublink.jsp"/>
+				</div>
 			</div><!-- ad-profile -->	
 
 			<div class="profile job-profile">

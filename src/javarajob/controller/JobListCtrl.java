@@ -26,7 +26,7 @@ import javarajob.vo.SchElement;
 
 @Controller
 @RequestMapping("/careerlist.do")
-public class CareerCtrl {
+public class JobListCtrl {
 
     @Autowired(required = false)
     SchElementService service;
@@ -150,7 +150,7 @@ public class CareerCtrl {
         }
 
         d.addAttribute("company", company);
-        return "ajaxJobSearch";
+        return "job-detail-ajax";
     }
 
     // ajax 비동기 통신을 통한 bookmark 요청 처리( 채용 공고에 대한 북마크 추가 처리)
