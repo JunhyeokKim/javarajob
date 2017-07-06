@@ -198,7 +198,7 @@ public class AccountCtrl {
         vo.setCompanyid(companyid);
         vo.setId(curId);
         favCompService.removeFavCompany(vo);
-        return "redirect:account.do?bookmarkList-company";
+        return "redirect:account.do?bookmark-company";
     }
 	// bookmark ªË¡¶
 	@RequestMapping(params = "deleteFavCareer")
@@ -208,7 +208,7 @@ public class AccountCtrl {
 		vo.setCareerid(careerid);
 		vo.setId(curId);
 		favCareerService.removeFavCareer(vo);
-		return "redirect:account.do?bookmarkList-career";
+		return "redirect:account.do?bookmark-career";
 	}
 
 	@RequestMapping(params = "qanda")

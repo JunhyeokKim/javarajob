@@ -267,10 +267,6 @@
 								</div><!-- item-info -->								
 							</div><!-- 한 줄 단위 전체 -->							
 						</c:forEach><!-- 회사 리스트 -->
-						<div class="ad-section text-center">
-							<a href="#"><img src="images/ads/3.jpg" alt="Image"
-								class="img-responsive"></a>
-						</div>						
 					</div>
 				</div>
 				<!-- career list 전체 -->
