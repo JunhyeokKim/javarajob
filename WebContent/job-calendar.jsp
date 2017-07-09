@@ -108,12 +108,13 @@
 					   <nav class="navbar navbar-default">
   <div class="container-fluid">
   <ul class="nav navbar-nav">
-      <li class="dropdown open megamenu">
+      <li class="dropdown megamenu">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown">검색 조건 설정<span class="caret"></span></a>
             <div class="dropdown-menu">
               <ul class="list-unstyled col-lg-3 col-sm-6" role="menu">
-                <li><h3>지역</h3></li> 
-                <li><a href="#"><select>
+                <li><input type="checkbox" id="loc-total" value=""/><h3 style="display: inline-block;"><label for="loc-total">지역</label></h3></li> 
+                <li class="divider"></li>
+                <li><a ><select>
                     <option value="0">전체</option>
                     <option value="17">전국</option>
                     <option value="1">서울</option>
@@ -121,23 +122,14 @@
                 </select></a></li>
               </ul>
               <ul class="nav col-lg-3 col-sm-6" role="menu">
-                <li>
-                    <div class="col-md-12">
-                    <h3>기간</h3>
-                    <form action="[YOUR ACTION]" method="post" role="form" class="form-horizontal">
-                        <input class="form-control" id="inputEmail1" placeholder="Email" type="email" style="margin-bottom:.5em">
-                        <input class="form-control" id="inputPassword1" placeholder="Password" type="password" style="margin-bottom:.5em">
-                        <div class="checkbox">
-                            <label class="small"><input type="checkbox"> remember me</label>
-                        </div>
-                        <hr>
-                        <input class="btn btn-primary btn-block" type="submit" name="commit" value="Sign In">
-                    </form>
-                    </div>
-                </li>
+                <li><input type="checkbox" id="job-total" value=""/><h3 style="display: inline-block;"><label for="job-total">기간</label></h3></li>
+                <li class="divider"></li>
+                <li><label for="job-start"><input type="checkbox" id="job-start" value=""/>공고 시작</label></li>
+                <li><label for="job-end"><input type="checkbox" id="job-end" value=""/>공고 종료</label></li>
               </ul>
               <ul class="col-lg-3 col-sm-6 list-unstyled" role="menu">
-                <li><h3>직무</h3></li>
+                <li><input type="checkbox" id="field-total" value=""/><h3 style="display: inline-block;"><label for="field-total">직종</label></h3></li>
+                <li class="divider"></li>
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
                 <li><a href="#">Something else here</a></li>
@@ -149,7 +141,8 @@
                 <li><p class="small text-muted">small text here</p></li>
               </ul>
               <ul class="list-unstyled col-lg-3 col-sm-6" role="menu">
-                <li><h3>산업군</h3></li> 
+                <li><input type="checkbox" id="industry-total" value=""/><h3 style="display: inline-block;"><label for="industry-total">산업군</label></h3></li> 
+                <li class="divider"></li>
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
                 <li><a href="#">Something else here</a></li>
@@ -204,5 +197,10 @@
 	<script src='js/locale/ko.js'></script>
 	<script src='js/fullcalendar.js?ver=2'></script>
 	<script src='js/calendar.js?ver=3'></script>
+	<script type="text/javascript">
+	$(".dropdown-menu").click(function(e){
+		e.stopPropagation();
+	})
+	</script>
 </body>
 </html>
