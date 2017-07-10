@@ -54,49 +54,37 @@ public class AccountCtrl {
 		d.addAttribute("list", service.listMember(sch));
 		return "account/accountList";
 	}
-
+	// 회원 가입
 	@RequestMapping(params = "method=insProc")
 	public String insertProc(Account mem) {
 		service.insertMember(mem);
 		service.insertResume(mem);
 		return "redirect:/index.do";
 	}
-
-	@RequestMapping(params = "method=detail")
-	public String detail(@RequestParam("id") String id, Model d) {
-
-		d.addAttribute("mem", service.getMember(id));
-		return "account/accountDetail";
-	}
-
-	@RequestMapping(params = "method=uptProc")
-	public String uptProc(Account mem) {
-		service.updateMember(mem);
-		return "redirect:/account.do?method=list";
-	}
-
+	
+	// 로그인
 	@RequestMapping(params = "method=signIn")
-	public String login(@RequestParam("id") String id, @RequestParam("password") String password, HttpSession ses) {
+	public String login(@RequestParam("id") String id,
+			@RequestParam("password") String password, HttpSession ses) {
 		if (service.loginMember(id, password))
 			ses.setAttribute("id", id);
 		return "redirect:/index.do";
 	}
 
+	// 로그아웃
 	@RequestMapping(params = "method=signOut")
 	public String logout(HttpSession ses) {
 		ses.invalidate();
 		return "redirect:/index.do";
 	}
 
-	@RequestMapping(params = "method=uptProcGuest1")
-	public String uptProcGuest1(HttpSession ses, Model d) {
-		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		return "profile-details";
+	// 회원상세
+	@RequestMapping(params = "method=detail")
+	public String detail(@RequestParam("id") String id, Model d) {
+		d.addAttribute("mem", service.getMember(id));
+		return "account/accountDetail";
 	}
-
+	// 회원정보수정
 	@RequestMapping(params = "method=uptProcGuest2")
 	public String uptProcGuest2(Account mem, HttpSession ses, Model d) {
 		mem.setId((String)ses.getAttribute("id"));
@@ -105,16 +93,7 @@ public class AccountCtrl {
 		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
 		return "profile-details";
 	}
-
-	@RequestMapping(params = "method=delProcGuest1")
-	public String delProcGuest1(HttpSession ses, Model d) {
-		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		return "delete-account";
-	}
-
+	// 회원탈퇴
 	@RequestMapping(params = "method=delProcGuest2")
 	public String delProcGuest2(HttpSession ses) {
 		resService.delResume(ses.getAttribute("id").toString());
@@ -125,7 +104,33 @@ public class AccountCtrl {
 		ses.invalidate();
 		return "redirect:/index.do";
 	}
+	
+	
+	// 회원정보수정
+	@RequestMapping(params = "method=uptProcGuest1")
+	public String uptProcGuest1(HttpSession ses, Model d) {
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		return "profile-details";
+	}
+	// 회원탈퇴
+	@RequestMapping(params = "method=delProcGuest1")
+	public String delProcGuest1(HttpSession ses, Model d) {
+		d.addAttribute("mem", service.getMember(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", resService.oneResume(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		return "delete-account";
+	}
 
+	@RequestMapping(params = "method=uptProc")
+	public String uptProc(Account mem) {
+		service.updateMember(mem);
+		return "redirect:/account.do?method=list";
+	}
+	
 	@RequestMapping(params = "method=isNewbie")
 	public void isNewbie(HttpServletRequest req, HttpServletResponse res, ModelMap model) throws Exception {
 		PrintWriter out = res.getWriter();

@@ -40,7 +40,6 @@ public class QandaCtrl {
 	}
 	
 	// 게시판 list
-	// http://localhost:6080/springweb/boardList.do?method=list
 	@RequestMapping(params="method=list")
 	public String start(@ModelAttribute("boardSch") Board_Sch sch, Model d, HttpSession ses){
 		d.addAttribute("list", service.listBoard(sch));
@@ -49,6 +48,44 @@ public class QandaCtrl {
 		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
 		//System.out.println("dc getCount()"+sch.getCount()+"getPageSize()"+sch.getPageSize()+"getCurPage()"+sch.getCurPage()+"getStart()"+sch.getStart()+"getEnd()"+sch.getEnd());
 		return "qanda";
+	}
+	// 글/댓글 작성
+	@RequestMapping(params="method=insProc")
+	public String insertProc(Board ins, HttpSession ses, Model d){
+		service.insertBoard(ins);
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
+		return "redirect:/boardList.do?method=list";
+	}
+	// 글 상세
+	@RequestMapping(params="method=detail")
+	public String detail(@RequestParam("no") int no, Model d, HttpSession ses){
+		d.addAttribute("board", service.detailBoard(no));
+		Company_Sch sch = null;
+		d.addAttribute("companyList", s.listCompany(sch));
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
+		return "qanda3";
+	}
+	// 글 삭제
+	@RequestMapping(params="method=delete")
+	public String delete(@RequestParam(value="no", defaultValue="0") int no, HttpSession ses, Model d){
+		service.deleteBoard(no);
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
+		return "redirect:/boardList.do?method=list";
+	}
+	// 글 수정
+	@RequestMapping(params="method=update")
+	public String update(Board ins, HttpSession ses, Model d){		
+		service.updateBoard(ins);
+		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
+		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
+		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
+		return "redirect:/boardList.do?method=list";
 	}
 	
 	@RequestMapping(params="method=insert")
@@ -63,41 +100,4 @@ public class QandaCtrl {
 		return "qanda2";
 	}
 	
-	@RequestMapping(params="method=insProc")
-	public String insertProc(Board ins, HttpSession ses, Model d){
-		service.insertBoard(ins);
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
-		return "redirect:/boardList.do?method=list";
-	}
-	
-	@RequestMapping(params="method=detail")
-	public String detail(@RequestParam("no") int no, Model d, HttpSession ses){
-		d.addAttribute("board", service.detailBoard(no));
-		Company_Sch sch = null;
-		d.addAttribute("companyList", s.listCompany(sch));
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
-		return "qanda3";
-	}
-	
-	@RequestMapping(params="method=delete")
-	public String delete(@RequestParam(value="no", defaultValue="0") int no, HttpSession ses, Model d){
-		service.deleteBoard(no);
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
-		return "redirect:/boardList.do?method=list";
-	}
-	
-	@RequestMapping(params="method=update")
-	public String update(Board ins, HttpSession ses, Model d){		
-		service.updateBoard(ins);
-		d.addAttribute("careerFavCount", careerService.getFavCount(ses.getAttribute("id").toString()));
-		d.addAttribute("careerFavCountCompany", careerService.getFavCountCompany(ses.getAttribute("id").toString()));
-		d.addAttribute("resume", rs.oneResume((ses.getAttribute("id").toString())));
-		return "redirect:/boardList.do?method=list";
-	}
 }
