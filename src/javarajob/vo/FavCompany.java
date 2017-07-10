@@ -6,7 +6,7 @@ public class FavCompany {
 	private String imageurl;
 	private String shortinfo;
 	private String companyname;
-	private String location;
+	private String headquarter;
 	private int annualsales;
 
 	public int getCompanyid() {
@@ -42,12 +42,12 @@ public class FavCompany {
 		this.companyname = companyname;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getHeadquarter() {
+		return headquarter;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setHeadquarter(String location) {
+		this.headquarter = location;
 	}
 
 	public int getAnnualsales() {

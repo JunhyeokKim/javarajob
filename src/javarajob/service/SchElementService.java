@@ -12,20 +12,25 @@ import javarajob.vo.SchElement;
 @Service
 public class SchElementService {
 
-	@Autowired(required=false)
+	@Autowired(required = false)
 	SchElementDao dao;
-	
-	public ArrayList<SchElement> schQuery(SchElement sch, int pageSize){
+
+	public ArrayList<SchElement> schQuery(SchElement sch, int pageSize) {
 		sch.setCount(dao.getTotCnt(sch));
-		if(sch.getCurPage()==0){
+		if (sch.getCurPage() == 0) {
 			sch.setCurPage(1);
 		}
-		sch.setPageCount((int)Math.ceil(sch.getCount()/(double)pageSize));
-		sch.setStart((sch.getCurPage()-1)*pageSize+1);
-		sch.setEnd(sch.getCurPage()*pageSize);
-		return dao.schQuery(sch); 
+		sch.setPageCount((int) Math.ceil(sch.getCount() / (double) pageSize));
+		sch.setStart((sch.getCurPage() - 1) * pageSize + 1);
+		sch.setEnd(sch.getCurPage() * pageSize);
+		return dao.schQuery(sch);
 	}
-	public ArrayList<Company> getCompanys(SchElement sch){
+
+	public ArrayList<Company> getCompanys(SchElement sch) {
 		return dao.getCompanys(sch);
+	}
+
+	public Company getCompany(int companyid) {
+		return dao.getCompany(companyid);
 	}
 }

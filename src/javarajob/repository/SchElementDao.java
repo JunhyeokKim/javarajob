@@ -14,5 +14,7 @@ public interface SchElementDao {
     public ArrayList<Company> getCompanys(SchElement sch);
 
     public int getTotCnt(SchElement sch);
+    
+    public Company getCompany(int companyid);
 
 }

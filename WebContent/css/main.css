@@ -2001,7 +2001,7 @@ section, .job-list-item {
 }
 #calendar {
 	overflow-y: scroll;
-	height: 75vh;
+	height: 80vh;
 }
 
 @media ( max-width : 767px) {

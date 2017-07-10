@@ -97,6 +97,7 @@
                                         <li class="dropdown-lg megamenu">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">검색 조건 설정<span class="caret"></span></a>
                                             <div class="dropdown-menu">
+                                            <form id="drop-checkbox">
                                                 <ul class="list-unstyled col-lg-2 col-sm-6" role="menu">
                                                     <li>
                                                         <input type="checkbox" id="companytype-tot" value=""/>
@@ -156,8 +157,8 @@
                                                         <h3 style="display: inline-block;"><label for="date-tot">기간</label></h3>
                                                     </li>
                                                     <li class="divider"></li>
-                                                    <li><label for="date-post"><input type="checkbox" id="date-post" value="-1"/>공고 시작</label></li>
-                                                    <li><label for="date-end"><input type="checkbox" id="date-end" value="1"/>공고 종료</label></li>
+                                                    <li><label for="date-post"><input type="checkbox" id="date-post" class="date" value="-1"/>공고 시작</label></li>
+                                                    <li><label for="date-end"><input type="checkbox" id="date-end" class="date" value="1"/>공고 종료</label></li>
                                                 </ul>
                                                 <ul class="col-lg-2 col-sm-6 list-unstyled" role="menu">
                                                     <li>
@@ -198,6 +199,7 @@
                                                     <li><label for="industry-8"><input type="checkbox" id="industry-8" name="industry" value="8"/>건설</label></li>
                                                     <li><label for="industry-9"><input type="checkbox" id="industry-9" name="industry" value="9"/>유통, 무역</label></li>
                                                 </ul>
+                                                </form>
                                             </div>
                                         </li>
                                     </ul>
@@ -245,7 +247,7 @@
         <script src='js/moment.min.js'></script>
         <script src='js/locale/ko.js'></script>
         <script src='js/fullcalendar.js?ver=2'></script>
-        <script src='js/calendar.js?ver=4'></script>
+        <script src='js/calendar.js?ver=2'></script>
         <script type="text/javascript">
             $(".dropdown-menu").click(function(e){
             	e.stopPropagation();
