@@ -54,11 +54,16 @@ public class CalendarCtrl {
 	// type으로 결과를 return
 	@RequestMapping(params = "method=companylist")
 	public ModelAndView mav(@RequestParam(value = "date") String date, HttpSession session,
-			@ModelAttribute("schElement") SchElement schElement) {
+			@ModelAttribute("schElement") SchElement schElement,
+			@RequestParam(value = "query", defaultValue = "") String query) {
+		
 		HashMap<String, Company> companys = new HashMap<>();
 		ModelAndView mav = new ModelAndView();
 		// mav의 viewResolver를 설정한다. PageJsonReport는 Json에 대한 viewResolver이다.
 		mav.setViewName("pageJsonReport");
+		if(query!=null){
+			schElement.setCompanyname(query);
+		}
 		// date의 delimeter로 '-'를 지정. 년, 월, 일을 구분한다.
 		StringTokenizer tokenizer = new StringTokenizer(date, "-");
 		LocalDate thisMonth = LocalDate.of(Integer.parseInt(tokenizer.nextToken()),

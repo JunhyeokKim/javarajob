@@ -93,11 +93,11 @@
                         <div id="header">
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
+                                <form id="drop-checkbox">
                                     <ul class="nav navbar-nav col-lg-2">
                                         <li class="dropdown-lg megamenu">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">검색 조건 설정<span class="caret"></span></a>
                                             <div class="dropdown-menu">
-                                            <form id="drop-checkbox">
                                                 <ul class="list-unstyled col-lg-2 col-sm-6" role="menu">
                                                     <li>
                                                         <input type="checkbox" id="companytype-tot" value=""/>
@@ -199,14 +199,14 @@
                                                     <li><label for="industry-8"><input type="checkbox" id="industry-8" name="industry" value="8"/>건설</label></li>
                                                     <li><label for="industry-9"><input type="checkbox" id="industry-9" name="industry" value="9"/>유통, 무역</label></li>
                                                 </ul>
-                                                </form>
                                             </div>
                                         </li>
                                     </ul>
                                     <div class="input-group input-group-sm col-lg-offset-10">
 							  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-							  <input type="text" class="form-control" placeholder="검색할 회사명을 입력하세요" aria-describedby="basic-addon1">
+							  <input type="text" class="form-control" placeholder="검색할 회사명을 입력하세요" name="query" aria-describedby="basic-addon1">
 							</div>
+							</form>
                                 </div>
                             </nav>
                         </div>
