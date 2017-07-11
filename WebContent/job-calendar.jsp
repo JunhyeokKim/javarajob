@@ -157,8 +157,8 @@
                                                         <h3 style="display: inline-block;"><label for="date-tot">기간</label></h3>
                                                     </li>
                                                     <li class="divider"></li>
-                                                    <li><label for="date-post"><input type="checkbox" id="date-post" class="date" value="-1"/>공고 시작</label></li>
-                                                    <li><label for="date-end"><input type="checkbox" id="date-end" class="date" value="1"/>공고 종료</label></li>
+                                                    <li><label for="date-post"><input type="checkbox" id="date-post" name="date-type" class="date-type" value="1"/>공고 시작</label></li>
+                                                    <li><label for="date-end"><input type="checkbox" id="date-end" name="date-type" class="date-type" value="0"/>공고 종료</label></li>
                                                 </ul>
                                                 <ul class="col-lg-2 col-sm-6 list-unstyled" role="menu">
                                                     <li>
@@ -249,9 +249,6 @@
         <script src='js/fullcalendar.js?ver=2'></script>
         <script src='js/calendar.js?ver=5'></script>
         <script type="text/javascript">
-            $(".dropdown-menu").click(function(e){
-            	e.stopPropagation();
-            })
         </script>
     </body>
 </html>
