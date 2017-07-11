@@ -107,7 +107,7 @@
                                                             <fmt:formatDate value="${career.enddate }" var="end"/>
                                                             <fmt:parseNumber value="${now.time /(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="page"/>
                                                             <fmt:parseNumber value="${career.enddate.time /(1000*60*60*24)}" integerOnly="true" var="endDays" scope="page"/>
-                                                            <h5><strong>( D - ${nowDays-endDays } )</strong> ${post} ~ ${end }</h5>
+                                                            <h5><strong>( D ${(endDays-nowDays)>0? "-":"+"} ${(endDays-nowDays-1)>0 ?(endDays-nowDays-1):(nowDays-endDays-1)} )</strong> ${post} ~ ${end }</h5>
                                                         </div>
                                                             <div class="col-xs-12 col-sm-6">
                                                         <ul>

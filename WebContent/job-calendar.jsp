@@ -96,7 +96,7 @@
                                 <form id="drop-checkbox">
                                     <ul class="nav navbar-nav col-lg-2">
                                         <li class="dropdown-lg megamenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">검색 조건 설정<span class="caret"></span></a>
+                                            <button class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown">검색 조건 설정<span class="caret"></span></button>
                                             <div class="dropdown-menu">
                                                 <ul class="list-unstyled col-lg-2 col-sm-6" role="menu">
                                                     <li>
@@ -247,7 +247,7 @@
         <script src='js/moment.min.js'></script>
         <script src='js/locale/ko.js'></script>
         <script src='js/fullcalendar.js?ver=2'></script>
-        <script src='js/calendar.js?ver=5'></script>
+        <script src='js/calendar.js?ver=4'></script>
         <script type="text/javascript">
         </script>
     </body>
