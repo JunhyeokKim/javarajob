@@ -247,7 +247,7 @@
         <script src='js/moment.min.js'></script>
         <script src='js/locale/ko.js'></script>
         <script src='js/fullcalendar.js?ver=2'></script>
-        <script src='js/calendar.js?ver=2'></script>
+        <script src='js/calendar.js?ver=5'></script>
         <script type="text/javascript">
             $(".dropdown-menu").click(function(e){
             	e.stopPropagation();

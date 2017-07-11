@@ -27,7 +27,7 @@
           <when test="(postdate!=null and postdate!='') and (enddate!=null and enddate!='')">
             and ( postdate <![CDATA[ >= ]]> #{postdate} or enddate <![CDATA[ <= ]]> #{enddate} )
           </when>
-        </choose>
+          </choose>
         
 		<choose>
 			<when test="(title!=null and companyname==null)">

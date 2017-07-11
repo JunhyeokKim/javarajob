@@ -21,7 +21,6 @@ import javarajob.service.FavCareerService;
 import javarajob.service.FavCompanyService;
 import javarajob.service.SchElementService;
 import javarajob.vo.Career;
-import javarajob.vo.Career_Sch;
 import javarajob.vo.Company;
 import javarajob.vo.FavCompany;
 import javarajob.vo.SchElement;
@@ -38,7 +37,7 @@ public class CalendarCtrl {
 	FavCompanyService favCompService;
 	@Autowired(required = false)
 	CompService compService;
-	@Autowired(required=false)
+	@Autowired(required = false)
 	SchElementService schService;
 
 	@ModelAttribute("schElement")
@@ -67,49 +66,56 @@ public class CalendarCtrl {
 		// 매달 첫째일과 마지막일 까지의 채용 공고를 검색한다.
 		schElement.setPostdate(Date.valueOf(thisMonth));
 		schElement.setEnddate(Date.valueOf(thisMonth.plusMonths(1).minusDays(1)));
-		ArrayList<Career> careerList = schService.
-
-		// 모든 공고에 대한 전처리
-		for (Career career : careerList) {
-			// 동일한 회사 내의 공고들에 대하여 가장 빠른 공고시작일과 가장 늦은 공고 종료일을 설정한다
-			if (companys.containsKey(String.valueOf(career.getCompanyid()))) {
-				Company prevComp = companys.get(String.valueOf(career.getCompanyid()));
-				Date postdate = prevComp.getFirstpostdate();
-				Date enddate = prevComp.getLastenddate();
-				if (postdate.after(career.getPostdate())) {
-					postdate = career.getPostdate();
-				}
-				if (enddate.before(career.getEnddate())) {
-					enddate = career.getEnddate();
-				}
-				prevComp.setFirstpostdate(postdate);
-				prevComp.setLastenddate(enddate);
-				prevComp.getFields().add(career.getField());
-				companys.put(String.valueOf(career.getCompanyid()), prevComp);
-			} else {
-				Company vo = compService.getCompany(career.getCompanyid());
-				vo.setFirstpostdate(career.getPostdate());
-				vo.setLastenddate(career.getEnddate());
-				vo.setFields(new ArrayList<Integer>());
-				vo.getFields().add(career.getField());
-				companys.put(String.valueOf(career.getCompanyid()), vo);
-			}
-		}
-		// 로그인 상태일 경우 북마크 설정한 기업 list를 불러옴
-		String curId = (String) session.getAttribute("id");
-		if (curId != null && !curId.equals("")) {
-			for (Company company : companys.values()) {
-				FavCompany vo = new FavCompany();
-				vo.setCompanyid(company.getCompanyid());
-				vo.setId(curId);
-				if (favCompService.getFavCompany(vo) != null) {
-					company.setBookmarked(true);
+		if (schElement.getField() == null || schElement.getCompanytype() == null
+				|| schElement.getEmploymenttype() == null || schElement.getIndustry() == null
+				|| schElement.getLocation() == null) {
+			mav.addObject("companys", companys);
+			return mav;
+		} else {
+			ArrayList<SchElement> schElementList = schService.schQuery(schElement);
+			schService.getCompanys(schElement);
+			// 모든 공고에 대한 전처리
+			for (SchElement element : schElementList) {
+				Career careerVo = careerService.getCareer(element.getCareerid());
+				// 동일한 회사 내의 공고들에 대하여 가장 빠른 공고시작일과 가장 늦은 공고 종료일을 설정한다
+				if (companys.containsKey(String.valueOf(careerVo.getCompanyid()))) {
+					Company prevComp = companys.get(String.valueOf(element.getCompanyid()));
+					Date postdate = prevComp.getFirstpostdate();
+					Date enddate = prevComp.getLastenddate();
+					if (postdate.after(careerVo.getPostdate())) {
+						postdate = careerVo.getPostdate();
+					}
+					if (enddate.before(careerVo.getEnddate())) {
+						enddate = careerVo.getEnddate();
+					}
+					prevComp.setFirstpostdate(postdate);
+					prevComp.setLastenddate(enddate);
+					prevComp.getFields().add(careerVo.getField());
+					companys.put(String.valueOf(careerVo.getCompanyid()), prevComp);
+				} else {
+					Company vo = compService.getCompany(careerVo.getCompanyid());
+					vo.setFirstpostdate(careerVo.getPostdate());
+					vo.setLastenddate(careerVo.getEnddate());
+					vo.setFields(new ArrayList<Integer>());
+					vo.getFields().add(careerVo.getField());
+					companys.put(String.valueOf(careerVo.getCompanyid()), vo);
 				}
 			}
+			// 로그인 상태일 경우 북마크 설정한 기업 list를 불러옴
+			String curId = (String) session.getAttribute("id");
+			if (curId != null && !curId.equals("")) {
+				for (Company company : companys.values()) {
+					FavCompany vo = new FavCompany();
+					vo.setCompanyid(company.getCompanyid());
+					vo.setId(curId);
+					if (favCompService.getFavCompany(vo) != null) {
+						company.setBookmarked(true);
+					}
+				}
+			}
+			mav.addObject("companys", companys);
+			return mav;
 		}
-		mav.addObject("companys", companys);
-		return mav;
 	}
-
 
 }

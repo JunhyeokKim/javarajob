@@ -13,7 +13,7 @@
 		<div class="footer-bottom clearfix text-center">
 			<div class="container">
 				<p>
-					고객센터 : 1588-9350 (평일 09:00 ~ 19:00 토요일 09:00 ~ 15:00) | FAX : 02-565-9351 | Email : helpdesk@jobkorea.co.kr
+					고객센터 : 1588-1588 (평일 09:00 ~ 19:00 토요일 09:00 ~ 15:00) | FAX : 02-111-2222 | Email : helpdesk@javarajob.co.kr
 				</p>
 				<hr>
 				<p>

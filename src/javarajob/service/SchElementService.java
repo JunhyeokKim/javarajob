@@ -25,6 +25,9 @@ public class SchElementService {
 		sch.setEnd(sch.getCurPage() * pageSize);
 		return dao.schQuery(sch);
 	}
+	public ArrayList<SchElement> schQuery(SchElement sch){
+		return dao.schQuery(sch);
+	}
 
 	public ArrayList<Company> getCompanys(SchElement sch) {
 		return dao.getCompanys(sch);
