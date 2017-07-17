@@ -49,7 +49,7 @@ public class FileService {
 		}
 
 		sd.setFileName(docu.getOriginalFilename());
-
+		sd.setFilePath("/javarajob/upload/"+sd.getUserId()+"/"+name);
 		if (count == 0)
 			dao.docuUpload(sd);
 		else if (count == 1)

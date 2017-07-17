@@ -28,6 +28,7 @@
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <style type="text/css">
 	.std-button{float:left;}
 </style>
@@ -53,6 +54,7 @@
 
 <!-- form js -->
 <script src="${path}/com/jquery-1.10.2.js"></script>
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -154,6 +156,52 @@
 			}
 		})
 		// ---------- fakeBtn 및 확장자 check ----------
+				
+		
+		// "myAwesomeDropzone" is the camelized version of the HTML element's ID
+		Dropzone.options.dropArea = {
+		  url:"${path}/self_intro.do?method=upload&count=0",
+		  paramName: "selfIntro", // The name that will be used to transfer the file
+		  maxFilesize: 5, // MB
+		  dictDefaultMessage:"파일을 추가해 주세요",
+		  acceptedFiles:".jpg,.pdf,.xlsx",
+		  init:function() {
+			  var myDropzone= this;
+			  /* myDropzone.on("addedfile",function(file) {
+				  console.log(file);
+				  var myDropzone=this;
+				  if (!file.type.match(".jpg")) {
+					    // This is not an image, so Dropzone doesn't create a thumbnail.
+					    // Set a default thumbnail:
+					    myDropzone.emit("thumbnail", file, "${path}/upload/thumbnail/default.jpg");
+
+					    // You could of course generate another image yourself here,
+					    // and set it as a data url.
+					  }
+			  }); */
+			  
+			  $.ajax({
+				  url:"${path}/self_intro.do?method=filelist",
+				  datatype:"json",
+				  method:"post",
+				  success:function(file){
+					  // Create the mock file:
+						  var files=$.parseJSON(file);
+						  $.each(files.filelist, function(index,item){
+							  var mockFile = { name:item.fileName , size: 12345, type:item.ext};
+							  // Call the default addedfile event handler
+							  myDropzone.emit("addedfile", mockFile);
+							  myDropzone.emit("complete", mockFile);
+							  myDropzone.emit("thumbnail", mockFile, item.filePath);
+							  });
+						  }
+				  })
+			  },
+			  success:function() {
+				  alert("성공");
+			  }
+			  
+			  }
 		
 	})
 </script>
@@ -167,7 +215,6 @@
 	<!-- header -->
 
 	<section class="job-bg-self page  ad-profile-page">
-		<form method="post" enctype="multipart/form-data">
 			<div class="self-overlay"></div>
 			<div class="container">
 				<input type="hidden" name="userId" value="${id}" />
@@ -210,55 +257,15 @@
 				</div>
 			
 				<div class="resume-content">
-					<div class="kdb-table self-introduction-upload-section">
-						<table>
-							<colgroup>
-							<col width="5%">
-							<col width="10%">
-							<col width="10%">
-							<col width="55%">
-							<col width="20%">
-							</colgroup>
-							<tr class="preColor">
-								<th>
-									<input type="checkbox" id="allSel" style="width:30px;height:30px" />
-								</th>
-								<th>번호</th>
-								<th colspan="2">파일 이름</th>
-								<th>등록일</th>
-							</tr>
-							<c:forEach var="docu" items="${documents}" varStatus="sts">
-								<tr class="docuContent fileSelect">
-									<td>
-										<input type="checkbox" name="fileNames" style="width:30px;height:30px" value="${docu.fileName}"/>
-									</td>
-									<td>
-										${sts.count}
-									</td>
-									<td>
-										<img src="images/ico/${docu.ext}.png" width="50" height="50">
-									</td>
-									<td>
-										${docu.fileName}
-									</td>
-									<td>
-										${docu.regDate}
-									</td>
-								</tr>
-							</c:forEach>
-							<c:if test="${documents.size() == 0}">
-								<tr class="docuContent">
-									<td colspan="5">등록된 파일이 없습니다.</td>
-								</tr>
-							</c:if>
-						</table>
-					</div>
-					<!-- educational-background -->
+					<!-- Change /upload-target to your upload address -->
+					<form method="post" action="/upload-target" class="dropzone" enctype="multipart/form-data" id="drop-area">
+						<input type="hidden" name="userId" value="${id}" />
+						<input type="hidden" id="isExt" name="ext" value="jpg" />
+					</form>
 				</div>
 				<!-- resume-content -->
 			</div>
 			<!-- container -->
-		</form>
 	
 	<!-- ad-profile-page -->
 

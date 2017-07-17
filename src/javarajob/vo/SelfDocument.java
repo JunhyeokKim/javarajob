@@ -5,6 +5,7 @@ import java.sql.Date;
 public class SelfDocument {
 	private String userId;
 	private String fileName;
+	private String filePath;
 	private Date regDate;
 	private String ext;
 
@@ -22,6 +23,14 @@ public class SelfDocument {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 	public Date getRegDate() {

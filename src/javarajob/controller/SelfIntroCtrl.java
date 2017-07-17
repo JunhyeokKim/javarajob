@@ -2,6 +2,8 @@ package javarajob.controller;
 
 import java.io.File;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +31,19 @@ public class SelfIntroCtrl {
 		d.addAttribute("documents", s.docuView(userId));
 		return "self_introduction";
 	}
+	@RequestMapping(params="method=filelist")
+	public ModelAndView mav(HttpSession session){
+		ModelAndView mav= new ModelAndView();
+		mav.setViewName("pageJsonReport");
+		mav.addObject("filelist",s.docuView((String)session.getAttribute("id")));
+		return mav;
+	}
+
 
 	@RequestMapping(params = "method=upload", method = RequestMethod.POST)
 	public String uploadSelfIntro(@RequestParam("selfIntro") MultipartFile docu, @ModelAttribute("selfDocu") SelfDocument sd,
 			@RequestParam("count") int count, Model d) {
+		System.out.println("file name:"+docu.getOriginalFilename());
 		s.uploadDoc(docu, sd, count);
 		return "forward:/self_intro.do?method=view&userId=" + sd.getUserId();
 	}
