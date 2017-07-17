@@ -142,9 +142,9 @@
 
 		</div>
 		<!-- container -->
-	</div>
 	<!-- banner-section -->
 	
+	</div>
 	<div class="page container-fluid">
 		<br>
 		<div class="row" id="temp01"><!-- row -->			
