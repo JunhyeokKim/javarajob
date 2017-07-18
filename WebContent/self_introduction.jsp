@@ -31,6 +31,21 @@
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <style type="text/css">
 	.std-button{float:left;}
+	.dropzone-file {
+		position:absolute;
+		top:0px;
+		right:0px; 
+		z-index:50;
+	}
+	.dropzone-checkbox {
+		position:absolute;
+		top:0px;
+		left:0px; 
+		z-index:50;
+		width:20px;
+		height:20px;
+		margin:0px;
+	}
 </style>
 <!-- font -->
 <link
@@ -63,51 +78,6 @@
 		$("#fileUp").val("");
 		// ---------- 초기 값 설정 ----------
 		
-		// ---------- 전체 선택 ---------- 
-		$("#allSel").click(function(){
-			if($("#allSel").prop("checked")) {
-				$("input[name=fileNames]").prop("checked", true);
-			} else {
-				$("input[name=fileNames]").prop("checked", false);
-			}
-		})
-		// ---------- 전체 선택 ----------
-		
-		// ---------- upload ----------
-		$("#uploadBtn").click(function(){
-			if($("#fileUp").val() != ""){
-				var endNum = document.getElementsByName("fileNames").length;
-				var isNewFile = true;
-				var count = 0;
-				for(var i=0; i<endNum; i++){
-					if($("#fileUp").val() == "C:\\fakepath\\"+document.getElementsByName("fileNames")[i].value){
-						isNewFile = false;
-					}
-				}
-				if(!isNewFile) {
-					if(confirm("이미 같은 이름의 파일이 존재합니다. 덮어쓰겠습니까?")){
-						isNewFile = true;
-						count++;
-					}
-				}
-				if(isNewFile){
-					$("#isExt").val(ext);
-					$("form").attr("action","${path}/self_intro.do?method=upload&count="+count);
-					$("form").submit();
-				}
-			} else alert("등록된 파일이 없습니다.");
-		})
-		// ---------- upload ----------
-		
-		// ---------- delete ----------
-		$("#delDocu").click(function(){
-			if($("input:checkbox[name='fileNames']:checked").length != 0) {
-				$("form").attr("action","${path}/self_intro.do?method=delete");
-				$("form").submit();
-			} else alert("선택된 파일이 없습니다.");
-		})
-		// ---------- delete ----------
-		
 		// ---------- download ----------
 		$("#downDocu").click(function(){
 			if($("input:checkbox[name='fileNames']:checked").length == 1) {
@@ -121,53 +91,20 @@
 		})
 		// ---------- download ----------
 		
-		// ---------- file select ----------
-		$(".fileSelect").click(function(){
-			$(":checkbox:eq(0)", this).trigger("click", "click"); 
-		})
-		// ---------- file select ----------
 		
-		// ---------- fakeBtn 및 확장자 check ----------
-		$("#fileUp").change(function(){
-			if($("#fileUp").val() != "") {
-				// 파일찾기 btn 수정
-				$("#fakeBtn").val("등록됨");
-				$("#fakeBtn").css("background","gray");
-				$("#fakeBtn").css("border","gray");
-				
-				// 확장자 check
-				ext = $(this).val().split(".").pop().toLowerCase();
-				switch(ext){
-				case "ppt":
-				case "pptx":
-					ext = "ppt";
-					break;
-				case "doc":
-				case "docx":
-					ext = "doc";
-					break;
-				case "pdf":
-				case "txt":
-					break;
-				default:
-					alert("잘못된 확장자입니다.");
-					$(this).val("");
-				}
-			}
-		})
-		// ---------- fakeBtn 및 확장자 check ----------
 				
 		
 		// ---------- Dropzone 설정 ----------
 		
 		// "dropArea" is the camelized version of the HTML element's ID
-		Dropzone.options.dropArea = {
+		var myDrop=Dropzone.options.dropArea = {
 		  url:"${path}/self_intro.do?method=upload&count=0",
 		  paramName: "selfIntro", // The name that will be used to transfer the file
 		  maxFilesize: 5, // MB
 		  dictDefaultMessage:"파일을 추가해 주세요",
 		  dictInvalidFileType:"지원하지 않는 파일 형식입니다.",
 		  acceptedFiles:".jpg,.pdf,.xlsx,.txt,.doc,.docx,.pptx,.ppt,.hwp,.png",
+		  maxFiles:20,
 		  thumbnail: function(file, dataUrl) {
 			  var ext = file.name.split('.').pop();
 			  if (ext == "pdf") {
@@ -179,11 +116,64 @@
 			    }else{
 			    	$(file.previewElement).find(".dz-image img").attr("src", dataUrl);
 			    }
-			  	$(file.previewElement).find(".dz-image img").attr("height", "100%");
-		    	$(file.previewElement).find(".dz-image img").attr("width", "100%");
+			  	$(file.previewElement).find(".dz-image img").css("height", "inherit");
+		    	$(file.previewElement).find(".dz-image img").css("width", "inherit");
 			  },
 		  init:function() {
-			  var myDropzone= this;
+			  var _this = this;
+			  this.on("addedfile", function(file) {
+				  	file.previewElement.addEventListener("dblclick",function(e){
+			        	if(confirm("다운로드??")) {
+			        		$("form").attr("action","${path}/self_intro.do?method=download&fileNames="+file.name);
+			        		$("form").submit();
+			        	}
+			        })
+			        // Create the remove button
+			        var removeButton = Dropzone.createElement("<button class='dropzone-file btn btn-danger' data-dz-remove>X</button>");
+			        var checkboxButton= Dropzone.createElement("<input type='checkbox' class='dropzone-file dropzone-checkbox' name='fileNames' value='"+file.name+"'/>");
+			        // Capture the Dropzone instance as closure.
+
+			        // Listen to the click event
+			        removeButton.addEventListener("click", function(e) {
+			          // Make sure the button click doesn't submit the form:
+			          e.preventDefault();
+			          e.stopPropagation();
+			       	// Remove the file preview.
+			          if(confirm("정말 삭제하시겠습니까?")){
+			        	  $.ajax({
+			        		  url:"${path}/self_intro.do?method=delete&fileNames="+file.name,
+			        		  method:"post",
+			        		  success:function(data){
+			        			  alert("삭제 되었습니다.");
+			        			  _this.removeFile(file);
+			        		  },
+			        		  error:function(error){
+			        			  alert("error 발생.");
+			        		  }
+			        	  })
+			       		}
+			          
+			          // If you want to the delete the file on the server as well,
+			          // you can do the AJAX request here.
+			        });
+			        file.previewElement.addEventListener("click",function(e) {
+			        	var fileCheck=$(this).find("input[type=checkbox]");
+			        	var fileIdx= _this.files.indexOf(file);
+			        	if(fileCheck.prop("checked")){
+			        		fileCheck.prop("checked",false);
+			        		_this.files.splice(fileIdx,1);
+			        	}else{
+			        		fileCheck.prop("checked","checked");
+			        		_this.files.push(file);
+			        	}
+			        	
+			        })
+
+			        // Add the button to the file preview element.
+			        file.previewElement.appendChild(removeButton);
+			        file.previewElement.appendChild(checkboxButton);
+			      });
+			  
 			  $.ajax({
 				  url:"${path}/self_intro.do?method=filelist",
 				  datatype:"json",
@@ -194,12 +184,39 @@
 						  $.each(files.filelist, function(index,item){
 							  var mockFile = { name:item.fileName , size: item.fileSize, type:item.ext};
 							  // Call the default addedfile event handler
-							  myDropzone.emit("addedfile", mockFile);
-							  myDropzone.emit("complete", mockFile);
-							  myDropzone.emit("thumbnail", mockFile, item.filePath);
+							  _this.emit("addedfile", mockFile);
+							  _this.emit("complete", mockFile);
+							  _this.emit("thumbnail", mockFile, item.filePath);
+							// If you use the maxFiles option, make sure you adjust it to the
+							// correct amount:
+							var existingFileCount = 1; // The number of files already uploaded
+							_this.options.maxFiles = _this.options.maxFiles - existingFileCount;
 							  });
 						  }
+				  });
+			  $("#delDocu").on("click",function(){
+				  console.log(_this.files)
+				  var fileData="";
+				  $.each(_this.files, function(index, item){
+					  fileData+="&fileNames="+item.name;
 				  })
+				  if($(_this.files).length != 0) {
+						$.ajax({
+							url:"${path}/self_intro.do?method=delete"+fileData,
+							method:"POST",
+							success:function(data){
+								 $.each(_this.files, function(index, item){
+									 _this.removeFile(item);
+								  })
+							},
+							error:function(){
+								alert("실패");
+							}
+							
+						})
+					} else alert("선택된 파일이 없습니다."); 
+			  })
+				  
 			  },
 			  success:function(file,xhs) {
 				  alert("업로드되었습니다.");
@@ -211,6 +228,29 @@
 		    }
 		
 		// ---------- Dropzone 설정 ----------
+		
+		// ---------- delete ----------
+		$("#delDocu").click(function(){
+			/* if($("input:checkbox[name='fileNames']:checked").length != 0) {
+				$.each($("input:checkbox[name='fileNames']:checked",function(item, index){
+					myDrop.removeFile(item.value);
+				}))
+				$.ajax({
+					url:"${path}/self_intro.do?method=delete",
+					data:$("form").serialize(),
+					method:"POST",
+					success:function(data){
+						alert("삭제되었음.");
+					},
+					error:function(){
+						alert("실패");
+					}
+					
+				})
+			} else alert("선택된 파일이 없습니다."); */
+		})
+		// ---------- delete ----------
+		
 		
 	})
 </script>
@@ -237,19 +277,6 @@
 					<h2 class="title">자기소개서 List</h2>
 					<div class="row">
 						<div class="col-mdd-3">
-							<div class="file_input_div">
-								<div class="sid_button">
-									<input type="button" class="btn" id="fakeBtn" value="파일 찾기" />
-									<input type="file" id="fileUp" class="file_input_hidden" name="selfIntro" />
-								</div>
-							</div>
-						</div>
-						<div class="col-mdd-3">
-							<div class="sid-button">
-								<input type="button" class="btn" id="uploadBtn" value="저장하기" />
-							</div>
-						</div>
-						<div class="col-mdd-3">
 							<div class="sid-button">
 								<input type="button" class="btn" id="delDocu" value="선택 삭제" />
 							</div>
@@ -259,15 +286,12 @@
 								<input type="button" class="btn" id="downDocu" value="다운로드" />
 							</div>
 						</div>
-						<div class="col-mdd-20">
-							총 ${documents.size()}개
-						</div>
 					</div>
 				</div>
 			
 				<div class="resume-content">
 					<!-- Change /upload-target to your upload address -->
-					<form method="post" action="/upload-target" class="dropzone" enctype="multipart/form-data" id="drop-area">
+					<form method="post" action="/upload-target" class="dropzone" enctype="multipart/form-data" id="drop-area" style="min-height:500px">
 						<input type="hidden" name="userId" value="${id}" />
 						<input type="hidden" id="isExt" name="ext" value="jpg" />
 					</form>
