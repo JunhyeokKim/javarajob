@@ -70,6 +70,20 @@
 				}
 			}
 		})
+		
+		$("#pdfBtn").click(function(){
+			html2canvas(document.body,{
+				onrendered : function(canvas) {
+					//var imgData = canvas.toDataURL("image/png");
+					//console.log("Reprot Image URL : "+imgData);
+					/* var doc = new jsPDF('p', 'mm', [210,297]);
+					doc.addImage(imgData, 'PNG', 0, 0, 210, 297);
+					doc.save('sampled-file.pdf'); */
+					document.body.appendChild(canvas);
+				},
+			height : 2000
+			})
+		})
 	})
 </script>
 </head>
@@ -77,8 +91,7 @@
 	<!-- header -->
 	<jsp:include page="navHeader.jsp" />
 	<!-- header -->
-	<form method="post" action="${path}/resume_upt.do"
-		enctype="multipart/form-data">
+	<form method="post" action="${path}/resume_upt.do" enctype="multipart/form-data">
 		<input type="hidden" name="userId" value="${id}" />
 		<input type="hidden" id="picExt" name="picExt" value="" />
 		<div class="main-tab ng-scope">
@@ -86,9 +99,10 @@
 				<div class="spec-container">
 					<div class="section-container spec-saver">
 						<div class="section-title">
-							이력서 <input type="submit" class="export-pdf" value="저장하기" />
+							이력서 <input type="button" id="pdfBtn" class="export-pdf" value="PDF 저장" /><a id="test"></a>
+							<input type="submit" class="export-pdf" value="저장하기" />
 						</div>
-						<div class="section-content new ng-scope">
+						<div class="section-content new ng-scope" id="resumeFile">
 							<div class="specs edit-spec ng-scope basic-information">
 								<div class="subtitle ng-scope">
 									<div class="ng-binding must">기본 정보</div>
@@ -1157,5 +1171,7 @@
 	<script src="js/price-range.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
+	<script src="js/jspdf_main.js"></script>
+	<script src="js/html2canvas.js"></script>
 </body>
 </html>
