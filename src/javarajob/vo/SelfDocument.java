@@ -8,6 +8,7 @@ public class SelfDocument {
 	private String filePath;
 	private Date regDate;
 	private String ext;
+	private long fileSize;
 
 	public String getUserId() {
 		return userId;
@@ -48,5 +49,14 @@ public class SelfDocument {
 	public void setExt(String ext) {
 		this.ext = ext;
 	}
+
+	public long getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+	
 
 }

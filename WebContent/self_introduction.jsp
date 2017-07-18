@@ -158,28 +158,32 @@
 		// ---------- fakeBtn 및 확장자 check ----------
 				
 		
-		// "myAwesomeDropzone" is the camelized version of the HTML element's ID
+		// ---------- Dropzone 설정 ----------
+		
+		// "dropArea" is the camelized version of the HTML element's ID
 		Dropzone.options.dropArea = {
 		  url:"${path}/self_intro.do?method=upload&count=0",
 		  paramName: "selfIntro", // The name that will be used to transfer the file
 		  maxFilesize: 5, // MB
 		  dictDefaultMessage:"파일을 추가해 주세요",
-		  acceptedFiles:".jpg,.pdf,.xlsx",
+		  dictInvalidFileType:"지원하지 않는 파일 형식입니다.",
+		  acceptedFiles:".jpg,.pdf,.xlsx,.txt,.doc,.docx,.pptx,.ppt,.hwp,.png",
+		  thumbnail: function(file, dataUrl) {
+			  var ext = file.name.split('.').pop();
+			  if (ext == "pdf") {
+			        $(file.previewElement).find(".dz-image img").attr("src", "${path}/images/ico/pdf.png");
+			    } else if (ext=="doc" || ext=="docx" || ext=="hwp" || ext=="txt") {
+			        $(file.previewElement).find(".dz-image img").attr("src", "${path}/images/ico/txt.png");
+			    } else if (ext=="ppt" || ext=="pptx") {
+			        $(file.previewElement).find(".dz-image img").attr("src", "${path}/images/ico/ppt.png");
+			    }else{
+			    	$(file.previewElement).find(".dz-image img").attr("src", dataUrl);
+			    }
+			  	$(file.previewElement).find(".dz-image img").attr("height", "100%");
+		    	$(file.previewElement).find(".dz-image img").attr("width", "100%");
+			  },
 		  init:function() {
 			  var myDropzone= this;
-			  /* myDropzone.on("addedfile",function(file) {
-				  console.log(file);
-				  var myDropzone=this;
-				  if (!file.type.match(".jpg")) {
-					    // This is not an image, so Dropzone doesn't create a thumbnail.
-					    // Set a default thumbnail:
-					    myDropzone.emit("thumbnail", file, "${path}/upload/thumbnail/default.jpg");
-
-					    // You could of course generate another image yourself here,
-					    // and set it as a data url.
-					  }
-			  }); */
-			  
 			  $.ajax({
 				  url:"${path}/self_intro.do?method=filelist",
 				  datatype:"json",
@@ -188,7 +192,7 @@
 					  // Create the mock file:
 						  var files=$.parseJSON(file);
 						  $.each(files.filelist, function(index,item){
-							  var mockFile = { name:item.fileName , size: 12345, type:item.ext};
+							  var mockFile = { name:item.fileName , size: item.fileSize, type:item.ext};
 							  // Call the default addedfile event handler
 							  myDropzone.emit("addedfile", mockFile);
 							  myDropzone.emit("complete", mockFile);
@@ -197,11 +201,16 @@
 						  }
 				  })
 			  },
-			  success:function() {
-				  alert("성공");
+			  success:function(file,xhs) {
+				  alert("업로드되었습니다.");
+				  this.emit("thumbnail", file, xhs.imageUrl);
+			  },
+			  error:function(file, errorMessage) {
+				alert(errorMessage);	  
 			  }
-			  
-			  }
+		    }
+		
+		// ---------- Dropzone 설정 ----------
 		
 	})
 </script>
