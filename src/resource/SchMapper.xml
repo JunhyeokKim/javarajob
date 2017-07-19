@@ -17,6 +17,18 @@
 		<if test="companyid!=null and companyid!=''">
 			and c.companyid = #{companyid}
 		</if>
+        <choose>
+          <when test="(postdate!=null and postdate!='') and (enddate==null or enddate=='')">
+          and postdate <![CDATA[ >= ]]> #{postdate}
+          </when>
+          <when test="(postdate==null or postdate=='') and (enddate!=null and enddate!='')">
+          and enddate <![CDATA[ <= ]]> #{enddate}
+          </when>
+          <when test="(postdate!=null and postdate!='') and (enddate!=null and enddate!='')">
+            and ( postdate <![CDATA[ >= ]]> #{postdate} or enddate <![CDATA[ <= ]]> #{enddate} )
+          </when>
+          </choose>
+        
 		<choose>
 			<when test="(title!=null and companyname==null)">
 				and c.title like '%' || #{title} || '%'

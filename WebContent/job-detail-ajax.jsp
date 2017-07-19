@@ -31,7 +31,7 @@
                                 <p></p>
                                 <ul>
                                     <li><a ><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>본사: ${company.location }</a></li>
+                                            aria-hidden="true"></i>본사: ${company.headquarter }</a></li>
                                     <li><a ><i class="fa fa-clock-o"
                                             aria-hidden="true"></i>설립일: ${company.establishmentdate }</a></li>
                                     <li><i class="fa fa-money" aria-hidden="true"></i>연 매출액: ${company.annualsales }억 원</li>
@@ -107,7 +107,7 @@
                                                             <fmt:formatDate value="${career.enddate }" var="end"/>
                                                             <fmt:parseNumber value="${now.time /(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="page"/>
                                                             <fmt:parseNumber value="${career.enddate.time /(1000*60*60*24)}" integerOnly="true" var="endDays" scope="page"/>
-                                                            <h5><strong>( D - ${nowDays-endDays } )</strong> ${post} ~ ${end }</h5>
+                                                            <h5><strong>( D ${(endDays-nowDays)>0? "-":"+"} ${(endDays-nowDays-1)>0 ?(endDays-nowDays-1):(nowDays-endDays-1)} )</strong> ${post} ~ ${end }</h5>
                                                         </div>
                                                             <div class="col-xs-12 col-sm-6">
                                                         <ul>
@@ -211,7 +211,7 @@
                                 <ul>
                                     <li>기업명: <a href="#">${company.companyname }</a></li>
                                     <li>웹사이트: <a href="#">${company.website }</a></li>
-                                    <li>본사: ${company.location}</li>
+                                    <li>본사: ${company.headquarter}</li>
                                     <li>사원수: ${company.companysize }</li>
                                     <li>기업형태: <a href="#">
                                     <c:choose>

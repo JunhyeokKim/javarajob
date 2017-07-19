@@ -1997,8 +1997,11 @@ section, .job-list-item {
 
 .calendar-right {
 	padding-left: 260px;
+	overflow-y: hidden;
+}
+#calendar {
 	overflow-y: scroll;
-	height: 75vh;
+	height: 80vh;
 }
 
 @media ( max-width : 767px) {

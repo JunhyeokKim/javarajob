@@ -55,7 +55,7 @@
 	</update>
 	
 	<select id="getFavCompanyList" resultMap="favCompResult" parameterType="String">
-		SELECT A.*, B.IMAGEURL, B.SHORTINFO, B.COMPANYNAME, B.LOCATION, B.ANNUALSALES
+		SELECT A.*, B.IMAGEURL, B.SHORTINFO, B.COMPANYNAME, B.HEADQUARTER, B.ANNUALSALES
 		FROM FAVCOMPANY A, COMPANY B
 		WHERE A.COMPANYID = B.COMPANYID
 		<if test="_parameter!=null and !_parameter.equals('')">
@@ -64,7 +64,7 @@
 	</select>
 	
 	<select id="getFavCompanyListOrderByPopular" resultMap="favCompResult" parameterType="String">
-		SELECT A.*, B.IMAGEURL, B.SHORTINFO, B.COMPANYNAME, B.LOCATION, B.ANNUALSALES
+		SELECT A.*, B.IMAGEURL, B.SHORTINFO, B.COMPANYNAME, B.HEADQUARTER, B.ANNUALSALES
 		FROM FAVCOMPANY A, COMPANY B
 		WHERE A.COMPANYID = B.COMPANYID
 		<if test="_parameter!=null and !_parameter.equals('')">

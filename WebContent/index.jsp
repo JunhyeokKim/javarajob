@@ -142,13 +142,13 @@
 
 		</div>
 		<!-- container -->
-	</div>
 	<!-- banner-section -->
 	
-	<div class="page">
+	</div>
+	<div class="page container-fluid">
 		<br>
 		<div class="row" id="temp01"><!-- row -->			
-			<div class="col-sm-2"><!-- col-sm-2 -->
+			<div class="col-sm-2 "><!-- col-sm-2 -->
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default panel-faq">
 					<!-- panel-heading -->
@@ -225,7 +225,7 @@
 										</span>
 										<div class="ad-meta">
 											<ul>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-map-marker"	aria-hidden="true"></i>
 													<c:choose>
 														<c:when test="${career.location==1}">서울</c:when>
@@ -250,7 +250,7 @@
 													</c:choose>
 													</a>
 												</li>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-check" aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.companytype==1}">대기업</c:when>
@@ -263,7 +263,7 @@
 													</c:choose>
 													</a>
 												</li>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-industry" aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.industry==1}">서비스업</c:when>
@@ -277,7 +277,7 @@
 													</c:choose>
 													</a>
 												</li>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-clock-o" aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.employmenttype==1}">정규직</c:when>
@@ -289,7 +289,7 @@
 													</c:choose>
 													</a>
 												</li>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-pencil"	aria-hidden="true"></i>													
 													<c:choose>
 														<c:when test="${career.field==1}">서버 개발자</c:when>
@@ -311,7 +311,7 @@
 													</c:choose>
 													</a>
 												</li>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-money" aria-hidden="true"></i>
 													<c:choose>
 														<c:when test="${career.salary==0}">회사내규에 따름</c:when>
@@ -340,7 +340,7 @@
 													</c:choose>
 													</a>
 												</li>
-												<li>
+												<li class="hidden-sm hidden-xs">
 													<a><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 													<fmt:formatDate value="${career.postdate}"	pattern="yy-MM-dd" />~<fmt:formatDate value="${career.enddate}" pattern="yy-MM-dd" /></a>
 												</li>
@@ -504,9 +504,9 @@
 				  separator : ',', 
 				  decimal : '.', 
 				};
-				var account = new CountUp("accountcount", 0, ${accountCount}, 0, 10, options);
-				var career = new CountUp("careercount", 0, ${careerCount}, 0, 10, options);
-				var company = new CountUp("companycount", 0, ${companyCount}, 0, 10, options);
+				var account = new CountUp("accountcount", 0, ${accountCount}, 0, 5, options);
+				var career = new CountUp("careercount", 0, ${careerCount}, 0, 5, options);
+				var company = new CountUp("companycount", 0, ${companyCount}, 0, 5, options);
 				account.start();
 				career.start();
 				company.start();

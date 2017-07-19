@@ -172,7 +172,7 @@
 													<li>
 														<a class="cursorCtrl">
 															<i class="fa fa-map-marker" aria-hidden="true"></i>
-															본사 위치 : ${company.location}
+															본사 위치 : ${company.headquarter}
 														</a>
 													</li>
 													<li>
