@@ -178,7 +178,7 @@
 													<li>
 														<a class="cursorCtrl">
 															<i class="fa fa-money" aria-hidden="true"></i>
-															매출 : ${company.annualsales} 원
+															매출 : 약 ${company.annualsales} 억 원
 														</a>
 													</li>
 												</ul>

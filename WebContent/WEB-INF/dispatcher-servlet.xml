@@ -67,5 +67,26 @@
 	
 	<!-- Download View Resolver -->
 	<bean id="downloadResolver" class="javarajob.util.DownloadView" />
+
+
+	<!-- mail bean -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- gmail host 및 port를 사용 -->
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<!-- javarajob 아이디 및 비밀 번호 -->
+		<property name="username" value="javarajob@gmail.com" />
+		<property name="password" value="q1w2e34r!" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<!-- mail 서버 연결시 timeout 시간 설정 -->
+				<prop key="mail.smtp.timeout">8500</prop>
+				<!-- log를 보고 싶다면 사용 -->
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
 
