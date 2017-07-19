@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javarajob.repository.SelfDocuDao;
+import javarajob.vo.Resume;
 import javarajob.vo.SelfDocuMulti;
 import javarajob.vo.SelfDocument;
 
@@ -105,6 +106,11 @@ public class FileService {
 
 	public File getFile(SelfDocument down) {
 		String docupath = selfUp + down.getUserId() + "/" + down.getUserId() + "_" + down.getFileName();
+		return new File(docupath);
+	}
+	
+	public File getResume(Resume res) {
+		String docupath = selfUp + res.getUserId() + "/" + res.getUserId() + "_resume.pdf";
 		return new File(docupath);
 	}
 
