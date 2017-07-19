@@ -26,7 +26,7 @@ import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
 public class Testt {
 	public static void main(String[] args) throws Exception {
 		Document doc = new Document(PageSize.A4,5,5,5,5);
-			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("resume.pdf"));
+			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("C:\\resume.pdf"));
 			doc.addAuthor("king");
 			doc.addTitle("king's speach");
 			// Document 오픈
@@ -36,11 +36,10 @@ public class Testt {
 			// CSS
 			CSSResolver cssResolver = new StyleAttrCSSResolver();
 			CssFile cssFile = helper.getCSS(new FileInputStream("C:\\a01_prog\\eclipse\\workspace_prj\\javarajob\\WebContent\\css\\resume2.css"));
-//			CssFile cssFile = helper.getCSS(new FileInputStream("C:\\a01_prog\\eclipse\\workspace_prj\\javarajob\\WebContent\\a00_com\\a00_com.css"));
 			cssResolver.addCss(cssFile);
 			// HTML, 폰트 설정
 			XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
-			fontProvider.register("C:\\Windows\\Fonts\\malgun.ttf", "Starcraft"); // MalgunGothic은
+			fontProvider.register("C:\\Windows\\Fonts\\malgun.ttf", "malgungothic"); // MalgunGothic은
 			CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 
 			HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
@@ -55,7 +54,7 @@ public class Testt {
 			XMLParser xmlParser = new XMLParser(worker, Charset.forName("UTF-8"));
 
 			// 폰트 설정에서 별칭으로 줬던 "MalgunGothic"을 html 안에 폰트로 지정한다.
-			String htmlStr = "<!DOCTYPE html>" + "<html>" + "<body style='font-family:Starcraft;'>"
+			String htmlStr = "<!DOCTYPE html>" + "<html>" + "<body style='font-family:malgungothic;'>"
 					+ "<h1 align='center'>이력서</h1>"
 					+ "<div class='section-content new ng-scope' id='resumeFile'>"
 						+ "<div class='specs edit-spec ng-scope basic-information'>"
