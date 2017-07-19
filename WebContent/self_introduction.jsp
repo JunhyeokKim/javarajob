@@ -69,7 +69,7 @@
 
 <!-- form js -->
 <script src="${path}/com/jquery-1.10.2.js"></script>
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<script src="${path }/js/dropzone.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -97,7 +97,7 @@
 		// ---------- Dropzone 설정 ----------
 		
 		// "dropArea" is the camelized version of the HTML element's ID
-		var myDrop=Dropzone.options.dropArea = {
+		Dropzone.options.dropArea = {
 		  url:"${path}/self_intro.do?method=upload&count=0",
 		  paramName: "selfIntro", // The name that will be used to transfer the file
 		  maxFilesize: 5, // MB
@@ -105,6 +105,10 @@
 		  dictInvalidFileType:"지원하지 않는 파일 형식입니다.",
 		  acceptedFiles:".jpg,.pdf,.xlsx,.txt,.doc,.docx,.pptx,.ppt,.hwp,.png",
 		  maxFiles:20,
+		  checkedFiles : new Array(),
+		  renameFile: function(file) {
+			  
+		  },
 		  thumbnail: function(file, dataUrl) {
 			  var ext = file.name.split('.').pop();
 			  if (ext == "pdf") {
@@ -117,22 +121,22 @@
 			    	$(file.previewElement).find(".dz-image img").attr("src", dataUrl);
 			    }
 			  	$(file.previewElement).find(".dz-image img").css("height", "inherit");
-		    	$(file.previewElement).find(".dz-image img").css("width", "inherit");
 			  },
 		  init:function() {
 			  var _this = this;
 			  this.on("addedfile", function(file) {
-				  	file.previewElement.addEventListener("dblclick",function(e){
+			        // Create the remove button
+			        var removeButton = Dropzone.createElement("<button class='dropzone-file btn btn-danger' data-dz-remove>X</button>");
+			        var checkboxButton= Dropzone.createElement("<input type='checkbox' class='dropzone-file dropzone-checkbox' name='fileNames' value='"+file.name+"'/>");
+			        // Capture the Dropzone instance as closure.
+			        _this.files.push(file);
+			        // download click event
+			        file.previewElement.addEventListener("dblclick",function(e){
 			        	if(confirm("다운로드??")) {
 			        		$("form").attr("action","${path}/self_intro.do?method=download&fileNames="+file.name);
 			        		$("form").submit();
 			        	}
 			        })
-			        // Create the remove button
-			        var removeButton = Dropzone.createElement("<button class='dropzone-file btn btn-danger' data-dz-remove>X</button>");
-			        var checkboxButton= Dropzone.createElement("<input type='checkbox' class='dropzone-file dropzone-checkbox' name='fileNames' value='"+file.name+"'/>");
-			        // Capture the Dropzone instance as closure.
-
 			        // Listen to the click event
 			        removeButton.addEventListener("click", function(e) {
 			          // Make sure the button click doesn't submit the form:
@@ -158,14 +162,16 @@
 			        });
 			        file.previewElement.addEventListener("click",function(e) {
 			        	var fileCheck=$(this).find("input[type=checkbox]");
-			        	var fileIdx= _this.files.indexOf(file);
+			        	var fileIdx= _this.options.checkedFiles.indexOf(file);
 			        	if(fileCheck.prop("checked")){
 			        		fileCheck.prop("checked",false);
-			        		_this.files.splice(fileIdx,1);
+			        		_this.options.checkedFiles.splice(fileIdx,1);
+			        		_this.checkedFiles.push(file);
 			        	}else{
 			        		fileCheck.prop("checked","checked");
-			        		_this.files.push(file);
+			        		_this.options.checkedFiles.push(file);
 			        	}
+			        	console.log(_this.options.checkedFiles);
 			        	
 			        })
 
@@ -195,17 +201,17 @@
 						  }
 				  });
 			  $("#delDocu").on("click",function(){
-				  console.log(_this.files)
+				  console.log(_this.options.checkedFiles)
 				  var fileData="";
-				  $.each(_this.files, function(index, item){
+				  $.each(_this.options.checkedFiles, function(index, item){
 					  fileData+="&fileNames="+item.name;
 				  })
-				  if($(_this.files).length != 0) {
+				  if($(_this.options.checkedFiles).length != 0) {
 						$.ajax({
 							url:"${path}/self_intro.do?method=delete"+fileData,
 							method:"POST",
 							success:function(data){
-								 $.each(_this.files, function(index, item){
+								 $.each(_this.options.checkedFiles, function(index, item){
 									 _this.removeFile(item);
 								  })
 							},
