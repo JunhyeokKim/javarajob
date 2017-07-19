@@ -6,7 +6,7 @@
 	<resultMap type="docu" id="docuResult" />
 	<insert id="docuUpload" parameterType="docu">
 		INSERT INTO SELFDOCUMENT VALUES(
-			#{userId}, #{fileName}, SYSDATE, #{ext}, #{filePath}, #{fileSize} 
+			#{userId}, #{fileName}, SYSDATE, #{filePath}, #{fileSize} 
 		)
 	</insert>
 	

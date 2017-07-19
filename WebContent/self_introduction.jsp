@@ -46,6 +46,16 @@
 		height:20px;
 		margin:0px;
 	}
+	.dropzone-down {
+	position:absolute;
+	top:70%;
+	left:25%;
+	width:50%;
+	height:20%;
+	z-index:50;
+	padding:0;
+	display: none;
+	}
 </style>
 <!-- font -->
 <link
@@ -72,30 +82,7 @@
 <script src="${path }/js/dropzone.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
-		// ---------- 초기 값 설정 ---------- 
-		var ext ="";
-		$("#fileUp").val("");
-		// ---------- 초기 값 설정 ----------
-		
-		// ---------- download ----------
-		$("#downDocu").click(function(){
-			if($("input:checkbox[name='fileNames']:checked").length == 1) {
-				var fileName = $("input:checkbox[name='fileNames']:checked").val();
-				$("form").attr("action","${path}/self_intro.do?method=download&fileName="+fileName);
-				$("form").submit();
-			} else if($("input:checkbox[name='fileNames']:checked").length != 0) {
-				alert("다운로드는 한 번에 한 파일만 가능합니다.");
-			} else alert("선택된 파일이 없습니다.");
-			
-		})
-		// ---------- download ----------
-		
-		
-				
-		
 		// ---------- Dropzone 설정 ----------
-		
 		// "dropArea" is the camelized version of the HTML element's ID
 		Dropzone.options.dropArea = {
 		  url:"${path}/self_intro.do?method=upload&count=0",
@@ -103,12 +90,9 @@
 		  maxFilesize: 5, // MB
 		  dictDefaultMessage:"파일을 추가해 주세요",
 		  dictInvalidFileType:"지원하지 않는 파일 형식입니다.",
-		  acceptedFiles:".jpg,.pdf,.xlsx,.txt,.doc,.docx,.pptx,.ppt,.hwp,.png",
+		  acceptedFiles:".jpg,.pdf,.xlsx,.txt,.doc,.docx,.pptx,.ppt,.hwp,.png",	// 파일 확장자 지정.
 		  maxFiles:20,
 		  checkedFiles : new Array(),
-		  renameFile: function(file) {
-			  
-		  },
 		  thumbnail: function(file, dataUrl) {
 			  var ext = file.name.split('.').pop();
 			  if (ext == "pdf") {
@@ -117,7 +101,7 @@
 			        $(file.previewElement).find(".dz-image img").attr("src", "${path}/images/ico/txt.png");
 			    } else if (ext=="ppt" || ext=="pptx") {
 			        $(file.previewElement).find(".dz-image img").attr("src", "${path}/images/ico/ppt.png");
-			    }else{
+			    }else if(dataUrl!=null){
 			    	$(file.previewElement).find(".dz-image img").attr("src", dataUrl);
 			    }
 			  	$(file.previewElement).find(".dz-image img").css("height", "inherit");
@@ -125,18 +109,19 @@
 		  init:function() {
 			  var _this = this;
 			  this.on("addedfile", function(file) {
+				  var _i, _len;
+				  for(_i=0, _len=_this.files.length; _i<_len-1; _i++) {
+					  console.log(_this.files[_i].name +" "+file.name);
+					  if(_this.files[_i].name == file.name){
+						  alert("파일 이름이 중복됨.");
+						  _this.removeFile(file);
+					  }
+				  }
 			        // Create the remove button
 			        var removeButton = Dropzone.createElement("<button class='dropzone-file btn btn-danger' data-dz-remove>X</button>");
+			        var downloadButton= Dropzone.createElement("<button class='dropzone-down btn btn-success'><span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span></button>");
 			        var checkboxButton= Dropzone.createElement("<input type='checkbox' class='dropzone-file dropzone-checkbox' name='fileNames' value='"+file.name+"'/>");
 			        // Capture the Dropzone instance as closure.
-			        _this.files.push(file);
-			        // download click event
-			        file.previewElement.addEventListener("dblclick",function(e){
-			        	if(confirm("다운로드??")) {
-			        		$("form").attr("action","${path}/self_intro.do?method=download&fileNames="+file.name);
-			        		$("form").submit();
-			        	}
-			        })
 			        // Listen to the click event
 			        removeButton.addEventListener("click", function(e) {
 			          // Make sure the button click doesn't submit the form:
@@ -150,6 +135,8 @@
 			        		  success:function(data){
 			        			  alert("삭제 되었습니다.");
 			        			  _this.removeFile(file);
+			        			  var idx= _this.files.indexOf(file);
+			        			  _this.files.splice(idx,1);
 			        		  },
 			        		  error:function(error){
 			        			  alert("error 발생.");
@@ -160,6 +147,12 @@
 			          // If you want to the delete the file on the server as well,
 			          // you can do the AJAX request here.
 			        });
+			     // ---------- download ----------
+			        downloadButton.addEventListener("click",function(e) {
+			        	$("form").attr("action","${path}/self_intro.do?method=download&fileName="+file.name);
+			        	$("form").submit();
+			        })
+			        // ---------- download ----------
 			        file.previewElement.addEventListener("click",function(e) {
 			        	var fileCheck=$(this).find("input[type=checkbox]");
 			        	var fileIdx= _this.options.checkedFiles.indexOf(file);
@@ -171,13 +164,19 @@
 			        		fileCheck.prop("checked","checked");
 			        		_this.options.checkedFiles.push(file);
 			        	}
-			        	console.log(_this.options.checkedFiles);
 			        	
+			        })
+			        file.previewElement.addEventListener("mouseover",function(e) {
+			        	$(this).find(".dropzone-down").css("display","block");
+			        })
+			        file.previewElement.addEventListener("mouseout",function(e) {
+			        	$(this).find(".dropzone-down").css("display","none");
 			        })
 
 			        // Add the button to the file preview element.
 			        file.previewElement.appendChild(removeButton);
 			        file.previewElement.appendChild(checkboxButton);
+			        file.previewElement.appendChild(downloadButton);
 			      });
 			  
 			  $.ajax({
@@ -188,11 +187,13 @@
 					  // Create the mock file:
 						  var files=$.parseJSON(file);
 						  $.each(files.filelist, function(index,item){
-							  var mockFile = { name:item.fileName , size: item.fileSize, type:item.ext};
+							  var mockFile = { name:item.fileName , size: item.fileSize, type:item.ext, filePath:item.filePath};
 							  // Call the default addedfile event handler
 							  _this.emit("addedfile", mockFile);
 							  _this.emit("complete", mockFile);
 							  _this.emit("thumbnail", mockFile, item.filePath);
+							  _this.files.push(mockFile);
+							  console.log(_this.files);
 							// If you use the maxFiles option, make sure you adjust it to the
 							// correct amount:
 							var existingFileCount = 1; // The number of files already uploaded
@@ -206,7 +207,7 @@
 				  $.each(_this.options.checkedFiles, function(index, item){
 					  fileData+="&fileNames="+item.name;
 				  })
-				  if($(_this.options.checkedFiles).length != 0) {
+				  if($(_this.options.checkedFiles).length != 0 && confirm("정말 삭제하시겠습니까?")) {
 						$.ajax({
 							url:"${path}/self_intro.do?method=delete"+fileData,
 							method:"POST",
@@ -218,15 +219,14 @@
 							error:function(){
 								alert("실패");
 							}
-							
 						})
 					} else alert("선택된 파일이 없습니다."); 
 			  })
-				  
+			  
 			  },
-			  success:function(file,xhs) {
-				  alert("업로드되었습니다.");
-				  this.emit("thumbnail", file, xhs.imageUrl);
+			  accept:function(file, done) {
+				  this.emit("thumbnail", file);
+				  done();
 			  },
 			  error:function(file, errorMessage) {
 				alert(errorMessage);	  
@@ -234,29 +234,6 @@
 		    }
 		
 		// ---------- Dropzone 설정 ----------
-		
-		// ---------- delete ----------
-		$("#delDocu").click(function(){
-			/* if($("input:checkbox[name='fileNames']:checked").length != 0) {
-				$.each($("input:checkbox[name='fileNames']:checked",function(item, index){
-					myDrop.removeFile(item.value);
-				}))
-				$.ajax({
-					url:"${path}/self_intro.do?method=delete",
-					data:$("form").serialize(),
-					method:"POST",
-					success:function(data){
-						alert("삭제되었음.");
-					},
-					error:function(){
-						alert("실패");
-					}
-					
-				})
-			} else alert("선택된 파일이 없습니다."); */
-		})
-		// ---------- delete ----------
-		
 		
 	})
 </script>
@@ -284,12 +261,7 @@
 					<div class="row">
 						<div class="col-mdd-3">
 							<div class="sid-button">
-								<input type="button" class="btn" id="delDocu" value="선택 삭제" />
-							</div>
-						</div>
-						<div class="col-mdd-3">
-							<div class="sid-button">
-								<input type="button" class="btn" id="downDocu" value="다운로드" />
+								<input type="button" class="btn" id="delDocu" value="선택 항목 삭제" />
 							</div>
 						</div>
 					</div>
@@ -297,9 +269,11 @@
 			
 				<div class="resume-content">
 					<!-- Change /upload-target to your upload address -->
-					<form method="post" action="/upload-target" class="dropzone" enctype="multipart/form-data" id="drop-area" style="min-height:500px">
+					<form method="post" action="/upload-target" class="dropzone" enctype="multipart/form-data" id="drop-area" style="min-height:500px; border-style: dashed; border-radius: 15px;">
+					<div>
+						<h3 align="center">파일을 추가해주세요(drag or click!)</h3>
+					</div>
 						<input type="hidden" name="userId" value="${id}" />
-						<input type="hidden" id="isExt" name="ext" value="jpg" />
 					</form>
 				</div>
 				<!-- resume-content -->

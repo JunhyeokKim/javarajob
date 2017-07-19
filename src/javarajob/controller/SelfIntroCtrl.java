@@ -57,10 +57,10 @@ public class SelfIntroCtrl {
 		return "forward:/self_intro.do?method=view&userid=" + del.getUserId();
 	}
 	@RequestMapping(params = "method=download", method = RequestMethod.POST)
-	public ModelAndView download(@RequestParam(value="fileNames")String fileNames, HttpSession session) {
+	public ModelAndView download(@RequestParam(value="fileName")String fileName, HttpSession session) {
 		SelfDocument down= new SelfDocument();
 		down.setUserId((String)session.getAttribute("id"));
-		down.setFileName(fileNames);
+		down.setFileName(fileName);
 		System.out.println("ÆÄÀÏ¸í:" + down.getFileName());
 		// return new ModelAndView("b01_board/a01_list","list",new Board());
 		File f = s.getFile(down);
