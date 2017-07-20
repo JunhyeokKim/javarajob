@@ -86,13 +86,13 @@
 		// "dropArea" is the camelized version of the HTML element's ID
 		Dropzone.options.dropArea = {
 		  url:"${path}/self_intro.do?method=upload&count=0",
-		  paramName: "selfIntro", // The name that will be used to transfer the file
+		  paramName: "selfIntro", // 전송할 input file의 name
 		  maxFilesize: 5, // MB
 		  dictDefaultMessage:"파일을 추가해 주세요",
 		  dictInvalidFileType:"지원하지 않는 파일 형식입니다.",
 		  acceptedFiles:".jpg,.pdf,.xlsx,.txt,.doc,.docx,.pptx,.ppt,.hwp,.png",	// 파일 확장자 지정.
 		  maxFiles:20,
-		  checkedFiles : new Array(),
+		  checkedFiles : new Array(),	// checkbox 리스트
 		  thumbnail: function(file, dataUrl) {
 			  var ext = file.name.split('.').pop();
 			  if (ext == "pdf") {
@@ -117,11 +117,10 @@
 						  _this.removeFile(file);
 					  }
 				  }
-			        // Create the remove button
+			        // 각 file의 preivewElement에 버튼 생성
 			        var removeButton = Dropzone.createElement("<button class='dropzone-file btn btn-danger' data-dz-remove>X</button>");
 			        var downloadButton= Dropzone.createElement("<button class='dropzone-down btn btn-success'><span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span></button>");
 			        var checkboxButton= Dropzone.createElement("<input type='checkbox' class='dropzone-file dropzone-checkbox' name='fileNames' value='"+file.name+"'/>");
-			        // Capture the Dropzone instance as closure.
 			        // Listen to the click event
 			        removeButton.addEventListener("click", function(e) {
 			          // Make sure the button click doesn't submit the form:
@@ -139,7 +138,7 @@
 			        			  _this.files.splice(idx,1);
 			        		  },
 			        		  error:function(error){
-			        			  alert("error 발생.");
+			        			  alert(error);
 			        		  }
 			        	  })
 			       		}
@@ -216,8 +215,8 @@
 									 _this.removeFile(item);
 								  })
 							},
-							error:function(){
-								alert("실패");
+							error:function(error){
+								alert(error);
 							}
 						})
 					} else alert("선택된 파일이 없습니다."); 
@@ -228,8 +227,8 @@
 				  this.emit("thumbnail", file);
 				  done();
 			  },
-			  error:function(file, errorMessage) {
-				alert(errorMessage);	  
+			  error:function(file, error) {
+				alert(error);	  
 			  }
 		    }
 		
@@ -273,7 +272,6 @@
 					<div>
 						<h3 align="center">파일을 추가해주세요(drag or click!)</h3>
 					</div>
-						<input type="hidden" name="userId" value="${id}" />
 					</form>
 				</div>
 				<!-- resume-content -->

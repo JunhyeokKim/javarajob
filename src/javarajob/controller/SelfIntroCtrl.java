@@ -27,7 +27,8 @@ public class SelfIntroCtrl {
 	private FileService s;
 
 	@RequestMapping(params = "method=view")
-	public String selfView(@RequestParam("userId") String userId, Model d) {
+	public String selfView(HttpSession session, Model d) {
+		String userId= (String)session.getAttribute("id");
 		s.docuView(userId);
 		d.addAttribute("documents", s.docuView(userId));
 		return "self_introduction";
@@ -43,23 +44,26 @@ public class SelfIntroCtrl {
 
 	@RequestMapping(params = "method=upload", method = RequestMethod.POST)
 	public String uploadSelfIntro(@RequestParam("selfIntro") MultipartFile docu, @ModelAttribute("selfDocu") SelfDocument sd,
-			@RequestParam("count") int count, Model d) {
+			@RequestParam("count") int count, Model d, HttpSession session) {
+		String userId= (String)session.getAttribute("id");
+		sd.setUserId(userId);
 		System.out.println("file name:"+docu.getOriginalFilename());
 		s.uploadDoc(docu, sd, count);
-		return "forward:/self_intro.do?method=view&userId=" + sd.getUserId();
+		return "forward:/self_intro.do?method=view&userId=" + userId;
 	}
 	@ResponseBody
 	@RequestMapping(params = "method=delete", method = RequestMethod.POST)
 	public String delSelfIntro(@ModelAttribute("docuMulti") SelfDocuMulti del, HttpSession session) {
-		if(del.getUserId()==null)
-			del.setUserId((String)session.getAttribute("id"));
+		String userId= (String)session.getAttribute("id");
+		del.setUserId(userId);
 		s.delSelfIntro(del);
 		return "forward:/self_intro.do?method=view&userid=" + del.getUserId();
 	}
 	@RequestMapping(params = "method=download", method = RequestMethod.POST)
 	public ModelAndView download(@RequestParam(value="fileName")String fileName, HttpSession session) {
+		String userId= (String)session.getAttribute("id");
 		SelfDocument down= new SelfDocument();
-		down.setUserId((String)session.getAttribute("id"));
+		down.setUserId(userId);
 		down.setFileName(fileName);
 		System.out.println("ÆÄÀÏ¸í:" + down.getFileName());
 		// return new ModelAndView("b01_board/a01_list","list",new Board());
