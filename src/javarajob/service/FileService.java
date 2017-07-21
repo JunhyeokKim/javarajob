@@ -95,12 +95,12 @@ public class FileService {
 			File[] childFileList = file.listFiles();
 			for (File childFile : childFileList) {
 				if (childFile.isDirectory()) {
-					delAllFiles(childFile.getAbsolutePath()); // 窍困 叼泛配府 风橇
+					delAllFiles(childFile.getAbsolutePath()); // 頃橃渼 霐旊爥韱犽Μ 耄攧
 				} else {
-					childFile.delete(); // 窍困 颇老昏力
+					childFile.delete(); // 頃橃渼 韺岇澕靷牅
 				}
 			}
-			file.delete(); // root 昏力
+			file.delete(); // root 靷牅
 		}
 	}
 

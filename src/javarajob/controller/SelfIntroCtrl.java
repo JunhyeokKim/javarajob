@@ -65,10 +65,10 @@ public class SelfIntroCtrl {
 		SelfDocument down= new SelfDocument();
 		down.setUserId(userId);
 		down.setFileName(fileName);
-		System.out.println("∆ƒ¿œ∏Ì:" + down.getFileName());
+		System.out.println("√Ü√Ñ√Ä√è¬∏√≠:" + down.getFileName());
 		// return new ModelAndView("b01_board/a01_list","list",new Board());
 		File f = s.getFile(down);
-		// View model ∆ƒ¿œ..
+		// View model √Ü√Ñ√Ä√è..
 		return new ModelAndView("downloadResolver", "downloadFile", f);
 	}
 	

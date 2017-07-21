@@ -29,7 +29,6 @@ public class IndexCtrl {
 	FavCareerService favCareerService;
 
 	@RequestMapping("/index.do")
-
 	public String listCareerforindex(HttpSession session, @RequestParam(value = "mode", defaultValue = "0") int mode,
 			Model d) {
 		ArrayList<Career> topCareers = careerService.listCareerforindex();

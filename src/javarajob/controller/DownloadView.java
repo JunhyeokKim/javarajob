@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
-// download ¸ğµâ..
+// download ëª¨ë“ˆ..
 // filedown
 
 // springweb.f01_file.B01_DownloadView
@@ -19,7 +19,7 @@ public class DownloadView extends AbstractView{
 
 	
 	public DownloadView() {
-		// download contentType¼³Á¤
+		// download contentTypeì„¤ì •
 		setContentType("application/download; charset=utf-8;");
 	}
 
@@ -28,58 +28,37 @@ public class DownloadView extends AbstractView{
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		/* Controller
-		 * 	  model ==> View´Ü(ÇÙ½Éµ¥ÀÌÅÍ·Î È­¸é¿¡ Áß°£¿¡ data³ªÅ¸³¿)
-		 * 	  ÇØ´ç ³»¿ëÀÇ View¸¦ È£Ãâ(dispatcher¿¡ Á¤ÀÇµÈ)
-
+		 * 	  model ==> Viewë‹¨(í•µì‹¬ë°ì´í„°ë¡œ í™”ë©´ì— ì¤‘ê°„ì— dataë‚˜íƒ€ëƒ„)
+		 * 	  í•´ë‹¹ ë‚´ìš©ì˜ Viewë¥¼ í˜¸ì¶œ(dispatcherì— ì •ì˜ëœ)
 		 * dispatcher
-		 *    view(ÆÄÀÏ´Ù¿î·Îµå)´Ü¿¡ »Ñ·ÁÁÜ
+		 *    view(íŒŒì¼ë‹¤ìš´ë¡œë“œ)ë‹¨ì— ë¿Œë ¤ì¤Œ
 		 * */
 		File file = (File)model.get("downloadFile");
 		
-		// stream ¼­¹ö(Åè°¹À¥¼­¹ö)¿¡ ÀÖ´Â ÀÚ¿ø client(ºê¶ó¿ìÀú-ÀÍ½ºÇÃ·Î·¯, Å©·Ò)¿¡ Àü´ŞÇÏ±âÀ§ÇØ..response
+		// stream ì„œë²„(í†°ê°¯ì›¹ì„œë²„)ì— ìˆëŠ” ìì› client(ë¸Œë¼ìš°ì €-ìµìŠ¤í”Œë¡œëŸ¬, í¬ë¡¬)ì— ì „ë‹¬í•˜ê¸°ìœ„í•´..response
 		response.setContentType(getContentType());
 		response.setContentLength((int)file.length());
 		String fileName=file.getName();
-		// ºê¶ó¿ìÀú¿¡ µû¸¥ ÇÑ±ÛÃ³¸® ³»¿ë Ã³¸® Â÷ÀÌ.
-		// ieÀÎÁö ¿©ºÎ
+		// ë¸Œë¼ìš°ì €ì— ë”°ë¥¸ í•œê¸€ì²˜ë¦¬ ë‚´ìš© ì²˜ë¦¬ ì°¨ì´.
+		// ieì¸ì§€ ì—¬ë¶€
 		String userAgent=request.getHeader("User-Agent");
 		boolean ie=userAgent.indexOf("MSIE")>-1;
-		// ºê¶ó¿ìÀú¿¡ µû¶ó¼­ ÇÑ±ÛÆÄÀÏ¸í Ã³¸® ³»¿ëÀÌ Â÷ÀÌ¶§¹®¿¡ setting¹æ½ÄÀ» Â÷º°È­ ÇØ µÒ..
+		// ë¸Œë¼ìš°ì €ì— ë”°ë¼ì„œ í•œê¸€íŒŒì¼ëª… ì²˜ë¦¬ ë‚´ìš©ì´ ì°¨ì´ë•Œë¬¸ì— settingë°©ì‹ì„ ì°¨ë³„í™” í•´ ë‘ ..
 		//if(ie){
 			fileName=URLEncoder.encode(file.getName(),"utf-8").replaceAll("\\+", " ");
 //		}else{
 //			fileName= new String(file.getName().getBytes("utf-8"),"iso-8859-1").replaceAll("\\+", " ");
 //		}
-		// response¿¡ ÆÄÀÏÇü½Ä setting
+		// responseì— íŒŒì¼í˜•ì‹ setting
 		response.setHeader("Content-Disposition", 
 				"attachment;filename=\""+fileName+"\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
-		// Stream Àü¼Û
+		// Stream ì „ì†¡
 		OutputStream out=response.getOutputStream();
 		FileInputStream fis=null;
 		fis=new FileInputStream(file);
 		FileCopyUtils.copy(fis, out);
 		out.flush();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 }

@@ -39,24 +39,24 @@ public class BoardService {
     }
 
     public Board detailBoard(int no) {
-        // readCount¸¦ update Ã³¸®..
+        // readCountë¥¼ update ì²˜ë¦¬..
         dao.uptBoardCnt(no);
 
-        // ÇÏ³ªÀÇ µ¥ÀÌÅÍ¸¦ °¡Á®¿Ã ºÎºĞ
+        // í•˜ë‚˜ì˜ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¬ ë¶€ë¶„
         return getBoard(no);
     }
 
     public Board getReBoard(int no) {
         Board reboard = null;
-        // ÃÊ±âµî·ÏÈ­¸é
+        // ì´ˆê¸°ë“±ë¡í™”ë©´
         if (no == 0) {
             reboard = new Board();
-            // ´ä±Ûµî·ÏÈ­¸é
+            // ë‹µê¸€ë“±ë¡í™”ë©´
         } else {
             reboard = dao.getBoard(no);
             reboard.setRefno(no);
             reboard.setSubject("RE : " + reboard.getSubject());
-            reboard.setContent("\n\n\n\n¹®ÀÇ³»¿ë : \n" + reboard.getContent());
+            reboard.setContent("\n\n\n\në¬¸ì˜ë‚´ìš© : \n" + reboard.getContent());
         }
 
         return reboard;

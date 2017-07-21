@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-// ½ÇÁ¦ ¼­¹ö¿¡¼­ ÆÄÀÏ À§Ä¡¸¦ °¡Á®¿À±â À§ÇÑ ³»¿ë:ApplicationContextAware
+// ì‹¤ì œ ì„œë²„ì—ì„œ íŒŒì¼ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•œ ë‚´ìš©:ApplicationContextAware
 @Controller
 public class DownCtrl implements ApplicationContextAware {
 
-	// context Á¤º¸ : webcontent:½ÇÁ¦°æ·Î..
+	// context ì •ë³´ : webcontent:ì‹¤ì œê²½ë¡œ..
 	private WebApplicationContext context = null;
 
 	@RequestMapping("down.do")
 	public ModelAndView download(@RequestParam("fname") String fname) {
-		System.out.println("ÆÄÀÏ¸í:" + fname);
+		System.out.println("íŒŒì¼ëª…:" + fname);
 		// return new ModelAndView("b01_board/a01_list","list",new Board());
 		File f = getFile(fname);
-		// View model ÆÄÀÏ..
+		// View model íŒŒì¼..
 		return new ModelAndView("download", "downloadFile", f);
 	}
 
@@ -35,7 +35,7 @@ public class DownCtrl implements ApplicationContextAware {
 	@Override
 	public void setApplicationContext(ApplicationContext webctx) throws BeansException {
 		// TODO Auto-generated method stub
-		// WebApplicationContext Á¤º¸°¡Á®¿Å.
+		// WebApplicationContext ì •ë³´ê°€ì ¸ì˜®.
 		this.context = (WebApplicationContext) webctx;
 	}
 
