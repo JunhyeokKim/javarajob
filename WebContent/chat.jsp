@@ -25,7 +25,7 @@
                     <div class="input-group">
                         <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
                         <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                        <button class="btn btn-primary btn-sm" id="btn-chat" style="font-size: 12px;">Send</button>
                         </span>
                     </div>
                 </div>
@@ -49,6 +49,7 @@
 </div>
 <script type="text/javascript">
 var wsocket;
+var msgArrived=0;
 function connect() {
 	wsocket = new WebSocket("ws://192.168.0.187:7080/${path}/chat-ws.do");
 	wsocket.onopen = onOpen;
@@ -59,17 +60,19 @@ function disconnect() {
 	wsocket.close();
 }
 function onOpen(evt) {
-	alert("연결되었습니다.");
+	console.log("연결되었습니다.");
 }
 function onMessage(evt) {
 	var data = evt.data;
 	var msg=data.substring(0, 4);
 	var msgId=data.substring(4).split("/",1);
 	if (data.substring(0, 4) == "msg:") {
-		if(msgId!="${sessionScope.id}")
+		if(msgId!="${sessionScope.id}") {
 			appendMessage(data.split("/")[1], msgId);
+			$("#msg-arrived").text(++msgArrived);
+		}
 		else {
-		appendMyMessage(data.split("/")[1]);
+		appendMyMessage(data.split("/")[1],"${sessionScope.id}");
 		}
 	}
 }
@@ -83,7 +86,7 @@ function send() {
 	$("#btn-input").val("");
 }
 
-function appendMyMessage(msg) {
+function appendMyMessage(msg, myId) {
 	$(".msg_container_base").append('<div class="row msg_container base_sent">'
             +'<div class="col-md-10 col-xs-10">'
             +'<div class="messages msg_sent">'
@@ -92,7 +95,7 @@ function appendMyMessage(msg) {
             +'</div>'
         +'</div>'
         +'<div class="col-md-2 col-xs-2 avatar">'
-            +'<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">'
+            +'<img src="upload/${sessionScope.id}/profile/'+myId+'_profile.jpg" class=" img-responsive ">'
         +'</div>'
     +'</div>');
 	var chatAreaHeight = $(".msg_container_base").height();
@@ -102,7 +105,7 @@ function appendMyMessage(msg) {
 function appendMessage(msg, msgId) {
 	$(".msg_container_base").append('<div class="row msg_container base_receive">'
             +'<div class="col-md-2 col-xs-2 avatar">'
-            +'<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">'
+            +'<img src="upload/'+msgId+'/profile/'+msgId+'_profile.jpg" class="img-responsive">'
         +'</div>'
         +'<div class="col-md-10 col-xs-10">'
             +'<div class="messages msg_receive">'
@@ -137,7 +140,6 @@ $(document).on('click', '.panel-heading span.icon_minim', function (e) {
         $this.parents('.panel').find('.panel-body').slideUp();
         $this.addClass('panel-collapsed');
         $this.removeClass('glyphicon-minus').addClass('glyphicon-plus');
-        console.log($this);
     } else {
         $this.parents('.panel').find('.panel-body').slideDown();
         $this.removeClass('panel-collapsed');
@@ -165,7 +167,11 @@ $(document).on('click', '.icon_close', function (e) {
     $("#chatBtn").css("display","block");
 });
 
-
+$(document).on('click','#chatBtn',function(e){
+	$(this).css('display','none');
+	msgArrived=0;
+	$("#msg-arrived").text(msgArrived);
+})
 
 
 

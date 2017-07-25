@@ -62,8 +62,8 @@
 	
 	<c:if test="${sessionScope.id ne null }">
 		<div class="chat dropup hidden-sm hidden-xs" style="position:fixed; right:0px; bottom:0px; border-radius: 15px; z-index: 50">
-		<button id="chatBtn" class="btn btn-primary" type="button" data-toggle="dropdown"  aria-expanded="false" onclick="$(this).css('display','none')">
-			메세지 <span class="badge">4</span>
+		<button id="chatBtn" class="btn btn-primary" type="button" data-toggle="dropdown"  aria-expanded="false">
+		메세지 <span id="msg-arrived" class="badge">0</span>
 		</button>
 		<jsp:include page="chat.jsp"/>
 		</div>
