@@ -23,6 +23,7 @@
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
+<link rel="stylesheet" href="css/chat.css?ver=3">
 
 <!-- font -->
 <link
@@ -51,9 +52,6 @@
 	padding-right: 10%;
 }
 
-#temp02 {
-	display: inline;
-}
 </style>
 <!-- CSS -->
 
@@ -61,31 +59,15 @@
 <body>
 	<!-- header -->
 	<jsp:include page="navHeader.jsp"/>
-	<div class="chat dropup" style="position:fixed; right:20px; bottom:30px; background-color: green; border-radius: 15px; z-index: 50">
-	<button id="chatBtn" class="btn btn-primary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		메세지 <span class="badge">4</span>
-	</button>
-	<div class="dropdown-menu" role="menu" aria-labelledby="chatBtn" style="width:496px; left:inherit; right:0px;">
-		<h3>hohohoho</h3>
-		<div class="chat-area container-fluid row">
-			<div class="col-xs-8" style="border:1px solid; padding: 0px;">
-				<div style="border:1px solid; margin:0px; ">대화 내용</div>
-				<div class="console row">
-				나: 야 뭐하냐<br>
-				너: 야 뭐하냐<br>
-				</div>
-			</div>
-			<div class="col-xs-4" style="border:1px solid">
-			<div style="border:1px solid; margin: 0px">유저명(수)</div>
-			<ul>
-				<li>홍길동</li>
-				<li>홍길동</li>
-				<li>홍길동</li>
-			</ul>
-			</div>
+	
+	<c:if test="${sessionScope.id ne null }">
+		<div class="chat dropup hidden-sm hidden-xs" style="position:fixed; right:0px; bottom:0px; border-radius: 15px; z-index: 50">
+		<button id="chatBtn" class="btn btn-primary" type="button" data-toggle="dropdown"  aria-expanded="false" onclick="$(this).css('display','none')">
+			메세지 <span class="badge">4</span>
+		</button>
+		<jsp:include page="chat.jsp"/>
 		</div>
-	</div>
-	</div>
+	</c:if>
 	<!-- ajax -->
 	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
@@ -423,6 +405,10 @@
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
 	<script type="text/javascript">
+	/**
+	 * 
+	 */
+	
 	 var industry= ["${schElement.industry[0]}",
          "${schElement.industry[1]}",
          "${schElement.industry[2]}",
@@ -571,6 +557,13 @@
 	 			}
 	 		})
 	 })
+	 $(document).on('click','body #chat-tot ',function(e) {
+	 e.stopPropagation();
+})
+	 
+	 
+	 
+	 
     </script>
 </body>
 </html>

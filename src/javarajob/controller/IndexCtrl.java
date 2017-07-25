@@ -33,10 +33,10 @@ public class IndexCtrl {
 			Model d) {
 		ArrayList<Career> topCareers = careerService.listCareerforindex();
 		ArrayList<FavCareer> favCareers;
-		String curId = (String) session.getAttribute("id");
+		String userId = (String) session.getAttribute("id");
 		// favCareer
-		if (curId != null) {
-			favCareers = favCareerService.favCareerList(curId);
+		if (userId != null) {
+			favCareers = favCareerService.favCareerList(userId);
 			for (Career career : topCareers) {
 				for (FavCareer favCareer : favCareers) {
 					if (favCareer.getCareerid() == career.getCareerid()) {
