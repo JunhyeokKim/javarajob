@@ -3,6 +3,7 @@ package javarajob.controller;
 import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +19,9 @@ import javarajob.vo.Resume;
 
 @Controller
 public class ResumeCtrl {
+	
+	@Value("${selfUp}")
+	String fileDir;
 
 	@Autowired(required = false)
 	private ResumeService s;
@@ -25,8 +29,6 @@ public class ResumeCtrl {
 	@Autowired(required = false)
 	private FileService fs;
 	
-	private ExportPDF export;
-
 	// http://localhost:6080/javarajob/resume.do
 	@RequestMapping("/resume.do")
 	public String resumeView(@RequestParam(value = "userId", defaultValue = "0") String id, Model d) {
@@ -42,18 +44,11 @@ public class ResumeCtrl {
 		return "forward:/resume.do";
 	}
 	
-	@RequestMapping("/export_pdf.do")
-	public ModelAndView resumeDownload(@ModelAttribute("userid") Resume down) {
+	@RequestMapping("/export_process.do")
+	public ModelAndView resumeDownload(@RequestParam("userId") String id) throws Exception {
 		// return new ModelAndView("b01_board/a01_list","list",new Board());
-
-		File f = null; 
-		try {
-			f = export.ConvertPDF(down);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		// View model ÆÄÀÏ..
+		File f = new File(fileDir+id+"/"+id+"_resume.pdf");
 		return new ModelAndView("downloadResolver", "downloadFile", f);
 	}
 
