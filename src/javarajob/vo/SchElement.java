@@ -4,11 +4,11 @@ import java.sql.Date;
 import java.util.Arrays;
 
 public class SchElement {
-	// page Ã³¸®..
-	private int count; // ÃÑ°Ç¼ö
-	private int pageCount; // ÃÑ ÆäÀÌÁö ¼ö
-	private int curPage; // Å¬¸¯ÇÑ ÇöÀç page¹øÈ£
-	private int start; // ÇØ´ç ÆäÀÌÁöÀÇ ½ÃÀÛ¹øÈ£
+	// page ì²˜ë¦¬..
+	private int count; // ì´ê±´ìˆ˜
+	private int pageCount; // ì´ í˜ì´ì§€ ìˆ˜
+	private int curPage; // í´ë¦­í•œ í˜„ì¬ pageë²ˆí˜¸
+	private int start; // í•´ë‹¹ í˜ì´ì§€ì˜ ì‹œì‘ë²ˆí˜¸
 	private int end;
 	private int orderby;
 
@@ -26,7 +26,7 @@ public class SchElement {
 	private String companyname;
 	private int[] industry;
 	private int[] companytype;
-	// È¸»çÀÇ °ø°í Áß °¡Àå Ã¹¹ø¤Š¿Í ¸¶Áö¸· °ø°í ³¯Â¥
+	// íšŒì‚¬ì˜ ê³µê³  ì¤‘ ê°€ì¥ ì²«ë²ˆì§¸ÂŠì™€ ë§ˆì§€ë§‰ ê³µê³  ë‚ ì§œ
 	private Date firstpostdate;
 	private Date lastenddate;
 

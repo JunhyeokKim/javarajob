@@ -18,12 +18,12 @@ public class Company {
 	private String website;
 	private String shortinfo;
 	private int companysize;
-	// checkbox °Ë»ç¸¦ À§ÇÑ field
+	// checkbox ê²€ì‚¬ë¥¼ ìœ„í•œ field
 	private ArrayList<Integer> fields;
 	private ArrayList<Career> careers;
-	// °èÁ¤ º° bookmark ¿©ºÎ
+	// ê³„ì • ë³„ bookmark ì—¬ë¶€
 	private boolean bookmarked;
-	// È¸»çÀÇ °ø°í Áß °¡Àå Ã¹¹ø¤Š¿Í ¸¶Áö¸· °ø°í ³¯Â¥
+	// íšŒì‚¬ì˜ ê³µê³  ì¤‘ ê°€ì¥ ì²«ë²ˆÂŠì™€ ë§ˆì§€ë§‰ ê³µê³  ë‚ ì§œ
 	private Date firstpostdate;
 	private Date lastenddate;
 

@@ -93,7 +93,6 @@
                         <div id="header">
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
-                                <h4 id="cnt-of-items">검색 결과: 총 <strong></strong>건</h4>
                                 <form id="drop-checkbox">
                                     <ul class="nav navbar-nav col-lg-2">
                                         <li class="dropdown-lg megamenu">

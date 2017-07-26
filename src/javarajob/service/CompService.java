@@ -21,7 +21,6 @@ public class CompService {
 		if(sch.getCurPage()==0){
 			sch.setCurPage(1);
 		}
-		// 총 페이지수
 		sch.setPageCount((int)Math.ceil(sch.getCount()/(double)size));
 		sch.setStart((sch.getCurPage()-1)*size+1);
 		sch.setEnd(sch.getCurPage()*size);

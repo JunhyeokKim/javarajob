@@ -613,7 +613,7 @@
                     <script src="js/jquery.min.js"></script>
                     <script src="js/bootstrap.min.js"></script>
                     <script src="js/price-range.js"></script>
-                    <script src="js/main.js?ver=2"></script>
+                    <script src="js/main.js?ver=3"></script>
                     <script src="js/switcher.js"></script>
                     <script src="js/job-list.js?ver=1"></script>
                     <script type="text/javascript">

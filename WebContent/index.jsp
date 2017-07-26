@@ -11,6 +11,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
+<!-- cache 미사용 설정 -->
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
 
 <title>JAVARAJOB | 일자리를 찾는 가장 쉬운 방법</title>
 
@@ -23,6 +27,7 @@
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
+<link rel="stylesheet" href="css/chat.css?ver=4">
 
 <!-- font -->
 <link
@@ -51,9 +56,6 @@
 	padding-right: 10%;
 }
 
-#temp02 {
-	display: inline;
-}
 </style>
 <!-- CSS -->
 
@@ -62,6 +64,14 @@
 	<!-- header -->
 	<jsp:include page="navHeader.jsp"/>
 	
+	<c:if test="${sessionScope.id ne null }">
+		<div class="chat dropup hidden-sm hidden-xs" style="position:fixed; right:0px; bottom:0px; border-radius: 15px; z-index: 50">
+		<button id="chatBtn" class="btn btn-primary" type="button" data-toggle="dropdown"  aria-expanded="false">
+		메세지 <span id="msg-arrived" class="badge">0</span>
+		</button>
+		<jsp:include page="chat.jsp"/>
+		</div>
+	</c:if>
 	<!-- ajax -->
 	<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
@@ -398,7 +408,34 @@
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
+	<script src="js/moment.min.js"></script>
 	<script type="text/javascript">
+	/**
+	 * 
+	 */
+	
+	 var industry= ["${schElement.industry[0]}",
+         "${schElement.industry[1]}",
+         "${schElement.industry[2]}",
+         "${schElement.industry[3]}",
+         "${schElement.industry[4]}",
+         "${schElement.industry[5]}",
+         "${schElement.industry[6]}",
+         "${schElement.industry[7]}",
+         "${schElement.industry[8]}"
+     ];
+	 $("input[name=industry]").each(function(index,item){
+		 var name=$(this).attr('name');
+		 var arrays=industry;
+		for(var i=0; i<arrays.length; i++){
+			if($(this).val()==arrays[i]){
+				$(this).prop('checked','checked');
+				$(this).parent('label').addClass('checked');
+			} 
+		}
+	})
+	
+	
 	$("#modal-detail").on("hidden.bs.modal",function(e){
 		$("#ajax-modal-detail").html("");
 		location.reload();
@@ -525,6 +562,13 @@
 	 			}
 	 		})
 	 })
+	 $(document).on('click','body #chat-tot ',function(e) {
+	 e.stopPropagation();
+})
+	 
+	 
+	 
+	 
     </script>
 </body>
 </html>

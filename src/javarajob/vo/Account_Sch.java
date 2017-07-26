@@ -1,9 +1,9 @@
 package javarajob.vo;
 
 public class Account_Sch {
-// pageÃ³¸®..
+// pageÃ³ï¿½ï¿½..
 	
-// °Ë»ö ³»¿ë
+// ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private String id;
 	private String name;
 	private String phone;

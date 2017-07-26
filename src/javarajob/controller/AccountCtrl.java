@@ -77,9 +77,13 @@ public class AccountCtrl {
 
 	@RequestMapping(params = "method=signIn")
 	public String login(@RequestParam("id") String id, @RequestParam("password") String password, HttpSession ses) {
-		if (service.loginMember(id, password))
+		if (service.loginMember(id, password)){
 			ses.setAttribute("id", id);
 		return "redirect:/index.do";
+		}
+		else
+			return "login-fail";
+			
 	}
 
 	@RequestMapping(params = "method=signOut")
@@ -129,15 +133,15 @@ public class AccountCtrl {
 	@RequestMapping(params = "method=isNewbie")
 	public void isNewbie(HttpServletRequest req, HttpServletResponse res, ModelMap model) throws Exception {
 		PrintWriter out = res.getWriter();
-		System.out.println("1´Ü°è");
+		System.out.println("1ë‹¨ê³„");
 		try {
-			// ³Ñ¾î¿Â ID¸¦ ¹Þ´Â´Ù.
-			System.out.println("2´Ü°è");
+			// ë„˜ì–´ì˜¨ IDë¥¼ ë°›ëŠ”ë‹¤.
+			System.out.println("2ë‹¨ê³„");
 			String paramId = (req.getParameter("paramId") == null) ? "" : String.valueOf(req.getParameter("paramId"));
 			Account vo = new Account();
 			vo.setId(paramId.trim());
 			int chkPoint = service.isNewbie(vo);
-			System.out.println("3´Ü°è");
+			System.out.println("3ë‹¨ê³„");
 			out.print(chkPoint);
 			out.flush();
 			out.close();
@@ -190,7 +194,7 @@ public class AccountCtrl {
 		return "applied-job";
 	}
 	
-	// bookmark »èÁ¦
+	// bookmark ì‚­ì œ
 	@RequestMapping(params = "deleteFavComp")
     public String removeCompBookmark(@RequestParam(value = "companyid") int companyid, HttpSession session) {
         FavCompany vo = new FavCompany();
@@ -200,7 +204,7 @@ public class AccountCtrl {
         favCompService.removeFavCompany(vo);
         return "redirect:account.do?bookmark-company";
     }
-	// bookmark »èÁ¦
+	// bookmark ì‚­ì œ
 	@RequestMapping(params = "deleteFavCareer")
 	public String removeFavCareer(@RequestParam(value = "careerid") int careerid, HttpSession session) {
 		FavCareer vo = new FavCareer();

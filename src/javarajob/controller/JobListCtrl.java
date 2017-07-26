@@ -48,7 +48,7 @@ public class JobListCtrl {
 
     @RequestMapping(params = "method=sch")
     public String listCareers(HttpSession session, @RequestParam(value = "query", defaultValue = "") String query,
-            @RequestParam(value = "querytype", defaultValue = "ÅëÇÕ °Ë»ö") String queryType,
+            @RequestParam(value = "querytype", defaultValue = "í†µí•© ê²€ìƒ‰") String queryType,
             @RequestParam(value = "orderby", defaultValue = "desc") String orderBy,
             @ModelAttribute("schElement") SchElement schElement, Model d) {
         HashMap<String, Company> companys = new HashMap<>();
@@ -56,16 +56,16 @@ public class JobListCtrl {
         ArrayList<FavCompany> favCompList = new ArrayList<>();
         String curId = (String) session.getAttribute("id");
 
-        // °Ë»ö Á¾·ù¿¡ µû¶ó query ¼³Á¤À» ´Ù¸£°Ô ÇÔ
+        // ê²€ìƒ‰ ì¢…ë¥˜ì— ë”°ë¼ query ì„¤ì •ì„ ë‹¤ë¥´ê²Œ í•¨
         queryType = queryType.trim();
         query = query.trim();
-        if (queryType.equals("ÅëÇÕ °Ë»ö")) {
+        if (queryType.equals("í†µí•© ê²€ìƒ‰")) {
             schElement.setCompanyname(query);
             schElement.setTitle(query);
-        } else if (queryType.equals("Ã¤¿ë °ø°í")) {
+        } else if (queryType.equals("ì±„ìš© ê³µê³ ")) {
             schElement.setCompanyname(null);
             schElement.setTitle(query);
-        } else if (queryType.equals("±â¾÷¸í")) {
+        } else if (queryType.equals("ê¸°ì—…ëª…")) {
             schElement.setCompanyname(query);
             schElement.setTitle(null);
         }
@@ -74,15 +74,15 @@ public class JobListCtrl {
         }else if(orderBy.equals("bookmark")){
         	schElement.setOrderby(1);
         }
-        // Á¢¼ÓÁßÀÎ idÀÇ °ü½É ±â¾÷ ¸®½ºÆ®¸¦ ¹Ş¾Æ¿È
+        // ì ‘ì†ì¤‘ì¸ idì˜ ê´€ì‹¬ ê¸°ì—… ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ì•„ì˜´
         if (curId != null && !curId.equals("")) {
             favCompList = favCompService.favCompanyList(curId);
         }
-        // NUMBER_OF_ITEMS ´ÜÀ§ÀÇ °¹¼ö¸¸Å­ µ¥ÀÌÅÍ¸¦ service¸¦ ÅëÇØ ÀĞ¾î¿È
+        // NUMBER_OF_ITEMS ë‹¨ìœ„ì˜ ê°¯ìˆ˜ë§Œí¼ ë°ì´í„°ë¥¼ serviceë¥¼ í†µí•´ ì½ì–´ì˜´
         queryResult = service.schQuery(schElement, NUMBER_OF_ITEMS);
-        // ÁúÀÇ °á°ú °Ë»öµÈ company ¸í´Ü
+        // ì§ˆì˜ ê²°ê³¼ ê²€ìƒ‰ëœ company ëª…ë‹¨
         ArrayList<Company> relatedCompanys = service.getCompanys(schElement);
-        // °¢ company vo °´Ã¼¿¡ ´ëÇÑ ÀüÃ³¸®
+        // ê° company vo ê°ì²´ì— ëŒ€í•œ ì „ì²˜ë¦¬
         for (Company company : relatedCompanys) {
             companys.put(String.valueOf(company.getCompanyid()), company);
             for (FavCompany favCompany : favCompList) {
@@ -92,8 +92,8 @@ public class JobListCtrl {
             }
 
         }
-        // ÀüÃ¼ °Ë»ö °á°ú¿¡ ´ëÇÏ¿© companys map °´Ã¼¿¡ companyid°¡ µ¿ÀÏÇÑ company °´Ã¼°¡ ÀÖ´Â °æ¿ì,
-        // companyÀÇ careers °´Ã¼(ArrayList)¿¡ career¸¦ Ãß°¡
+        // ì „ì²´ ê²€ìƒ‰ ê²°ê³¼ì— ëŒ€í•˜ì—¬ companys map ê°ì²´ì— companyidê°€ ë™ì¼í•œ company ê°ì²´ê°€ ìˆëŠ” ê²½ìš°,
+        // companyì˜ careers ê°ì²´(ArrayList)ì— careerë¥¼ ì¶”ê°€
         for (SchElement element : queryResult) {
             if (companys.containsKey(String.valueOf(element.getCompanyid()))) {
                 if (companys.get(String.valueOf(element.getCompanyid())).getCareers() == null) {
@@ -112,7 +112,7 @@ public class JobListCtrl {
         return "job-list";
     }
 
-    // ajax ºñµ¿±â Åë½Å ¿äÃ» Ã³¸®(»ó¼¼ ±â¾÷ÀÇ Ã¤¿ëÁ¤º¸)
+    // ajax ë¹„ë™ê¸° í†µì‹  ìš”ì²­ ì²˜ë¦¬(ìƒì„¸ ê¸°ì—…ì˜ ì±„ìš©ì •ë³´)
     @RequestMapping(params = "method=job-detail")
     public String getCompanyInfo(@RequestParam(value = "companyid", defaultValue = "-1") int companyid,
             HttpSession session, Model d) {
@@ -120,7 +120,7 @@ public class JobListCtrl {
         Career_Sch sch = new Career_Sch();
         sch.setCompanyid(companyid);
         ArrayList<Career> careers = careerService.listCareer(sch);
-        // ·Î±×ÀÎ »óÅÂÀÎ °æ¿ì, °ü½É °ø°í ¸ñ·ÏÀ» Ãß°¡ÇÑ´Ù
+        // ë¡œê·¸ì¸ ìƒíƒœì¸ ê²½ìš°, ê´€ì‹¬ ê³µê³  ëª©ë¡ì„ ì¶”ê°€í•œë‹¤
         ArrayList<FavCareer> favCareers;
         String curId = (String) session.getAttribute("id");
         // favCareer
@@ -153,7 +153,7 @@ public class JobListCtrl {
         return "job-detail-ajax";
     }
 
-    // ajax ºñµ¿±â Åë½ÅÀ» ÅëÇÑ bookmark ¿äÃ» Ã³¸®( Ã¤¿ë °ø°í¿¡ ´ëÇÑ ºÏ¸¶Å© Ãß°¡ Ã³¸®)
+    // ajax ë¹„ë™ê¸° í†µì‹ ì„ í†µí•œ bookmark ìš”ì²­ ì²˜ë¦¬( ì±„ìš© ê³µê³ ì— ëŒ€í•œ ë¶ë§ˆí¬ ì¶”ê°€ ì²˜ë¦¬)
     @RequestMapping(params = { "target=career", "method=bookmark" })
     public String addCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
@@ -164,12 +164,12 @@ public class JobListCtrl {
             favCareerService.addFavCareer(vo);
             System.out.println(curId);
         } else {
-            System.out.println("·Î±×¾Æ¿ô »óÅÂÀÔ´Ï´Ù.");
+            System.out.println("ë¡œê·¸ì•„ì›ƒ ìƒíƒœì…ë‹ˆë‹¤.");
         }
         return "redirect:careerlist.do?method=sch";
     }
 
-    // ajax ºñµ¿±â Åë½ÅÀ» ÅëÇÑ bookmark ¿äÃ» Ã³¸®( Ã¤¿ë °ø°í¿¡ ´ëÇÑ ºÏ¸¶Å© Á¦°Å Ã³¸®)
+    // ajax ë¹„ë™ê¸° í†µì‹ ì„ í†µí•œ bookmark ìš”ì²­ ì²˜ë¦¬( ì±„ìš© ê³µê³ ì— ëŒ€í•œ ë¶ë§ˆí¬ ì œê±° ì²˜ë¦¬)
     @RequestMapping(params = { "target=career", "method=rmBookmark" })
     public String removeCareerBookmark(@RequestParam(value = "index") int careerid, HttpSession session) {
         FavCareer vo = new FavCareer();
@@ -180,7 +180,7 @@ public class JobListCtrl {
         return "redirect:careerlist.do?method=sch";
     }
 
-    // ajax ºñµ¿±â Åë½ÅÀ» ÅëÇÑ bookmark ¿äÃ» Ã³¸®( ±â¾÷¿¡ ´ëÇÑ ºÏ¸¶Å© Ãß°¡ Ã³¸®)
+    // ajax ë¹„ë™ê¸° í†µì‹ ì„ í†µí•œ bookmark ìš”ì²­ ì²˜ë¦¬( ê¸°ì—…ì— ëŒ€í•œ ë¶ë§ˆí¬ ì¶”ê°€ ì²˜ë¦¬)
     @RequestMapping(params = { "target=company", "method=bookmark" })
     public String addCompBookmark(@RequestParam(value = "index") int companyid, HttpSession session) {
         FavCompany vo = new FavCompany();
@@ -192,7 +192,7 @@ public class JobListCtrl {
         return "redirect:careerlist.do?method=sch";
     }
 
-    // ajax ºñµ¿±â Åë½ÅÀ» ÅëÇÑ bookmark ¿äÃ» Ã³¸®( ±â¾÷¿¡ ´ëÇÑ ºÏ¸¶Å© Á¦°Å Ã³¸®)
+    // ajax ë¹„ë™ê¸° í†µì‹ ì„ í†µí•œ bookmark ìš”ì²­ ì²˜ë¦¬( ê¸°ì—…ì— ëŒ€í•œ ë¶ë§ˆí¬ ì œê±° ì²˜ë¦¬)
     @RequestMapping(params = { "target=company", "method=rmBookmark" })
     public String removeCompBookmark(@RequestParam(value = "index") int companyid, HttpSession session) {
         FavCompany vo = new FavCompany();

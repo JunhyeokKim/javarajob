@@ -1,11 +1,11 @@
 package javarajob.vo;
 
 public class Company_Sch {
-	// page Ã³¸®..
-	private int count; // ÃÑ°Ç¼ö
-	private int pageCount; // ÃÑ ÆäÀÌÁö ¼ö
-	private int curPage; // Å¬¸¯ÇÑ ÇöÀç page¹øÈ£
-	private int start; // ÇØ´ç ÆäÀÌÁöÀÇ ½ÃÀÛ¹øÈ£
+	// page ì²˜ë¦¬..
+	private int count; // ì´ê±´ìˆ˜
+	private int pageCount; // ì´ í˜ì´ì§€ ìˆ˜
+	private int curPage; // í´ë¦­í•œ í˜„ì¬ pageë²ˆí˜¸
+	private int start; // í•´ë‹¹ í˜ì´ì§€ì˜ ì‹œì‘ë²ˆí˜¸
 	private int end;
 
 	private int companyid;

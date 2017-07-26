@@ -14,6 +14,7 @@ import javarajob.service.AccountService;
 import javarajob.service.CareerService;
 import javarajob.service.CompService;
 import javarajob.service.FavCareerService;
+import javarajob.service.ResumeService;
 import javarajob.vo.Career;
 import javarajob.vo.FavCareer;
 
@@ -27,17 +28,19 @@ public class IndexCtrl {
 	CompService companyService;
 	@Autowired(required = false)
 	FavCareerService favCareerService;
-
+	@Autowired(required = false)
+	private ResumeService resService;
+	
 	@RequestMapping("/index.do")
-
 	public String listCareerforindex(HttpSession session, @RequestParam(value = "mode", defaultValue = "0") int mode,
 			Model d) {
 		ArrayList<Career> topCareers = careerService.listCareerforindex();
 		ArrayList<FavCareer> favCareers;
-		String curId = (String) session.getAttribute("id");
+		String userId = (String) session.getAttribute("id");
 		// favCareer
-		if (curId != null) {
-			favCareers = favCareerService.favCareerList(curId);
+		if (userId != null) {
+			d.addAttribute("resume", resService.oneResume(userId));
+			favCareers = favCareerService.favCareerList(userId);
 			for (Career career : topCareers) {
 				for (FavCareer favCareer : favCareers) {
 					if (favCareer.getCareerid() == career.getCareerid()) {

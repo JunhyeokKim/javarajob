@@ -3,17 +3,17 @@ package javarajob.vo;
 public class Board_Sch {
 
 	
-	// °Ë»ö ³»¿ë
+	// ê²€ìƒ‰ ë‚´ìš©
 	private String subject;
 	private String writer;
 	private String content;
-	// pageÃ³¸®
-	private int count; // ÃÑ°Ç¼ö
-	private int pageSize; // ÇÑÆäÀÌÁö¿¡ º¸¿©ÁÙ µ¥ÀÌÅÍ °Ç¼ö 
-	private int pageCount; // ÃÑ ÆäÀÌÁö ¼ö
-	private int curPage; // Å¬¸¯ÇÑ ÇöÀç page ¹øÈ£
-	private int start; // ÇØ´ç ÆäÀÌÁöÀÇ ½ÃÀÛ¹øÈ£
-	private int end;  // ÇØ´ç ÆäÀÌÁöÀÇ ¸¶Áö¸·¹øÈ£
+	// pageì²˜ë¦¬
+	private int count; // ì´ê±´ìˆ˜
+	private int pageSize; // í•œí˜ì´ì§€ì— ë³´ì—¬ì¤„ ë°ì´í„° ê±´ìˆ˜ 
+	private int pageCount; // ì´ í˜ì´ì§€ ìˆ˜
+	private int curPage; // í´ë¦­í•œ í˜„ì¬ page ë²ˆí˜¸
+	private int start; // í•´ë‹¹ í˜ì´ì§€ì˜ ì‹œì‘ë²ˆí˜¸
+	private int end;  // í•´ë‹¹ í˜ì´ì§€ì˜ ë§ˆì§€ë§‰ë²ˆí˜¸
 	
 	public String getSubject() {
 		return subject;

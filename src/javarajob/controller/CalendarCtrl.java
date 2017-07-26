@@ -50,8 +50,8 @@ public class CalendarCtrl {
 		return "job-calendar";
 	}
 
-	// calendar onload ½Ã È£ÃâµÇ´Â Ã¤¿ë °ø°í¿¡ ´ëÇÑ ajax ¿äÃ»À» Ã³¸®, ModelAndView °´Ã¼¸¦ ÅëÇØ json
-	// typeÀ¸·Î °á°ú¸¦ return
+	// calendar onload ì‹œ í˜¸ì¶œë˜ëŠ” ì±„ìš© ê³µê³ ì— ëŒ€í•œ ajax ìš”ì²­ì„ ì²˜ë¦¬, ModelAndView ê°ì²´ë¥¼ í†µí•´ json
+	// typeìœ¼ë¡œ ê²°ê³¼ë¥¼ return
 	@RequestMapping(params = "method=companylist")
 	public ModelAndView mav(@RequestParam(value = "date") String date, HttpSession session,
 			@ModelAttribute("schElement") SchElement schElement,
@@ -59,16 +59,16 @@ public class CalendarCtrl {
 		
 		HashMap<String, Company> companys = new HashMap<>();
 		ModelAndView mav = new ModelAndView();
-		// mavÀÇ viewResolver¸¦ ¼³Á¤ÇÑ´Ù. PageJsonReport´Â Json¿¡ ´ëÇÑ viewResolverÀÌ´Ù.
+		// mavì˜ viewResolverë¥¼ ì„¤ì •í•œë‹¤. PageJsonReportëŠ” Jsonì— ëŒ€í•œ viewResolverì´ë‹¤.
 		mav.setViewName("pageJsonReport");
 		if(query!=null){
 			schElement.setCompanyname(query);
 		}
-		// dateÀÇ delimeter·Î '-'¸¦ ÁöÁ¤. ³â, ¿ù, ÀÏÀ» ±¸ºĞÇÑ´Ù.
+		// dateì˜ delimeterë¡œ '-'ë¥¼ ì§€ì •. ë…„, ì›”, ì¼ì„ êµ¬ë¶„í•œë‹¤.
 		StringTokenizer tokenizer = new StringTokenizer(date, "-");
 		LocalDate thisMonth = LocalDate.of(Integer.parseInt(tokenizer.nextToken()),
 				Integer.parseInt(tokenizer.nextToken()), 1);
-		// ¸Å´Ş Ã¹Â°ÀÏ°ú ¸¶Áö¸·ÀÏ ±îÁöÀÇ Ã¤¿ë °ø°í¸¦ °Ë»öÇÑ´Ù.
+		// ë§¤ë‹¬ ì²«ì§¸ì¼ê³¼ ë§ˆì§€ë§‰ì¼ ê¹Œì§€ì˜ ì±„ìš© ê³µê³ ë¥¼ ê²€ìƒ‰í•œë‹¤.
 		schElement.setPostdate(Date.valueOf(thisMonth));
 		schElement.setEnddate(Date.valueOf(thisMonth.plusMonths(1).minusDays(1)));
 		if (schElement.getField() == null || schElement.getCompanytype() == null
@@ -79,10 +79,10 @@ public class CalendarCtrl {
 		} else {
 			ArrayList<SchElement> schElementList = schService.schQuery(schElement);
 			schService.getCompanys(schElement);
-			// ¸ğµç °ø°í¿¡ ´ëÇÑ ÀüÃ³¸®
+			// ëª¨ë“  ê³µê³ ì— ëŒ€í•œ ì „ì²˜ë¦¬
 			for (SchElement element : schElementList) {
 				Career careerVo = careerService.getCareer(element.getCareerid());
-				// µ¿ÀÏÇÑ È¸»ç ³»ÀÇ °ø°íµé¿¡ ´ëÇÏ¿© °¡Àå ºü¸¥ °ø°í½ÃÀÛÀÏ°ú °¡Àå ´ÊÀº °ø°í Á¾·áÀÏÀ» ¼³Á¤ÇÑ´Ù
+				// ë™ì¼í•œ íšŒì‚¬ ë‚´ì˜ ê³µê³ ë“¤ì— ëŒ€í•˜ì—¬ ê°€ì¥ ë¹ ë¥¸ ê³µê³ ì‹œì‘ì¼ê³¼ ê°€ì¥ ëŠ¦ì€ ê³µê³  ì¢…ë£Œì¼ì„ ì„¤ì •í•œë‹¤
 				if (companys.containsKey(String.valueOf(careerVo.getCompanyid()))) {
 					Company prevComp = companys.get(String.valueOf(element.getCompanyid()));
 					Date postdate = prevComp.getFirstpostdate();
@@ -106,7 +106,7 @@ public class CalendarCtrl {
 					companys.put(String.valueOf(careerVo.getCompanyid()), vo);
 				}
 			}
-			// ·Î±×ÀÎ »óÅÂÀÏ °æ¿ì ºÏ¸¶Å© ¼³Á¤ÇÑ ±â¾÷ list¸¦ ºÒ·¯¿È
+			// ë¡œê·¸ì¸ ìƒíƒœì¼ ê²½ìš° ë¶ë§ˆí¬ ì„¤ì •í•œ ê¸°ì—… listë¥¼ ë¶ˆëŸ¬ì˜´
 			String curId = (String) session.getAttribute("id");
 			if (curId != null && !curId.equals("")) {
 				for (Company company : companys.values()) {
