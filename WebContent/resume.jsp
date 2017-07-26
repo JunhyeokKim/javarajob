@@ -72,17 +72,7 @@
 		})
 		
 		$("#pdfBtn").click(function(){
-			html2canvas(document.body,{
-				onrendered : function(canvas) {
-					//var imgData = canvas.toDataURL("image/png");
-					//console.log("Reprot Image URL : "+imgData);
-					/* var doc = new jsPDF('p', 'mm', [210,297]);
-					doc.addImage(imgData, 'PNG', 0, 0, 210, 297);
-					doc.save('sampled-file.pdf'); */
-					document.body.appendChild(canvas);
-				},
-			height : 2000
-			})
+			$(location).attr("href","${path}/export_pdf.do?userId=${id}");
 		})
 	})
 </script>
@@ -258,42 +248,42 @@
 												<tbody>
 													<tr>
 														<th>보훈사항</th>
-														<td colspan="3"><c:if test="${resume.vete eq 'tru'}">
+														<td colspan="3"><c:if test="${resume.vete eq '대상'}">
 																<input type="radio" name="vete" checked="checked"
-																	value="tru" class="ng-pristine ng-untouched ng-valid" />대상
-																<input type="radio" name="vete" value="fals"
+																	value="대상" class="ng-pristine ng-untouched ng-valid" />대상
+																<input type="radio" name="vete" value="비대상"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
-															</c:if> <c:if test="${resume.vete eq 'fals'}">
-																<input type="radio" name="vete" value="tru"
+															</c:if> <c:if test="${resume.vete eq '비대상'}">
+																<input type="radio" name="vete" value="대상"
 																	class="ng-pristine ng-untouched ng-valid" />대상
-																<input type="radio" name="vete" value="fals"
+																<input type="radio" name="vete" value="비대상"
 																	checked="checked"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
 															</c:if> <c:if test="${resume.vete eq null}">
-																<input type="radio" name="vete" value="tru"
+																<input type="radio" name="vete" value="대상"
 																	class="ng-pristine ng-untouched ng-valid" />대상
-																<input type="radio" name="vete" value="fals"
+																<input type="radio" name="vete" value="비대상"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
 															</c:if></td>
 													</tr>
 													<tr>
 														<th>장애여부</th>
-														<td colspan="3"><c:if test="${resume.handi eq 'tru'}">
-																<input type="radio" name="handi" value="tru"
+														<td colspan="3"><c:if test="${resume.handi eq '대상'}">
+																<input type="radio" name="handi" value="대상"
 																	checked="checked"
 																	class="ng-pristine ng-untouched ng-valid" />대상 <input
-																	type="radio" name="handi" value="fals"
+																	type="radio" name="handi" value="비대상"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
-														</c:if> <c:if test="${resume.handi eq 'fals'}">
-																<input type="radio" name="handi" value="tru"
+														</c:if> <c:if test="${resume.handi eq '비대상'}">
+																<input type="radio" name="handi" value="대상"
 																	class="ng-pristine ng-untouched ng-valid" />대상 <input
-																	type="radio" name="handi" value="fals"
+																	type="radio" name="handi" value="비대상"
 																	checked="checked"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
 														</c:if> <c:if test="${resume.handi eq null}">
-																<input type="radio" name="handi" value="tru"
+																<input type="radio" name="handi" value="대상"
 																	class="ng-pristine ng-untouched ng-valid" />대상 <input
-																	type="radio" name="handi" value="fals"
+																	type="radio" name="handi" value="비대상"
 																	class="ng-pristine ng-untouched ng-valid" />비대상
 														</c:if></td>
 													</tr>
@@ -301,32 +291,32 @@
 														<th>병역구분</th>
 														<td><c:if test="${resume.milit eq null }">
 																<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="0" />군필
+																	class="ng-pristine ng-untouched ng-valid" value="군필" />군필
 															<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="1" />미필
+																	class="ng-pristine ng-untouched ng-valid" value="미필" />미필
 															<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="2" />면제
-														</c:if> <c:if test="${resume.milit eq '0' }">
+																	class="ng-pristine ng-untouched ng-valid" value="면제" />면제
+														</c:if> <c:if test="${resume.milit eq '군필' }">
 																<input type="radio" name="milit" checked="checked"
-																	class="ng-pristine ng-untouched ng-valid" value="0" />군필
+																	class="ng-pristine ng-untouched ng-valid" value="군필" />군필
 															<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="1" />미필
+																	class="ng-pristine ng-untouched ng-valid" value="미필" />미필
 															<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="2" />면제
-														</c:if> <c:if test="${resume.milit eq '1' }">
+																	class="ng-pristine ng-untouched ng-valid" value="면제" />면제
+														</c:if> <c:if test="${resume.milit eq '미필' }">
 																<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="0" />군필
+																	class="ng-pristine ng-untouched ng-valid" value="군필" />군필
 															<input type="radio" name="milit" checked="checked"
-																	class="ng-pristine ng-untouched ng-valid" value="1" />미필
+																	class="ng-pristine ng-untouched ng-valid" value="미필" />미필
 															<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="2" />면제
-														</c:if> <c:if test="${resume.milit eq '2' }">
+																	class="ng-pristine ng-untouched ng-valid" value="면제" />면제
+														</c:if> <c:if test="${resume.milit eq '면제' }">
 																<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="0" />군필
+																	class="ng-pristine ng-untouched ng-valid" value="군필" />군필
 															<input type="radio" name="milit"
-																	class="ng-pristine ng-untouched ng-valid" value="1" />미필
+																	class="ng-pristine ng-untouched ng-valid" value="미필" />미필
 															<input type="radio" name="milit" checked="checked"
-																	class="ng-pristine ng-untouched ng-valid" value="2" />면제
+																	class="ng-pristine ng-untouched ng-valid" value="면제" />면제
 														</c:if></td>
 														<th>복무기간</th>
 														<td><select class="ng-pristine ng-untouched ng-valid"

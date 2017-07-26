@@ -23,7 +23,7 @@
 		<!-- dirver : jdbc -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<!-- 접속 DB 서버 정보 port와 sid -->
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1522:orcl" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.12:1522:orcl" />
 		<!-- 계정정보 -->
 		<property name="username" value="tiger"/>
 		<property name="password" value="scott"/>
@@ -70,23 +70,23 @@
 
 
 	<!-- mail bean -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<!-- gmail host 및 port를 사용 -->
+	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		gmail host 및 port를 사용
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<!-- javarajob 아이디 및 비밀 번호 -->
+		javarajob 아이디 및 비밀 번호
 		<property name="username" value="javarajob@gmail.com" />
 		<property name="password" value="q1w2e34r!" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
-				<!-- mail 서버 연결시 timeout 시간 설정 -->
+				mail 서버 연결시 timeout 시간 설정
 				<prop key="mail.smtp.timeout">8500</prop>
-				<!-- log를 보고 싶다면 사용 -->
+				log를 보고 싶다면 사용
 				<prop key="mail.debug">true</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
 </beans>
 
