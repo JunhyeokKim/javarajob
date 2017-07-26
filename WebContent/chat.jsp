@@ -93,6 +93,8 @@ function send() {
 }
 
 function appendMyMessage(msg, myId) {
+	msg= msg.replace(/(<([^>]+)>)/gi, "");
+	console.log(msg);
 	$(".msg_container_base").append('<div class="row msg_container base_sent">'
             +'<div class="col-md-10 col-xs-10">'
             +'<div class="messages msg_sent">'
@@ -104,11 +106,15 @@ function appendMyMessage(msg, myId) {
             +'<img src="upload/${sessionScope.id}/profile/'+myId+'_profile.jpg?ver='+moment().format("HH:mm")+'" class=" img-responsive ">'
         +'</div>'
     +'</div>');
-	var chatAreaHeight = $(".msg_container_base").height();
-	var maxScroll = $(".msg_container_base").height() - chatAreaHeight;
+	var msgRow=$(".msg_container_base:last-child");
+	var chatAreaHeight = msgRow.height();
+	var maxScroll =$(".msg_container_base").height()-chatAreaHeight;
+	console.log(maxScroll);
 	$(".msg_container_base").scrollTop(maxScroll);
 }	
 function appendMessage(msg, msgId) {
+	msg= msg.replace(/(<([^>]+)>)/gi, "");
+	console.log(msg);
 	$(".msg_container_base").append('<div class="row msg_container base_receive">'
             +'<div class="col-md-2 col-xs-2 avatar">'
             +'<img src="upload/'+msgId+'/profile/'+msgId+'_profile.jpg?ver='+moment().format("HH:mm")+'" class="img-responsive">'
@@ -121,7 +127,7 @@ function appendMessage(msg, msgId) {
         +'</div>'
     +'</div>');
 	var chatAreaHeight = $(".msg_container_base").height();
-	var maxScroll = $(".msg_container_base").height() - chatAreaHeight;
+	var maxScroll = chatAreaHeight - $(".msg_container_base").height()  ;
 	$(".msg_container_base").scrollTop(maxScroll);
 }	
 
