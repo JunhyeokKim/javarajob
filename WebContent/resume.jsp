@@ -15,7 +15,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
-
+<!-- cache 미사용 설정 -->
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="pragma" content="no-store"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
 <title>JAVARAJOB | 이력서 작성</title>
 
 <!-- CSS -->
@@ -52,6 +56,8 @@
 <script src="${path}/com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var d = new Date(); 
+		$("#my-pic").attr("src", "upload/${resume.picName}?ver=" + d.getTime());
 		$("#picUpload").change(function(){
 			if($("#picUpload").val() != "") {
 				// 확장자 check
@@ -100,7 +106,7 @@
 											<div class="image">
 												<div class="image-area">
 													<!-- 증명사진 공간 -->
-													<img src="upload/${resume.picName}" width="100%"
+													<img id ="my-pic" src="upload/${resume.picName}?ver=" width="100%"
 														class="ng-scope" onerror="this.src='images/ico/loading.gif'">
 												</div>
 												<div class="image-buttons">

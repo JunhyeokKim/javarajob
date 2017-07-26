@@ -12,11 +12,11 @@
         	<div class="panel panel-default">
                 <div class="panel-heading top-bar">
                     <div class="col-md-8 col-xs-8">
-                        <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Javarajob- 채팅방</h3>
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Javarajob- 채팅방<span id="userCnt"></span></h3>
                     </div>
                     <div class="col-md-4 col-xs-4" style="text-align: right;">
-                        <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1"></span></a>
+                        <a><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
+                        <a><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1"></span></a>
                     </div>
                 </div>
                 <div class="panel-body msg_container_base">
@@ -64,6 +64,7 @@ function onOpen(evt) {
 }
 function onMessage(evt) {
 	var data = evt.data;
+	console.log(data);
 	var msg=data.substring(0, 4);
 	var msgId=data.substring(4).split("/",1);
 	if (data.substring(0, 4) == "msg:") {
@@ -74,6 +75,11 @@ function onMessage(evt) {
 		else {
 		appendMyMessage(data.split("/")[1],"${sessionScope.id}");
 		}
+	}else{
+		var userCnt= data.split("/")[0];
+		console.log(userCnt);
+		$("#userCnt").text("("+userCnt+")");
+		
 	}
 }
 function onClose(evt) {
@@ -91,11 +97,11 @@ function appendMyMessage(msg, myId) {
             +'<div class="col-md-10 col-xs-10">'
             +'<div class="messages msg_sent">'
                 +'<p>'+msg+'</p>'
-                +'<time datetime="2009-11-13T20:00">${sessionScope.id} • 51 min</time>'
+                +'<time datetime="2009-11-13T20:00">${sessionScope.id} • '+moment().format("HH:mm")+'</time>'
             +'</div>'
         +'</div>'
         +'<div class="col-md-2 col-xs-2 avatar">'
-            +'<img src="upload/${sessionScope.id}/profile/'+myId+'_profile.jpg" class=" img-responsive ">'
+            +'<img src="upload/${sessionScope.id}/profile/'+myId+'_profile.jpg?ver='+moment().format("HH:mm")+'" class=" img-responsive ">'
         +'</div>'
     +'</div>');
 	var chatAreaHeight = $(".msg_container_base").height();
@@ -105,12 +111,12 @@ function appendMyMessage(msg, myId) {
 function appendMessage(msg, msgId) {
 	$(".msg_container_base").append('<div class="row msg_container base_receive">'
             +'<div class="col-md-2 col-xs-2 avatar">'
-            +'<img src="upload/'+msgId+'/profile/'+msgId+'_profile.jpg" class="img-responsive">'
+            +'<img src="upload/'+msgId+'/profile/'+msgId+'_profile.jpg?ver='+moment().format("HH:mm")+'" class="img-responsive">'
         +'</div>'
         +'<div class="col-md-10 col-xs-10">'
             +'<div class="messages msg_receive">'
                 +'<p>'+msg+'</p>'
-                +'<time datetime="2009-11-13T20:00">'+msgId+'• 51 min</time>'
+                +'<time datetime="2009-11-13T20:00">'+msgId+'• '+moment().format("HH:mm")+'</time>'
             +'</div>'
         +'</div>'
     +'</div>');
@@ -168,7 +174,6 @@ $(document).on('click', '.icon_close', function (e) {
 });
 
 $(document).on('click','#chatBtn',function(e){
-	$(this).css('display','none');
 	msgArrived=0;
 	$("#msg-arrived").text(msgArrived);
 })

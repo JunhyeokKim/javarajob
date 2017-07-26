@@ -4,6 +4,9 @@
 .panel{
     margin-bottom: 0px;
 }
+a:hover {
+	cursor: pointer;
+}
 .chat-window{
     bottom:0px;
     position:fixed;

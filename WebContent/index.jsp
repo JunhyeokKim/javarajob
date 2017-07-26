@@ -11,6 +11,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Theme Region">
 <meta name="description" content="">
+<!-- cache 미사용 설정 -->
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
 
 <title>JAVARAJOB | 일자리를 찾는 가장 쉬운 방법</title>
 
@@ -23,7 +27,7 @@
 <link id="preset" rel="stylesheet" href="css/presets/preset1.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/table_kdb.css">
-<link rel="stylesheet" href="css/chat.css?ver=3">
+<link rel="stylesheet" href="css/chat.css?ver=4">
 
 <!-- font -->
 <link
@@ -404,6 +408,7 @@
 	<script src="js/main.js"></script>
 	<script src="js/switcher.js"></script>
 	<script src="js/countUp.js"></script>
+	<script src="js/moment.min.js"></script>
 	<script type="text/javascript">
 	/**
 	 * 
