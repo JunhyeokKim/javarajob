@@ -46,7 +46,7 @@
 		<!-- dirver : jdbc -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<!-- 접속 DB 서버 정보 port와 sid -->
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.12:1522:orcl" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.23:1522:orcl" />
 		<!-- 계정정보 -->
 		<property name="username" value="tiger"/>
 		<property name="password" value="scott"/>
@@ -93,12 +93,12 @@
 
 
 	<!-- mail bean -->
-	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	 <!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		gmail host 및 port를 사용
-		<property name="host" value="smtp.gmail.com" />
+		<property name="host" value="javarajob03.gmail.com" />
 		<property name="port" value="587" />
 		javarajob 아이디 및 비밀 번호
-		<property name="username" value="javarajob@gmail.com" />
+		<property name="username" value="kjho1e3@gmail.com" />
 		<property name="password" value="q1w2e34r!" />
 		<property name="javaMailProperties">
 			<props>

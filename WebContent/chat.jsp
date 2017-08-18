@@ -32,26 +32,12 @@
     		</div>
         </div>
     </div>
-    
-    <div class="btn-group dropup">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-cog"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-        </ul>
-    </div>
 </div>
 <script type="text/javascript">
 var wsocket;
 var msgArrived=0;
 function connect() {
-	wsocket = new WebSocket("ws://192.168.0.187:7080/${path}/chat-ws.do");
+	wsocket = new WebSocket("ws://192.168.0.141:7080/${path}/chat-ws.do");
 	wsocket.onopen = onOpen;
 	wsocket.onmessage = onMessage;
 	wsocket.onclose = onClose;
@@ -91,7 +77,7 @@ function send() {
 	wsocket.send("msg:${sessionScope.id}/"+ msg);
 	$("#btn-input").val("");
 }
-
+/* 자신의 message 내용을 msg_container에 append한다. 말풍선의 방향이 다르기 때문에 따로 함수를 두었음.  */
 function appendMyMessage(msg, myId) {
 	msg= msg.replace(/(<([^>]+)>)/gi, "");
 	console.log(msg);
@@ -112,6 +98,7 @@ function appendMyMessage(msg, myId) {
 	console.log(maxScroll);
 	$(".msg_container_base").scrollTop(maxScroll);
 }	
+/* 다른 user로부터 온 message를 msg_container에 append한다. */ 
 function appendMessage(msg, msgId) {
 	msg= msg.replace(/(<([^>]+)>)/gi, "");
 	console.log(msg);
@@ -134,9 +121,11 @@ function appendMessage(msg, msgId) {
 $(document).ready(function(){
 	$('#btn-input').keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
+		/* enter 버튼 keyPress */
 		if(keycode == '13'){
 			send();	
 		}
+		/* event 전파 방지 */
 		event.stopPropagation();
 	});
 	$('#btn-chat').click(
@@ -145,19 +134,22 @@ $(document).ready(function(){
 	$(document).ready(function() { connect(); });
 	$('#exitBtn').click(function() { disconnect(); });
 });
-
+/* 채팅창 최소화 */
 $(document).on('click', '.panel-heading span.icon_minim', function (e) {
     var $this = $(this);
+    /* 이미 접힌 상태인 경우 다시 화면을 복구함 */
     if (!$this.hasClass('panel-collapsed')) {
         $this.parents('.panel').find('.panel-body').slideUp();
         $this.addClass('panel-collapsed');
         $this.removeClass('glyphicon-minus').addClass('glyphicon-plus');
     } else {
+    	/* 이미 열린 상태인 경우 화면을 최소화함 */
         $this.parents('.panel').find('.panel-body').slideDown();
         $this.removeClass('panel-collapsed');
         $this.removeClass('glyphicon-plus').addClass('glyphicon-minus');
     }
 });
+
 $(document).on('focus', '.panel-footer input.chat_input', function (e) {
     var $this = $(this);
     if ($('#minim_chat_window').hasClass('panel-collapsed')) {
@@ -166,13 +158,7 @@ $(document).on('focus', '.panel-footer input.chat_input', function (e) {
         $('#minim_chat_window').removeClass('glyphicon-plus').addClass('glyphicon-minus');
     }
 });
-$(document).on('click', '#new_chat', function (e) {
-    var size = $( ".chat-window:last-child" ).css("margin-left");
-     size_total = parseInt(size) + 400;
-    alert(size_total);
-    var clone = $( "#chat_window_1" ).clone().appendTo( ".container" );
-    clone.css("margin-left", size_total);
-});
+
 $(document).on('click', '.icon_close', function (e) {
     //$(this).parent().parent().parent().parent().remove();
     $( "#chat_window_1" ).parents('.dropup').removeClass('open');

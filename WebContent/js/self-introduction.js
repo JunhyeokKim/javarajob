@@ -1,6 +1,5 @@
 $(document).ready(function(){
 		// ---------- Dropzone 설정 ----------
-		// "dropArea" is the camelized version of the HTML element's ID
 		Dropzone.options.dropArea = {
 		  url:"self_intro.do?method=upload&count=0",
 		  paramName: "selfIntro", // 전송할 input file의 name
@@ -59,8 +58,6 @@ $(document).ready(function(){
 			        	  })
 			       		}
 			          
-			          // If you want to the delete the file on the server as well,
-			          // you can do the AJAX request here.
 			        });
 			     // ---------- download ----------
 			        downloadButton.addEventListener("click",function(e) {
@@ -88,7 +85,7 @@ $(document).ready(function(){
 			        	$(this).find(".dropzone-down").css("display","none");
 			        })
 
-			        // Add the button to the file preview element.
+			        // preview element에 button 생성
 			        file.previewElement.appendChild(removeButton);
 			        file.previewElement.appendChild(checkboxButton);
 			        file.previewElement.appendChild(downloadButton);
