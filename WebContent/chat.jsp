@@ -37,7 +37,8 @@
 var wsocket;
 var msgArrived=0;
 function connect() {
-	wsocket = new WebSocket("ws://192.168.0.141:7080/${path}/chat-ws.do");
+	wsocket = new WebSocket("ws://192.168.0.16:7080/${path}/chat-ws.do");
+	/* wsocket = new WebSocket("ws://192.168.0.141:7080/${path}/chat-ws.do"); */
 	wsocket.onopen = onOpen;
 	wsocket.onmessage = onMessage;
 	wsocket.onclose = onClose;
@@ -169,9 +170,6 @@ $(document).on('click','#chatBtn',function(e){
 	msgArrived=0;
 	$("#msg-arrived").text(msgArrived);
 })
-
-
-
 </script>
 	</body>
 </html>

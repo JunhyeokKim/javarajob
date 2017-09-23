@@ -1,5 +1,5 @@
-selfUp=C:/Users/acorn/git/javarajob/WebContent/upload/
+selfUp=C:/Users/kjho1/git/javarajob/WebContent/upload/
 driver=oracle.jdbc.driver.OracleDriver
-dbserver=jdbc:oracle:thin:@192.168.0.110:1522:orcl
-name=tiger
-pass=scott
+dbserver=jdbc:oracle:thin:@localhost:1521:orcl
+name=scott
+pass=tiger

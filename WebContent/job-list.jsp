@@ -586,28 +586,7 @@
 
 
 
-                    <!--/Preset Style Chooser-->
-                    <div class="style-chooser">
-                        <div class="style-chooser-inner">
-                            <a href="#" class="toggler"><i class="fa fa-cog fa-spin"></i></a>
-                            <h4>Presets</h4>
-                            <ul class="preset-list clearfix">
-                                <li class="preset1 active" data-preset="1">
-                                    <a href="#" data-color="preset1"></a>
-                                </li>
-                                <li class="preset2" data-preset="2">
-                                    <a href="#" data-color="preset2"></a>
-                                </li>
-                                <li class="preset3" data-preset="3">
-                                    <a href="#" data-color="preset3"></a>
-                                </li>
-                                <li class="preset4" data-preset="4">
-                                    <a href="#" data-color="preset4"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--/End:Preset Style Chooser-->
+                    
 
                     <!-- JS -->
                     <script src="js/jquery.min.js"></script>

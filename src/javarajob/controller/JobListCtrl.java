@@ -69,10 +69,10 @@ public class JobListCtrl {
             schElement.setCompanyname(query);
             schElement.setTitle(null);
         }
-        if(orderBy.equals("rescent")){
-        	schElement.setOrderby(0);
-        }else if(orderBy.equals("bookmark")){
-        	schElement.setOrderby(1);
+        if (orderBy.equals("rescent")) {
+            schElement.setOrderby(0);
+        } else if (orderBy.equals("bookmark")) {
+            schElement.setOrderby(1);
         }
         // 접속중인 id의 관심 기업 리스트를 받아옴
         if (curId != null && !curId.equals("")) {
@@ -202,6 +202,5 @@ public class JobListCtrl {
         favCompService.removeFavCompany(vo);
         return "redirect:careerlist.do?method=sch";
     }
-
 
 }

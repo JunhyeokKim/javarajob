@@ -148,7 +148,7 @@ $(document).ready(function(){
 		    container: 'body',
 		    selector: '.unselected[data-toggle="popover"]',
 		    content: function () {
-		        return "ºÏ¸¶Å© µÇ¾ú½À´Ï´Ù.";
+		        return "ë¶ë§ˆí¬ì— ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		    }
 		}
 		$('body').popover(popOverSettings);
